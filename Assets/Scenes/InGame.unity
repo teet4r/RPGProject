@@ -1802,10 +1802,10 @@ RectTransform:
   m_Father: {fileID: 592672052}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -69.072, y: -12}
-  m_SizeDelta: {x: 100, y: 24}
+  m_AnchorMin: {x: 0.012, y: 0.3285714}
+  m_AnchorMax: {x: 0.423, y: 0.5}
+  m_AnchoredPosition: {x: -0.072021484, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &155923968
 MonoBehaviour:
@@ -1829,7 +1829,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 16
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -1840,7 +1840,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: "\uD544\uC694 \uB808\uBCA8"
 --- !u!222 &155923969
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3395,7 +3395,7 @@ GameObject:
   - component: {fileID: 444836606}
   - component: {fileID: 444836605}
   m_Layer: 5
-  m_Name: Button (Legacy) (1)
+  m_Name: SkillPoint1SubButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3417,10 +3417,10 @@ RectTransform:
   m_Father: {fileID: 592672052}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -20.3, y: -46.3}
-  m_SizeDelta: {x: 60, y: 36}
+  m_AnchorMin: {x: 0.37800002, y: 0.028571429}
+  m_AnchorMax: {x: 0.62200004, y: 0.28571436}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &444836605
 MonoBehaviour:
@@ -3465,7 +3465,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 444836606}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1438082259}
+        m_TargetAssemblyTypeName: SkillWindowButtons, Assembly-CSharp
+        m_MethodName: SelectSkillPoint1SubButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &444836606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4287,10 +4299,10 @@ RectTransform:
   m_Father: {fileID: 592672052}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 33.291, y: 24.8}
-  m_SizeDelta: {x: 160, y: 24}
+  m_AnchorMin: {x: 0.30800003, y: 0.5928572}
+  m_AnchorMax: {x: 0.9616885, y: 0.76428574}
+  m_AnchoredPosition: {x: -2.9505005, y: -0.20000076}
+  m_SizeDelta: {x: -6.483, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &576182871
 MonoBehaviour:
@@ -4314,7 +4326,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 16
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -4325,7 +4337,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: "\uD604\uC7AC \uC2A4\uD0AC \uB808\uBCA8"
 --- !u!222 &576182872
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4603,10 +4615,10 @@ RectTransform:
   m_Father: {fileID: 1622535910}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 126, y: -74}
-  m_SizeDelta: {x: 244, y: 140}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &592672053
 MonoBehaviour:
@@ -7128,10 +7140,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -7139,7 +7151,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: ALL
 --- !u!222 &865123178
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7237,7 +7249,7 @@ GameObject:
   - component: {fileID: 879764019}
   - component: {fileID: 879764018}
   m_Layer: 5
-  m_Name: Button (Legacy) (2)
+  m_Name: SkillPointAllAddButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7259,10 +7271,10 @@ RectTransform:
   m_Father: {fileID: 592672052}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: -46.3}
-  m_SizeDelta: {x: 60, y: 36}
+  m_AnchorMin: {x: 0.689, y: 0.028571429}
+  m_AnchorMax: {x: 0.933, y: 0.28571436}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &879764018
 MonoBehaviour:
@@ -7307,7 +7319,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 879764019}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1438082259}
+        m_TargetAssemblyTypeName: SkillWindowButtons, Assembly-CSharp
+        m_MethodName: SelectSkillPointAllAddButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &879764019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7482,10 +7506,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -7493,7 +7517,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: -1
 --- !u!222 &885913075
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9812,7 +9836,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 7f9df81958bf79741bc4394314ae280d, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -11766,10 +11790,10 @@ RectTransform:
   m_Father: {fileID: 1097973448}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 64, y: 64}
+  m_SizeDelta: {x: -2, y: -2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1361051973
 MonoBehaviour:
@@ -12848,6 +12872,7 @@ GameObject:
   - component: {fileID: 1438082256}
   - component: {fileID: 1438082258}
   - component: {fileID: 1438082257}
+  - component: {fileID: 1438082259}
   m_Layer: 5
   m_Name: SkillWindow
   m_TagString: Untagged
@@ -12917,6 +12942,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438082255}
   m_CullTransparentMesh: 1
+--- !u!114 &1438082259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438082255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd6a567ed81dee74fb05ed1fd78f316f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1453630719
 GameObject:
   m_ObjectHideFlags: 0
@@ -13102,10 +13139,10 @@ RectTransform:
   m_Father: {fileID: 592672052}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 30.049683, y: 53.21228}
-  m_SizeDelta: {x: 153.5165, y: 24}
+  m_AnchorMin: {x: 0.312, y: 0.7928571}
+  m_AnchorMax: {x: 0.933, y: 0.96428573}
+  m_AnchoredPosition: {x: 0.049682617, y: 0.21228027}
+  m_SizeDelta: {x: 1.5164948, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1463572290
 MonoBehaviour:
@@ -13129,7 +13166,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 16
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -13140,7 +13177,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: "\uC2A4\uD0AC \uC774\uB984"
 --- !u!222 &1463572291
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13314,7 +13351,7 @@ GameObject:
   - component: {fileID: 1504120326}
   - component: {fileID: 1504120325}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: SkillPoint1AddButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13336,10 +13373,10 @@ RectTransform:
   m_Father: {fileID: 592672052}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -89.072, y: -46.3}
-  m_SizeDelta: {x: 60, y: 36}
+  m_AnchorMin: {x: 0.066, y: 0.028571429}
+  m_AnchorMax: {x: 0.312, y: 0.28571436}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1504120325
 MonoBehaviour:
@@ -13384,7 +13421,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1504120326}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1438082259}
+        m_TargetAssemblyTypeName: SkillWindowButtons, Assembly-CSharp
+        m_MethodName: SelectSkillPoint1AddButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1504120326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15330,10 +15379,10 @@ RectTransform:
   m_Father: {fileID: 592672052}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 50.000023, y: -12}
-  m_SizeDelta: {x: 100, y: 24}
+  m_AnchorMin: {x: 0.5, y: 0.3285714}
+  m_AnchorMax: {x: 0.908705, y: 0.5}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1729703308
 MonoBehaviour:
@@ -15357,7 +15406,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 16
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -15368,7 +15417,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: "\uD544\uC694 SP"
 --- !u!222 &1729703309
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16570,10 +16619,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -16581,7 +16630,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: +1
 --- !u!222 &1945293716
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17591,7 +17640,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2131725979}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1438082259}
+        m_TargetAssemblyTypeName: SkillWindowButtons, Assembly-CSharp
+        m_MethodName: SelectSkillPointInitButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2131725979
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryButtons : MonoBehaviour
+public class InventoryWindowButtons : MonoBehaviour
 {
     [SerializeField]
     GameObject[] itemTabWindows;
