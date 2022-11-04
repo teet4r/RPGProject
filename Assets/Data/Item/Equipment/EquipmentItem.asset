@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7933bb1dec306f42a827a54413938e1, type: 3}
   m_Name: EquipmentItem
   m_EditorClassIdentifier: 
-  itemName: 
-  itemInfo: 
+  itemName: "\uCD08\uBCF4 \uAC80\uC0AC\uC758 \uAC80"
+  itemInfo: "\uCD08\uBCF4 \uAC80\uC0AC\uC758 \uAC80\uC774\uB2E4.\n\uB0A0\uC774 \uBB34\uB38C\uC838\uC788\uB2E4."
   itemImage: {fileID: 0}
-  buyPrice: 0
-  sellPrice: 0
-  bundleSize: 0
-  canSell: 0
+  buyPrice: 100
+  sellPrice: 80
+  bundleSize: 1
+  canSell: 1
   statStr: 0
   statVit: 0
   statDex: 0

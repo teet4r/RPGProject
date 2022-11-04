@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="EquipmentItem",menuName ="Item/Equipment")]
 public class EquipmentItem : Item
 {
+    // 작성자 : 김두현
     [SerializeField] int statStr;
     [SerializeField] int statVit;
     [SerializeField] int statDex;
@@ -13,10 +14,10 @@ public class EquipmentItem : Item
     [SerializeField] int damage;
     [SerializeField] int defense;
 
-    [SerializeField] int moveSpeed;
+    [SerializeField] float moveSpeed;
 
     [SerializeField] int criticalRate;
-    [SerializeField] int criticalDamage;
+    [SerializeField] float criticalDamage;
 
     [SerializeField] ItemRecipe[] itemRecipes;
 
@@ -28,10 +29,10 @@ public class EquipmentItem : Item
     public int Damage { get { return damage; } }
     public int Defense { get { return defense; } }
 
-    public int MoveSpeed { get { return moveSpeed; } }
+    public float MoveSpeed { get { return moveSpeed; } }
 
     public int CriticalRate { get { return criticalRate; } }
-    public int CriticalDamage { get { return criticalDamage; } }
+    public float CriticalDamage { get { return criticalDamage; } }
 
     public ItemRecipe[] ItemRecipes { get { return itemRecipes; } }
 }

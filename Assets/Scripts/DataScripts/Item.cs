@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Item : ScriptableObject
 {
+    // 작성자 : 김두현
     [SerializeField] string itemName;
     [SerializeField][Multiline(3)] string itemInfo;
 
