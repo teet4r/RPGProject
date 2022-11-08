@@ -18,6 +18,8 @@ public class CameraMovement : MonoBehaviour
     public float minDis;
     public float maxDis;
     public float finalDis;
+    public float Smoothness = 10f;
+
 
     void Start()
     {
@@ -41,6 +43,21 @@ public class CameraMovement : MonoBehaviour
 
     void LatUpdate()
     {
-        //transform.position = Vector3.MoveTowards(transform.)
+        transform.position = Vector3.MoveTowards(transform.position, objFollow.position, flwSpeed * Time.deltaTime);
+
+        finalDir = transform.TransformPoint(dirNormalized * maxDis);
+
+        RaycastHit hit;
+
+        if(Physics.Linecast(transform.position,finalDir,out hit))
+        {
+            finalDis = Mathf.Clamp(hit.distance, minDis, maxDis);
+
+        }
+        else 
+        {
+            finalDis = maxDis;
+        }
+        realCamera.localPosition = Vector3.Lerp(realCamera.localPosition, dirNormalized * finalDis, Time.deltaTime * Smoothness);
     }
 }
