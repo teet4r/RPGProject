@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ItemSlot : MonoBehaviour
 {
+    // 작성자 : 김두현
     [SerializeField] Item item;
     [SerializeField] int itemNum;
     [SerializeField] Image itemNumImage;
@@ -13,7 +14,21 @@ public class ItemSlot : MonoBehaviour
     {
         itemImage = GetComponentsInChildren<Image>()[1];
         itemNumImage = GetComponentsInChildren<Image>()[2];
-        SetItemNum(itemNum);
+        itemNumText = GetComponentInChildren<Text>();
+        if (item != null)
+        {
+            SetItemImage();
+            SetItemNum(itemNum);
+        }
+        else
+        {
+            ClearItemSlot();
+        }
+    }
+
+    public void SetItemImage()
+    {
+        itemImage.sprite = item.ItemImage;
     }
 
     public void AddItemNum(int _num)
@@ -30,20 +45,31 @@ public class ItemSlot : MonoBehaviour
 
     public void SetItemNum(int _num)
     {
-        itemNum = _num;
-        itemNumText.text = itemNum.ToString();
-        if(itemNum==0)
+        if (itemNum == 0)
         {
             ClearItemSlot();
         }
+        else if (itemNum == 1)
+        {
+            itemNumText.gameObject.SetActive(false);
+            itemNumImage.gameObject.SetActive(false);
+        }
+        else if (itemNum > 1)
+        {
+            itemNumText.gameObject.SetActive(true);
+            itemNumImage.gameObject.SetActive(true);
+        }
+        itemNum = _num;
+        itemNumText.text = itemNum.ToString();
     }
 
     public void ClearItemSlot()
     {
         item = null;
         itemNum = 0;
-        itemNumText.text = itemNum.ToString();
         itemNumText.gameObject.SetActive(false);
+        itemNumText.text = itemNum.ToString();
+        itemNumImage.gameObject.SetActive(false);
         itemImage.color = Color.clear;
     }
 
@@ -58,7 +84,7 @@ public class ItemSlot : MonoBehaviour
         {
             itemImage.color = Color.white;
         }
-        if(itemNum>1)
+        if (itemNum > 1)
         {
             itemNumImage.gameObject.SetActive(true);
         }

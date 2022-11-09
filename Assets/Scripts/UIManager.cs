@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    // 작성자 : 김두현
     [SerializeField] GameObject inventoryWindow;
     [SerializeField] GameObject equipmentWindow;
     [SerializeField] GameObject characterInfoWindow;
