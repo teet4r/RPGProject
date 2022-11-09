@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SkillWindowButtons : MonoBehaviour
 {
+    // 작성자 : 김두현
     public void SelectSkillPoint1AddButton()
     {
         /*

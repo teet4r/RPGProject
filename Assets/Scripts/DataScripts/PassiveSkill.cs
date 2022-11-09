@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PassiveSkill", menuName = "Skill/Passive")]
-public class PassiveSkill : MonoBehaviour
+public class PassiveSkill : Item
 {
     // 작성자 : 김두현
     [SerializeField] int damageNum; // 0 레벨 기준 증가하는 데미지

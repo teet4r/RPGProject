@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MainMenuButtons : MonoBehaviour
 {
+    // 작성자 : 김두현
     [SerializeField] GameObject optionWindow;
     [SerializeField] GameObject howToWindow;
     public void SelectGameStartButton()
