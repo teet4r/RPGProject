@@ -6,14 +6,12 @@ public class UIManager : MonoBehaviour
 {
     // 작성자 : 김두현
     [SerializeField] GameObject inventoryWindow;
-    [SerializeField] GameObject equipmentWindow;
     [SerializeField] GameObject characterInfoWindow;
     [SerializeField] GameObject skillWindow;
     [SerializeField] GameObject questWindow;
     private void Update()
     {
         OpenInventoryUI();
-        OpenEqiupmentUI();
         OpenCharacterInfoUI();
         OpenSkillUI();
         OpenQuestUI();
@@ -21,10 +19,6 @@ public class UIManager : MonoBehaviour
     void OpenInventoryUI()
     {
         if (Input.GetKeyDown(KeyCode.I)) inventoryWindow.SetActive(!inventoryWindow.activeSelf);
-    }
-    void OpenEqiupmentUI()
-    {
-        if (Input.GetKeyDown(KeyCode.C)) equipmentWindow.SetActive(!equipmentWindow.activeSelf);
     }
     void OpenCharacterInfoUI()
     {
