@@ -14,6 +14,12 @@ public class Skill : ScriptableObject
     [SerializeField] int skillNeedLevel; // 스킬 습득에 필요한 레벨
     [SerializeField] int skillPoint; // 스킬 습득 혹은 레벨업에 필요한 스킬 포인트
 
+    [SerializeField] SKILL_TYPE skillType;
+
+    public enum SKILL_TYPE { ACTIVE,PASSIVE,PUBLIC}
+
+    public int SkillType { get { return (int)skillType; } }
+
     public string SkillName { get { return skillName; } }
     public string SkillInfo { get { return skillInfo; } }
     public Sprite SkillImage { get { return skillImage; } }

@@ -8,8 +8,14 @@ public class ItemSlot : MonoBehaviour
     [SerializeField] Item item;
     [SerializeField] int itemNum;
     [SerializeField] Image itemNumImage;
+    [SerializeField]
     Image itemImage;
     Text itemNumText;
+
+    //20221111 17:26 열거형으로 슬롯타입 지정 및 변수 생성하고 Item과 연동할것
+
+    public Item Item { get { return item; } }
+
     private void Start()
     {
         itemImage = GetComponentsInChildren<Image>()[1];

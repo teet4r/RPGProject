@@ -21,6 +21,12 @@ public class EquipmentItem : Item
 
     [SerializeField] ItemRecipe[] itemRecipes;
 
+    [SerializeField] EQUIPMENT_TYPE equipmentType;
+
+    public enum EQUIPMENT_TYPE { WEAPON,SHIELD,HELMET,ARMOR,SHOES}
+
+    public int EquipmentType { get { return (int)equipmentType; } }
+
     public int StatStr { get { return statStr; } }
     public int StatVit { get { return statVit; } }
     public int StatDex { get { return statDex; } }
