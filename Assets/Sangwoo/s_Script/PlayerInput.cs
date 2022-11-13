@@ -37,5 +37,6 @@ public class PlayerInput : MonoBehaviour
         fire = Input.GetButton(fireButtonName);
         // reload에 관한 입력 감지
         reload = Input.GetButtonDown(reloadButtonName);
+
     }
 }
