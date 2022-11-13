@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class SkillSlot : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    // 작성자 : 김두현
+    [SerializeField] Skill skill;
+    [SerializeField] Image skillImage;
 
-    }
+    public Skill Skill { get { return skill; } }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        skillImage.sprite = skill.SkillImage;
     }
 }
