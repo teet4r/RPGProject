@@ -93,6 +93,7 @@ MonoBehaviour:
   item: {fileID: 0}
   itemNum: 0
   itemNumImage: {fileID: 4797785235396565657}
+  itemImage: {fileID: 4797785234677921410}
 --- !u!1 &4797785234677921408
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
