@@ -25,6 +25,7 @@ public class ItemSlot : MonoBehaviour
         {
             SetItemImage();
             SetItemNum(itemNum);
+            SetItemImageColor();
         }
         else
         {
