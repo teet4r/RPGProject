@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f; // 앞뒤 움직임의 속도
-    public float rotateSpeed = 180f; // 좌우 회전 속도
+   // public float rotateSpeed = 180f; // 좌우 회전 속도
 
     private Animator playerAnimator; // 플레이어 캐릭터의 애니메이터
     private PlayerInput playerInput; // 플레이어 입력을 알려주는 컴포넌트
@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         // 회전 실행
-        Rotate();
+        //Rotate();
         // 움직임 실행
         Move();
 
@@ -41,12 +41,12 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // 입력값에 따라 캐릭터를 좌우로 회전
-    private void Rotate()
-    {
+   // private void Rotate()S
+   // {
         // 상대적으로 회전할 수치 계산
-        float turn =
-            playerInput.rotate * rotateSpeed * Time.deltaTime;
+        //float turn =
+            //playerInput.rotate * rotateSpeed * Time.deltaTime;
         // 리지드바디를 통해 게임 오브젝트 회전 변경
-        playerRigidbody.rotation = playerRigidbody.rotation * Quaternion.Euler(0, turn, 0f);
-    }
+       // playerRigidbody.rotation = playerRigidbody.rotation * Quaternion.Euler(0, turn, 0f);
+    //}
 }
