@@ -15,9 +15,11 @@ public class SlotInfo : MonoBehaviour
     [SerializeField] GameObject skillInfoWindow;
     RectTransform itemInfoWindowRect;
     RectTransform skillInfoWindowRect;
+    ItemInfoWindow itemInfoWindowCpnt;
     private void Start()
     {
         itemInfoWindowRect = itemInfoWindow.GetComponent<RectTransform>();
+        itemInfoWindowCpnt = itemInfoWindow.GetComponent<ItemInfoWindow>();
         skillInfoWindowRect = skillInfoWindow.GetComponent<RectTransform>();
     }
     private void Update()
@@ -33,7 +35,12 @@ public class SlotInfo : MonoBehaviour
                     return;
                 }
                 itemInfoWindow.SetActive(true);
-                itemInfoWindowRect.position = Input.mousePosition - new Vector3(itemInfoWindowRect.sizeDelta.x / 2, itemInfoWindowRect.sizeDelta.y / 2, 0);
+                itemInfoWindowCpnt.SetItemInfoWindow(raycastResults[1].gameObject.GetComponent<ItemSlot>());
+                itemInfoWindowRect.position = Input.mousePosition;
+            }
+            else
+            {
+                itemInfoWindow.SetActive(false);
             }
             if (raycastResults[1].gameObject.GetComponent<SkillSlot>() && raycastResults[1].gameObject.GetComponent<SkillSlot>().Skill != null)
             {
@@ -42,12 +49,17 @@ public class SlotInfo : MonoBehaviour
                     return;
                 }
                 skillInfoWindow.SetActive(true);
-                skillInfoWindowRect.position = Input.mousePosition - new Vector3(skillInfoWindowRect.sizeDelta.x / 2, skillInfoWindowRect.sizeDelta.y / 2, 0);
+                skillInfoWindowRect.position = Input.mousePosition;
+            }
+            else
+            {
+                skillInfoWindow.SetActive(false);
             }
         }
         else
         {
             itemInfoWindow.SetActive(false);
+            skillInfoWindow.SetActive(false);
         }
         raycastResults.Clear();
     }
