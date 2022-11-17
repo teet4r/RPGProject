@@ -6,10 +6,7 @@ using UnityEngine;
 public class EquipmentItem : Item
 {
     // 작성자 : 김두현
-    [SerializeField] int statStr;
-    [SerializeField] int statVit;
-    [SerializeField] int statDex;
-    [SerializeField] int statLuk;
+    [SerializeField] int[] stats;
 
     [SerializeField] int damage;
     [SerializeField] int defense;
@@ -23,14 +20,15 @@ public class EquipmentItem : Item
 
     [SerializeField] EQUIPMENT_TYPE equipmentType;
 
+    [SerializeField] int levelRequire;
+
+    [SerializeField] int reinforceLimit;
+
     public enum EQUIPMENT_TYPE { WEAPON,SHIELD,HELMET,ARMOR,SHOES}
 
     public int EquipmentType { get { return (int)equipmentType; } }
 
-    public int StatStr { get { return statStr; } }
-    public int StatVit { get { return statVit; } }
-    public int StatDex { get { return statDex; } }
-    public int StatLuk { get { return statLuk; } }
+    public int[] Stats { get { return stats; } } // 0str 1vit 2dex 3luk
 
     public int Damage { get { return damage; } }
     public int Defense { get { return defense; } }
@@ -41,6 +39,10 @@ public class EquipmentItem : Item
     public float CriticalDamage { get { return criticalDamage; } }
 
     public ItemRecipe[] ItemRecipes { get { return itemRecipes; } }
+
+    public int LevelRequire { get { return levelRequire; } }
+
+    public int ReinforceLimit { get { return reinforceLimit; } }
 }
 
 [System.Serializable]

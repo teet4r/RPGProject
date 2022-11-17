@@ -31,3 +31,4 @@ MonoBehaviour:
   criticalDamage: 0
   itemRecipes: []
   equipmentType: 0
+  levelRequire: 28
