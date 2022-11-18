@@ -4,12 +4,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemInfoWindow : MonoBehaviour
+public class EquipmentItemInfoWindow : MonoBehaviour
 {
     // 작성자 : 김두현
     [SerializeField] Image itemImage;
     [SerializeField] Text itemName;
-    [SerializeField] Text itemHowMany;
     [SerializeField] GameObject itemStatInfoTexts;
     [SerializeField] Text itemLevelRequire;
     [SerializeField] Text itemCanReinforce;
@@ -19,7 +18,6 @@ public class ItemInfoWindow : MonoBehaviour
     {
         itemImage.sprite = null;
         itemName.text = "";
-        itemHowMany.text = "";
         for (int i = itemStatInfoTexts.transform.childCount - 1; i >= 0; i--)
         {
             itemStatInfoTexts.transform.GetChild(i).gameObject.SetActive(false);
@@ -49,11 +47,6 @@ public class ItemInfoWindow : MonoBehaviour
             {
                 itemCanReinforce.text = "강화 가능";
             }
-        }
-        else
-        {
-            itemHowMany.text = "보유 수량 : " + _itemSlot.ItemNum.ToString();
-
         }
         EnableStatInfoTexts(_itemSlot.Item);
 

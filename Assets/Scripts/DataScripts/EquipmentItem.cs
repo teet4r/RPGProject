@@ -28,7 +28,7 @@ public class EquipmentItem : Item
 
     public int EquipmentType { get { return (int)equipmentType; } }
 
-    public int[] Stats { get { return stats; } } // 0str 1vit 2dex 3luk
+    public int[] Stats { get { return stats; } } // 0str 1vit 2dex 3luk 4dmg 5def 6mvspd 7crt 8crtdmg
 
     public int Damage { get { return damage; } }
     public int Defense { get { return defense; } }

@@ -7,17 +7,16 @@ using UnityEngine.UI;
 public class ItemSlot : MonoBehaviour
 {
     // 작성자 : 김두현
-    [SerializeField] EquipmentItem equipmentItem;
-    [SerializeField] ConsumableItem consumableItem;
-    [SerializeField] OtherItem otherItem;
-    [SerializeField] QuestItem questItem;
-    public Item Item;
-
+    [SerializeField] Item item;
     [SerializeField] int itemNum;
     [SerializeField] Image itemNumImage;
     Image itemImage;
     Text itemNumText;
     int reinforceLevel = 0;
+
+    public enum SLOT_TYPE { EQUIPMENT, CONSUMABLE, OTHER, QUEST }
+    
+    public Item Item { get { return item; } }
     public int ItemNum { get { return itemNum; } }
     public int ReinforceLevel { get { return reinforceLevel; } }
 
@@ -28,33 +27,33 @@ public class ItemSlot : MonoBehaviour
         itemImage = GetComponentsInChildren<Image>()[1];
         itemNumImage = GetComponentsInChildren<Image>()[2];
         itemNumText = GetComponentInChildren<Text>();
-        //if (item != null)
-        //{
-        //    SetItemImage();
-        //    SetItemNum(itemNum);
-        //    SetItemImageColor();
-        //}
-        //else
-        //{
-        //    ClearItemSlot();
-        //}
+        if (item != null)
+        {
+            SetItemImage();
+            SetItemNum(itemNum);
+            SetItemImageColor();
+        }
+        else
+        {
+            ClearItemSlot();
+        }
     }
 
     public void SetItemImage()
     {
-    //    itemImage.sprite = item.ItemImage;
+        itemImage.sprite = item.ItemImage;
     }
 
     public void AddItemNum(int _num)
     {
-        //if (itemNum + _num <= item.BundleSize)
-        //{
-        //    itemNum += _num;
-        //}
-        //else
-        //{
-        //    itemNum = item.BundleSize;
-        //}
+        if (itemNum + _num <= item.BundleSize)
+        {
+            itemNum += _num;
+        }
+        else
+        {
+            itemNum = item.BundleSize;
+        }
     }
 
     public void SetItemNum(int _num)
@@ -79,7 +78,7 @@ public class ItemSlot : MonoBehaviour
 
     public void ClearItemSlot()
     {
-        //item = null;
+        item = null;
         itemNum = 0;
         itemNumText.gameObject.SetActive(false);
         itemNumText.text = itemNum.ToString();
@@ -87,14 +86,9 @@ public class ItemSlot : MonoBehaviour
         itemImage.color = Color.clear;
     }
 
-    public void SetItem(EquipmentItem _item)
+    public void SetItem(Item _item)
     {
-
-    }
-
-    public void SetItem(ConsumableItem _item)
-    {
-
+        item = _item;
     }
 
     public void SetItemImageColor()
@@ -107,14 +101,5 @@ public class ItemSlot : MonoBehaviour
         {
             itemNumImage.gameObject.SetActive(true);
         }
-    }
-
-    bool HaveItem()
-    {
-        if (equipmentItem != null || consumableItem != null || otherItem != null || questItem != null)
-        {
-            return true;
-        }
-        else return false;
     }
 }

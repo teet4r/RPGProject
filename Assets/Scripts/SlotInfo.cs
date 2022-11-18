@@ -15,11 +15,11 @@ public class SlotInfo : MonoBehaviour
     [SerializeField] GameObject skillInfoWindow;
     RectTransform itemInfoWindowRect;
     RectTransform skillInfoWindowRect;
-    ItemInfoWindow itemInfoWindowCpnt;
+    EquipmentItemInfoWindow itemInfoWindowCpnt;
     private void Start()
     {
         itemInfoWindowRect = itemInfoWindow.GetComponent<RectTransform>();
-        itemInfoWindowCpnt = itemInfoWindow.GetComponent<ItemInfoWindow>();
+        itemInfoWindowCpnt = itemInfoWindow.GetComponent<EquipmentItemInfoWindow>();
         skillInfoWindowRect = skillInfoWindow.GetComponent<RectTransform>();
     }
     private void Update()
