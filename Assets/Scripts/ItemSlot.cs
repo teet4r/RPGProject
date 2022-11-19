@@ -8,6 +8,12 @@ public class ItemSlot : MonoBehaviour
 {
     // 작성자 : 김두현
     [SerializeField] Item item;
+
+    [SerializeField] EquipmentItem equipmentItem;
+    [SerializeField] ConsumableItem consumableItem;
+    [SerializeField] OtherItem otherItem;
+    [SerializeField] QuestItem questItem;
+    [SerializeField] SLOT_TYPE slotType;
     [SerializeField] int itemNum;
     [SerializeField] Image itemNumImage;
     Image itemImage;
@@ -19,8 +25,6 @@ public class ItemSlot : MonoBehaviour
     public Item Item { get { return item; } }
     public int ItemNum { get { return itemNum; } }
     public int ReinforceLevel { get { return reinforceLevel; } }
-
-    // 20221111 17:26 열거형으로 슬롯타입 지정 및 변수 생성하고 Item과 연동할것
 
     private void Start()
     {
@@ -86,7 +90,22 @@ public class ItemSlot : MonoBehaviour
         itemImage.color = Color.clear;
     }
 
-    public void SetItem(Item _item)
+    public void SetItem(EquipmentItem _item)
+    {
+        item = _item;
+    }
+
+    public void SetItem(ConsumableItem _item)
+    {
+        item = _item;
+    }
+
+    public void SetItem(OtherItem _item)
+    {
+        item = _item;
+    }
+
+    public void SetItem(QuestItem _item)
     {
         item = _item;
     }

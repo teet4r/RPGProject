@@ -15,13 +15,12 @@ public class ConsumableItemInfoWindow : MonoBehaviour
     {
         itemImage.sprite = _itemSlot.GetComponent<ItemSlot>().Item.ItemImage;
         itemName.text = _itemSlot.GetComponent<ItemSlot>().Item.ItemName;
-        itemNum.text = "보유 수량 : ";
+        itemNum.text = "보유 수량 : " + _itemSlot.ItemNum.ToString();
         SetItemStatInfoTexts();
         itemInfo.text = _itemSlot.GetComponent<ItemSlot>().Item.ItemInfo;
     }
 
     void SetItemStatInfoTexts()
     {
-
     }
 }
