@@ -19,7 +19,7 @@ public class ItemSlot : MonoBehaviour
     Image itemImage;
     Text itemNumText;
     int reinforceLevel = 0;
-
+    // 20221120 ÀÜµð¿ë
     public enum SLOT_TYPE { EQUIPMENT, CONSUMABLE, OTHER, QUEST }
     
     public Item Item { get { return item; } }
