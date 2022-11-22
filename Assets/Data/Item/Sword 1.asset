@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7933bb1dec306f42a827a54413938e1, type: 3}
+  m_Name: Sword 1
+  m_EditorClassIdentifier: 
+  itemName: "\uAC80123"
+  itemInfo: "\uAC80\uC774\uB2E4.123"
+  itemImage: {fileID: 21300000, guid: 298fc95afd55e884489e70bf0bb43ab0, type: 3}
+  buyPrice: 123
+  sellPrice: 80124
+  bundleSize: 1
+  canSell: 1
+  itemType: 0
+  stats: 
+  damage: 0
+  defense: 0
+  moveSpeed: 0
+  criticalRate: 0
+  criticalDamage: 0
+  itemRecipes: []
+  equipmentType: 0
+  levelRequire: 26
+  reinforceLimit: 0

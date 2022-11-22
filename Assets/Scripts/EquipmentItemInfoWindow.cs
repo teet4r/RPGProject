@@ -16,6 +16,32 @@ public class EquipmentItemInfoWindow : MonoBehaviour
 
     private void OnDisable()
     {
+        ClearWindow();
+    }
+
+    public void SetItemInfoWindow(ItemSlot _itemSlot)
+    {
+        ClearWindow();
+        itemImage.sprite = _itemSlot.Item.ItemImage;
+        if (_itemSlot.ReinforceLevel > 0)
+        {
+            itemName.text = "(" + _itemSlot.ReinforceLevel.ToString() + ") ";
+        }
+        itemName.text += _itemSlot.Item.ItemName;
+        itemLevelRequire.text = "레벨 제한 LV" + _itemSlot.EquipmentItem.LevelRequire.ToString();
+        if (_itemSlot.ReinforceLevel >= _itemSlot.EquipmentItem.ReinforceLimit)
+        {
+            itemCanReinforce.text = "강화 불가";
+        }
+        else
+        {
+            itemCanReinforce.text = "강화 가능";
+        }
+        EnableStatInfoTexts(_itemSlot.EquipmentItem);
+    }
+
+    void ClearWindow()
+    {
         itemImage.sprite = null;
         itemName.text = "";
         for (int i = itemStatInfoTexts.transform.childCount - 1; i >= 0; i--)
@@ -27,43 +53,11 @@ public class EquipmentItemInfoWindow : MonoBehaviour
         itemInfo.text = "";
     }
 
-    public void SetItemInfoWindow(ItemSlot _itemSlot)
-    {
-        itemImage.sprite = _itemSlot.Item.ItemImage;
-        if (_itemSlot.ReinforceLevel > 0)
-        {
-            itemName.text = "(" + _itemSlot.ReinforceLevel.ToString() + ") ";
-        }
-        itemName.text += _itemSlot.Item.ItemName;
-
-        if (CheckEquipment(_itemSlot.Item))
-        {
-            itemLevelRequire.text = "레벨 제한 LV" + _itemSlot.Item.GetComponent<EquipmentItem>().LevelRequire.ToString();
-            if (_itemSlot.ReinforceLevel >= _itemSlot.Item.GetComponent<EquipmentItem>().ReinforceLimit)
-            {
-                itemCanReinforce.text = "강화 불가";
-            }
-            else
-            {
-                itemCanReinforce.text = "강화 가능";
-            }
-        }
-        EnableStatInfoTexts(_itemSlot.Item);
-
-    }
-
-    void EnableStatInfoTexts(Item _item)
+    void EnableStatInfoTexts(EquipmentItem _item)
     {
     }
 
-    void SetStatInfoTexts(Item _item)
+    void SetStatInfoTexts(EquipmentItem _item)
     {
-    }
-
-    bool CheckEquipment(Item _item)
-    {
-        if (_item.ItemType == (int)Item.ITEM_TYPE.EQUIPMENT)
-            return true;
-        else return false;
     }
 }

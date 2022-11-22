@@ -19,18 +19,24 @@ public class ItemSlot : MonoBehaviour
     Image itemImage;
     Text itemNumText;
     int reinforceLevel = 0;
-    // 20221120 ÀÜµð¿ë
+
     public enum SLOT_TYPE { EQUIPMENT, CONSUMABLE, OTHER, QUEST }
     
     public Item Item { get { return item; } }
     public int ItemNum { get { return itemNum; } }
     public int ReinforceLevel { get { return reinforceLevel; } }
 
+    public EquipmentItem EquipmentItem { get { return equipmentItem; } }
+    public ConsumableItem ConsumableItem { get { return consumableItem; } }
+    public OtherItem OtherItem { get { return otherItem; } }
+    public QuestItem QuestItem { get { return QuestItem; } }
+
     private void Start()
     {
         itemImage = GetComponentsInChildren<Image>()[1];
         itemNumImage = GetComponentsInChildren<Image>()[2];
         itemNumText = GetComponentInChildren<Text>();
+        InitItem();
         if (item != null)
         {
             SetItemImage();
@@ -88,6 +94,10 @@ public class ItemSlot : MonoBehaviour
         itemNumText.text = itemNum.ToString();
         itemNumImage.gameObject.SetActive(false);
         itemImage.color = Color.clear;
+        equipmentItem = null;
+        consumableItem = null;
+        otherItem = null;
+        questItem = null;
     }
 
     public void SetItem(EquipmentItem _item)
@@ -108,6 +118,18 @@ public class ItemSlot : MonoBehaviour
     public void SetItem(QuestItem _item)
     {
         item = _item;
+    }
+
+    void InitItem()
+    {
+        if (equipmentItem != null)
+        { item = equipmentItem; return; }
+        if (consumableItem != null)
+        { item = consumableItem; return; }
+        if (otherItem != null)
+        { item = otherItem; return; }
+        if (questItem != null)
+        { item = questItem; return; }
     }
 
     public void SetItemImageColor()
