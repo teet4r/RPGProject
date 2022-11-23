@@ -68,12 +68,12 @@ public class SlotInfo : MonoBehaviour
             case (int)Item.ITEM_TYPE.EQUIPMENT:
                 itemInfoWindowRect = equipmentItemInfoWindow.GetComponent<RectTransform>();
                 equipmentItemInfoWindow.SetActive(true);
-                Debug.Log("SetItemInfoWindow");
                 equipmentItemInfoWindow.GetComponent<EquipmentItemInfoWindow>().SetItemInfoWindow(_itemSlot);
                 break;
             case (int)Item.ITEM_TYPE.CONSUMABLE:
                 itemInfoWindowRect = consumableItemInfoWindow.GetComponent<RectTransform>();
                 consumableItemInfoWindow.SetActive(true);
+                consumableItemInfoWindow.GetComponent<ConsumableItemInfoWindow>().SetItemInfoWindow(_itemSlot);
                 break;
             case (int)Item.ITEM_TYPE.OTHER:
             case (int)Item.ITEM_TYPE.QUEST:

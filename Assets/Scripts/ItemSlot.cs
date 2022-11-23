@@ -16,9 +16,9 @@ public class ItemSlot : MonoBehaviour
     [SerializeField] SLOT_TYPE slotType;
     [SerializeField] int itemNum;
     [SerializeField] Image itemNumImage;
+    [SerializeField] int reinforceLevel = 0;
     Image itemImage;
     Text itemNumText;
-    int reinforceLevel = 0;
 
     public enum SLOT_TYPE { EQUIPMENT, CONSUMABLE, OTHER, QUEST }
     

@@ -15,18 +15,20 @@ MonoBehaviour:
   itemName: "\uAC80123"
   itemInfo: "\uAC80\uC774\uB2E4.123"
   itemImage: {fileID: 21300000, guid: 298fc95afd55e884489e70bf0bb43ab0, type: 3}
-  buyPrice: 123
+  buyPrice: 311
   sellPrice: 80124
   bundleSize: 1
   canSell: 1
   itemType: 0
-  stats: 
-  damage: 0
-  defense: 0
-  moveSpeed: 0
-  criticalRate: 0
-  criticalDamage: 0
+  statStr: 29
+  statVit: 33
+  statDex: 22
+  statLuk: 25
+  damage: 30
+  defense: 41
+  criticalRate: 40
+  criticalDamage: 1.09
   itemRecipes: []
   equipmentType: 0
-  levelRequire: 26
-  reinforceLimit: 0
+  levelRequire: 262
+  reinforceLimit: 247
