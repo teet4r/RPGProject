@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem; 
 
 public class PlayerStateMachine : MonoBehaviour
 {
@@ -20,6 +21,20 @@ public class PlayerStateMachine : MonoBehaviour
 
     bool _isJumpPressed = false;
     //float //221113
+    float _initialJumpVelocity;
+    float _maxJumpHeight = 4.0f;
+    float _maxJumpTime = .75f;
+    bool _isJumping = false;
+    int _isJumpingHash;
+    int _jumpCoutHash;
+    bool _requireNewJumPress;
+    int _jumpCount = 0;
+    Dictionary<int, float> _initialJumpVelocities = new Dictionary<int, float>();
+
+    Dictionary<int, float> _jumpGravities = new Dictionary<int, float>();
+    Coroutine _currentJumpResetRoutine = null;
+
+     
 
 
 
