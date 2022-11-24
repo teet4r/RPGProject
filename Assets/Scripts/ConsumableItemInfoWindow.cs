@@ -13,6 +13,8 @@ public class ConsumableItemInfoWindow : MonoBehaviour
     const int statNum = 7; // 아이템 정보창 스탯 최대 개수
     const int otherTextGroupNormalYPos = -308; // 아이템 정보창 추가정보 기본 y축 위치
 
+    [SerializeField] Inventory inventory;
+
     [SerializeField] Image itemImage;
     [SerializeField] Text itemName;
     [SerializeField] Text itemNum;
@@ -25,7 +27,7 @@ public class ConsumableItemInfoWindow : MonoBehaviour
         ClearWindow();
         itemImage.sprite = _itemSlot.GetComponent<ItemSlot>().Item.ItemImage;
         itemName.text = _itemSlot.GetComponent<ItemSlot>().Item.ItemName;
-        itemNum.text = "보유 수량 : " + _itemSlot.ItemNum.ToString();
+        itemNum.text = "보유 수량 : " + inventory.HowManyItem(_itemSlot.Item).ToString();
         itemInfo.text = _itemSlot.GetComponent<ItemSlot>().Item.ItemInfo;
         SetStatInfoTexts(_itemSlot.ConsumableItem);
     }
