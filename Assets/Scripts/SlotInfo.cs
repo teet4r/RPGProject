@@ -9,6 +9,8 @@ public class SlotInfo : MonoBehaviour
     // 작성자 : 김두현
     /* itemSlot - itemImage
      */
+    const float updateTime = 0.05f;
+
     PointerEventData pointer = new PointerEventData(EventSystem.current);
     List<RaycastResult> raycastResults = new List<RaycastResult>();
     [SerializeField] GameObject equipmentItemInfoWindow, consumableItemInfoWindow, normalItemInfoWindow;
@@ -19,6 +21,7 @@ public class SlotInfo : MonoBehaviour
     ConsumableItemInfoWindow consumableItemInfoWindowCpnt;
     NormalItemInfoWindow normalItemInfoWindowCpnt;
     bool windowOn = false;
+    float time = 0f;
     private void Start()
     {
         equipmentItemInfoWindowCpnt = equipmentItemInfoWindow.GetComponent<EquipmentItemInfoWindow>();
@@ -28,36 +31,45 @@ public class SlotInfo : MonoBehaviour
     }
     private void Update()
     {
-        pointer.position = Input.mousePosition;
-        EventSystem.current.RaycastAll(pointer, raycastResults);
-        if (raycastResults.Count > 1)
+        if(time>=updateTime)
         {
-            if (raycastResults[1].gameObject.GetComponent<ItemSlot>() && raycastResults[1].gameObject.GetComponent<ItemSlot>().Item != null)
+            pointer.position = Input.mousePosition;
+            EventSystem.current.RaycastAll(pointer, raycastResults);
+            if (raycastResults.Count > 1)
             {
-                if (windowOn)
+                if (raycastResults[1].gameObject.GetComponent<ItemSlot>() && raycastResults[1].gameObject.GetComponent<ItemSlot>().Item != null)
                 {
-                    return;
+                    if (windowOn)
+                    {
+                        return;
+                    }
+                    EnableItemInfoWindow(raycastResults[1].gameObject.GetComponent<ItemSlot>());
+                    itemInfoWindowRect.position = Input.mousePosition;
                 }
-                EnableItemInfoWindow(raycastResults[1].gameObject.GetComponent<ItemSlot>());
-                itemInfoWindowRect.position = Input.mousePosition;
+                else
+                {
+                    DisableItemInfoWindow();
+                }
+                if (raycastResults[1].gameObject.GetComponent<SkillSlot>() && raycastResults[1].gameObject.GetComponent<SkillSlot>().Skill != null)
+                {
+                    if (windowOn)
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                }
             }
             else
             {
                 DisableItemInfoWindow();
+                skillInfoWindow.SetActive(false);
             }
-            if (raycastResults[1].gameObject.GetComponent<SkillSlot>() && raycastResults[1].gameObject.GetComponent<SkillSlot>().Skill != null)
-            {
-            }
-            else
-            {
-            }
+            raycastResults.Clear();
+            time = 0f;
         }
-        else
-        {
-            DisableItemInfoWindow();
-            skillInfoWindow.SetActive(false);
-        }
-        raycastResults.Clear();
+        time += Time.deltaTime;
     }
 
     void EnableItemInfoWindow(ItemSlot _itemSlot)
