@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 public class Inventory : MonoBehaviour
 {
     // 작성자 : 김두현
+    /* 아이템 습득, 아이템 개수 등에 관련한 내용이 들어갈 예정
+     * 
+     */
     [SerializeField] GameObject itemTabGroup;
 
     public int HowManyItem(Item _item)
