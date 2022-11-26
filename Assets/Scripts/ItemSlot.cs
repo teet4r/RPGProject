@@ -20,7 +20,12 @@ public class ItemSlot : MonoBehaviour
     Image itemImage;
     Text itemNumText;
 
-    public enum SLOT_TYPE { EQUIPMENT, CONSUMABLE, OTHER, QUEST }
+    public enum SLOT_TYPE { EQUIPMENT, CONSUMABLE, OTHER, QUEST, NORMAL }
+    // EQUIPMENT - 장비슬롯
+    // CONSUMABLE - 소모품슬롯
+    // OTHER - 기타템슬롯
+    // QUEST - 퀘스트아이템 슬롯
+    // NORMAL - 고정 아이템 슬롯 EX) 퀘스트 보상 아이템슬롯, 상점 아이템슬롯, 제작 아이템슬롯 등
     
     public Item Item { get { return item; } }
     public int ItemNum { get { return itemNum; } }

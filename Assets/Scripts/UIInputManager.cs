@@ -13,6 +13,7 @@ public class UIInputManager : MonoBehaviour
     [SerializeField] GameObject characterInfoWindow;
     [SerializeField] GameObject skillWindow;
     [SerializeField] GameObject questWindow;
+    [SerializeField] GameObject uiGroup;
 
     Dictionary<int, KeyCode> keySettings = new Dictionary<int, KeyCode>();
 
@@ -20,7 +21,6 @@ public class UIInputManager : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < arr.Length; i++) arr[i] = i;
         keySettings.Add((int)UI_TYPE.INVENTORY, KeyCode.I);
         keySettings.Add((int)UI_TYPE.CHARACTERINFO, KeyCode.P);
         keySettings.Add((int)UI_TYPE.SKILL, KeyCode.K);
@@ -38,24 +38,39 @@ public class UIInputManager : MonoBehaviour
     public void SelectInventoryUI()
     {
         inventoryWindow.SetActive(!inventoryWindow.activeSelf);
+        inventoryWindow.transform.SetAsLastSibling();
     }
     public void SelectCharacterInfoUI()
     {
         characterInfoWindow.SetActive(!characterInfoWindow.activeSelf);
+        characterInfoWindow.transform.SetAsLastSibling();
     }
 
     public void SelectSkillUI()
     {
         skillWindow.SetActive(!skillWindow.activeSelf);
+        skillWindow.transform.SetAsLastSibling();
     }
 
     public void SelectQuestUI()
     {
         questWindow.SetActive(!questWindow.activeSelf);
+        questWindow.transform.SetAsLastSibling();
     }
 
     void CloseUI()
     {
-
+        for (int i = uiGroup.transform.childCount - 1; i >= 0; i--)
+        {
+            if (!uiGroup.transform.GetChild(i).gameObject.activeSelf)
+            {
+                continue;
+            }
+            else
+            {
+                uiGroup.transform.GetChild(i).gameObject.SetActive(false);
+                break;
+            }
+        }
     }
 }

@@ -25,6 +25,7 @@ public class TopBarMoving : MonoBehaviour
             graphicRaycaster.Raycast(ped, results);
             if (results.Count <= 0 || results[0].gameObject.name != "TopBar") return;
             selectedTopBar = results[0].gameObject;
+            selectedTopBar.transform.parent.transform.SetAsLastSibling();
             selectedUI = results[0].gameObject.transform.parent.GetComponent<RectTransform>();
             difference = selectedUI.position - Input.mousePosition;
             topBarSelected = true;
