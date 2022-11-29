@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ConsumableItem 1
   m_EditorClassIdentifier: 
   itemName: "\uD3EC\uC158123"
-  itemInfo: "\uD3EC\uC158123\uC774\uB2E4."
+  itemInfo: 
   itemImage: {fileID: 21300000, guid: 298fc95afd55e884489e70bf0bb43ab0, type: 3}
   buyPrice: 174
   sellPrice: 129

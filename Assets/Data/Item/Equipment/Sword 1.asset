@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sword 1
   m_EditorClassIdentifier: 
   itemName: "\uAC80123"
-  itemInfo: "\uAC80\uC774\uB2E4.123"
+  itemInfo: 
   itemImage: {fileID: 21300000, guid: 298fc95afd55e884489e70bf0bb43ab0, type: 3}
   buyPrice: 311
   sellPrice: 80124
