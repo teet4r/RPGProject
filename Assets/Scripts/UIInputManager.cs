@@ -29,7 +29,11 @@ public class UIInputManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) CloseUI();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (CheckOpenUI()) CloseUI();
+            else SelectOptionUI();
+        }
         if (Input.GetKeyDown(keySettings[(int)UI_TYPE.INVENTORY])) SelectInventoryUI();
         if (Input.GetKeyDown(keySettings[(int)UI_TYPE.CHARACTERINFO])) SelectCharacterInfoUI();
         if (Input.GetKeyDown(keySettings[(int)UI_TYPE.SKILL])) SelectSkillUI();
@@ -58,6 +62,10 @@ public class UIInputManager : MonoBehaviour
         questWindow.transform.SetAsLastSibling();
     }
 
+    void SelectOptionUI()
+    {
+    }
+
     void CloseUI()
     {
         for (int i = uiGroup.transform.childCount - 1; i >= 0; i--)
@@ -72,5 +80,17 @@ public class UIInputManager : MonoBehaviour
                 break;
             }
         }
+    }
+
+    bool CheckOpenUI()
+    {
+        for (int i = 0; i < uiGroup.transform.childCount; i++)
+        {
+            if (uiGroup.transform.GetChild(i).gameObject.activeSelf)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
