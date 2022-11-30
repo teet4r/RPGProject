@@ -20,7 +20,6 @@ public class SlotInfo : MonoBehaviour
     EquipmentItemInfoWindow equipmentItemInfoWindowCpnt;
     ConsumableItemInfoWindow consumableItemInfoWindowCpnt;
     NormalItemInfoWindow normalItemInfoWindowCpnt;
-    bool windowOn = false;
     float time = 0f;
     private void Start()
     {
@@ -31,7 +30,7 @@ public class SlotInfo : MonoBehaviour
     }
     private void Update()
     {
-        if(time>=updateTime)
+        if (time >= updateTime)
         {
             pointer.position = Input.mousePosition;
             EventSystem.current.RaycastAll(pointer, raycastResults);
@@ -39,10 +38,7 @@ public class SlotInfo : MonoBehaviour
             {
                 if (raycastResults[1].gameObject.GetComponent<ItemSlot>() && raycastResults[1].gameObject.GetComponent<ItemSlot>().Item != null)
                 {
-                    if (windowOn)
-                    {
-                        return;
-                    }
+                    DisableItemInfoWindow();
                     EnableItemInfoWindow(raycastResults[1].gameObject.GetComponent<ItemSlot>());
                     itemInfoWindowRect.position = Input.mousePosition;
                 }
@@ -52,19 +48,19 @@ public class SlotInfo : MonoBehaviour
                 }
                 if (raycastResults[1].gameObject.GetComponent<SkillSlot>() && raycastResults[1].gameObject.GetComponent<SkillSlot>().Skill != null)
                 {
-                    if (windowOn)
-                    {
-                        return;
-                    }
+                    DisableSkillInfoWindow();
+                    EnableSkillInfoWindow(raycastResults[1].gameObject.GetComponent<SkillSlot>());
+                    skillInfoWindowRect.position = Input.mousePosition;
                 }
                 else
                 {
+                    DisableSkillInfoWindow();
                 }
             }
             else
             {
                 DisableItemInfoWindow();
-                skillInfoWindow.SetActive(false);
+                DisableSkillInfoWindow();
             }
             raycastResults.Clear();
             time = 0f;
@@ -74,7 +70,6 @@ public class SlotInfo : MonoBehaviour
 
     void EnableItemInfoWindow(ItemSlot _itemSlot)
     {
-        windowOn = true;
         switch ((int)_itemSlot.Item.ItemType)
         {
             case (int)Item.ITEM_TYPE.EQUIPMENT:
@@ -94,11 +89,22 @@ public class SlotInfo : MonoBehaviour
                 break;
         }
     }
+
+    void EnableSkillInfoWindow(SkillSlot _skillSlot)
+    {
+        skillInfoWindow.SetActive(true);
+        skillInfoWindow.GetComponent<SkillInfoWindow>().SetSkillInfoWindow(_skillSlot);
+    }
+
     void DisableItemInfoWindow()
     {
-        windowOn = false;
         equipmentItemInfoWindow.SetActive(false);
         consumableItemInfoWindow.SetActive(false);
         normalItemInfoWindow.SetActive(false);
+    }
+
+    void DisableSkillInfoWindow()
+    {
+        skillInfoWindow.SetActive(false);
     }
 }

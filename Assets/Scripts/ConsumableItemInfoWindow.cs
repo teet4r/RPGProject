@@ -35,13 +35,11 @@ public class ConsumableItemInfoWindow : MonoBehaviour
     void ClearWindow()
     {
         itemImage.sprite = null;
-        itemName.text = "";
-        itemNum.text = "";
+        itemName.text = itemNum.text = itemInfo.text = "";
         for (int i = itemStatInfoTexts.transform.childCount - 1; i >= 0; i--)
         {
             itemStatInfoTexts.transform.GetChild(i).gameObject.SetActive(false);
         }
-        itemInfo.text = "";
     }
 
     void SetStatInfoTexts(ConsumableItem _item)
