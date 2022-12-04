@@ -85,6 +85,10 @@ public class ItemMoving : MonoBehaviour
             if (raycastResults.Count > 0)
             {
                 // 아이템 슬롯 관련 구현
+                if (raycastResults[1].gameObject.GetComponent<ItemSlot>())
+                {
+
+                }
             }
         }
         if (Input.GetMouseButtonUp(0) && isHoldingSkill)
@@ -93,9 +97,13 @@ public class ItemMoving : MonoBehaviour
             isHoldingSkill = false;
             pointer.position = Input.mousePosition;
             EventSystem.current.RaycastAll(pointer, raycastResults);
-            if(raycastResults.Count>0)
+            if (raycastResults.Count > 0)
             {
                 // 스킬 슬롯 관련 구현
+                if (raycastResults[1].gameObject.GetComponent<SkillSlot>())
+                {
+
+                }
             }
         }
     }
