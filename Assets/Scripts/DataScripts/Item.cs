@@ -15,7 +15,7 @@ public class Item : ScriptableObject
 
     [SerializeField] int bundleSize;
 
-    [SerializeField] bool canSell;
+    [SerializeField] bool canSell = true;
 
     [SerializeField] ITEM_TYPE itemType;
 
