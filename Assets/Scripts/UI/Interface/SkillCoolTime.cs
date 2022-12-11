@@ -14,20 +14,12 @@ public class SkillCoolTime : MonoBehaviour
 
     public void Click()
     {
-        Init_UI();
         TriggerSkill();
     }
     void Update()
     {
        if(isEnded) return;
         Check_CoolTime();
-    }
-    void Init_UI() //이미지가 360도 시계 반대방향으로 회전하게 설정
-    {
-        FillImg.type = Image.Type.Filled; //채우는 타입
-        FillImg.fillMethod = Image.FillMethod.Radial360; //360도로 채워짐
-        FillImg.fillOrigin = (int)Image.Origin360.Top; //시계방향을 채워짐
-        FillImg.fillClockwise = false;
     }
     void Check_CoolTime() //스킬 재사용까지 남은 시간을 검사 및 표시
     {
@@ -51,11 +43,9 @@ public class SkillCoolTime : MonoBehaviour
     {
         if (!isEnded)
         {
-            Debug.LogError("대기");
             return;
         }
         ResetCoolTime();
-        Debug.LogError("trigger skill");
     }
     void ResetCoolTime() //쿨타임 리셋
     {
