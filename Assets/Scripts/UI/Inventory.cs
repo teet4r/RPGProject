@@ -9,7 +9,23 @@ public class Inventory : MonoBehaviour
     /* 아이템 습득, 아이템 개수 등에 관련한 내용이 들어갈 예정
      * 
      */
+
+    public static Inventory instance;
+
     [SerializeField] GameObject itemTabGroup;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     public int HowManyItem(Item _item)
     {

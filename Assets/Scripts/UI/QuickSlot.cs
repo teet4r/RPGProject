@@ -5,10 +5,8 @@ using UnityEngine.UI;
 
 public class QuickSlot : MonoBehaviour
 {
-    [SerializeField] Item item;
     [SerializeField] Skill skill;
     [SerializeField] Image slotImage;
-    [SerializeField] Text itemNum;
     [SerializeField] KeyCode inputKey;
 
     private void Update()
@@ -19,21 +17,10 @@ public class QuickSlot : MonoBehaviour
         }
     }
 
-    public void SetQuickSlot(Item _item)
-    {
-        item = _item;
-        slotImage.sprite = _item.ItemImage;
-    }
-
     public void SetQuickSlot(Skill _skill)
     {
         skill = _skill;
         slotImage.sprite = _skill.SkillImage;
-    }
-
-    public void RefreshQuickSlotItemNum(int num)
-    {
-        itemNum.text = num.ToString();
     }
 
     public void SetQuickSlotInputKey(KeyCode _keycode)
@@ -43,10 +30,8 @@ public class QuickSlot : MonoBehaviour
 
     public void ClearQuickSlot()
     {
-        item = null;
         skill = null;
         slotImage.sprite = null;
-        itemNum.text = "";
     }
 
     public void UseQuickSlot()

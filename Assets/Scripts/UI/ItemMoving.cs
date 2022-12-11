@@ -10,14 +10,11 @@ public class ItemMoving : MonoBehaviour
     List<RaycastResult> raycastResults = new List<RaycastResult>();
     ItemSlot selectedItem;
     ItemSlot unselectedItem;
-    SkillSlot selectedSkill;
-    //QuickSlot unselectedSlot;
+    QuickSlot unselectedSlot;
     [SerializeField] GameObject holdingItemImage;
-    [SerializeField] GameObject holdingSkillImage;
     [SerializeField] GameObject droppingItemWindow;
     [SerializeField] GameObject sellingItemWindow;
     bool isHoldingItem = false;
-    bool isHoldingSkill = false;
 
     private void Update()
     {
@@ -37,14 +34,6 @@ public class ItemMoving : MonoBehaviour
                             holdingItemImage.SetActive(true);
                             isHoldingItem = true;
                         }
-                    }else if (raycastResults[1].gameObject.GetComponent<SkillSlot>())
-                    {
-                        selectedSkill = raycastResults[1].gameObject.GetComponent<SkillSlot>();
-                        if(selectedSkill.GetComponent<SkillSlot>().Skill != null)
-                        {
-                            holdingSkillImage.SetActive(true);
-                            isHoldingSkill = true;
-                        }
                     }
                 }
                 catch { }
@@ -55,11 +44,6 @@ public class ItemMoving : MonoBehaviour
         {
             holdingItemImage.GetComponent<Image>().sprite = selectedItem.GetComponent<Image>().sprite;
             holdingItemImage.GetComponent<RectTransform>().transform.position = Input.mousePosition;
-        }
-        if (Input.GetMouseButton(0) && isHoldingSkill)
-        {
-            holdingSkillImage.GetComponent<Image>().sprite = selectedSkill.GetComponent<Image>().sprite;
-            holdingSkillImage.GetComponent<RectTransform>().transform.position = Input.mousePosition;
         }
 
         /* 슬롯별로 구분이 필요
@@ -85,25 +69,23 @@ public class ItemMoving : MonoBehaviour
             if (raycastResults.Count > 0)
             {
                 // 아이템 슬롯 관련 구현
-                if (raycastResults[1].gameObject.GetComponent<ItemSlot>())
+                try
                 {
-
+                    if (raycastResults[1].gameObject.GetComponent<ItemSlot>() && raycastResults[1].gameObject.CompareTag("ItemSlot"))
+                    {
+                        raycastResults[1].gameObject.GetComponent<ItemSlot>().SetItem(selectedItem.Item);
+                    }
+                    else if (raycastResults[1].gameObject.CompareTag("Shop") || raycastResults[0].gameObject.CompareTag("Shop"))
+                    {
+                        sellingItemWindow.SetActive(true);
+                    }
+                    else if (raycastResults[1].gameObject.GetComponent<ConsumableSlot>()) // 기본 인터페이스 포션 슬롯
+                    {
+                        raycastResults[1].gameObject.GetComponent<ConsumableSlot>().SetSlotItem(selectedItem.ConsumableItem);
+                    }
                 }
-            }
-        }
-        if (Input.GetMouseButtonUp(0) && isHoldingSkill)
-        {
-            holdingSkillImage.SetActive(false);
-            isHoldingSkill = false;
-            pointer.position = Input.mousePosition;
-            EventSystem.current.RaycastAll(pointer, raycastResults);
-            if (raycastResults.Count > 0)
-            {
-                // 스킬 슬롯 관련 구현
-                if (raycastResults[1].gameObject.GetComponent<SkillSlot>())
-                {
-
-                }
+                catch { }
+                raycastResults.Clear();
             }
         }
     }

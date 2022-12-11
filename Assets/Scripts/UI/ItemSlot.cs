@@ -105,6 +105,7 @@ public class ItemSlot : MonoBehaviour
         questItem = null;
     }
 
+    /*
     public void SetItem(EquipmentItem _item)
     {
         item = _item;
@@ -123,6 +124,13 @@ public class ItemSlot : MonoBehaviour
     public void SetItem(QuestItem _item)
     {
         item = _item;
+    }
+    */
+
+    public void SetItem<T>(T _item) where T : Item
+    {
+        T tmp = _item;
+        item = tmp;
     }
 
     void InitItem()
