@@ -6,6 +6,8 @@ public class BagicMovement : MonoBehaviour
 {
    
     private Animator animator;
+    public float speed;
+
 
     private void Awake()
     {
@@ -19,7 +21,7 @@ public class BagicMovement : MonoBehaviour
         float MoveX = Input.GetAxis("Horizontal");
         float MoveY = Input.GetAxis("Vertical");
 
-        animator.SetFloat("Horizontal", MoveX);
-        animator.SetFloat("Vertical", MoveY);
+        animator.SetFloat("MoveX", MoveX);
+        animator.SetFloat("MoveY", MoveY);
     }
 }
