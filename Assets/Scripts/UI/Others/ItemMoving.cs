@@ -10,7 +10,6 @@ public class ItemMoving : MonoBehaviour
     List<RaycastResult> raycastResults = new List<RaycastResult>();
     ItemSlot selectedItem;
     ItemSlot unselectedItem;
-    QuickSlot unselectedSlot;
     [SerializeField] GameObject holdingItemImage;
     [SerializeField] GameObject droppingItemWindow;
     [SerializeField] GameObject sellingItemWindow;
