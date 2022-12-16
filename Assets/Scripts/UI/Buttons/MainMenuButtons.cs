@@ -5,15 +5,11 @@ using UnityEngine.SceneManagement;
 public class MainMenuButtons : MonoBehaviour
 {
     // 작성자 : 김두현
+    // 22.12.16 수정 조아라
     [SerializeField] GameObject optionWindow;
-    [SerializeField] GameObject howToWindow;
     public void SelectGameStartButton()
     {
-        SceneManager.LoadScene("CharacterSelect");
-    }
-    public void SelectHowToButton()
-    {
-        howToWindow.SetActive(!howToWindow.activeSelf);
+        SceneManager.LoadScene("InGame");
     }
     public void SelectOptionButton()
     {
