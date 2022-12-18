@@ -11,10 +11,11 @@ public class MainMenuButtons : MonoBehaviour
     {
         SceneManager.LoadScene("InGame");
     }
-    public void SelectOptionButton()
+    public void SelectOptionButton() //¾ê ÇÏ³ª·Î ¿­°í´Ý±â °¡´É
     {
         optionWindow.SetActive(!optionWindow.activeSelf);
     }
+    
     public void SelectGameExitButton()
     {
         Application.Quit();
