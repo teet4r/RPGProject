@@ -22,7 +22,7 @@ public class KeyManager : MonoBehaviour
         QUICK_POTION_1, QUICK_POTION_2, QUICK_SKILL_1, QUICK_SKILL_2,
         ENUM_SIZE
     }
-    public KeyCode[] defaultKeys = new KeyCode[]
+    KeyCode[] defaultKeys = new KeyCode[]
     {
         // 캐릭터 이동
         KeyCode.W, KeyCode.S, KeyCode.A,KeyCode.D,
@@ -38,6 +38,11 @@ public class KeyManager : MonoBehaviour
     GameObject selectedButton;
     KeyCode inputKey;
     bool buttonSelected = false;
+
+    public KeyCode Key(KEYNAME name)
+    {
+        return keys[name];
+    }
 
     private void Awake()
     {
