@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class KeyManager : MonoBehaviour
 {
@@ -33,8 +34,9 @@ public class KeyManager : MonoBehaviour
         // 퀵슬롯
         KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Z, KeyCode.X
     };
-
-    Dictionary<KEYNAME, KeyCode> keys = new Dictionary<KEYNAME, KeyCode>();
+    KeyCode[] tmpKeys;
+    GameObject buttonTexts;
+    Dictionary<KEYNAME, KeyCode> keys = new();
     GameObject selectedButton;
     KeyCode inputKey;
     bool buttonSelected = false;
@@ -66,16 +68,28 @@ public class KeyManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        for (int i = 0; i < keys.Count; i++)
+        {
+            buttonTexts.transform.GetChild(i).GetComponent<Text>().text = keys[(KEYNAME)i].ToString();
+        }
+    }
+
     void ResetAllKey()
     {
+        for (int i = 0; i < keys.Count; i++)
+        {
+            tmpKeys[i] = defaultKeys[i];
+        }
     }
 
     public void SaveKeySet()
     {
-    }
-
-    void RefreshKeyText()
-    {
+        for (int i = 0; i < keys.Count; i++)
+        {
+            keys[(KEYNAME)i] = tmpKeys[i];
+        }
     }
 
     bool IsDuplicated(KeyCode _keycode) // 중복체크 함수 true - 중복 false - 미중복
@@ -90,7 +104,7 @@ public class KeyManager : MonoBehaviour
         }
     }
 
-    public void SelectKeySetButton()
+    public void SelectKeySetButton(int _num)
     {
         buttonSelected = true;
         selectedButton = EventSystem.current.currentSelectedGameObject;
@@ -103,6 +117,8 @@ public class KeyManager : MonoBehaviour
             inputKey = Event.current.keyCode;
             if (IsDuplicated(inputKey))
             {
+                selectedButton.GetComponent<Text>().text = inputKey.ToString();
+                buttonSelected = false;
             }
         }
     }
