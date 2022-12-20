@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -35,11 +34,9 @@ public class KeyManager : MonoBehaviour
         KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Z, KeyCode.X
     };
     KeyCode[] tmpKeys;
-    GameObject buttonTexts;
     Dictionary<KEYNAME, KeyCode> keys = new();
     GameObject selectedButton;
-    KeyCode inputKey;
-    bool buttonSelected = false;
+    [SerializeField] GameObject keySettingWindow;
 
     public KeyCode Key(KEYNAME name)
     {
@@ -66,13 +63,15 @@ public class KeyManager : MonoBehaviour
         {
             keys.Add((KEYNAME)i, defaultKeys[i]);
         }
+        tmpKeys = defaultKeys;
+        SetKeyText();
     }
 
-    private void OnEnable()
+    void SetKeyText() // SAVE
     {
         for (int i = 0; i < keys.Count; i++)
         {
-            buttonTexts.transform.GetChild(i).GetComponent<Text>().text = keys[(KEYNAME)i].ToString();
+            keySettingWindow.transform.GetChild(i).GetComponentInChildren<Text>().text = keys[(KEYNAME)i].ToString();
         }
     }
 
@@ -92,34 +91,37 @@ public class KeyManager : MonoBehaviour
         }
     }
 
-    bool IsDuplicated(KeyCode _keycode) // 중복체크 함수 true - 중복 false - 미중복
-    {
-        if (keys.ContainsValue(_keycode))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+    int key = -1;
 
-    public void SelectKeySetButton(int _num)
+    public void SelectKeySetButton()
     {
-        buttonSelected = true;
         selectedButton = EventSystem.current.currentSelectedGameObject;
+        key = selectedButton.transform.GetSiblingIndex();
     }
-
-    private void Update()
+    private void OnGUI()
     {
-        if(buttonSelected)
+        Event keyEvent = Event.current;
+        if (keyEvent.isKey && selectedButton != null)
         {
-            inputKey = Event.current.keyCode;
-            if (IsDuplicated(inputKey))
+            for (int i = 0; i < keys.Count; i++)
             {
-                selectedButton.GetComponent<Text>().text = inputKey.ToString();
-                buttonSelected = false;
+                if (selectedButton.transform.GetSiblingIndex() == i) continue;
+                if (tmpKeys[i] == keyEvent.keyCode)
+                {
+                    tmpKeys[i] = KeyCode.None;
+                }
             }
+            tmpKeys[selectedButton.transform.GetSiblingIndex()] = keyEvent.keyCode;
+            key = -1;
+            selectedButton = null;
+            RefreshButtonText();
+        }
+    }
+    void RefreshButtonText() // NO_SAVE
+    {
+        for (int i = 0; i < keys.Count; i++)
+        {
+            keySettingWindow.transform.GetChild(i).GetComponentInChildren<Text>().text = tmpKeys[i].ToString();
         }
     }
 }
