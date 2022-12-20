@@ -41,7 +41,7 @@ public class CameraMovement : MonoBehaviour
         transform.rotation = rot;
     }
 
-    void LatUpdate()
+    void LateUpdate()
     {
         transform.position = Vector3.MoveTowards(transform.position, objFollow.position, flwSpeed * Time.deltaTime);
 
