@@ -43,7 +43,8 @@ public class Try_v_1 : MonoBehaviour
   
     void Update()
     {
-        //InputManitude();
+        InputMangnitude();
+        PlayerMoveAndRotation();
     }
 
     void PlayerMoveAndRotation()
@@ -63,8 +64,8 @@ public class Try_v_1 : MonoBehaviour
 
         desiredMoveDirection = forward * InputZ + right * InputX;
 
-        //if(GetComponent<ThrowController>().aiming)
-        //    return;
+       // if(GetComponent<ThrowController>().aiming)
+           // return;
 
         if(blockRotationPlayer == false)
         {
@@ -83,5 +84,21 @@ public class Try_v_1 : MonoBehaviour
         t.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(desiredMoveDirection), desiredRotationSpeed);
     }
 
-    void InputMangnitude() { }
+    void InputMangnitude() 
+    {
+        //Calculate Input Vectors
+        InputX = Input.GetAxis("Horizontal");
+        InputZ = Input.GetAxis("Vertical");
+
+        Speed = new Vector2(InputX, InputZ).sqrMagnitude;
+
+        if(Speed >allowPlayerRotation)
+        {
+            PlayerMoveAndRotation();
+        }
+        else if(Speed< allowPlayerRotation)
+        {
+
+        }
+    }
 }

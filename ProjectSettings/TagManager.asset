@@ -15,11 +15,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - PostProcessing
+  - Player
+  - Weapon
+  - Ground
+  - Breakable
   - 
   - 
   - 
