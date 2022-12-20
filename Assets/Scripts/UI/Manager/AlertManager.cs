@@ -26,7 +26,7 @@ public class AlertManager : MonoBehaviour
 
     public void ShowAlert(string _message)
     {
-        GameObject message = Instantiate(alertMessage, Vector3.zero, Quaternion.identity, transform);
+        GameObject message = Instantiate(alertMessage, transform.position, Quaternion.identity, transform);
         message.GetComponent<Text>().text = _message;
     }
 }
