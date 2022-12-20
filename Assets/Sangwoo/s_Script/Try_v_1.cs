@@ -43,6 +43,45 @@ public class Try_v_1 : MonoBehaviour
   
     void Update()
     {
-        
+        //InputManitude();
     }
+
+    void PlayerMoveAndRotation()
+    {
+        InputX = Input.GetAxis("Horizontal");
+        InputZ = Input.GetAxis("Vertical");
+
+        var camera = Camera.main;
+        var forward = cam.transform.forward;
+        var right = cam.transform.right;
+
+        forward.y = 0f;
+        right.y = 0f;
+
+        forward.Normalize();
+        right.Normalize();
+
+        desiredMoveDirection = forward * InputZ + right * InputX;
+
+        //if(GetComponent<ThrowController>().aiming)
+        //    return;
+
+        if(blockRotationPlayer == false)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(desiredMoveDirection), desiredRotationSpeed);
+            controller.Move(desiredMoveDirection * Time.deltaTime * 3);
+        }
+    }
+
+    public void RotateToCamera(Transform t)
+    {
+        var camera = Camera.main;
+        var forward = cam.transform.forward;
+        var right = cam.transform.right;
+
+        desiredMoveDirection = forward;
+        t.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(desiredMoveDirection), desiredRotationSpeed);
+    }
+
+    void InputMangnitude() { }
 }
