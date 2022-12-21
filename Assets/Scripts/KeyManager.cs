@@ -17,10 +17,9 @@ public class KeyManager : MonoBehaviour
         // Ä³¸¯ÅÍ Á¶ÀÛ
         CHAR_ATTACK, CHAR_RUN, CHAR_DODGE, CHAR_JUMP,
         // ÀÏ¹Ý Á¶ÀÛ
-        NORM_INTERACTION, NORM_SIGHTROTATION, NORM_CLOSE, NORM_INVENTORY, NORM_CHARACTERINFO, NORM_SKILL, NORM_QUEST,
+        NORM_INTERACTION, NORM_FOCUSMODE, NORM_CLOSE, NORM_INVENTORY, NORM_CHARACTERINFO, NORM_SKILL, NORM_QUEST,
         // Äü½½·Ô
-        QUICK_POTION_1, QUICK_POTION_2, QUICK_SKILL_1, QUICK_SKILL_2,
-        ENUM_SIZE
+        QUICK_POTION_1, QUICK_POTION_2, QUICK_SKILL_1, QUICK_SKILL_2, QUICK_SKILL_3, QUICK_SKILL_4
     }
     KeyCode[] defaultKeys = new KeyCode[]
     {
@@ -31,7 +30,7 @@ public class KeyManager : MonoBehaviour
         // ÀÏ¹Ý Á¶ÀÛ
         KeyCode.F, KeyCode.Mouse1, KeyCode.Escape, KeyCode.I, KeyCode.P, KeyCode.K, KeyCode.J,
         // Äü½½·Ô
-        KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Z, KeyCode.X
+        KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Z, KeyCode.X, KeyCode.C, KeyCode.V
     };
     KeyCode[] tmpKeys;
     Dictionary<KEYNAME, KeyCode> keys = new();
@@ -93,10 +92,10 @@ public class KeyManager : MonoBehaviour
 
     int key = -1;
 
-    public void SelectKeySetButton()
+    public void SelectKeySetButton(int _key)
     {
         selectedButton = EventSystem.current.currentSelectedGameObject;
-        key = selectedButton.transform.GetSiblingIndex();
+        key = _key;
     }
     private void OnGUI()
     {
