@@ -9,7 +9,6 @@ public class SkillInfo : MonoBehaviour
     [SerializeField] Text skillName; // 스킬 이름
     [SerializeField] Text skillLevel; // 현재 스킬 레벨
     [SerializeField] Text skillNeedLevel; // 습득 or 레벨 업에 필요한 플레이어 레벨
-    [SerializeField] Text skillNeedPoint; // 습득 or 레벨 업에 필요한 스킬 포인트
 
     Skill skill;
 
@@ -20,6 +19,5 @@ public class SkillInfo : MonoBehaviour
         skillLevel.text = /* SkillManager.instance.SkillLevels[idx].ToString() + '/' + */ skill.SkillMaxLevel.ToString();
         // SkillManager 작성 필요 20221113 20:18
         skillNeedLevel.text = skill.SkillNeedLevel.ToString();
-        skillNeedPoint.text = skill.SkillPoint.ToString();
     }
 }
