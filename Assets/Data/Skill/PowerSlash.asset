@@ -9,17 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e653699e8d58cb4091dfc1bf0581943, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c3c37e14eb42f64287f8fa6f6c58992, type: 3}
   m_Name: PowerSlash
   m_EditorClassIdentifier: 
-  skillName: "\uD30C\uC6CC \uC2A4\uB9E4\uC2DC"
-  skillInfo: "\uAC15\uD558\uAC8C \uB0B4\uB824\uCE5C\uB2E4."
-  skillImage: {fileID: 21300000, guid: 298fc95afd55e884489e70bf0bb43ab0, type: 3}
-  skillMaxLevel: 10
-  skillNeedLevel: 5
-  skillPoint: 3
-  skillType: 0
-  damageRate: 250
-  damageRateAdd: 25
+  skillName: 
+  skillInfo: 
+  skillImage: {fileID: 0}
+  skillMaxLevel: 0
+  skillNeedLevel: 0
+  damageRate: 0
+  damageRateAdd: 0
   defenseRate: 0
-  coolTime: 5
+  coolTime: 0
