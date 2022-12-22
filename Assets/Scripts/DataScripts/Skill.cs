@@ -17,6 +17,8 @@ public class Skill : ScriptableObject
 
     [SerializeField] float coolTime; // 스킬 재사용 대기시간
 
+    [SerializeField] int[] maxExp; // 스킬 레벨업에 필요한 경험치
+
     public string SkillName { get { return skillName; } }
     public Sprite SkillImage { get { return skillImage; } }
 
@@ -27,4 +29,6 @@ public class Skill : ScriptableObject
     public float DamageRateAdd { get { return damageRateAdd; } }
 
     public float CoolTime { get { return coolTime; } }
+
+    public int[] MaxExp { get { return maxExp; } }
 }
