@@ -70,7 +70,7 @@ public class KeyManager : MonoBehaviour
     {
         for (int i = 0; i < keys.Count; i++)
         {
-            keySettingWindow.transform.GetChild(i).GetComponentInChildren<Text>().text = keys[(KEYNAME)i].ToString();
+            //keySettingWindow.transform.GetChild(i).GetComponentInChildren<Text>().text = keys[(KEYNAME)i].ToString();
         }
     }
 

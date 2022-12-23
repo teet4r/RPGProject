@@ -1,10 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
+    // 작성자 : 김두현
     public static SkillManager instance;
+
+    Dictionary<SKILLTYPE, bool> skillAble = new();
+
+    public enum SKILLTYPE
+    { SWORD1, SWORD2, AXE1, AXE2, SHIELD1, SHIELD2, ENUM_SIZE }
+    [SerializeField] SkillInfo[] skillInfo = new SkillInfo[(int)SKILLTYPE.ENUM_SIZE];
+
     private void Awake()
     {
         if (instance == null)
@@ -16,5 +25,31 @@ public class SkillManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    private void Start()
+    {
+        for (int i = 0; i < (int)SKILLTYPE.ENUM_SIZE; i++)
+        {
+            skillAble.Add((SKILLTYPE)i, false);
+        }
+    }
+
+    private void Update()
+    {
+
+    }
+
+    public class SkillInfo
+    {
+        [SerializeField] SkillManager.SKILLTYPE skillType;
+        [SerializeField] Skill skill;
+        [SerializeField] float coolTimeLeft;
+        [SerializeField] string[] skillInfo;
+    }
+
+    void CheckSkillExp()
+    {
+
     }
 }
