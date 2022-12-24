@@ -109,7 +109,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -8753289023182634035}
-    m_Position: {x: 340, y: 120, z: 0}
+    m_Position: {x: 340, y: 140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7541844481808013827}
     m_Position: {x: 340, y: 240, z: 0}
@@ -118,13 +118,13 @@ AnimatorStateMachine:
     m_Position: {x: 340, y: 310, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3624699230916948849}
-    m_Position: {x: 680, y: 220, z: 0}
+    m_Position: {x: 700, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -385201404472693812}
-    m_Position: {x: 680, y: 150, z: 0}
+    m_Position: {x: 700, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4483358978873550423}
-    m_Position: {x: 680, y: 300, z: 0}
+    m_Position: {x: 700, y: 300, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -175,49 +175,49 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: MoveY
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: New Trigger
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsAttack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Walking
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Sprint
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Dash
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Rollings
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
