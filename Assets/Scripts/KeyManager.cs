@@ -30,7 +30,7 @@ public class KeyManager : MonoBehaviour
         // ÀÏ¹Ý Á¶ÀÛ
         KeyCode.F, KeyCode.Mouse1, KeyCode.Escape, KeyCode.I, KeyCode.P, KeyCode.K, KeyCode.J,
         // Äü½½·Ô
-        KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Z, KeyCode.X, KeyCode.C, KeyCode.V
+        KeyCode.Q, KeyCode.E, KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4
     };
     KeyCode[] tmpKeys;
     Dictionary<KEYNAME, KeyCode> keys = new();

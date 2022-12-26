@@ -10,6 +10,7 @@ public class AlertManager : MonoBehaviour
     public static AlertManager instance;
 
     [SerializeField] GameObject alertMessage;
+    [SerializeField] GameObject alertPosition;
 
     private void Awake()
     {
@@ -26,7 +27,7 @@ public class AlertManager : MonoBehaviour
 
     public void ShowAlert(string _message)
     {
-        GameObject message = Instantiate(alertMessage, transform.position, Quaternion.identity, transform);
+        GameObject message = Instantiate(alertMessage, alertPosition.transform.position, Quaternion.identity, transform);
         message.GetComponent<Text>().text = _message;
     }
 }
