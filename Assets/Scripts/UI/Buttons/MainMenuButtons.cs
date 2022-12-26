@@ -9,7 +9,8 @@ public class MainMenuButtons : MonoBehaviour
     [SerializeField] GameObject optionWindow;
     public void SelectGameStartButton()
     {
-        SceneManager.LoadScene("InGame");
+        //SceneManager.LoadScene("InGame");
+        LoadingProgress.LoadScene("InGame");
     }
     public void SelectOptionButton() //¾ê ÇÏ³ª·Î ¿­°í´Ý±â °¡´É
     {
