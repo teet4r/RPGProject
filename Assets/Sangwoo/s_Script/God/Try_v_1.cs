@@ -8,6 +8,12 @@ public class Try_v_1 : MonoBehaviour
 {
     public float InputX;
     public float InputZ;
+
+
+
+    [Header("Player")]
+    public Transform playerAxis;
+    public Transform player;
     public Vector3 desiredMoveDirection;
     public bool blockRotationPlayer;
     public float desiredRotationSpeed = 0.1f;
@@ -18,6 +24,10 @@ public class Try_v_1 : MonoBehaviour
     public CharacterController controller;
     public bool isGrounded;
 
+    //중력추가
+    public float Gravity = -9.8f; //중력계수
+
+    //애니메이션 
     [Header("Animation Smoothing")]
     [Range(0, 1f)]
     public float HorizontalAnimationSmoothTime = 0.2f;
@@ -45,13 +55,18 @@ public class Try_v_1 : MonoBehaviour
     {
         InputMangnitude();
         PlayerMoveAndRotation();
+        chracterGround();
+
+
     }
 
+    //카메라 조작
     void PlayerMoveAndRotation()
     {
         InputX = Input.GetAxis("Horizontal");
         InputZ = Input.GetAxis("Vertical");
 
+        //카메라가 보는 방향이 앞이다
         var camera = Camera.main;
         var forward = cam.transform.forward;
         var right = cam.transform.right;
@@ -64,9 +79,14 @@ public class Try_v_1 : MonoBehaviour
 
         desiredMoveDirection = forward * InputZ + right * InputX;
 
+       
+
        // if(GetComponent<ThrowController>().aiming)
            // return;
 
+
+
+        //공격할때 무기를 던지거나 활을쏠때 에임이고정되면서 움직임을 멈춘다.
         if(blockRotationPlayer == false)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(desiredMoveDirection), desiredRotationSpeed);
@@ -74,6 +94,7 @@ public class Try_v_1 : MonoBehaviour
         }
     }
 
+    //카메라 회전 
     public void RotateToCamera(Transform t)
     {
         var camera = Camera.main;
@@ -84,9 +105,23 @@ public class Try_v_1 : MonoBehaviour
         t.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(desiredMoveDirection), desiredRotationSpeed);
     }
 
+    void chracterGround()
+    {
+        if(controller.isGrounded == false)
+        {
+            moveVector.y += Gravity * Time.deltaTime;
+        }
+        controller.Move(moveVector * Speed * Time.deltaTime);
+
+        //캐릭터가 땅에 다야 움직일수 있으니까 애니메이션을 이함수에 
+        controller.GetComponent<Animator>().SetBool("MoveFWD_N_InPlace",true);
+    }
+
+
+
     void InputMangnitude() 
     {
-        //Calculate Input Vectors
+        //Calculate Input Vectors 입력백터값 계산
         InputX = Input.GetAxis("Horizontal");
         InputZ = Input.GetAxis("Vertical");
 
