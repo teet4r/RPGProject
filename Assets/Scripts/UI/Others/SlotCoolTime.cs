@@ -17,16 +17,7 @@ public class SlotCoolTime : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SlotLoop());
-    }
-
-    IEnumerator SlotLoop()
-    {
-        while (true)
-        {
-            Check_CoolTime();
-            yield return new WaitForSeconds(0.05f);
-        }
+        Check_CoolTime();
     }
 
     void Check_CoolTime() //스킬 재사용까지 남은 시간을 검사 및 표시
