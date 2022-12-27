@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
 [RequireComponent(typeof(CharacterController))]
 public class Try_v_1 : MonoBehaviour
 {
@@ -58,9 +59,7 @@ public class Try_v_1 : MonoBehaviour
     void Update()
     {
         InputMangnitude();
-        PlayerMoveAndRotation();
         chracterGround();
-
 
     }
 
@@ -111,6 +110,7 @@ public class Try_v_1 : MonoBehaviour
 
     void chracterGround()
     {
+        //중력추가해주기
         if(controller.isGrounded == false)
         {
             moveVector.y += Gravity * Time.deltaTime;
