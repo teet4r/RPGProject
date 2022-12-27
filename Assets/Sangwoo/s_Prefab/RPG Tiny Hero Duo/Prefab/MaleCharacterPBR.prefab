@@ -2529,6 +2529,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InputX: 0
   InputZ: 0
+  playerAxis: {fileID: 0}
+  player: {fileID: 0}
   desiredMoveDirection: {x: 0, y: 0, z: 0}
   blockRotationPlayer: 0
   desiredRotationSpeed: 0.2

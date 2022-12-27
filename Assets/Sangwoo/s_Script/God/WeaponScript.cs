@@ -31,14 +31,14 @@ public class WeaponScript : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Breakable"))
-        {
-            if (other.GetComponent<BreakBoxScript>() != null)
-            {
-                other.GetComponent<BreakBoxScript>().Break();
-            }
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("Breakable"))
+    //    {
+    //        if (other.GetComponent<BreakBoxScript>() != null)
+    //        {
+    //            other.GetComponent<BreakBoxScript>().Break();
+    //        }
+    //    }
+    //}
 }

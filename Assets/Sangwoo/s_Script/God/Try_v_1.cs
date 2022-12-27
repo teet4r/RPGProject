@@ -41,8 +41,12 @@ public class Try_v_1 : MonoBehaviour
     private float verticalVel;
     private Vector3 moveVector;
 
+    //애니메이션 지정
+    const int ANI_IDLE = 0;
+    const int ANI_WALK = 1;
 
 
+    
     void Start()
     {
         anim = this.GetComponent<Animator>();
@@ -114,7 +118,7 @@ public class Try_v_1 : MonoBehaviour
         controller.Move(moveVector * Speed * Time.deltaTime);
 
         //캐릭터가 땅에 다야 움직일수 있으니까 애니메이션을 이함수에 
-        controller.GetComponent<Animator>().SetBool("MoveFWD_N_InPlace",true);
+        //controller.GetComponent<Animator>().SetBool("walking",true);
     }
 
 
