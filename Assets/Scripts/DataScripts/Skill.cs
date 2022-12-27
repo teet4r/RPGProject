@@ -19,6 +19,8 @@ public class Skill : ScriptableObject
 
     [SerializeField] int[] maxExp; // 스킬 레벨업에 필요한 경험치
 
+    [SerializeField] string[] skillInfos; // 스킬 설명
+
     public string SkillName { get { return skillName; } }
     public Sprite SkillImage { get { return skillImage; } }
 
@@ -31,4 +33,6 @@ public class Skill : ScriptableObject
     public float CoolTime { get { return coolTime; } }
 
     public int[] MaxExp { get { return maxExp; } }
+
+    public string[] SkillInfos { get { return skillInfos; } }
 }

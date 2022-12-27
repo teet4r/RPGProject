@@ -79,12 +79,12 @@ public class SkillManager : MonoBehaviour
         }
     }
 
+    [System.Serializable]
     public class SkillInfo
     {
         [SerializeField] SKILLTYPE skillType;
         [SerializeField] Skill skill;
         [SerializeField] float coolTimeLeft = 0; // 남은 쿨타임
-        [SerializeField] string[] skillInfos; // 스킬 정보 배열
         [SerializeField] string skillInfo; // 레벨에 따른 스킬 정보
         [SerializeField] bool skillAble = false; // 스킬을 사용 가능한지 - 쿨타임
         [SerializeField] bool skillUsable = false; // 레벨업을 해서 스킬을 습득했는지
@@ -107,7 +107,14 @@ public class SkillManager : MonoBehaviour
 
         public void SetSkillInfo()
         {
-            skillInfo = skillInfos[skillLevel];
+            if (skillLevel > 0)
+            {
+                skillInfo = skill.SkillInfos[skillLevel - 1];
+            }
+            else
+            {
+                skillInfo = "";
+            }
         }
 
         public void SkillLevelUp()
