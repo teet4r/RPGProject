@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-//using DG.Tweening;
+using DG.Tweening;
 using UnityEngine.UI;
 using Cinemachine;
 
 [RequireComponent(typeof(Animator))]
 public class throw_weapon : MonoBehaviour
 {
-
+    //작성자 : 이상우
     private Animator animator;
-    //private MovementInput input;
+    private Try_v_1 input;
     private Rigidbody weaponRb;
-   // private WeaponScript weaponScript;
+    private WeaponScript weaponScript;
     private float returnTime;
 
     private Vector3 origLocPos;
@@ -55,31 +55,35 @@ public class throw_weapon : MonoBehaviour
         Cursor.visible = false;
 
         animator = GetComponent<Animator>();
-        //input = GetComponent<MovementInput>();
+        input = GetComponent<Try_v_1>();
         weaponRb = weapon.GetComponent<Rigidbody>();
-       // weaponScript = weapon.GetComponent<WeaponScript>();
+        weaponScript = weapon.GetComponent<WeaponScript>();
         origLocPos = weapon.localPosition;
         origLocRot = weapon.localEulerAngles;
-        //reticle.DOFade(0, 0);
+        reticle.DOFade(0, 0);
 
     }
 
     void Update()
     {
+        //무기 던지기 에이밍
 
         //If aiming rotate the player towards the camera foward, if not reset the camera rotation on the x axis
         if (aiming)
         {
-            //input.RotateToCamera(transform);
+            input.RotateToCamera(transform);
         }
         else
         {
             transform.eulerAngles = new Vector3(Mathf.LerpAngle(transform.eulerAngles.x, 0, .2f), transform.eulerAngles.y, transform.eulerAngles.z);
         }
 
+        //애니메이션
         //Animation States
         animator.SetBool("pulling", pulling);
-        //walking = input.Speed > 0;
+        
+        
+        walking = input.Speed > 0;
         animator.SetBool("walking", walking);
 
 
@@ -141,7 +145,7 @@ public class throw_weapon : MonoBehaviour
 
         //UI
         float fade = state ? 1 : 0;
-       // reticle.DOFade(fade, .2f);
+        reticle.DOFade(fade, .2f);
 
         if (!changeCamera)
             return;
@@ -149,7 +153,7 @@ public class throw_weapon : MonoBehaviour
         //Camera Offset
         float newAim = state ? cameraZoomOffset : 0;
         float originalAim = !state ? cameraZoomOffset : 0;
-        //DOVirtual.Float(originalAim, newAim, .5f, CameraOffset).SetDelay(delay);
+        DOVirtual.Float(originalAim, newAim, .5f, CameraOffset).SetDelay(delay);
 
         //Particle
         if (state)
@@ -168,7 +172,7 @@ public class throw_weapon : MonoBehaviour
         Aim(false, true, 1f);
 
         hasWeapon = false;
-        //weaponScript.activated = true;
+        weaponScript.activated = true;
         weaponRb.isKinematic = false;
         weaponRb.collisionDetectionMode = CollisionDetectionMode.Continuous;
         weapon.parent = null;
@@ -187,9 +191,9 @@ public class throw_weapon : MonoBehaviour
         weaponRb.Sleep();
         weaponRb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
         weaponRb.isKinematic = true;
-        //weapon.DORotate(new Vector3(-90, -90, 0), .2f).SetEase(Ease.InOutSine);
-        //weapon.DOBlendableLocalRotateBy(Vector3.right * 90, .5f);
-        //weaponScript.activated = true;
+        weapon.DORotate(new Vector3(-90, -90, 0), .2f).SetEase(Ease.InOutSine);
+        weapon.DOBlendableLocalRotateBy(Vector3.right * 90, .5f);
+        weaponScript.activated = true;
         pulling = true;
     }
 
@@ -198,7 +202,7 @@ public class throw_weapon : MonoBehaviour
         returnTime = 0;
         pulling = false;
         weapon.parent = hand;
-        //weaponScript.activated = false;
+        weaponScript.activated = false;
         weapon.localEulerAngles = origLocRot;
         weapon.localPosition = origLocPos;
         hasWeapon = true;
