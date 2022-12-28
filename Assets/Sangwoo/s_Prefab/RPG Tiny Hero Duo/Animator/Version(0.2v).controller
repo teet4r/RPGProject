@@ -339,7 +339,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: UperAim
     m_StateMachine: {fileID: -3233186938388758105}
-    m_Mask: {fileID: 31900000, guid: 83ce1ba26382f454e8fff3e91f4568f7, type: 2}
+    m_Mask: {fileID: 31900000, guid: f805b77179f543f4e97d7a47e494e1fe, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
