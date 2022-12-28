@@ -29,7 +29,6 @@ public class ConsumableItemInfoWindow : MonoBehaviour
         itemName.text = _itemSlot.GetComponent<ItemSlot>().Item.ItemName;
         itemNum.text = "보유 수량 : " + inventory.HowManyItem(_itemSlot.Item).ToString();
         itemInfo.text = _itemSlot.GetComponent<ItemSlot>().Item.ItemInfo;
-        SetStatInfoTexts(_itemSlot.ConsumableItem);
     }
 
     void ClearWindow()
@@ -40,54 +39,6 @@ public class ConsumableItemInfoWindow : MonoBehaviour
         {
             itemStatInfoTexts.transform.GetChild(i).gameObject.SetActive(false);
         }
-    }
-
-    void SetStatInfoTexts(ConsumableItem _item)
-    {
-        int tmp = 0;
-        if (_item.Damage > 0)
-        {
-            itemStatInfoTexts.transform.GetChild(tmp).gameObject.SetActive(true);
-            itemStatInfoTexts.transform.GetChild(tmp).GetComponent<Text>().text = "DMG + " + _item.Damage.ToString();
-            tmp++;
-        }
-        if (_item.Defense > 0)
-        {
-            itemStatInfoTexts.transform.GetChild(tmp).gameObject.SetActive(true);
-            itemStatInfoTexts.transform.GetChild(tmp).GetComponent<Text>().text = "DEF + " + _item.Defense.ToString();
-            tmp++;
-        }
-        if (_item.MoveSpeed > 0)
-        {
-            itemStatInfoTexts.transform.GetChild(tmp).gameObject.SetActive(true);
-            itemStatInfoTexts.transform.GetChild(tmp).GetComponent<Text>().text = "MVSPD + " + _item.MoveSpeed.ToString();
-            tmp++;
-        }
-        if (_item.HpRecoverNum > 0)
-        {
-            itemStatInfoTexts.transform.GetChild(tmp).gameObject.SetActive(true);
-            itemStatInfoTexts.transform.GetChild(tmp).GetComponent<Text>().text = "HPRECOV + " + _item.HpRecoverNum.ToString();
-            tmp++;
-        }
-        if (_item.DeleteDebuff == true)
-        {
-            itemStatInfoTexts.transform.GetChild(tmp).gameObject.SetActive(true);
-            itemStatInfoTexts.transform.GetChild(tmp).GetComponent<Text>().text = "디버프 제거";
-            tmp++;
-        }
-        if (_item.Revive == true)
-        {
-            itemStatInfoTexts.transform.GetChild(tmp).gameObject.SetActive(true);
-            itemStatInfoTexts.transform.GetChild(tmp).GetComponent<Text>().text = "부활 아이템";
-            tmp++;
-        }
-        if (_item.Duration > 0)
-        {
-            itemStatInfoTexts.transform.GetChild(tmp).gameObject.SetActive(true);
-            itemStatInfoTexts.transform.GetChild(tmp).GetComponent<Text>().text = "dur : " + _item.Duration.ToString() + "s";
-            tmp++;
-        }
-        SetItemInfoWindowHeight(tmp);
     }
 
     void SetItemInfoWindowHeight(int _num)

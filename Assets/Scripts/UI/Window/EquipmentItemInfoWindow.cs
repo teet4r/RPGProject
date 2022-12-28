@@ -31,14 +31,6 @@ public class EquipmentItemInfoWindow : MonoBehaviour
         }
         itemName.text += _itemSlot.Item.ItemName;
         itemLevelRequire.text = "레벨 제한 LV" + _itemSlot.EquipmentItem.LevelRequire.ToString();
-        if (_itemSlot.ReinforceLevel >= _itemSlot.EquipmentItem.ReinforceLimit)
-        {
-            itemCanReinforce.text = "강화 불가";
-        }
-        else
-        {
-            itemCanReinforce.text = "강화 가능";
-        }
         SetStatInfoTexts(_itemSlot.EquipmentItem);
         itemInfo.text = _itemSlot.EquipmentItem.ItemInfo;
     }
@@ -69,42 +61,6 @@ public class EquipmentItemInfoWindow : MonoBehaviour
         {
             itemStatInfoTexts.transform.GetChild(tmp).gameObject.SetActive(true);
             itemStatInfoTexts.transform.GetChild(tmp).GetComponent<Text>().text = "DEF + " + _item.Defense.ToString();
-            tmp++;
-        }
-        if (_item.StatStr > 0)
-        {
-            itemStatInfoTexts.transform.GetChild(tmp).gameObject.SetActive(true);
-            itemStatInfoTexts.transform.GetChild(tmp).GetComponent<Text>().text = "STR + " + _item.StatStr.ToString();
-            tmp++;
-        }
-        if (_item.StatVit > 0)
-        {
-            itemStatInfoTexts.transform.GetChild(tmp).gameObject.SetActive(true);
-            itemStatInfoTexts.transform.GetChild(tmp).GetComponent<Text>().text = "VIT + " + _item.StatVit.ToString();
-            tmp++;
-        }
-        if (_item.StatDex > 0)
-        {
-            itemStatInfoTexts.transform.GetChild(tmp).gameObject.SetActive(true);
-            itemStatInfoTexts.transform.GetChild(tmp).GetComponent<Text>().text = "DEX + " + _item.StatDex.ToString();
-            tmp++;
-        }
-        if (_item.StatLuk > 0)
-        {
-            itemStatInfoTexts.transform.GetChild(tmp).gameObject.SetActive(true);
-            itemStatInfoTexts.transform.GetChild(tmp).GetComponent<Text>().text = "LUK + " + _item.StatLuk.ToString();
-            tmp++;
-        }
-        if (_item.CriticalRate > 0)
-        {
-            itemStatInfoTexts.transform.GetChild(tmp).gameObject.SetActive(true);
-            itemStatInfoTexts.transform.GetChild(tmp).GetComponent<Text>().text = "CRT + " + _item.CriticalRate.ToString();
-            tmp++;
-        }
-        if (_item.CriticalDamage > 0)
-        {
-            itemStatInfoTexts.transform.GetChild(tmp).gameObject.SetActive(true);
-            itemStatInfoTexts.transform.GetChild(tmp).GetComponent<Text>().text = "CRTDMG + " + ((int)(_item.CriticalDamage * 100)).ToString() + "%";
             tmp++;
         }
         SetItemInfoWindowHeight(tmp);
