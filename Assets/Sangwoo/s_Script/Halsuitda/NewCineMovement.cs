@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class NewMovement : MonoBehaviour
+public class NewCineMovement : MonoBehaviour
 {
     private CharacterController controller;
     private new Transform transform;
