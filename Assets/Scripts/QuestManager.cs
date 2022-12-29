@@ -9,8 +9,12 @@ public class QuestManager : MonoBehaviour
     public static QuestManager instance;
 
     [SerializeField] QuestInfo[] questInfos;
+    [SerializeField] Sprite[] questIcons;
 
     public QuestInfo[] QuestInfos { get { return questInfos; } }
+    public Sprite[] QuestIcons { get { return questIcons; } }
+
+    public enum ICON_TYPE { MAIN, SUB }
 
     private void Awake()
     {

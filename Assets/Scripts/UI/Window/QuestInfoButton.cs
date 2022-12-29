@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestInfoButton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Text questTitle;
+    [SerializeField] Image questImage;
+    public void SetButton(string _title, bool _isMain)
     {
-        
+        questTitle.text = _title;
+        if (_isMain) questImage.sprite = QuestManager.instance.QuestIcons[(int)QuestManager.ICON_TYPE.MAIN];
+        else questImage.sprite = QuestManager.instance.QuestIcons[(int)QuestManager.ICON_TYPE.SUB];
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SelectButton()
     {
-        
+
     }
 }
