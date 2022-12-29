@@ -16,8 +16,6 @@ public class EquipmentItemInfoWindow : MonoBehaviour
     [SerializeField] Image itemImage;
     [SerializeField] Text itemName;
     [SerializeField] GameObject itemStatInfoTexts;
-    [SerializeField] Text itemLevelRequire;
-    [SerializeField] Text itemCanReinforce;
     [SerializeField] Text itemInfo;
     [SerializeField] GameObject itemOtherInfoTexts;
 
@@ -25,12 +23,7 @@ public class EquipmentItemInfoWindow : MonoBehaviour
     {
         ClearWindow();
         itemImage.sprite = _itemSlot.Item.ItemImage;
-        if (_itemSlot.ReinforceLevel > 0)
-        {
-            itemName.text = "(+" + _itemSlot.ReinforceLevel.ToString() + ") ";
-        }
         itemName.text += _itemSlot.Item.ItemName;
-        itemLevelRequire.text = "레벨 제한 LV" + _itemSlot.EquipmentItem.LevelRequire.ToString();
         SetStatInfoTexts(_itemSlot.EquipmentItem);
         itemInfo.text = _itemSlot.EquipmentItem.ItemInfo;
     }
@@ -43,8 +36,6 @@ public class EquipmentItemInfoWindow : MonoBehaviour
         {
             itemStatInfoTexts.transform.GetChild(i).gameObject.SetActive(false);
         }
-        itemLevelRequire.text = "";
-        itemCanReinforce.text = "";
         itemInfo.text = "";
     }
 
