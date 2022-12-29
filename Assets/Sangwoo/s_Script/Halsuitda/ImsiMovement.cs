@@ -43,6 +43,7 @@ public class ImsiMovement : MonoBehaviour
     {
         Move();
         Attack();
+        Roll();
     }
 
 
@@ -78,17 +79,20 @@ public class ImsiMovement : MonoBehaviour
 
     void Attack()
     {
-
         if (Input.GetMouseButtonDown(0))
         {
-            anit.SetTrigger("IsAttack"); //메카닉에서 한번더 해볼꺼다. 
+            anit.SetTrigger("IsAttack"); 
         }
-
-
-       
-
     }
+    
 
+    void Roll()
+    {
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            
+        }
+    }
 
 
 }
