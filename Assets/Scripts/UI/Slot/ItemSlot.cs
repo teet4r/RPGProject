@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,34 +8,28 @@ using UnityEngine.UI;
 public class ItemSlot : MonoBehaviour
 {
     // 작성자 : 김두현
-    [SerializeField] Item item;
+    Item item;
 
     [SerializeField] EquipmentItem equipmentItem;
     [SerializeField] ConsumableItem consumableItem;
     [SerializeField] OtherItem otherItem;
-    [SerializeField] QuestItem questItem;
     [SerializeField] SLOT_TYPE slotType;
     [SerializeField] int itemNum;
     [SerializeField] Image itemNumImage;
-    [SerializeField] int reinforceLevel = 0;
     Image itemImage;
     Text itemNumText;
 
-    public enum SLOT_TYPE { EQUIPMENT, CONSUMABLE, OTHER, QUEST, NORMAL }
-    // EQUIPMENT - 장비슬롯
-    // CONSUMABLE - 소모품슬롯
-    // OTHER - 기타템슬롯
-    // QUEST - 퀘스트아이템 슬롯
-    // NORMAL - 고정 아이템 슬롯 EX) 퀘스트 보상 아이템슬롯, 상점 아이템슬롯, 제작 아이템슬롯 등
+    public enum SLOT_TYPE { INVENTORY, EQUIPMENT, NORMAL }
+    // INVENTORY - 인벤토리 슬롯
+    // EQUIPMENT - 장비창 슬롯
+    // NORMAL - 고정 아이템 슬롯 EX) 퀘스트 보상 아이템슬롯, 상점 아이템슬롯 등
     
     public Item Item { get { return item; } }
     public int ItemNum { get { return itemNum; } }
-    public int ReinforceLevel { get { return reinforceLevel; } }
 
     public EquipmentItem EquipmentItem { get { return equipmentItem; } }
     public ConsumableItem ConsumableItem { get { return consumableItem; } }
     public OtherItem OtherItem { get { return otherItem; } }
-    public QuestItem QuestItem { get { return QuestItem; } }
 
     private void Start()
     {
@@ -102,30 +97,7 @@ public class ItemSlot : MonoBehaviour
         equipmentItem = null;
         consumableItem = null;
         otherItem = null;
-        questItem = null;
     }
-
-    /*
-    public void SetItem(EquipmentItem _item)
-    {
-        item = _item;
-    }
-
-    public void SetItem(ConsumableItem _item)
-    {
-        item = _item;
-    }
-
-    public void SetItem(OtherItem _item)
-    {
-        item = _item;
-    }
-
-    public void SetItem(QuestItem _item)
-    {
-        item = _item;
-    }
-    */
 
     public void SetItem<T>(T _item) where T : Item
     {
@@ -136,13 +108,11 @@ public class ItemSlot : MonoBehaviour
     void InitItem()
     {
         if (equipmentItem != null)
-        { item = equipmentItem; return; }
-        if (consumableItem != null)
-        { item = consumableItem; return; }
-        if (otherItem != null)
-        { item = otherItem; return; }
-        if (questItem != null)
-        { item = questItem; return; }
+            item = equipmentItem;
+        else if (consumableItem != null)
+            item = consumableItem;
+        else if (otherItem != null)
+            item = otherItem;
     }
 
     public void SetItemImageColor()
