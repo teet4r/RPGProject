@@ -22,6 +22,11 @@ public class ImsiMovement : MonoBehaviour
     public float turnSpeed = 90f;
     public bool IsSprint;   //달리기는 속도에 +=해주기
      
+
+
+   // public static int noOfClicks = 
+
+
     //private readonly int hashRoll = Animator.StringToHash("Roll");
     //int jumpHash = Animator.StringToHash("Roll");
 
