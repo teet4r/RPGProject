@@ -78,9 +78,9 @@ public class ItemMoving : MonoBehaviour
                     {
                         sellingItemWindow.SetActive(true);
                     }
-                    else if (raycastResults[1].gameObject.GetComponent<ConsumableSlot>()) // 기본 인터페이스 포션 슬롯
+                    else if (raycastResults[1].gameObject.GetComponent<PotionSlot>()) // 기본 인터페이스 포션 슬롯
                     {
-                        raycastResults[1].gameObject.GetComponent<ConsumableSlot>().SetSlotItem(selectedItem.ConsumableItem);
+                        raycastResults[1].gameObject.GetComponent<PotionSlot>().SetSlotItem(selectedItem.ConsumableItem);
                     }
                 }
                 catch { }

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class KeyManager : MonoBehaviour
 {
     // 작성자 : 김두현
+    // input.GetKeyDown(KeyManager.instance.Key(KeyManager.KEYNAME.SAMPLE))
     public static KeyManager instance;
 
     // 캐릭터 이동

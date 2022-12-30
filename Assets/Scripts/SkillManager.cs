@@ -15,7 +15,7 @@ public class SkillManager : MonoBehaviour
     public static SkillManager instance;
 
     public enum SKILLTYPE
-    { SWORD1, SWORD2, AXE1, AXE2, SHIELD1, SHIELD2, ENUM_SIZE }
+    { SWORD1, ENUM_SIZE }
     [SerializeField] SkillInfo[] skillInfos;
 
     public SkillInfo[] SkillInfos { get { return skillInfos; } }

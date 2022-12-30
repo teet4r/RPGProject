@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ConsumableSlot : MonoBehaviour
+public class PotionSlot : MonoBehaviour
 {
     ConsumableItem item;
     Image itemImage;
