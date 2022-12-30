@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class CharacterManage : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float startingHealth = 100f;
+    public float health { get; }
+
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+     
     void Update()
     {
         
