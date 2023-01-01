@@ -14,6 +14,10 @@ public class QuestManager : MonoBehaviour
     [SerializeField] GameObject questNoneSelectedWindow;
     [SerializeField] Sprite[] questIcons = new Sprite[(int)Quest.QUEST_TYPE.ENUM_SIZE];
 
+
+    Text[] questInfoTexts;
+    Quest _quest;
+
     public QuestInfo[] QuestInfos { get { return questInfos; } }
     public Sprite[] QuestIcons { get { return questIcons; } }
 
@@ -30,6 +34,11 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        questInfoTexts = questInfoGroup.GetComponentsInChildren<Text>();
+    }
+
     public void ActivateQuestInfoGroup(bool _activate)
     {
         questInfoGroup.SetActive(_activate);
@@ -38,18 +47,23 @@ public class QuestManager : MonoBehaviour
 
     public void SetQuestInfoGroup(int _questCode)
     {
-        Text[] questInfoTexts = questInfoGroup.GetComponentsInChildren<Text>();
-        Quest _quest = questInfos[_questCode].Quest;
+        _quest = questInfos[_questCode].Quest;
         questInfoTexts[0].text = _quest.QuestTitle;
         questInfoTexts[1].text = _quest.QuestNpc;
         questInfoTexts[2].text = _quest.QuestInfo;
-        questInfoTexts[3].text = _quest.QuestRequireItem.Item.ItemName + ' '; // 수정
+        questInfoTexts[3].text = _quest.QuestRequireItem.Item.ItemName + ' ';
         questInfoTexts[5].text = "경험치 : " + _quest.QuestPrizeExp.ToString();
         questInfoTexts[6].text = "골드 : " + _quest.QuestPrizeGold.ToString();
+        RefreshRequireText(_questCode);
     }
 
-    void RefreshRequireText()
+    void RefreshRequireText(int _questCode)
     {
+        _quest = questInfos[_questCode].Quest;
+        if (_quest.QuestRequireItem != null)
+        {
+            questInfoTexts[3].text = $"{_quest.QuestRequireItem.Item.ItemName} {Inventory.instance.HowManyItem(_quest.QuestRequireItem.Item)}/{_quest.QuestRequireItem.ItemNum} 개 수집하기";
+        }
     }
 
     [System.Serializable]
@@ -60,7 +74,6 @@ public class QuestManager : MonoBehaviour
         [SerializeField] bool questCompletable = false; // 퀘스트 완료 가능 여부
         [SerializeField] bool questComplete = false; // 퀘스트 완료 여부
         [SerializeField] int monsterKill = 0; // 몬스터 처치 수
-        [SerializeField] int itemNum = 0; // 아이템 개수
 
         public Quest Quest { get { return quest; } }
         public bool QuestStartable { get { return questStartable; } }
@@ -73,12 +86,13 @@ public class QuestManager : MonoBehaviour
             }
         }
 
-        public void CheckQuestCompletable()
+        public bool CheckQuestCompletable()
         {
-            if (quest.QuestRequireItem.ItemNum <= itemNum)
+            if (quest.QuestRequireItem.ItemNum <= Inventory.instance.HowManyItem(quest.QuestRequireItem.Item))
             {
-
+                return true;
             }
+            return false;
         }
     }
 }

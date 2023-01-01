@@ -16,22 +16,22 @@ public class KeyManager : MonoBehaviour
         // 캐릭터 이동
         MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT,
         // 캐릭터 조작
-        CHAR_ATTACK, CHAR_RUN, CHAR_DODGE, CHAR_JUMP,
+        CHAR_ATTACK, CHAR_RUN, CHAR_DODGE,
         // 일반 조작
-        NORM_INTERACTION, NORM_FOCUSMODE, NORM_CLOSE, NORM_INVENTORY, NORM_CHARACTERINFO, NORM_SKILL, NORM_QUEST,
+        NORM_INTERACTION, NORM_DEFENSE, NORM_CLOSE, NORM_INVENTORY, NORM_CHARACTERINFO, NORM_QUEST,
         // 퀵슬롯
-        QUICK_POTION_1, QUICK_POTION_2, QUICK_SKILL_1, QUICK_SKILL_2, QUICK_SKILL_3, QUICK_SKILL_4
+        QUICK_POTION_1, QUICK_POTION_2, QUICK_SKILL_1
     }
     KeyCode[] defaultKeys = new KeyCode[]
     {
         // 캐릭터 이동
         KeyCode.W, KeyCode.S, KeyCode.A,KeyCode.D,
         // 캐릭터 조작
-        KeyCode.Mouse0, KeyCode.LeftShift, KeyCode.LeftControl, KeyCode.Space,
+        KeyCode.Mouse0, KeyCode.LeftShift, KeyCode.LeftControl,
         // 일반 조작
-        KeyCode.F, KeyCode.Mouse1, KeyCode.Escape, KeyCode.I, KeyCode.P, KeyCode.K, KeyCode.J,
+        KeyCode.F, KeyCode.Mouse1, KeyCode.Escape, KeyCode.I, KeyCode.P, KeyCode.J,
         // 퀵슬롯
-        KeyCode.Q, KeyCode.E, KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4
+        KeyCode.Q, KeyCode.E, KeyCode.Alpha1
     };
     KeyCode[] tmpKeys;
     Dictionary<KEYNAME, KeyCode> keys = new();
