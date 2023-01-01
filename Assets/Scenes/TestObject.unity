@@ -2551,6 +2551,7 @@ MonoBehaviour:
   moveSpeed: 3.5
   turnSpeed: 150
   rollSpeed: 0
+  cooldownTime: 2
   IsSprint: 0
 --- !u!136 &1528254059
 CapsuleCollider:
@@ -2578,7 +2579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad40b7ce5e0cce458140bfd9df9c403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 100
+  startHealth: 100
 --- !u!1 &1551886052
 GameObject:
   m_ObjectHideFlags: 0

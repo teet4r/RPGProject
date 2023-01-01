@@ -26,6 +26,13 @@ public class ImsiMovement : MonoBehaviour
     public float turnSpeed = 90f;
     public float rollSpeed; //구르기 속도
 
+    //콤보시스템
+    public float cooldownTime = 2f; //쿨타임
+    private float nextFireTime = 0f;
+    public static int noOfClicks = 0; //클릭 횟수
+    float lastClickTime = 0; //마지막으로 클릭한 횟수
+    float maxComboDelay = 1; //콤보
+
     public bool IsSprint;   //달리기는 속도에 +=해주기
    
 
@@ -49,12 +56,95 @@ public class ImsiMovement : MonoBehaviour
     void Update()
     {
         Move();
-        Attack();
-        
-       
+        //Attack();
+        Combo();
+        Roll2();
        
     }
+    void Combo()
+    {
+        if (anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
+            anit.GetCurrentAnimatorStateInfo(0).IsName("Combo1"))
+        {
+            anit.SetBool("Combo1", true);
+        }
+        if (anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
+            anit.GetCurrentAnimatorStateInfo(0).IsName("Combo2"))
+        {
+            anit.SetBool("Combo2", true);
+        }
+        if (anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
+            anit.GetCurrentAnimatorStateInfo(0).IsName("Combo3"))
+        {
+            anit.SetBool("Combo3", false);
+        }
+        if (anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
+            anit.GetCurrentAnimatorStateInfo(0).IsName("Combo4"))
+        {
+            anit.SetBool("Combo4", false);
+        }
+        if (anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
+            anit.GetCurrentAnimatorStateInfo(0).IsName("Combo5"))
+        {
+            anit.SetBool("Combo5", false);
+            noOfClicks = 0;
+        }
 
+        if (Time.time - lastClickTime > maxComboDelay)
+        {
+            noOfClicks = 0;
+        }
+
+        if (Time.time > nextFireTime)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Onclick();
+            }
+        }
+    }
+    
+    void Onclick() //클릭입력과 횟수 정보를 처리해줄 클릭함수
+    {
+        lastClickTime = Time.time;//time.time 게임시작후 진행시간
+        noOfClicks++;
+        if(noOfClicks == 1)//클랙했을때!! true면 실행
+        {
+            anit.SetBool("Combo1", true);
+        }
+        noOfClicks = Mathf.Clamp(noOfClicks, 0, 5);
+
+        if(noOfClicks >= 2 && anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && 
+            anit.GetCurrentAnimatorStateInfo(0).IsName("Combo1"))
+        {
+            anit.SetBool("Combo1", false);
+            anit.SetBool("Combo2", true);
+        }
+
+        if (noOfClicks >= 3 && anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
+           anit.GetCurrentAnimatorStateInfo(0).IsName("Combo2"))
+        {
+            anit.SetBool("Combo2", false);
+            anit.SetBool("Combo3", true);
+        }
+
+        if (noOfClicks >= 4 && anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
+           anit.GetCurrentAnimatorStateInfo(0).IsName("Combo3"))
+        {
+            anit.SetBool("Combo3", false);
+            anit.SetBool("Combo4", true);
+        }
+
+        if (noOfClicks >= 5 && anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
+           anit.GetCurrentAnimatorStateInfo(0).IsName("Combo4"))
+        {
+            anit.SetBool("Combo4", false);
+            anit.SetBool("Combo5", true);
+        }
+
+    }
+
+    
 
     void Move()
     {
@@ -137,6 +227,7 @@ public class ImsiMovement : MonoBehaviour
        if(Input.GetKey(KeyCode.Space)&&Input.GetKey(KeyCode.A))
        {
             anit.SetBool("IsRolling_L", true);
+           // tr.Translate(Vector3.right + 10 * Rollh * rollSpeed * Time.deltaTime);
 
        }
        else if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.A))
