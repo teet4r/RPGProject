@@ -11,7 +11,7 @@ public class Quest : ScriptableObject
     [SerializeField] string questInfo; // 퀘스트 설명
     [SerializeField] string[] questRequires; // 퀘스트 완료 조건
 
-    // [SerializeField] Monster questRequireMonster; // 퀘스트 완료 조건 몬스터
+    // [SerializeField] MonsterData questRequireMonster; // 퀘스트 완료 조건 몬스터
     [SerializeField] QuestItem questRequireItem; // 퀘스트 완료 조건 아이템
     [SerializeField] QuestItem[] questPrizeItems; // 퀘스트 보상 아이템 리스트
 
@@ -54,7 +54,7 @@ public class Quest : ScriptableObject
     [System.Serializable]
     public class QuestMonster
     {
-        // [SerializeField] Monster monster;
+        // [SerializeField] MonsterData monster;
         [SerializeField] int monsterNum;
 
         public int MonsterNum { get { return monsterNum; } }

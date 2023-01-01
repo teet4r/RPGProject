@@ -11,7 +11,6 @@ public class UIInputManager : MonoBehaviour
      */
     [SerializeField] GameObject inventoryWindow;
     [SerializeField] GameObject characterInfoWindow;
-    [SerializeField] GameObject skillWindow;
     [SerializeField] GameObject questWindow;
     [SerializeField] GameObject uiGroup;
 
@@ -23,7 +22,6 @@ public class UIInputManager : MonoBehaviour
     {
         keySettings.Add((int)UI_TYPE.INVENTORY, KeyCode.I);
         keySettings.Add((int)UI_TYPE.CHARACTERINFO, KeyCode.P);
-        keySettings.Add((int)UI_TYPE.SKILL, KeyCode.K);
         keySettings.Add((int)UI_TYPE.QUEST, KeyCode.Q);
     }
 
@@ -36,7 +34,6 @@ public class UIInputManager : MonoBehaviour
         }
         if (Input.GetKeyDown(keySettings[(int)UI_TYPE.INVENTORY])) SelectInventoryUI();
         if (Input.GetKeyDown(keySettings[(int)UI_TYPE.CHARACTERINFO])) SelectCharacterInfoUI();
-        if (Input.GetKeyDown(keySettings[(int)UI_TYPE.SKILL])) SelectSkillUI();
         if (Input.GetKeyDown(keySettings[(int)UI_TYPE.QUEST])) SelectQuestUI();
     }
     public void SelectInventoryUI()
@@ -48,12 +45,6 @@ public class UIInputManager : MonoBehaviour
     {
         characterInfoWindow.SetActive(!characterInfoWindow.activeSelf);
         characterInfoWindow.transform.SetAsLastSibling();
-    }
-
-    public void SelectSkillUI()
-    {
-        skillWindow.SetActive(!skillWindow.activeSelf);
-        skillWindow.transform.SetAsLastSibling();
     }
 
     public void SelectQuestUI()
