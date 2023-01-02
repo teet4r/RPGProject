@@ -56,95 +56,121 @@ public class ImsiMovement : MonoBehaviour
     void Update()
     {
         Move();
-        //Attack();
+       // Attack();
         Combo();
         Roll2();
        
     }
+
     void Combo()
     {
-        if (anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
-            anit.GetCurrentAnimatorStateInfo(0).IsName("Combo1"))
+        if (Input.GetMouseButtonDown(0))
         {
-            anit.SetBool("Combo1", true);
-        }
-        if (anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
-            anit.GetCurrentAnimatorStateInfo(0).IsName("Combo2"))
-        {
-            anit.SetBool("Combo2", true);
-        }
-        if (anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
-            anit.GetCurrentAnimatorStateInfo(0).IsName("Combo3"))
-        {
-            anit.SetBool("Combo3", false);
-        }
-        if (anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
-            anit.GetCurrentAnimatorStateInfo(0).IsName("Combo4"))
-        {
-            anit.SetBool("Combo4", false);
-        }
-        if (anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
-            anit.GetCurrentAnimatorStateInfo(0).IsName("Combo5"))
-        {
-            anit.SetBool("Combo5", false);
-            noOfClicks = 0;
-        }
+            noOfClicks++;
 
-        if (Time.time - lastClickTime > maxComboDelay)
-        {
-            noOfClicks = 0;
-        }
-
-        if (Time.time > nextFireTime)
-        {
-            if (Input.GetMouseButtonDown(0))
+            if (noOfClicks == 1)
             {
-                Onclick();
+                anit.SetInteger("ComboCount",1);
+                if (anit.GetCurrentAnimatorStateInfo(0).IsName("Attack01_SwordAndShiled") && anit.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.8f);
+                {
+                    Debug.Log("combo1");
+                    
+                }
+                anit.SetInteger("ComboCount", 0);
+                noOfClicks = 0;
             }
-        }
-    }
-    
-    void Onclick() //클릭입력과 횟수 정보를 처리해줄 클릭함수
-    {
-        lastClickTime = Time.time;//time.time 게임시작후 진행시간
-        noOfClicks++;
-        if(noOfClicks == 1)//클랙했을때!! true면 실행
-        {
-            anit.SetBool("Combo1", true);
-        }
-        noOfClicks = Mathf.Clamp(noOfClicks, 0, 5);
 
-        if(noOfClicks >= 2 && anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && 
-            anit.GetCurrentAnimatorStateInfo(0).IsName("Combo1"))
-        {
-            anit.SetBool("Combo1", false);
-            anit.SetBool("Combo2", true);
         }
-
-        if (noOfClicks >= 3 && anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
-           anit.GetCurrentAnimatorStateInfo(0).IsName("Combo2"))
-        {
-            anit.SetBool("Combo2", false);
-            anit.SetBool("Combo3", true);
-        }
-
-        if (noOfClicks >= 4 && anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
-           anit.GetCurrentAnimatorStateInfo(0).IsName("Combo3"))
-        {
-            anit.SetBool("Combo3", false);
-            anit.SetBool("Combo4", true);
-        }
-
-        if (noOfClicks >= 5 && anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
-           anit.GetCurrentAnimatorStateInfo(0).IsName("Combo4"))
-        {
-            anit.SetBool("Combo4", false);
-            anit.SetBool("Combo5", true);
-        }
-
+          
+        
     }
 
-    
+   
+
+    //void Combo()
+    //{
+    //    if (anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
+    //        anit.GetCurrentAnimatorStateInfo(0).IsName("Combo1"))
+    //    {
+    //        anit.SetBool("Combo1", false);                               
+    //    }
+    //    if (anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
+    //        anit.GetCurrentAnimatorStateInfo(0).IsName("Combo2"))
+    //    {
+    //        anit.SetBool("Combo2", false);
+    //    }
+    //    if (anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
+    //        anit.GetCurrentAnimatorStateInfo(0).IsName("Combo3"))
+    //    {
+    //        anit.SetBool("Combo3", false);
+    //    }
+    //    if (anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
+    //        anit.GetCurrentAnimatorStateInfo(0).IsName("Combo4"))
+    //    {
+    //        anit.SetBool("Combo4", false);
+    //    }
+    //    if (anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
+    //        anit.GetCurrentAnimatorStateInfo(0).IsName("Combo5"))
+    //    {
+    //        anit.SetBool("Combo5", false);
+    //        noOfClicks = 0;
+    //    }
+
+    //    if (Time.time - lastClickTime > maxComboDelay)
+    //    {
+    //        noOfClicks = 0;
+    //    }
+
+    //    if (Time.time > nextFireTime)
+    //    {
+    //        if (Input.GetMouseButtonDown(0))
+    //        {
+    //            Onclick();
+    //        }
+    //    }
+    //}
+
+    //void Onclick() //클릭입력과 횟수 정보를 처리해줄 클릭함수
+    //{
+    //    lastClickTime = Time.time;//time.time 게임시작후 진행시간
+    //    noOfClicks++;
+    //    if(noOfClicks == 1)//클랙했을때!! true면 실행
+    //    {
+    //        anit.SetBool("Combo1", true);
+    //    }
+    //    noOfClicks = Mathf.Clamp(noOfClicks, 0, 5); //클릭수를 제한해줌 0부터 5까지범위안에서
+
+    //    if(noOfClicks >= 2 && anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && 
+    //        anit.GetCurrentAnimatorStateInfo(0).IsName("Attack01_SwordAndShiled"))
+    //    {
+    //        anit.SetBool("Combo1", false);
+    //        anit.SetBool("Combo2", true);
+    //    }
+
+    //    if (noOfClicks >= 3 && anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
+    //       anit.GetCurrentAnimatorStateInfo(0).IsName("Combo02_InPlace_SwordAndShield"))
+    //    {
+    //        anit.SetBool("Combo2", false);
+    //        anit.SetBool("Combo3", true);
+    //    }
+
+    //    if (noOfClicks >= 4 && anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
+    //       anit.GetCurrentAnimatorStateInfo(0).IsName("Combo03_InPlace_SwordAndShield"))
+    //    {
+    //        anit.SetBool("Combo3", false);
+    //        anit.SetBool("Combo4", true);
+    //    }
+
+    //    if (noOfClicks >= 5 && anit.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f &&
+    //       anit.GetCurrentAnimatorStateInfo(0).IsName("Combo4"))
+    //    {
+    //        anit.SetBool("Combo4", false);
+    //        anit.SetBool("Combo5", true);
+    //    }
+
+    //}
+
+
 
     void Move()
     {

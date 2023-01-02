@@ -26,8 +26,8 @@ public class CameraMovement : MonoBehaviour
         rotX = transform.localRotation.eulerAngles.x;
         rotY = transform.localRotation.eulerAngles.y;
 
-        dirNormalized = realCamera.localPosition.normalized;
-        finalDis = realCamera.localPosition.magnitude;
+        //dirNormalized = realCamera.localPosition.normalized;
+        finalDis = realCamera.localPosition.magnitude; //magnitude(Å©±â)
     }
 
     
@@ -43,7 +43,7 @@ public class CameraMovement : MonoBehaviour
 
     void LateUpdate()
     {
-        transform.position = Vector3.MoveTowards(transform.position, objFollow.position, flwSpeed * Time.deltaTime);
+       // transform.position = Vector3.MoveTowards(transform.position, objFollow.position, flwSpeed * Time.deltaTime);
 
         finalDir = transform.TransformPoint(dirNormalized * maxDis);
 
