@@ -15,13 +15,13 @@ MonoBehaviour:
   questTitle: "\uC0D8\uD50C \uD018\uC2A4\uD2B8"
   questNpc: '-'
   questInfo: 
-  questRequire: 
-  questRequireItems:
-  - item: {fileID: 11400000, guid: 1b27b174324e8e141b05ed476eb28356, type: 2}
-    itemNum: 1
+  questRequireItem:
+    item: {fileID: 0}
+    itemNum: 0
   questPrizeItems:
   - item: {fileID: 11400000, guid: ee09e03a3a9aa4c4db2baab8d667b920, type: 2}
     itemNum: 3
   questCode: 1
   questPrizeGold: 100
   questPrizeExp: 1000
+  questType: 0

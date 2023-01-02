@@ -88,4 +88,69 @@ public class Inventory : MonoBehaviour
             return num;
         }
     }
+
+    public void UseItem(Item _item)
+    {
+        if (HowManyItem(_item) > 0)
+        {
+        }
+        else
+        {
+            AlertManager.instance.ShowAlert($"{_item.ItemName} 의 개수가 부족합니다.");
+        }
+    }
+
+    public void BuyItem(Item _item, int _num)
+    {
+        if (HowManyItemCanBuy(_item) >= _num)
+        {
+            AlertManager.instance.ShowAlert("인벤토리가 부족합니다.");
+            return;
+        }
+        /*
+        if (_item.BuyPrice * _num < )
+        {
+            AlertManager.instance.ShowAlert("골드가 부족합니다.");
+            return;
+        }
+        */
+        AcquireItem(_item, _num);
+    }
+
+    public void SellItem(Item _item, int _num)
+    {
+        if (HowManyItemCanSell(_item) < _num)
+        {
+            AlertManager.instance.ShowAlert("아이템이 부족합니다.");
+            return;
+        }
+        DeleteItem(_item, _num);
+    }
+
+    public void DeleteItem(Item _item, int _num)
+    {
+        int tmp = _num;
+        ItemSlot tmpSlot;
+        for (int i = 0; i < itemSlots.transform.childCount; i++)
+        {
+            tmpSlot = itemSlots.transform.GetChild(i).GetComponent<ItemSlot>();
+            if (tmpSlot.Item == _item && tmpSlot.ItemNum > 0)
+            {
+
+            }
+        }
+    }
+
+    public void AcquireItem(Item _item, int _num)
+    {
+        int tmp = _num;
+        ItemSlot tmpSlot;
+        for (int i = 0; i < itemSlots.transform.childCount; i++)
+        {
+            tmpSlot = itemSlots.transform.GetChild(i).GetComponent<ItemSlot>();
+            if (tmpSlot.Item == _item && tmpSlot.ItemNum < _item.BundleSize)
+            {
+            }
+        }
+    }
 }
