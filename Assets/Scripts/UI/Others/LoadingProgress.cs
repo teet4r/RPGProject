@@ -11,11 +11,20 @@ public class LoadingProgress : MonoBehaviour
     public Text progressTxt;
 
     [SerializeField]
+    Sprite[] loadImgs;
+    [SerializeField]
     Image progressBar;
-    
+    [SerializeField]
+    Image loadingScreenImg;
+    [SerializeField]
+    Text Txt;
+    [SerializeField]
+    string[] tipTxts; 
 
     void Start()
     {
+        loadingScreenImg.sprite = loadImgs[Random.Range(0, loadImgs.Length)]; //loadingScreenImg의 이미지가 랜덤으로 출력되게 해주는 친구
+        Txt.text = tipTxts[Random.Range(0, tipTxts.Length)];
         StartCoroutine(LoadSceneProgress());
     }
 
