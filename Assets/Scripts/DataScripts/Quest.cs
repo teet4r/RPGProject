@@ -9,7 +9,6 @@ public class Quest : ScriptableObject
     [SerializeField] string questTitle; // 퀘스트 제목
     [SerializeField] string questNpc; // 퀘스트 Npc
     [SerializeField] string questInfo; // 퀘스트 설명
-    [SerializeField] string[] questRequires; // 퀘스트 완료 조건
 
     // [SerializeField] MonsterData questRequireMonster; // 퀘스트 완료 조건 몬스터
     [SerializeField] QuestItem questRequireItem; // 퀘스트 완료 조건 아이템
@@ -27,7 +26,6 @@ public class Quest : ScriptableObject
     public string QuestTitle { get { return questTitle; } }
     public string QuestNpc { get { return QuestNpc; } }
     public string QuestInfo { get { return questInfo; } }
-    public string[] QuestRequires { get { return questRequires; } }
 
     // public Monster QuestRequireMonster { get { return questRequireMonster; } }
     public QuestItem QuestRequireItem { get { return questRequireItem; } }
@@ -56,7 +54,6 @@ public class Quest : ScriptableObject
     {
         // [SerializeField] MonsterData monster;
         [SerializeField] int monsterNum;
-
         public int MonsterNum { get { return monsterNum; } }
     }
 }

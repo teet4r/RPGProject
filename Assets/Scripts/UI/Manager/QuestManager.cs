@@ -14,7 +14,6 @@ public class QuestManager : MonoBehaviour
     [SerializeField] GameObject questNoneSelectedWindow;
     [SerializeField] Sprite[] questIcons = new Sprite[(int)Quest.QUEST_TYPE.ENUM_SIZE];
 
-
     Text[] questInfoTexts;
     Quest _quest;
 

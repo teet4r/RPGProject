@@ -13,17 +13,15 @@ public class SlotInfo : MonoBehaviour
 
     PointerEventData pointer = new PointerEventData(EventSystem.current);
     List<RaycastResult> raycastResults = new List<RaycastResult>();
-    [SerializeField] GameObject equipmentItemInfoWindow, consumableItemInfoWindow, normalItemInfoWindow;
+    [SerializeField] GameObject consumableItemInfoWindow, normalItemInfoWindow;
     [SerializeField] GameObject skillInfoWindow;
     RectTransform itemInfoWindowRect;
     RectTransform skillInfoWindowRect;
-    EquipmentItemInfoWindow equipmentItemInfoWindowCpnt;
     ConsumableItemInfoWindow consumableItemInfoWindowCpnt;
     NormalItemInfoWindow normalItemInfoWindowCpnt;
     float time = 0f;
     private void Start()
     {
-        equipmentItemInfoWindowCpnt = equipmentItemInfoWindow.GetComponent<EquipmentItemInfoWindow>();
         consumableItemInfoWindowCpnt = consumableItemInfoWindow.GetComponent<ConsumableItemInfoWindow>();
         normalItemInfoWindowCpnt = normalItemInfoWindow.GetComponent<NormalItemInfoWindow>();
         skillInfoWindowRect = skillInfoWindow.GetComponent<RectTransform>();
@@ -72,18 +70,12 @@ public class SlotInfo : MonoBehaviour
     {
         switch ((int)_itemSlot.Item.ItemType)
         {
-            case (int)Item.ITEM_TYPE.EQUIPMENT:
-                itemInfoWindowRect = equipmentItemInfoWindow.GetComponent<RectTransform>();
-                equipmentItemInfoWindow.SetActive(true);
-                equipmentItemInfoWindow.GetComponent<EquipmentItemInfoWindow>().SetItemInfoWindow(_itemSlot);
-                break;
             case (int)Item.ITEM_TYPE.CONSUMABLE:
                 itemInfoWindowRect = consumableItemInfoWindow.GetComponent<RectTransform>();
                 consumableItemInfoWindow.SetActive(true);
                 consumableItemInfoWindow.GetComponent<ConsumableItemInfoWindow>().SetItemInfoWindow(_itemSlot);
                 break;
             case (int)Item.ITEM_TYPE.OTHER:
-            case (int)Item.ITEM_TYPE.QUEST:
                 itemInfoWindowRect = normalItemInfoWindow.GetComponent<RectTransform>();
                 normalItemInfoWindow.SetActive(true);
                 break;
@@ -98,7 +90,6 @@ public class SlotInfo : MonoBehaviour
 
     void DisableItemInfoWindow()
     {
-        equipmentItemInfoWindow.SetActive(false);
         consumableItemInfoWindow.SetActive(false);
         normalItemInfoWindow.SetActive(false);
     }

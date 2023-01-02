@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemMoving : MonoBehaviour
+public class SlotMoving : MonoBehaviour
 {
     PointerEventData pointer = new PointerEventData(EventSystem.current);
     List<RaycastResult> raycastResults = new List<RaycastResult>();
@@ -85,6 +85,23 @@ public class ItemMoving : MonoBehaviour
                 }
                 catch { }
                 raycastResults.Clear();
+            }
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            pointer.position = Input.mousePosition;
+            EventSystem.current.RaycastAll(pointer, raycastResults);
+            if (raycastResults.Count > 0)
+            {
+                GameObject tmpObject = raycastResults[1].gameObject;
+                if (tmpObject.GetComponent<ItemSlot>() && tmpObject.CompareTag("ItemSlot"))
+                {
+                    if (tmpObject.GetComponent<ItemSlot>().Item.ItemType == (int)Item.ITEM_TYPE.CONSUMABLE)
+                    {
+
+                    }
+                }
             }
         }
     }
