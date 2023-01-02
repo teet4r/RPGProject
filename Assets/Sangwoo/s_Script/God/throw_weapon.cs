@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using DG.Tweening;
+//using DG.Tweening;
 using UnityEngine.UI;
 using Cinemachine;
 
@@ -60,7 +60,7 @@ public class throw_weapon : MonoBehaviour
         weaponScript = weapon.GetComponent<WeaponScript>();
         origLocPos = weapon.localPosition;
         origLocRot = weapon.localEulerAngles;
-        reticle.DOFade(0, 0);
+        //reticle.DOFade(0, 0);
 
     }
 
@@ -145,7 +145,7 @@ public class throw_weapon : MonoBehaviour
 
         //UI
         float fade = state ? 1 : 0;
-        reticle.DOFade(fade, .2f);
+       // reticle.DOFade(fade, .2f);
 
         if (!changeCamera)
             return;
@@ -153,7 +153,7 @@ public class throw_weapon : MonoBehaviour
         //Camera Offset
         float newAim = state ? cameraZoomOffset : 0;
         float originalAim = !state ? cameraZoomOffset : 0;
-        DOVirtual.Float(originalAim, newAim, .5f, CameraOffset).SetDelay(delay);
+        //DOVirtual.Float(originalAim, newAim, .5f, CameraOffset).SetDelay(delay);
 
         //Particle
         if (state)
@@ -191,8 +191,8 @@ public class throw_weapon : MonoBehaviour
         weaponRb.Sleep();
         weaponRb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
         weaponRb.isKinematic = true;
-        weapon.DORotate(new Vector3(-90, -90, 0), .2f).SetEase(Ease.InOutSine);
-        weapon.DOBlendableLocalRotateBy(Vector3.right * 90, .5f);
+       // weapon.DORotate(new Vector3(-90, -90, 0), .2f).SetEase(Ease.InOutSine);
+       // weapon.DOBlendableLocalRotateBy(Vector3.right * 90, .5f);
         weaponScript.activated = true;
         pulling = true;
     }
