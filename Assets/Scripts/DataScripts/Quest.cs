@@ -14,7 +14,7 @@ public class Quest : ScriptableObject
     [SerializeField] QuestItem questRequireItem; // 퀘스트 완료 조건 아이템
     [SerializeField] QuestItem[] questPrizeItems; // 퀘스트 보상 아이템 리스트
 
-    [SerializeField] int questCode; // 퀘스트 발동 조건 숫자
+    [SerializeField] int[] questCode; // 퀘스트 발동 조건 숫자
 
     [SerializeField] int questPrizeGold; // 퀘스트 보상 골드
     [SerializeField] int questPrizeExp; // 퀘스트 보상 경험치
@@ -27,12 +27,12 @@ public class Quest : ScriptableObject
     public string QuestNpc { get { return QuestNpc; } }
     public string QuestInfo { get { return questInfo; } }
 
-    // public Monster QuestRequireMonster { get { return questRequireMonster; } }
+    // public MonsterData QuestRequireMonster { get { return questRequireMonster; } }
     public QuestItem QuestRequireItem { get { return questRequireItem; } }
     public QuestItem[] QuestPrizeItems { get { return questPrizeItems; } }
 
 
-    public int QuestCode { get { return questCode; } }
+    public int[] QuestCode { get { return questCode; } }
 
     public int QuestPrizeGold { get { return questPrizeGold; } }
     public int QuestPrizeExp { get { return questPrizeExp; } }
