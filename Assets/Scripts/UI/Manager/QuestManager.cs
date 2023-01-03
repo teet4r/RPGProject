@@ -16,9 +16,12 @@ public class QuestManager : MonoBehaviour
 
     Text[] questInfoTexts;
     Quest _quest;
+    QuestInfo _questInfo;
 
     public QuestInfo[] QuestInfos { get { return questInfos; } }
     public Sprite[] QuestIcons { get { return questIcons; } }
+
+    public enum QUEST_CODE { START }
 
     private void Awake()
     {
@@ -65,23 +68,54 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    public void CompleteQuest(int _questCode)
+    {
+        _questInfo = questInfos[_questCode];
+        if(_questInfo.CheckQuestCompletable())
+        {
+
+        }
+    }
+
+    public void StartQuest(int _questCode)
+    {
+        _questInfo = questInfos[_questCode];
+        if (_questInfo.QuestStartable)
+        {
+
+        }
+        else
+        {
+            AlertManager.instance.ShowAlert("퀘스트를 시작할 수 없습니다.");
+        }
+    }
+
     [System.Serializable]
     public class QuestInfo
     {
         [SerializeField] Quest quest; // 퀘스트
         [SerializeField] bool questStartable = false; // 퀘스트 시작 가능한지 여부 - 선행 퀘스트 완료 하였는지 체크
+        [SerializeField] bool questContinuing = false; // 퀘스트 진행중인지 여부
         [SerializeField] bool questCompletable = false; // 퀘스트 완료 가능 여부
-        [SerializeField] bool questComplete = false; // 퀘스트 완료 여부
+        [SerializeField] bool questCompleted = false; // 퀘스트 완료 여부
         [SerializeField] int monsterKill = 0; // 몬스터 처치 수
 
         public Quest Quest { get { return quest; } }
         public bool QuestStartable { get { return questStartable; } }
 
-        public void SetQuestStartable(int _questCode)
+        public void RefreshQuest()
         {
-            if (quest.QuestCode <= _questCode)
+            SetQuestStartable();
+        }
+
+        void SetQuestStartable()
+        {
+            for (int i = 0; i < quest.QuestCode.Length; i++)
             {
-                questStartable = true;
+                if (QuestManager.instance.questInfos[quest.QuestCode[i]].questCompleted)
+                {
+                    questStartable = true;
+                }
             }
         }
 
@@ -91,6 +125,12 @@ public class QuestManager : MonoBehaviour
             {
                 return true;
             }
+            /*
+            if (quest.QuestRequireMonster.MonsterNum <= monsterKill)
+            {
+                return true;
+            }
+            */
             return false;
         }
     }

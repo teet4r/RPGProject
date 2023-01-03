@@ -13,15 +13,11 @@ public class QuestInfoButton : MonoBehaviour
     [SerializeField] Text questTitle;
     [SerializeField] Image questImage;
 
-    QuestInfoButton(Quest _quest)
+    public void SetButton(int _questCode)
     {
-        quest = _quest;
-        SetButton();
-    }
-
-    void SetButton()
-    {
+        quest = QuestManager.instance.QuestInfos[_questCode].Quest;
         questImage.sprite = QuestManager.instance.QuestIcons[(int)quest.QuestType];
+        questTitle.text = quest.QuestTitle;
     }
 
     public void SelectButton()
