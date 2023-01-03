@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571322, b: 0.30692163, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4957,6 +4957,7 @@ GameObject:
   m_Component:
   - component: {fileID: 755250933}
   - component: {fileID: 755250934}
+  - component: {fileID: 755250935}
   m_Layer: 0
   m_Name: SfxPlayer
   m_TagString: Untagged
@@ -5075,6 +5076,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &755250935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755250932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc3c267f65e0cce4691e4dfc665b4bf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &761790062
 GameObject:
   m_ObjectHideFlags: 0
@@ -6841,6 +6854,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1016217168}
   - component: {fileID: 1016217169}
+  - component: {fileID: 1016217170}
   m_Layer: 0
   m_Name: BgmPlayer
   m_TagString: Untagged
@@ -6959,6 +6973,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1016217170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016217167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2275619afb9554b83e3480b3a1a9cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1027567061
 GameObject:
   m_ObjectHideFlags: 0
@@ -11125,7 +11151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1624824591}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 684.08246, y: 652.2138, z: -0.7970722}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11146,9 +11172,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a379f1f35e650418a78ca9c0eedee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterSlider: {fileID: 607201931}
   bgmSlider: {fileID: 1565723401}
   sfxSlider: {fileID: 763523823}
+  masterSlider: {fileID: 607201931}
+  _bgmPlayer: {fileID: 1016217170}
+  _sfxPlayer: {fileID: 755250935}
 --- !u!1 &1686281680
 GameObject:
   m_ObjectHideFlags: 0

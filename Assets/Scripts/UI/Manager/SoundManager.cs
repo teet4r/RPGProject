@@ -7,21 +7,29 @@ using Unity.VisualScripting;
 
 public class SoundManager : MonoBehaviour
 {
-    [SerializeField]
-    Slider masterSlider;
-    public static SoundManager instance;
+    public static SoundManager instance = null;
 
     public Slider bgmSlider;
     public Slider sfxSlider;
+    public BgmPlayer bgmPlayer { get { return _bgmPlayer; } }
+    public SfxPlayer sfxPlayer { get { return _sfxPlayer; } }
 
-    AudioSource bgmPlayer;
-    AudioSource sfxPlayer;
+    [SerializeField]
+    Slider masterSlider;
+    [SerializeField]
+    BgmPlayer _bgmPlayer;
+    [SerializeField]
+    SfxPlayer _sfxPlayer;
 
     void Awake()
     {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         instance = this;
-        bgmPlayer=GameObject.Find("BgmPlayer").GetComponent<AudioSource>(); 
-        sfxPlayer=GameObject.Find("SfxPlayer").GetComponent<AudioSource>();
+        DontDestroyOnLoad(gameObject);
 
         masterSlider.onValueChanged.AddListener(RefreshSound);
         bgmSlider.onValueChanged.AddListener(RefreshSound);
@@ -29,8 +37,7 @@ public class SoundManager : MonoBehaviour
     }
     void RefreshSound(float value)
     {
-        bgmPlayer.volume = bgmSlider.value * masterSlider.value;
-        sfxPlayer.volume=sfxSlider.value * masterSlider.value;
+        //_bgmPlayer.volume = bgmSlider.value * masterSlider.value;
+        //_sfxPlayer.volume = sfxSlider.value * masterSlider.value;
     }
-
 }
