@@ -19,6 +19,8 @@ public class Inventory : MonoBehaviour
     [SerializeField] GameObject itemSlots;
     [SerializeField] int gold = 0;
 
+    public int Gold { get { return gold; } }
+
     private void Awake()
     {
         if (instance == null)
@@ -94,14 +96,22 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void UseItem(Item _item)
+    public void UseItem<T>(T _item) where T : Item
     {
-        if (HowManyItem(_item) > 0)
+        if (_item.ItemType == Item.ITEM_TYPE.CONSUMABLE)
         {
+            if (HowManyItem(_item) > 0)
+            {
+                //////////////////////////////////////////
+            }
+            else
+            {
+                AlertManager.instance.ShowAlert($"{_item.ItemName} 의 개수가 부족합니다.");
+            }
         }
         else
         {
-            AlertManager.instance.ShowAlert($"{_item.ItemName} 의 개수가 부족합니다.");
+
         }
     }
 
@@ -112,13 +122,11 @@ public class Inventory : MonoBehaviour
             AlertManager.instance.ShowAlert("인벤토리가 부족합니다.");
             return;
         }
-        /*
-        if (_item.BuyPrice * _num < )
+        if (_item.BuyPrice * _num > gold)
         {
             AlertManager.instance.ShowAlert("골드가 부족합니다.");
             return;
         }
-        */
         AcquireItem(_item, _num);
     }
 
@@ -141,8 +149,17 @@ public class Inventory : MonoBehaviour
             tmpSlot = itemSlots.transform.GetChild(i).GetComponent<ItemSlot>();
             if (tmpSlot.Item == _item && tmpSlot.ItemNum > 0)
             {
-
+                if (tmp >= tmpSlot.ItemNum)
+                {
+                    tmp -= tmpSlot.ItemNum;
+                    tmpSlot.ClearItemSlot();
+                }
+                else
+                {
+                    tmpSlot.AddItemNum(-1 * tmp);
+                }
             }
+            if (tmp <= 0) break;
         }
     }
 
@@ -155,7 +172,44 @@ public class Inventory : MonoBehaviour
             tmpSlot = itemSlots.transform.GetChild(i).GetComponent<ItemSlot>();
             if (tmpSlot.Item == _item && tmpSlot.ItemNum < _item.BundleSize)
             {
+                if (tmp > _item.BundleSize - tmpSlot.ItemNum)
+                {
+                    tmpSlot.SetItemNum(_item.BundleSize);
+                    tmp -= (_item.BundleSize - tmpSlot.ItemNum);
+                }
+                else
+                {
+                    tmpSlot.AddItemNum(tmp);
+                    tmp = 0;
+                }
             }
+            else if(tmpSlot.Item == null)
+            {
+                tmpSlot.SetItem(_item);
+                if (_item.BundleSize < tmp)
+                {
+                    tmpSlot.SetItemNum(_item.BundleSize);
+                    tmp -= _item.BundleSize;
+                }
+                else
+                {
+                    tmpSlot.SetItemNum(tmp);
+                    tmp = 0;
+                }
+            }
+            if (tmp <= 0) break;
+        }
+    }
+
+    public void AddGold(int _gold)
+    {
+        if (gold + _gold < 0)
+        {
+            AlertManager.instance.ShowAlert("골드가 부족합니다.");
+        }
+        else
+        {
+            gold += _gold;
         }
     }
 }

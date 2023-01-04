@@ -85,6 +85,7 @@ public class SlotMoving : MonoBehaviour
                 {
                     if (tmpObject.GetComponent<ItemSlot>().Item.ItemType == Item.ITEM_TYPE.CONSUMABLE)
                     {
+                        ////////////////////
                     }
                 }
             }
