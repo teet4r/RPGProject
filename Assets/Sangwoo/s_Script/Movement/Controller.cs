@@ -47,7 +47,7 @@ public class Controller : MonoBehaviour
     void Zoom()
     {
         wheel += Input.GetAxis("Mouse ScrollWheel") * 10;
-        rotationCamera = cam.rotation.x.;
+       // rotationCamera = cam.rotation.x.;
         if (wheel >= -4)
         {
             rotationCamera=+24;
