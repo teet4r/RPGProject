@@ -8,6 +8,6 @@ public class KeyText : MonoBehaviour
     [SerializeField] int quickSlotNum;
     private void Update()
     {
-        GetComponent<Text>().text = KeyManager.instance.Key((KeyManager.KEYNAME)quickSlotNum).ToString();
+        // GetComponent<Text>().text = KeyManager.instance.Key((KeyManager.KEYNAME)quickSlotNum).ToString();
     }
 }

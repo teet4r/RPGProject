@@ -11,6 +11,7 @@ public class QuestManager : MonoBehaviour
 
     [SerializeField] QuestInfo[] questInfos;
     [SerializeField] GameObject questInfoGroup;
+    [SerializeField] GameObject questInfoButtonGroup;
     [SerializeField] GameObject questNoneSelectedWindow;
     [SerializeField] Sprite[] questIcons = new Sprite[(int)Quest.QUEST_TYPE.ENUM_SIZE];
 
@@ -71,18 +72,14 @@ public class QuestManager : MonoBehaviour
     public void CompleteQuest(int _questCode)
     {
         _questInfo = questInfos[_questCode];
-        if(_questInfo.CheckQuestCompletable())
-        {
-
-        }
     }
 
     public void StartQuest(int _questCode)
     {
         _questInfo = questInfos[_questCode];
-        if (_questInfo.QuestStartable)
+        if (_questInfo.QuestStartable && questInfos.Length < questInfoButtonGroup.transform.childCount)
         {
-
+            AlertManager.instance.ShowAlert($"\"{_questInfo.Quest.QuestTitle}\" 퀘스트를 수락했습니다.");
         }
         else
         {
@@ -102,6 +99,9 @@ public class QuestManager : MonoBehaviour
 
         public Quest Quest { get { return quest; } }
         public bool QuestStartable { get { return questStartable; } }
+        public bool QuestContinuing { get { return questContinuing; } }
+        public bool QuestCompletable { get { return questCompletable; } }
+        public bool QuestCOmpleted { get { return questCompleted; } }
 
         public void RefreshQuest()
         {
@@ -119,19 +119,23 @@ public class QuestManager : MonoBehaviour
             }
         }
 
-        public bool CheckQuestCompletable()
+        public void CheckQuestCompletable()
         {
             if (quest.QuestRequireItem.ItemNum <= Inventory.instance.HowManyItem(quest.QuestRequireItem.Item))
             {
-                return true;
+                questCompletable = true;
             }
             /*
             if (quest.QuestRequireMonster.MonsterNum <= monsterKill)
             {
-                return true;
+                questCompletable = true;
             }
             */
-            return false;
+        }
+
+        public void SetQuestCompleted()
+        {
+            questCompleted = true;
         }
     }
 }
