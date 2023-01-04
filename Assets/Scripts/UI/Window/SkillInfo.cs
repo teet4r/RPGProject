@@ -16,8 +16,7 @@ public class SkillInfo : MonoBehaviour
     {
         skill = GetComponentInChildren<SkillSlot>().Skill;
         skillName.text = skill.SkillName;
-        skillLevel.text = /* SkillManager.instance.SkillLevels[idx].ToString() + '/' + */ skill.SkillMaxLevel.ToString();
-        // SkillManager 작성 필요 20221113 20:18
+        skillLevel.text = /* SkillManager.instance.SkillLevels[idx].ToString() + '/' + */ "";
         skillNeedLevel.text = skill.SkillNeedLevel.ToString();
     }
 }

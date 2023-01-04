@@ -10,21 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8731da77481ace4ea7cbae75bbdb311, type: 3}
-  m_Name: ConsumableItem
+  m_Name: Hp_200_Potion
   m_EditorClassIdentifier: 
-  itemName: "\uD3EC\uC158"
-  itemInfo: 
-  itemImage: {fileID: 21300000, guid: 298fc95afd55e884489e70bf0bb43ab0, type: 3}
-  buyPrice: 174
-  sellPrice: 129
-  bundleSize: 255
+  itemName: "HP 200 \uD68C\uBCF5 \uD3EC\uC158"
+  itemInfo: "HP\uB97C 200 \uD68C\uBCF5\uC2DC\uCF1C\uC8FC\uB294 \uBB3C\uC57D\uC774\uB2E4."
+  itemImage: {fileID: 21300000, guid: 00d24408568984f129b7023cb677c0cd, type: 3}
+  buyPrice: 80
+  sellPrice: 40
+  bundleSize: 10
   canSell: 1
-  itemType: 1
-  hpRecoverNum: 165
-  revive: 1
-  deleteDebuff: 1
-  isBuff: 0
-  damage: 140
-  defense: 88
-  moveSpeed: 4.23
-  duration: 14.4
+  itemType: 0
+  hpRecoverNum: 200
+  mpRecoverNum: 0

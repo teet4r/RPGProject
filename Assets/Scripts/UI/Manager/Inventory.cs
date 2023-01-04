@@ -17,6 +17,7 @@ public class Inventory : MonoBehaviour
     public static Inventory instance;
 
     [SerializeField] GameObject itemSlots;
+    [SerializeField] int gold = 0;
 
     private void Awake()
     {
@@ -29,6 +30,10 @@ public class Inventory : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    private void Start()
+    {
     }
 
     public int HowManyItem(Item _item)

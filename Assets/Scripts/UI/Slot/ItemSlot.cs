@@ -8,9 +8,7 @@ using UnityEngine.UI;
 public class ItemSlot : MonoBehaviour
 {
     // 작성자 : 김두현
-    Item item;
-
-    [SerializeField] EquipmentItem equipmentItem;
+    [SerializeField] Item item;
     [SerializeField] ConsumableItem consumableItem;
     [SerializeField] OtherItem otherItem;
     [SerializeField] SLOT_TYPE slotType;
@@ -19,17 +17,17 @@ public class ItemSlot : MonoBehaviour
     Image itemImage;
     Text itemNumText;
 
-    public enum SLOT_TYPE { INVENTORY, EQUIPMENT, NORMAL }
+    public enum SLOT_TYPE { INVENTORY, POTION, NORMAL }
     // INVENTORY - 인벤토리 슬롯
-    // EQUIPMENT - 장비창 슬롯
+    // POTION - 포션 퀵슬롯
     // NORMAL - 고정 아이템 슬롯 EX) 퀘스트 보상 아이템슬롯, 상점 아이템슬롯 등
     
     public Item Item { get { return item; } }
     public int ItemNum { get { return itemNum; } }
-
-    public EquipmentItem EquipmentItem { get { return equipmentItem; } }
     public ConsumableItem ConsumableItem { get { return consumableItem; } }
     public OtherItem OtherItem { get { return otherItem; } }
+
+    public SLOT_TYPE SlotType { get { return slotType; } }
 
     private void Start()
     {
@@ -94,7 +92,6 @@ public class ItemSlot : MonoBehaviour
         itemNumText.text = itemNum.ToString();
         itemNumImage.gameObject.SetActive(false);
         itemImage.color = Color.clear;
-        equipmentItem = null;
         consumableItem = null;
         otherItem = null;
     }
@@ -107,9 +104,7 @@ public class ItemSlot : MonoBehaviour
 
     void InitItem()
     {
-        if (equipmentItem != null)
-            item = equipmentItem;
-        else if (consumableItem != null)
+        if (consumableItem != null)
             item = consumableItem;
         else if (otherItem != null)
             item = otherItem;

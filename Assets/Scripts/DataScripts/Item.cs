@@ -19,9 +19,9 @@ public class Item : ScriptableObject
 
     [SerializeField] ITEM_TYPE itemType;
 
-    public enum ITEM_TYPE { EQUIPMENT, CONSUMABLE, OTHER, QUEST}
+    public enum ITEM_TYPE { CONSUMABLE, OTHER }
 
-    public int ItemType { get { return (int)itemType; } }
+    public ITEM_TYPE ItemType { get { return itemType; } }
 
     public string ItemName { get { return itemName; } }
     public string ItemInfo { get { return itemInfo; } }
