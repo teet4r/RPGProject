@@ -47,9 +47,9 @@ public class Player : MonoBehaviour
         nowHp = Mathf.Min(nowHp + value, maxHp);
     }
 
-    public void AddMp(int num)
+    public void AddMp(float value2)
     {
-        return;
+        nowMp = Mathf.Min(nowHp + value2, maxMp);
     }
 
 
