@@ -96,22 +96,17 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void UseItem<T>(T _item) where T : Item
+    public void UseItem(ConsumableItem _item)
     {
-        if (_item.ItemType == Item.ITEM_TYPE.CONSUMABLE)
+        if (HowManyItem(_item) > 0)
         {
-            if (HowManyItem(_item) > 0)
-            {
-                //////////////////////////////////////////
+            DeleteItem(_item);
+            Player.instance.AddHp(_item.HpRecoverNum);
+            Player.instance.AddMp(_item.MpRecoverNum);
             }
-            else
-            {
-                AlertManager.instance.ShowAlert($"{_item.ItemName} 의 개수가 부족합니다.");
-            }
-        }
         else
         {
-
+            AlertManager.instance.ShowAlert($"{_item.ItemName} 의 개수가 부족합니다.");
         }
     }
 
@@ -140,7 +135,7 @@ public class Inventory : MonoBehaviour
         DeleteItem(_item, _num);
     }
 
-    public void DeleteItem(Item _item, int _num)
+    public void DeleteItem(Item _item, int _num = 1)
     {
         int tmp = _num;
         ItemSlot tmpSlot;
@@ -163,7 +158,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void AcquireItem(Item _item, int _num)
+    public void AcquireItem(Item _item, int _num = 1)
     {
         int tmp = _num;
         ItemSlot tmpSlot;

@@ -7,10 +7,6 @@ using UnityEngine.UI;
 public class SlotInfo : MonoBehaviour
 {
     // 작성자 : 김두현
-    /* itemSlot - itemImage
-     */
-    const float updateTime = 0.05f;
-
     PointerEventData pointer = new PointerEventData(EventSystem.current);
     List<RaycastResult> raycastResults = new List<RaycastResult>();
     [SerializeField] GameObject itemInfoWindow;
@@ -18,6 +14,7 @@ public class SlotInfo : MonoBehaviour
     RectTransform itemInfoWindowRect;
     RectTransform skillInfoWindowRect;
     ItemInfoWindow itemInfoWindowCpnt;
+
     private void Start()
     {
         itemInfoWindowCpnt = itemInfoWindow.GetComponent<ItemInfoWindow>();
@@ -27,20 +24,20 @@ public class SlotInfo : MonoBehaviour
     {
         pointer.position = Input.mousePosition;
         EventSystem.current.RaycastAll(pointer, raycastResults);
-        if (raycastResults.Count > 1)
+        if (raycastResults.Count > 0)
         {
-            if (raycastResults[1].gameObject.GetComponent<ItemSlot>() && raycastResults[1].gameObject.GetComponent<ItemSlot>().Item != null)
+            if (raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>() && raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>().Item != null)
             {
-                EnableItemInfoWindow(raycastResults[1].gameObject.GetComponent<ItemSlot>());
+                EnableItemInfoWindow(raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>());
                 itemInfoWindowRect.position = Input.mousePosition;
             }
             else
             {
                 DisableItemInfoWindow();
             }
-            if (raycastResults[1].gameObject.GetComponent<SkillSlot>() && raycastResults[1].gameObject.GetComponent<SkillSlot>().Skill != null)
+            if (raycastResults[0].gameObject.transform.parent.GetComponent<SkillSlot>() && raycastResults[0].gameObject.transform.parent.GetComponent<SkillSlot>().Skill != null)
             {
-                EnableSkillInfoWindow(raycastResults[1].gameObject.GetComponent<SkillSlot>());
+                EnableSkillInfoWindow(raycastResults[0].gameObject.transform.gameObject.GetComponent<SkillSlot>());
                 skillInfoWindowRect.position = Input.mousePosition;
             }
             else

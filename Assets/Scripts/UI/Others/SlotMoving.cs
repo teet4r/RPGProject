@@ -23,72 +23,48 @@ public class SlotMoving : MonoBehaviour
             EventSystem.current.RaycastAll(pointer, raycastResults);
             if (raycastResults.Count > 0)
             {
-                try
+                if (raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>() && raycastResults[0].gameObject.transform.parent.CompareTag("ItemSlot"))
                 {
-                    if (raycastResults[1].gameObject.GetComponent<ItemSlot>())
+                    selectedItem = raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>();
+                    if (selectedItem.Item != null)
                     {
-                        selectedItem = raycastResults[1].gameObject.GetComponent<ItemSlot>();
-                        if (selectedItem.GetComponent<ItemSlot>().Item != null)
-                        {
-                            holdingItemImage.SetActive(true);
-                            isHoldingItem = true;
-                        }
+                        holdingItemImage.SetActive(true);
+                        isHoldingItem = true;
                     }
                 }
-                catch { }
-                raycastResults.Clear();
             }
+            raycastResults.Clear();
         }
         if (Input.GetMouseButton(0) && isHoldingItem)
         {
-            holdingItemImage.GetComponent<Image>().sprite = selectedItem.GetComponent<Image>().sprite;
+            holdingItemImage.GetComponent<Image>().sprite = selectedItem.Item.ItemImage;
             holdingItemImage.GetComponent<RectTransform>().transform.position = Input.mousePosition;
         }
 
         if (Input.GetMouseButtonUp(0) && isHoldingItem)
         {
+            pointer.position = Input.mousePosition;
+            EventSystem.current.RaycastAll(pointer, raycastResults);
             holdingItemImage.SetActive(false);
             isHoldingItem = false;
-            pointer.position = Input.mousePosition;
-            EventSystem.current.RaycastAll(pointer, raycastResults);
             if (raycastResults.Count > 0)
             {
-                try
+                if (raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>() && raycastResults[0].gameObject.transform.parent.CompareTag("ItemSlot"))
                 {
-                    if (raycastResults[1].gameObject.GetComponent<ItemSlot>() && raycastResults[1].gameObject.CompareTag("ItemSlot"))
-                    {
-                        raycastResults[1].gameObject.GetComponent<ItemSlot>().SetItem(selectedItem.Item);
-                        raycastResults[1].gameObject.GetComponent<ItemSlot>().SetItemNum(selectedItem.ItemNum);
-                    }
-                    else if (raycastResults[1].gameObject.CompareTag("Shop") || raycastResults[0].gameObject.CompareTag("Shop"))
-                    {
-                        sellingItemWindow.SetActive(true);
-                    }
-                    else if (raycastResults[1].gameObject.GetComponent<ItemSlot>() && raycastResults[1].gameObject.CompareTag("PotionSlot") && selectedItem.Item.ItemType == Item.ITEM_TYPE.CONSUMABLE) // Æ÷¼Ç Äü½½·Ô
-                    {
-                        raycastResults[1].gameObject.GetComponent<PotionSlot>().SetSlotItem(selectedItem.ConsumableItem);
-                    }
+                    raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>().SetItem(selectedItem.ConsumableItem);
+                    raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>().SetItem(selectedItem.OtherItem);
+                    raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>().SetItemNum(selectedItem.ItemNum);
                 }
-                catch { }
-                raycastResults.Clear();
-            }
-        }
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            pointer.position = Input.mousePosition;
-            EventSystem.current.RaycastAll(pointer, raycastResults);
-            if (raycastResults.Count > 0)
-            {
-                GameObject tmpObject = raycastResults[1].gameObject;
-                if (tmpObject.GetComponent<ItemSlot>() && tmpObject.CompareTag("ItemSlot"))
+                else if (raycastResults[0].gameObject.transform.parent.CompareTag("ShopSlot") || raycastResults[0].gameObject.transform.parent.CompareTag("ShopSlot"))
                 {
-                    if (tmpObject.GetComponent<ItemSlot>().Item.ItemType == Item.ITEM_TYPE.CONSUMABLE)
-                    {
-                        ////////////////////
-                    }
+                    sellingItemWindow.SetActive(true);
+                }
+                else if (raycastResults[0].gameObject.transform.parent.GetComponent<PotionSlot>() && raycastResults[0].gameObject.transform.parent.CompareTag("PotionSlot") && selectedItem.Item.ItemType == Item.ITEM_TYPE.CONSUMABLE) // Æ÷¼Ç Äü½½·Ô
+                {
+                    raycastResults[0].gameObject.transform.parent.GetComponent<PotionSlot>().SetSlotItem(selectedItem.ConsumableItem);
                 }
             }
+            raycastResults.Clear();
         }
     }
 }

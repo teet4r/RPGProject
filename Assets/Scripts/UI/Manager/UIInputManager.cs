@@ -24,9 +24,9 @@ public class UIInputManager : MonoBehaviour
             if (CheckUIOpen()) CloseUI();
             else SelectOptionUI();
         }
-        if (Input.GetKeyDown(KeyCode.I)) SelectInventoryUI();
-        if (Input.GetKeyDown(KeyCode.P)) SelectCharacterInfoUI();
-        if (Input.GetKeyDown(KeyCode.J)) SelectQuestUI();
+        if (Input.GetKeyDown(KeyCode.I)) SelectInventoryUI(); ////
+        if (Input.GetKeyDown(KeyCode.P)) SelectCharacterInfoUI(); ////
+        if (Input.GetKeyDown(KeyCode.J)) SelectQuestUI(); ////
     }
     public void SelectInventoryUI()
     {
