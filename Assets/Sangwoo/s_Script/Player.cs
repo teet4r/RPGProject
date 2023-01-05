@@ -16,19 +16,23 @@ public class Player : MonoBehaviour
     public float maxMp = 100f;
     public float nowExp = 0f;
     public float maxExp = 1000f;
-    public int nowLevel = 0;
+    public int nowLevel = 1;
     public int maxLevel = 100;
-    public int nowSp = 0;
-    public int MaxSp = 0;
-    public int nowGold = 0;
-    public int useGold = 0;
-    public int priceItem = 0; //확인부탁
-   
+
+    //스태미나
+    public float nowSp = 0f;      
+    public float maxSp = 1000f;
+    public bool usedSp;
+    public int inSSp; //스태미나 증가량
+    public int recTimeSP; //스테미나 회복 딜레이 시간 ,회복할때까지 걸리는 시간
+    public int nowrecTimeSP; // 스태미나 현재 회복시간,회복하는시간
+    
+
 
 
 
     public float MP = 100f;
-    
+
     public float Atk = 10f;
     public float AtkSpd = 30f;
     //public float
@@ -43,7 +47,7 @@ public class Player : MonoBehaviour
         }
         instance = this; // instance에 새롭게 할당
         DontDestroyOnLoad(gameObject); // 씬이 바뀌어도 오브젝트가 사라지지 않도록 해주는 함수.
-        
+
         #endregion
     }
 
@@ -58,12 +62,14 @@ public class Player : MonoBehaviour
         nowMp = Mathf.Min(nowHp + value2, maxMp);
     }
 
+    
+
     public void LevelUp()
     {
         if (nowExp == maxExp)
         {
             nowLevel += 1;
-            
+
             Debug.Log("레벨업!!");
 
         }
@@ -72,12 +78,46 @@ public class Player : MonoBehaviour
             nowExp *= -1;
     }
 
-    public void Buy()
+ 
+    private void RestoreSP(int value_RS)//스태미나
     {
+        //스태미너 자연회복 초당 20퍼 
+        //구르기 1회 25퍼 감소
+        //달리가 초당 10퍼
 
+
+        if (usedSp)
+        {
+            if (nowrecTimeSP < recTimeSP)
+                nowrecTimeSP++;
+            else
+                usedSp = false;
+        }
+
+
+        if(!usedSp && nowSp < maxSp)
+        {
+            //nowSp += 
+        }
     }
 
+    private void DecreaseSp(int value_DS)
+    {
+        usedSp = true;
+        recTimeSP = 0;
+        if (nowSp - value_DS > 0)
+        {
+            nowSp -= value_DS;
+        }
+        else
+            nowSp = 0;
+        
+    }
 
+    private float GetnowSp()
+    {
+         return nowSp;
+    }
 
     void Start()
     {
