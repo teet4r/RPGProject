@@ -11,6 +11,8 @@ public class TopBarMoving : MonoBehaviour
     RectTransform selectedUI;
     GameObject selectedTopBar;
     bool topBarSelected = false;
+    PointerEventData pointer = new PointerEventData(EventSystem.current);
+    List<RaycastResult> raycastResults = new List<RaycastResult>();
     void Start()
     {
         graphicRaycaster = GetComponent<GraphicRaycaster>();
@@ -19,17 +21,15 @@ public class TopBarMoving : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            var ped = new PointerEventData(null);
-            ped.position = Input.mousePosition;
-            List<RaycastResult> results = new List<RaycastResult>();
-            graphicRaycaster.Raycast(ped, results);
-            if (results.Count <= 0 || results[0].gameObject.name != "TopBar") return;
-            selectedTopBar = results[0].gameObject;
+            pointer.position = Input.mousePosition;
+            EventSystem.current.RaycastAll(pointer, raycastResults);
+            if (raycastResults.Count <= 0 || raycastResults[0].gameObject.name != "TopBar") return;
+            selectedTopBar = raycastResults[0].gameObject;
             selectedTopBar.transform.parent.transform.SetAsLastSibling();
-            selectedUI = results[0].gameObject.transform.parent.GetComponent<RectTransform>();
+            selectedUI = raycastResults[0].gameObject.transform.parent.GetComponent<RectTransform>();
             difference = selectedUI.position - Input.mousePosition;
             topBarSelected = true;
-            results.Clear();
+            raycastResults.Clear();
         }
         else if (Input.GetMouseButton(0) && topBarSelected)
         {
