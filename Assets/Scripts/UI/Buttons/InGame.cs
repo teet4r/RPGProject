@@ -7,7 +7,6 @@ public class InGame : MonoBehaviour
 {
     [SerializeField] GameObject MiniMap;
     [SerializeField] GameObject Quest;
-    [SerializeField] GameObject QuestGroup;
     public void MiniMapToggle(Toggle toggle)
     {
         if(toggle.isOn) 
@@ -17,7 +16,6 @@ public class InGame : MonoBehaviour
         else
         {
             MiniMap.SetActive(false);
-            
         }
     }
     public void QuestToggle(Toggle toggle)
@@ -31,4 +29,5 @@ public class InGame : MonoBehaviour
             Quest.SetActive(false);
         }
     }
+
 }
