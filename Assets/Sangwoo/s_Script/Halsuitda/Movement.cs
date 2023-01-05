@@ -59,7 +59,7 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W))
         {
-            moveSpeed = 7f;
+            moveSpeed += 3.5f;
             anit.SetBool("IsSprint", true);
             Roll();
         }
