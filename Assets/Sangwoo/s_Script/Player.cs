@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    //작성자 : 이상우
+    //작성일 : 23-01-04 ~
     public static Player instance = null;
 
     //public string name { }
@@ -18,7 +20,10 @@ public class Player : MonoBehaviour
     public int maxLevel = 100;
     public int nowSp = 0;
     public int MaxSp = 0;
-
+    public int nowGold = 0;
+    public int useGold = 0;
+    public int priceItem = 0; //확인부탁
+   
 
 
 
@@ -38,6 +43,7 @@ public class Player : MonoBehaviour
         }
         instance = this; // instance에 새롭게 할당
         DontDestroyOnLoad(gameObject); // 씬이 바뀌어도 오브젝트가 사라지지 않도록 해주는 함수.
+        
         #endregion
     }
 
@@ -52,7 +58,24 @@ public class Player : MonoBehaviour
         nowMp = Mathf.Min(nowHp + value2, maxMp);
     }
 
+    public void LevelUp()
+    {
+        if (nowExp == maxExp)
+        {
+            nowLevel += 1;
+            
+            Debug.Log("레벨업!!");
 
+        }
+        nowExp -= maxExp;
+        if (nowExp < 0)
+            nowExp *= -1;
+    }
+
+    public void Buy()
+    {
+
+    }
 
 
 
