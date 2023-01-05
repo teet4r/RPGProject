@@ -22,8 +22,6 @@ public class QuestManager : MonoBehaviour
     public QuestInfo[] QuestInfos { get { return questInfos; } }
     public Sprite[] QuestIcons { get { return questIcons; } }
 
-    public enum QUEST_CODE { START }
-
     private void Awake()
     {
         if (instance == null)
@@ -72,6 +70,7 @@ public class QuestManager : MonoBehaviour
     public void CompleteQuest(int _questCode)
     {
         _questInfo = questInfos[_questCode];
+        Player.instance.AddExp(_questInfo.Quest.QuestPrizeExp);
     }
 
     public void StartQuest(int _questCode)

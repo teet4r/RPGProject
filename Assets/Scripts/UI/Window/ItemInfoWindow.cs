@@ -19,6 +19,6 @@ public class ItemInfoWindow : MonoBehaviour
         itemName.text = _itemSlot.GetComponent<ItemSlot>().Item.ItemName;
         itemNum.text = "보유 수량 : " + Inventory.instance.HowManyItem(_itemSlot.Item).ToString();
         itemInfo.text = _itemSlot.GetComponent<ItemSlot>().Item.ItemInfo;
-        itemSellPrice.text = $"판매가 : {_item.SellPrice} Gold";
+        itemSellPrice.text = $"{_item.SellPrice} Gold";
     }
 }
