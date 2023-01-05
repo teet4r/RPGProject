@@ -20,7 +20,15 @@ public class Player : MonoBehaviour
     int maxLevel = 10;
     int reviveCoin = 2;
     [SerializeField]
-    Vector3 townPosition; 
+    Vector3 townPosition;
+
+    //npc카메라
+    [SerializeField]
+    Vector3 lastMovingVelocity;
+    [SerializeField]
+    Vector3 targetPosition;
+    Camera npcCam;
+    float targetZoomSize = 5f;
 
     //스태미나
     float nowSp = 0f;
@@ -121,14 +129,24 @@ public class Player : MonoBehaviour
     }
     public void Revive()
     {
-        nowHp = reviveCoin-- * maxHp * 0.5f;    
+        nowHp = reviveCoin-- * maxHp * 0.5f;
+        reviveCoin = 2;
+
     }
     public void MoveToTown()
     {
         transform.position = townPosition;
     }
-    
 
+    private void OnTriggerEnter(Collider other)
+    {
+        
+    }
+    
+    private void NPCZoomCamera()
+    {
+
+    }
 
     void Update()
     {
