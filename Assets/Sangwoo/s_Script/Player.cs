@@ -10,32 +10,46 @@ public class Player : MonoBehaviour
     public static Player instance = null;
 
     //public string name { }
-    public float nowHp = 100f;
-    public float maxHp = 0f;
-    public float nowMp = 0f;
-    public float maxMp = 100f;
-    public float nowExp = 0f;
-    public float maxExp = 1000f;
-    public int nowLevel = 1;
-    public int maxLevel = 100;
+    float nowHp = 0f;
+    float maxHp = 100f;
+    float nowMp = 0f;
+    float maxMp = 100f;
+    float nowExp = 0f;
+    float maxExp = 1000f;
+    int nowLevel = 1;
+    int maxLevel = 10;
+    int reviveCoin = 2;
+    [SerializeField]
+    Vector3 townPosition; 
 
     //스태미나
-    public float nowSp = 0f;      
-    public float maxSp = 1000f;
-    public bool usedSp;
-    public int inSSp; //스태미나 증가량
-    public int recTimeSP; //스테미나 회복 딜레이 시간 ,회복할때까지 걸리는 시간
-    public int nowrecTimeSP; // 스태미나 현재 회복시간,회복하는시간
-    
+    float nowSp = 0f;
+    float maxSp = 100f;
+    bool usedSp;
+    int inSSp; //스태미나 증가량
+    int recTimeSP; //스테미나 회복 딜레이 시간 ,회복할때까지 걸리는 시간
+    int nowrecTimeSP; // 스태미나 현재 회복시간,회복하는시간
 
+    float atk = 10f;
+    float atkSpd = 30f;
 
+    public float NowHp { get { return nowHp; } }
+    public float MaxHp { get { return maxHp; } }
 
+    public float NowMp { get { return nowMp; } }
+    public float MaxMp { get { return maxMp; } }
 
-    public float MP = 100f;
+    public float NowExp { get { return nowExp; } }
+    public float MaxExp { get { return maxExp; } }
 
-    public float Atk = 10f;
-    public float AtkSpd = 30f;
-    //public float
+    public float NowLevel { get { return nowLevel; } }
+    public float MaxLevel { get { return maxLevel; } }
+
+    public float NowSp { get { return nowSp; } }
+    public float MaxSp { get { return maxSp; } }
+
+    public float Atk { get { return atk; } }
+    public float AtkSpd { get { return atkSpd; } }
 
     void Awake()
     {
@@ -49,9 +63,9 @@ public class Player : MonoBehaviour
         DontDestroyOnLoad(gameObject); // 씬이 바뀌어도 오브젝트가 사라지지 않도록 해주는 함수.
 
         #endregion
+
     }
 
-    //함수  
     public void AddHp(float value)
     {
         nowHp = Mathf.Min(nowHp + value, maxHp);
@@ -62,30 +76,30 @@ public class Player : MonoBehaviour
         nowMp = Mathf.Min(nowHp + value2, maxMp);
     }
 
-    
-
-    public void LevelUp()
+    void LevelUp()
     {
-        if (nowExp == maxExp)
+        while (nowExp >= maxExp)
         {
             nowLevel += 1;
-
-            Debug.Log("레벨업!!");
-
+            maxHp *= 1.1f;
+            maxMp *= 1.1f;
+            maxExp *= 1.3f;
+            atk *= 1.1f;
+            nowHp = maxHp;
+            nowMp = maxMp;
+            nowExp -= maxExp;
         }
-        nowExp -= maxExp;
-        if (nowExp < 0)
-            nowExp *= -1;
+
     }
-
- 
-    private void RestoreSP(int value_RS)//스태미나
+    public void AddExp(int value) //인자
     {
-        //스태미너 자연회복 초당 20퍼 
-        //구르기 1회 25퍼 감소
-        //달리가 초당 10퍼
+        nowExp += value;
 
+        LevelUp();
 
+    }
+    private void RestoreSP()//스태미나
+    {
         if (usedSp)
         {
             if (nowrecTimeSP < recTimeSP)
@@ -93,39 +107,31 @@ public class Player : MonoBehaviour
             else
                 usedSp = false;
         }
-
-
-        if(!usedSp && nowSp < maxSp)
-        {
-            //nowSp += 
-        }
     }
-
     private void DecreaseSp(int value_DS)
     {
         usedSp = true;
         recTimeSP = 0;
-        if (nowSp - value_DS > 0)
+        if (nowSp - value_DS >= 0)
         {
             nowSp -= value_DS;
         }
         else
-            nowSp = 0;
-        
+            AlertManager.instance.ShowAlert("스태미나가 부족합니다.");
     }
-
-    private float GetnowSp()
+    public void Revive()
     {
-         return nowSp;
+        nowHp = reviveCoin-- * maxHp * 0.5f;    
     }
-
-    void Start()
+    public void MoveToTown()
     {
-
+        transform.position = townPosition;
     }
     
+
+
     void Update()
     {
-        
+
     }
 }
