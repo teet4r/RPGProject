@@ -5,29 +5,61 @@ using UnityEngine.UI;
 
 public class InGame : MonoBehaviour
 {
-    [SerializeField] GameObject MiniMap;
-    [SerializeField] GameObject Quest;
+    [SerializeField] Image MiniMap;
+    [SerializeField] Image Quest;
+    public Image MiniMapSwitchImg;
+    public Image QuestSwitchImg;
+    public Sprite CloseImg;
+    public Sprite OpenImg;
+    GameObject questGroup;
+
+    void Awake()
+    {
+        questGroup = Quest.transform.parent.gameObject;
+    }
+
     public void MiniMapToggle(Toggle toggle)
     {
         if(toggle.isOn) 
         {
-            MiniMap.SetActive(true);
+            MiniMapSwitchImg.sprite = CloseImg;
+            MiniMap.gameObject.SetActive(true);
+
+            // questGroup의 위치를 받아옴
+            var questPosition = questGroup.transform.position;
+            // questGroup의 새 위치를 지정할 위치를 만듦
+            var newPosition = new Vector3(
+                questPosition.x,
+                questPosition.y - MiniMap.rectTransform.rect.height,
+                questPosition.z
+            );
+            questGroup.transform.position = newPosition;
         }
         else
         {
-            MiniMap.SetActive(false);
+            MiniMapSwitchImg.sprite = OpenImg;
+            MiniMap.gameObject.SetActive(false);
+
+            var questPosition = questGroup.transform.position;
+            var newPosition = new Vector3(
+                questPosition.x,
+                questPosition.y + MiniMap.rectTransform.rect.height,
+                questPosition.z
+            );
+            questGroup.transform.position = newPosition;
         }
     }
     public void QuestToggle(Toggle toggle)
     {
         if (toggle.isOn)
         {
-            Quest.SetActive(true);
+            QuestSwitchImg.sprite = CloseImg;
+            Quest.gameObject.SetActive(true);
         }
         else
         {
-            Quest.SetActive(false);
+            QuestSwitchImg.sprite = OpenImg;
+            Quest.gameObject.SetActive(false);
         }
     }
-
 }
