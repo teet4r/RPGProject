@@ -10,7 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86e04ee3cf28ec3488f36759f880a76b, type: 3}
-  m_Name: Sample
+  m_Name: Jangro
   m_EditorClassIdentifier: 
-  npcName: 
+  npcName: "\uC7A5\uB85C"
   npcType: 0
+  quests:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
