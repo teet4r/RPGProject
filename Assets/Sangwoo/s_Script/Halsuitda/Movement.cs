@@ -13,8 +13,12 @@ public class Movement : MonoBehaviour
     Transform tr;
     [SerializeField] //에니메이터 (컴포넌트)불러올떄 저장소
     Animator anit;
+    [SerializeField]
+    Rigidbody rigidy;
    
-    float h, v, r; //vectpr값을 저장하기 위해서 (h=호라이즌,v=버티컬,r=마우스호라이즌(회전)) (이동)
+    float h, v, r; //vector값을 저장하기 위해서 (h=호라이즌,v=버티컬,r=마우스호라이즌(회전)) (이동)
+
+   //Vector3 move
 
     public float smoothBlend = 0.1f; //애니메이션 time.deltatime랑 같이 쓰면 빠르고 부드러워짐
     public float moveSpeed = 3.5f;  //움직일떄 속도
@@ -60,9 +64,13 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W))
         {
-            moveSpeed += 3.5f;
+            moveSpeed = 5f;
             anit.SetBool("IsSprint", true);
-            Roll();
+            Player.instance.DecreaseSp(10*Time.deltaTime);
+            
+            Debug.Log(Player.instance.NowSp);
+
+          
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.W))
         {
@@ -76,48 +84,53 @@ public class Movement : MonoBehaviour
     void Roll()
     {
         //정면
-        if (Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.W))
         {
             anit.SetBool("IsRolling_F", true);
-            tr.Translate(Vector3.forward * rollSpeed * Time.deltaTime);
-            // tr.Translate(Vector3.right + 10 * Rollh * rollSpeed * Time.deltaTime);
+            rigidy.AddForce(Vector3.forward * rollSpeed,ForceMode.Impulse);
+            
+            Player.instance.DecreaseSp(25f);
+            Debug.Log("스태미나 25");
 
         }
-        else if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W))
+        else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.W))
         {
             anit.SetBool("IsRolling_F", false);
 
 
         }
         //후면
-        if (Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.S))
         {
             anit.SetBool("IsRolling_B", true);
-            // tr.Translate(Vector3.right + 10 * Rollh * rollSpeed * Time.deltaTime);
-            tr.Translate(Vector3.back * rollSpeed * Time.deltaTime);
+            
+            rigidy.AddForce(Vector3.back * rollSpeed);
+            Player.instance.DecreaseSp(25f);
         }
-        else if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.S))
+        else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.S))
         {
             anit.SetBool("IsRolling_B", false);
 
         }
         //왼쪽
-        if (Input.GetKey(KeyCode.Space)&&Input.GetKey(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.Space)&&Input.GetKey(KeyCode.A))
        {
             anit.SetBool("IsRolling_L", true);
-            // tr.Translate(Vector3.right + 10 * Rollh * rollSpeed * Time.deltaTime);
-            tr.Translate(Vector3.left * rollSpeed * Time.deltaTime);
+            
+            rigidy.AddForce(Vector3.left * rollSpeed);
+            Player.instance.DecreaseSp(25f);
         }
-       else if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.A))
+       else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.A))
        {
             anit.SetBool("IsRolling_L", false);
 
        }
        //오른쪽
-        if (Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.D))
         {
             anit.SetBool("IsRolling_R", true);
-            tr.Translate(Vector3.right * rollSpeed * Time.deltaTime);
+            rigidy.AddForce(Vector3.right * rollSpeed);
+            Player.instance.DecreaseSp(25f);
 
         }
         else if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.D))
