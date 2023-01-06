@@ -10,18 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73b72ce8b83297c4da6831352c858796, type: 3}
-  m_Name: SampleQuest
+  m_Name: Quest_Jangro_0
   m_EditorClassIdentifier: 
-  questTitle: "\uC0D8\uD50C \uD018\uC2A4\uD2B8"
-  questNpc: '-'
-  questInfo: 
+  questTitle: "\uD478\uB978 \uC0AC\uC2E0 \uD1A0\uBC8C"
+  questNpc: "\uC7A5\uB85C"
+  questInfo: "\uC6B0\uB9AC\uB97C \uAD6C\uD574\uC904 \uC900\uBE44\uAC00 \uB418\uC5C8\uB294\uC9C0
+    \uD55C \uBC88 \uD14C\uC2A4\uD2B8 \uD574\uBCF4\uB3C4\uB85D \uD558\uACA0\uB124.
+    A\uC9C0\uC5ED\uC5D0 \uD478\uB978 \uC0AC\uC2E0\uC774 \uC788\uB294\uB370 \uADF8
+    \uC0AC\uC2E0\uC744 20\uB9C8\uB9AC \uCC98\uCE58\uD574\uC8FC\uAC8C."
   questRequireItem:
     item: {fileID: 0}
     itemNum: 0
   questPrizeItems:
   - item: {fileID: 11400000, guid: ee09e03a3a9aa4c4db2baab8d667b920, type: 2}
     itemNum: 3
-  questCode: 1
+  questCode: 
   questPrizeGold: 100
   questPrizeExp: 1000
   questType: 0
