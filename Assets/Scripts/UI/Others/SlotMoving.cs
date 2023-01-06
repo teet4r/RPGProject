@@ -51,9 +51,14 @@ public class SlotMoving : MonoBehaviour
             {
                 if (raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>() && raycastResults[0].gameObject.transform.parent.CompareTag("ItemSlot"))
                 {
+                    ItemSlot tmpSlot = raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>();
+
                     raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>().SetItem(selectedItem.ConsumableItem);
                     raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>().SetItem(selectedItem.OtherItem);
                     raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>().SetItemNum(selectedItem.ItemNum);
+                    raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>().SetItemImage();
+
+                    selectedItem = tmpSlot;
                 }
                 else if (raycastResults[0].gameObject.transform.parent.CompareTag("ShopSlot") || raycastResults[0].gameObject.transform.parent.CompareTag("ShopSlot"))
                 {

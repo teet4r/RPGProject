@@ -178,9 +178,9 @@ public class Inventory : MonoBehaviour
                     tmp = 0;
                 }
             }
-            else if(tmpSlot.Item == null)
+            else if (tmpSlot.Item == null)
             {
-                tmpSlot.SetItem(_item);
+                // tmpSlot.SetItem(_item);
                 if (_item.BundleSize < tmp)
                 {
                     tmpSlot.SetItemNum(_item.BundleSize);

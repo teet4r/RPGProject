@@ -96,16 +96,16 @@ public class ItemSlot : MonoBehaviour
         otherItem = null;
     }
 
-    public void SetItem<T>(T _item) where T : Item
+    public void SetItem(ConsumableItem _item)
     {
-        if (_item.GetType() == consumableItem.GetType())
-        {
-        }
-        else if (_item.GetType() == otherItem.GetType())
-        {
-        }
-        T tmp = _item;
-        item = tmp;
+        consumableItem = _item;
+        item = _item;
+    }
+
+    public void SetItem(OtherItem _item)
+    {
+        otherItem = _item;
+        item = _item;
     }
 
     void InitItem()

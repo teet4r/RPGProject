@@ -10,6 +10,7 @@ public class UIInputManager : MonoBehaviour
     [SerializeField] GameObject questWindow;
     [SerializeField] GameObject optionWindow;
     [SerializeField] GameObject uiGroup;
+    [SerializeField] GameObject npcShopWindow;
     public enum UI_TYPE { INVENTORY, CHARACTERINFO, QUEST }
 
     private void Start()
@@ -43,6 +44,11 @@ public class UIInputManager : MonoBehaviour
     {
         questWindow.SetActive(!questWindow.activeSelf);
         questWindow.transform.SetAsLastSibling();
+    }
+
+    public void SelectNpcShopUI()
+    {
+        npcShopWindow.SetActive(!npcShopWindow.activeSelf);
     }
 
     void SelectOptionUI()
