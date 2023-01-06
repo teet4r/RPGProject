@@ -50,7 +50,7 @@ public class LoadingProgress : MonoBehaviour
             }
             else
             {
-                timer += Time.unscaledDeltaTime / 2f; //나눈 초만큼 실행
+                timer += Time.unscaledDeltaTime / 3f; //나눈 초만큼 실행
                 progressBar.fillAmount = Mathf.Lerp(0f, 1f, timer);
                 if (timer > 1)
                 {
