@@ -4260,10 +4260,10 @@ Animator:
   m_GameObject: {fileID: 8001354749718593143}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0308cf4e83cf517488b60af58b290fe0, type: 3}
-  m_Controller: {fileID: 9100000, guid: 98dd101606ddcc94b84796070246887d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2be64f57d7d213648aa9b2e5e8e0a39b, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -4312,11 +4312,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71afe940d60b4764297f0c5f2695e16b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
-  MP: 100
-  Exp: 1000
-  Atk: 10
-  AtkSpd: 30
+  townPosition: {x: 0, y: 0, z: 0}
+  lastMovingVelocity: {x: 0, y: 0, z: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1335975102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4344,7 +4342,7 @@ MonoBehaviour:
   tr: {fileID: 7224149203388998861}
   anit: {fileID: 7191100790416280148}
   smoothBlend: 0.1
-  moveSpeed: 10
+  moveSpeed: 5
   turnSpeed: 30
   rollSpeed: 10
   IsSprint: 0

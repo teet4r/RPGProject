@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour
     Transform tr;
     [SerializeField] //에니메이터 (컴포넌트)불러올떄 저장소
     Animator anit;
-
+   
     float h, v, r; //vectpr값을 저장하기 위해서 (h=호라이즌,v=버티컬,r=마우스호라이즌(회전)) (이동)
 
     public float smoothBlend = 0.1f; //애니메이션 time.deltatime랑 같이 쓰면 빠르고 부드러워짐
@@ -37,15 +37,15 @@ public class Movement : MonoBehaviour
 
     void Move()
     {
+
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
         r = Input.GetAxis("Mouse X");
         tr.Translate(Vector3.right * h * moveSpeed * Time.deltaTime);
         {
             anit.SetFloat("SpeedX", h, smoothBlend, Time.deltaTime);
-                 
-        }
 
+        }
         tr.Translate(Vector3.forward.normalized * v * moveSpeed * Time.deltaTime);
         {
             anit.SetFloat("SpeedY", v, smoothBlend, Time.deltaTime);
@@ -54,6 +54,7 @@ public class Movement : MonoBehaviour
 
         Sprint();
     }
+
 
     void Sprint()
     {
@@ -70,6 +71,7 @@ public class Movement : MonoBehaviour
 
         }
     }
+
 
     void Roll()
     {

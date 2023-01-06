@@ -25,10 +25,12 @@ public class Player : MonoBehaviour
     //npc카메라
     [SerializeField]
     Vector3 lastMovingVelocity;
-    [SerializeField]
-    Vector3 targetPosition;
+   
+    public Vector3 targetPosition;
     Camera npcCam;
-    float targetZoomSize = 5f;
+    //float targetZoomSize = 5f;
+   
+
 
     //스태미나
     float nowSp = 0f;
@@ -138,9 +140,15 @@ public class Player : MonoBehaviour
         transform.position = townPosition;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider col)
     {
         
+        if(col.gameObject.tag == "NPC")
+        {
+            Debug.Log("npc입니당");
+            targetPosition = col.gameObject.transform.position;
+            Debug.Log(targetPosition);
+        }
     }
     
     private void NPCZoomCamera()
