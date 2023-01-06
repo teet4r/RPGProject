@@ -5,9 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ItemContainer",menuName ="ItemContainer/ItemContainer")]
 public class ItemContainer : ScriptableObject
 {
-    [SerializeField] SerializableDictionary<Item, ItemCon> itemList = new();
+    [SerializeField] ItemList<Item, ItemCon> itemList = new();
 
-    public SerializableDictionary<Item,ItemCon> ItemList { get { return itemList; } }
+    public ItemList<Item,ItemCon> ItemList { get { return itemList; } }
 
     [System.Serializable]
     public class ItemCon

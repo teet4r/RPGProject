@@ -14,15 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questTitle: "\uD478\uB978 \uC0AC\uC2E0 \uD1A0\uBC8C"
   questNpc: "\uC7A5\uB85C"
-  questInfo: "\uC6B0\uB9AC\uB97C \uAD6C\uD574\uC904 \uC900\uBE44\uAC00 \uB418\uC5C8\uB294\uC9C0
-    \uD55C \uBC88 \uD14C\uC2A4\uD2B8 \uD574\uBCF4\uB3C4\uB85D \uD558\uACA0\uB124.
-    A\uC9C0\uC5ED\uC5D0 \uD478\uB978 \uC0AC\uC2E0\uC774 \uC788\uB294\uB370 \uADF8
-    \uC0AC\uC2E0\uC744 20\uB9C8\uB9AC \uCC98\uCE58\uD574\uC8FC\uAC8C."
+  questInfo: "A\uC9C0\uC5ED\uC5D0\uC11C \uD478\uB978 \uC0AC\uC2E0\uC744 20\uB9C8\uB9AC
+    \uD1A0\uBC8C\uD558\uAE30"
   questRequireItem:
     item: {fileID: 0}
     itemNum: 0
   questPrizeItems:
-  - item: {fileID: 11400000, guid: ee09e03a3a9aa4c4db2baab8d667b920, type: 2}
+  - item: {fileID: 11400000, guid: 9de76cb4a88eca243bd4f94b4667e673, type: 2}
     itemNum: 3
   questCode: 
   questPrizeGold: 100
