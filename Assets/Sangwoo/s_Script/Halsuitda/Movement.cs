@@ -23,7 +23,7 @@ public class Movement : MonoBehaviour
     public float smoothBlend = 0.1f; //애니메이션 time.deltatime랑 같이 쓰면 빠르고 부드러워짐
     public float moveSpeed = 3.5f;  //움직일떄 속도
     public float turnSpeed = 90f;
-    public float rollSpeed = 60f; //구르기 속도
+    public float rollSpeed = 10f; //구르기 속도
 
     public bool IsSprint;   //달리기는 속도에 +=해주기
     
@@ -87,10 +87,11 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.W))
         {
             anit.SetBool("IsRolling_F", true);
-            rigidy.AddForce(Vector3.forward * rollSpeed,ForceMode.Impulse);
+            rigidy.AddForce(transform.forward * rollSpeed,ForceMode.Impulse);
             
             Player.instance.DecreaseSp(25f);
             Debug.Log("스태미나 25");
+            Debug.Log(Vector3.forward * rollSpeed);
 
         }
         else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.W))
@@ -104,7 +105,7 @@ public class Movement : MonoBehaviour
         {
             anit.SetBool("IsRolling_B", true);
             
-            rigidy.AddForce(Vector3.back * rollSpeed);
+            rigidy.AddForce(transform.forward*-1 * rollSpeed,ForceMode.Impulse);
             Player.instance.DecreaseSp(25f);
         }
         else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.S))
@@ -117,7 +118,7 @@ public class Movement : MonoBehaviour
        {
             anit.SetBool("IsRolling_L", true);
             
-            rigidy.AddForce(Vector3.left * rollSpeed);
+            rigidy.AddForce(transform.right*-1 * rollSpeed, ForceMode.Impulse);
             Player.instance.DecreaseSp(25f);
         }
        else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.A))
@@ -129,7 +130,7 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.D))
         {
             anit.SetBool("IsRolling_R", true);
-            rigidy.AddForce(Vector3.right * rollSpeed);
+            rigidy.AddForce(transform.right * rollSpeed, ForceMode.Impulse);
             Player.instance.DecreaseSp(25f);
 
         }
