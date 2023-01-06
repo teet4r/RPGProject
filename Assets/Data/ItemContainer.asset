@@ -14,7 +14,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemList:
     key:
-    - {fileID: 0}
+    - {fileID: 11400000, guid: 9de76cb4a88eca243bd4f94b4667e673, type: 2}
+    - {fileID: 11400000, guid: 8d5030945326910439b60ac61c30d3bd, type: 2}
+    - {fileID: 11400000, guid: 4aa62e28761049a40b8d1707bca75e5d, type: 2}
+    - {fileID: 11400000, guid: 417a50204116f53449d6e49732fbdb76, type: 2}
+    - {fileID: 11400000, guid: 98a7be1b614febe44b57dc178c0208c5, type: 2}
+    - {fileID: 11400000, guid: 470b50ecb4ca07542aeaa6d1d9a587e8, type: 2}
+    - {fileID: 11400000, guid: 150c9dec5bb2af245b1c2f44ddb0cea2, type: 2}
+    - {fileID: 11400000, guid: 5ee2790c1e71c33408c561dd3640942e, type: 2}
+    - {fileID: 11400000, guid: 2e76a20a4e3949b46991cd396e75ade1, type: 2}
+    - {fileID: 11400000, guid: b9ed30477a0aabd4faad626ddc99c62f, type: 2}
+    - {fileID: 11400000, guid: 102fe1502e7a5e14eabaffe3c424872d, type: 2}
+    - {fileID: 11400000, guid: 33ee449e8c6d8ab449d93a1aa96cac00, type: 2}
+    - {fileID: 11400000, guid: e659a357553807c459142256cc579f0b, type: 2}
+    - {fileID: 11400000, guid: cc6cd1dfeccf0ad4db574781b604a2b9, type: 2}
+    - {fileID: 11400000, guid: 435e2182ccabe834cbd4663bedf880c3, type: 2}
+    - {fileID: 11400000, guid: 87a005e9e4dd24b489b844eee0be49dc, type: 2}
+    - {fileID: 11400000, guid: da7e267f08840f1418d16d30993376db, type: 2}
     value:
-    - consumableItem: {fileID: 0}
+    - consumableItem: {fileID: 11400000, guid: 9de76cb4a88eca243bd4f94b4667e673, type: 2}
       otherItem: {fileID: 0}
+    - consumableItem: {fileID: 11400000, guid: 8d5030945326910439b60ac61c30d3bd, type: 2}
+      otherItem: {fileID: 0}
+    - consumableItem: {fileID: 11400000, guid: 4aa62e28761049a40b8d1707bca75e5d, type: 2}
+      otherItem: {fileID: 0}
+    - consumableItem: {fileID: 11400000, guid: 417a50204116f53449d6e49732fbdb76, type: 2}
+      otherItem: {fileID: 0}
+    - consumableItem: {fileID: 11400000, guid: 98a7be1b614febe44b57dc178c0208c5, type: 2}
+      otherItem: {fileID: 0}
+    - consumableItem: {fileID: 11400000, guid: 470b50ecb4ca07542aeaa6d1d9a587e8, type: 2}
+      otherItem: {fileID: 0}
+    - consumableItem: {fileID: 11400000, guid: 150c9dec5bb2af245b1c2f44ddb0cea2, type: 2}
+      otherItem: {fileID: 0}
+    - consumableItem: {fileID: 11400000, guid: 5ee2790c1e71c33408c561dd3640942e, type: 2}
+      otherItem: {fileID: 0}
+    - consumableItem: {fileID: 11400000, guid: 2e76a20a4e3949b46991cd396e75ade1, type: 2}
+      otherItem: {fileID: 0}
+    - consumableItem: {fileID: 11400000, guid: b9ed30477a0aabd4faad626ddc99c62f, type: 2}
+      otherItem: {fileID: 0}
+    - consumableItem: {fileID: 0}
+      otherItem: {fileID: 11400000, guid: 102fe1502e7a5e14eabaffe3c424872d, type: 2}
+    - consumableItem: {fileID: 0}
+      otherItem: {fileID: 11400000, guid: 33ee449e8c6d8ab449d93a1aa96cac00, type: 2}
+    - consumableItem: {fileID: 0}
+      otherItem: {fileID: 11400000, guid: e659a357553807c459142256cc579f0b, type: 2}
+    - consumableItem: {fileID: 0}
+      otherItem: {fileID: 11400000, guid: cc6cd1dfeccf0ad4db574781b604a2b9, type: 2}
+    - consumableItem: {fileID: 0}
+      otherItem: {fileID: 11400000, guid: 435e2182ccabe834cbd4663bedf880c3, type: 2}
+    - consumableItem: {fileID: 0}
+      otherItem: {fileID: 11400000, guid: 87a005e9e4dd24b489b844eee0be49dc, type: 2}
+    - consumableItem: {fileID: 0}
+      otherItem: {fileID: 11400000, guid: da7e267f08840f1418d16d30993376db, type: 2}

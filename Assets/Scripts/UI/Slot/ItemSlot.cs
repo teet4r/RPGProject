@@ -14,14 +14,14 @@ public class ItemSlot : MonoBehaviour
     [SerializeField] SLOT_TYPE slotType;
     [SerializeField] int itemNum;
     [SerializeField] Image itemNumImage;
-    Image itemImage;
-    Text itemNumText;
+    [SerializeField] Image itemImage;
+    [SerializeField] Text itemNumText;
 
     public enum SLOT_TYPE { INVENTORY, POTION, NORMAL }
     // INVENTORY - 인벤토리 슬롯
     // POTION - 포션 퀵슬롯
     // NORMAL - 고정 아이템 슬롯 EX) 퀘스트 보상 아이템슬롯, 상점 아이템슬롯 등
-    
+
     public Item Item { get { return item; } }
     public int ItemNum { get { return itemNum; } }
     public ConsumableItem ConsumableItem { get { return consumableItem; } }
@@ -31,100 +31,95 @@ public class ItemSlot : MonoBehaviour
 
     private void Start()
     {
-        itemImage = GetComponentsInChildren<Image>()[1];
-        itemNumImage = GetComponentsInChildren<Image>()[2];
-        itemNumText = GetComponentInChildren<Text>();
         InitItem();
-        if (item != null)
-        {
-            SetItemImage();
-            SetItemNum(itemNum);
-            SetItemImageColor();
-        }
-        else
-        {
-            ClearItemSlot();
-        }
     }
 
-    public void SetItemImage()
+    void SetItemImage()
     {
         itemImage.sprite = item.ItemImage;
+        if (itemNum <= 0) itemImage.color = Color.clear;
+        else if (itemNum >= 1) itemImage.color = Color.white;
     }
 
     public void AddItemNum(int _num)
     {
-        if (itemNum + _num <= item.BundleSize)
-        {
-            itemNum += _num;
-        }
-        else
-        {
-            itemNum = item.BundleSize;
-        }
+        itemNum += _num;
+        CheckItemNum();
     }
 
     public void SetItemNum(int _num)
     {
-        if (itemNum == 0)
+        itemNum = _num;
+        CheckItemNum();
+    }
+
+    void CheckItemNum()
+    {
+        if (itemNum <= 0)
         {
             ClearItemSlot();
         }
-        else if (itemNum == 1)
+        else if (ItemNum == 1)
         {
             itemNumText.gameObject.SetActive(false);
             itemNumImage.gameObject.SetActive(false);
         }
-        else if (itemNum > 1)
+        else if (ItemNum > 1)
         {
             itemNumText.gameObject.SetActive(true);
+            itemNumText.text = itemNum.ToString();
             itemNumImage.gameObject.SetActive(true);
         }
-        itemNum = _num;
-        itemNumText.text = itemNum.ToString();
     }
 
     public void ClearItemSlot()
     {
         item = null;
-        itemNum = 0;
-        itemNumText.gameObject.SetActive(false);
-        itemNumText.text = itemNum.ToString();
-        itemNumImage.gameObject.SetActive(false);
-        itemImage.color = Color.clear;
         consumableItem = null;
         otherItem = null;
+        itemNum = 0;
+        itemNumText.text = "";
+        itemNumText.gameObject.SetActive(false);
+        itemNumImage.gameObject.SetActive(false);
+        itemImage.color = Color.clear;
     }
 
-    public void SetItem(ConsumableItem _item)
+    void SetItem(Item _item)
     {
-        consumableItem = _item;
         item = _item;
+        if (_item.ItemType == Item.ITEM_TYPE.CONSUMABLE)
+            consumableItem = ItemManager.instance.ItemContainer.ItemList.GetItem(_item).ConsumableItem;
+        if (_item.ItemType == Item.ITEM_TYPE.OTHER)
+            otherItem = ItemManager.instance.ItemContainer.ItemList.GetItem(_item).OtherItem;
     }
 
-    public void SetItem(OtherItem _item)
+    public void SetItem(Item _item, int _num)
     {
-        otherItem = _item;
-        item = _item;
+        SetItem(_item);
+        SetItemNum(_num);
+        CheckItemNum();
+        SetItemImage();
     }
 
     void InitItem()
     {
-        if (consumableItem != null)
-            item = consumableItem;
-        else if (otherItem != null)
-            item = otherItem;
-    }
-
-    public void SetItemImageColor()
-    {
-        if (itemNum > 0)
+        if (item != null)
         {
-            itemImage.color = Color.white;
+            switch (item.ItemType)
+            {
+                case Item.ITEM_TYPE.CONSUMABLE:
+                    consumableItem = ItemManager.instance.ItemContainer.ItemList.GetItem(item).ConsumableItem;
+                    break;
+                case Item.ITEM_TYPE.OTHER:
+                    otherItem = ItemManager.instance.ItemContainer.ItemList.GetItem(item).OtherItem;
+                    break;
+            }
+            CheckItemNum();
+            SetItemImage();
         }
-        if (itemNum > 1)
+        else
         {
-            itemNumImage.gameObject.SetActive(true);
+            ClearItemSlot();
         }
     }
 }

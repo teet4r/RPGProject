@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Inventory : MonoBehaviour
     public static Inventory instance;
 
     [SerializeField] GameObject itemSlots;
+    [SerializeField] Text goldText;
     [SerializeField] int gold = 0;
 
     public int Gold { get { return gold; } }
@@ -34,8 +36,12 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Update()
     {
+        if (goldText.gameObject.activeSelf)
+        {
+            goldText.text = gold.ToString() + " Gold";
+        }
     }
 
     public int HowManyItem(Item _item)
@@ -103,7 +109,7 @@ public class Inventory : MonoBehaviour
             DeleteItem(_item);
             Player.instance.AddHp(_item.HpRecoverNum);
             Player.instance.AddMp(_item.MpRecoverNum);
-            }
+        }
         else
         {
             AlertManager.instance.ShowAlert($"{_item.ItemName} 의 개수가 부족합니다.");
@@ -152,6 +158,7 @@ public class Inventory : MonoBehaviour
                 else
                 {
                     tmpSlot.AddItemNum(-1 * tmp);
+                    tmp = 0;
                 }
             }
             if (tmp <= 0) break;

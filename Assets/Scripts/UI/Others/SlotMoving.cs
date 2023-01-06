@@ -51,20 +51,41 @@ public class SlotMoving : MonoBehaviour
             {
                 if (raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>() && raycastResults[0].gameObject.transform.parent.CompareTag("ItemSlot"))
                 {
-                    ItemSlot tmpSlot = raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>();
+                    ItemSlot raySlot = raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>();
 
-                    raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>().SetItem(selectedItem.ConsumableItem);
-                    raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>().SetItem(selectedItem.OtherItem);
-                    raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>().SetItemNum(selectedItem.ItemNum);
-                    raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>().SetItemImage();
+                    Item tmpItem = raySlot.Item;
+                    int tmpNum = raySlot.ItemNum;
 
-                    selectedItem = tmpSlot;
+                    if(raySlot.Item == null)
+                    {
+                        raySlot.SetItem(selectedItem.Item, selectedItem.ItemNum);
+                        selectedItem.ClearItemSlot();
+                    }
+                    else if (raySlot.Item != selectedItem.Item)
+                    {
+                        raySlot.SetItem(selectedItem.Item, selectedItem.ItemNum);
+                        selectedItem.SetItem(tmpItem, tmpNum);
+                    }
+                    else if (raySlot.Item == selectedItem.Item)
+                    {
+                        if (tmpNum + selectedItem.ItemNum > selectedItem.Item.BundleSize)
+                        {
+                            int num = tmpNum + selectedItem.ItemNum - selectedItem.Item.BundleSize;
+                            raySlot.SetItemNum(selectedItem.Item.BundleSize);
+                            selectedItem.SetItemNum(num);
+                        }
+                        else if (tmpNum + selectedItem.ItemNum <= selectedItem.Item.BundleSize)
+                        {
+                            raySlot.AddItemNum(selectedItem.ItemNum);
+                            selectedItem.ClearItemSlot();
+                        }
+                    }
                 }
                 else if (raycastResults[0].gameObject.transform.parent.CompareTag("ShopSlot") || raycastResults[0].gameObject.transform.parent.CompareTag("ShopSlot"))
                 {
                     sellingItemWindow.SetActive(true);
                 }
-                else if (raycastResults[0].gameObject.transform.parent.GetComponent<PotionSlot>() && raycastResults[0].gameObject.transform.parent.CompareTag("PotionSlot") && selectedItem.Item.ItemType == Item.ITEM_TYPE.CONSUMABLE) // Æ÷¼Ç Äü½½·Ô
+                else if (raycastResults[0].gameObject.transform.parent.GetComponent<PotionSlot>() && raycastResults[0].gameObject.transform.parent.CompareTag("QuickSlot") && selectedItem.Item.ItemType == Item.ITEM_TYPE.CONSUMABLE) // Æ÷¼Ç Äü½½·Ô
                 {
                     raycastResults[0].gameObject.transform.parent.GetComponent<PotionSlot>().SetSlotItem(selectedItem.ConsumableItem);
                 }

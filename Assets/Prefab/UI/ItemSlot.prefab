@@ -173,6 +173,8 @@ MonoBehaviour:
   slotType: 0
   itemNum: 0
   itemNumImage: {fileID: 4797785235396565657}
+  itemImage: {fileID: 4797785234677921410}
+  itemNumText: {fileID: 4797785235210731453}
 --- !u!1 &4797785234677921408
 GameObject:
   m_ObjectHideFlags: 0
