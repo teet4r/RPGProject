@@ -22,23 +22,13 @@ public class Player : MonoBehaviour
     [SerializeField]
     Vector3 townPosition;
 
-    //npc카메라
-    [SerializeField]
-    Vector3 lastMovingVelocity;
-   
-    public Vector3 targetPosition;
-    Camera npcCam;
-    //float targetZoomSize = 5f;
-   
-
-
     //스태미나
     float nowSp = 0f;
     float maxSp = 100f;
-    bool usedSp;
-    int inSSp; //스태미나 증가량
-    int recTimeSP; //스테미나 회복 딜레이 시간 ,회복할때까지 걸리는 시간
-    int nowrecTimeSP; // 스태미나 현재 회복시간,회복하는시간
+    bool usedSp; //행동체크
+    const float increaseSp = 20f; //스태미나 증가량
+    const float restoreTimeSP = 1.5f; //스태미나 회복 딜레이 시간 ,회복할때까지 걸리는 시간
+    float nowRestoreTimeSP ; // 스태미나 현재 회복시간,회복하는시간
 
     float atk = 10f;
     float atkSpd = 30f;
@@ -75,6 +65,10 @@ public class Player : MonoBehaviour
         #endregion
 
     }
+    void OnEnable()
+    {
+        nowSp = maxSp;
+    }
 
     public void AddHp(float value)
     {
@@ -110,54 +104,61 @@ public class Player : MonoBehaviour
     }
     private void RestoreSP()//스태미나
     {
+       if(usedSp==false)
+       {
+            nowSp += increaseSp * Time.deltaTime;
+            if (nowSp>maxSp)
+            {
+                nowSp = maxSp;
+            }
+       }
+       
+
+    }
+
+    private void RestoreSpDelay() //스태미나가 소모되고 회복시간 딜레이에 들어간다. 2
+    {
         if (usedSp)
         {
-            if (nowrecTimeSP < recTimeSP)
-                nowrecTimeSP++;
+            if (nowRestoreTimeSP < restoreTimeSP)
+                nowRestoreTimeSP++;
             else
+            {
                 usedSp = false;
+               
+            }
+                
         }
     }
-    private void DecreaseSp(int value_DS)
+    public void DecreaseSp(float value_DS) //스태미나 소모 1
     {
         usedSp = true;
-        recTimeSP = 0;
+        nowRestoreTimeSP = 0;
         if (nowSp - value_DS >= 0)
         {
             nowSp -= value_DS;
         }
-        else
-            AlertManager.instance.ShowAlert("스태미나가 부족합니다.");
+        //else
+        //    AlertManager.instance.ShowAlert("스태미나가 부족합니다.");
     }
     public void Revive()
     {
         nowHp = reviveCoin-- * maxHp * 0.5f;
-        reviveCoin = 2;
+       
 
     }
+
+    public void RefillRevive()
+    {
+        reviveCoin = 2;
+    }
+
     public void MoveToTown()
     {
         transform.position = townPosition;
+        RefillRevive();
     }
 
-    private void OnTriggerEnter(Collider col)
-    {
-        
-        if(col.gameObject.tag == "NPC")
-        {
-            Debug.Log("npc입니당");
-            targetPosition = col.gameObject.transform.position;
-            Debug.Log(targetPosition);
-        }
-    }
     
-    private void NPCZoomCamera()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
+ 
 }
