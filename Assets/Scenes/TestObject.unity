@@ -683,6 +683,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1335975102, guid: b419e164ab53516438da636332342da9, type: 3}
+      propertyPath: _swordCollider
+      value: 
+      objectReference: {fileID: 256255492}
+    - target: {fileID: 1335975102, guid: b419e164ab53516438da636332342da9, type: 3}
+      propertyPath: _weaponCollider
+      value: 
+      objectReference: {fileID: 256255492}
     - target: {fileID: 1335975104, guid: b419e164ab53516438da636332342da9, type: 3}
       propertyPath: m_IsTrigger
       value: 0
@@ -842,6 +850,10 @@ PrefabInstance:
     - target: {fileID: 1250639095011892161, guid: b419e164ab53516438da636332342da9, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1250639095011892161, guid: b419e164ab53516438da636332342da9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1269508918959595079, guid: b419e164ab53516438da636332342da9, type: 3}
       propertyPath: m_Layer
@@ -1539,6 +1551,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 6825763076235687243, guid: b419e164ab53516438da636332342da9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6883002692558328109, guid: b419e164ab53516438da636332342da9, type: 3}
       propertyPath: m_Layer
       value: 9
@@ -1861,6 +1877,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b419e164ab53516438da636332342da9, type: 3}
+--- !u!65 &256255492 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1177485426, guid: b419e164ab53516438da636332342da9, type: 3}
+  m_PrefabInstance: {fileID: 256255491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &335176090
 GameObject:
   m_ObjectHideFlags: 0

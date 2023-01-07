@@ -16,6 +16,17 @@ public class Attack : MonoBehaviour
     void Update()
     {
         var curAnimatorStateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+        if (curAnimatorStateInfo.IsTag("Attack")) // 공격 중이라면
+        {
+            // 검에 있는 콜라이더 활성화
+            _weaponCollider.enabled = true;
+        }
+        else // 아니라면
+        {
+            // 검에 있는 콜라이더 비활성화
+            _weaponCollider.enabled = false;
+        }
+        
         if (curAnimatorStateInfo.tagHash.CompareTo(_attackTag) != 0)
             _comboState = 0;
         if (_comboState >= _attackStates.Length)
@@ -37,6 +48,8 @@ public class Attack : MonoBehaviour
         }
     }
 
+    public bool isAttacking { get; private set; } = false;
+    [SerializeField] Collider _weaponCollider;
     Animator _animator;
     int _comboState;
     int[] _attackStates =
