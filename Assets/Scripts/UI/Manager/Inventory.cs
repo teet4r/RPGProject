@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -123,11 +124,13 @@ public class Inventory : MonoBehaviour
             AlertManager.instance.ShowAlert("인벤토리가 부족합니다.");
             return;
         }
+
         if (_item.BuyPrice * _num > gold)
         {
             AlertManager.instance.ShowAlert("골드가 부족합니다.");
             return;
         }
+
         AcquireItem(_item, _num);
     }
 

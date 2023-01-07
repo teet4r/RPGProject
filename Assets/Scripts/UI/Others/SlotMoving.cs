@@ -9,7 +9,6 @@ public class SlotMoving : MonoBehaviour
     PointerEventData pointer = new PointerEventData(EventSystem.current);
     List<RaycastResult> raycastResults = new List<RaycastResult>();
     ItemSlot selectedItem;
-    ItemSlot unselectedItem;
     [SerializeField] GameObject holdingItemImage;
     [SerializeField] GameObject droppingItemWindow;
     [SerializeField] GameObject sellingItemWindow;
@@ -94,3 +93,16 @@ public class SlotMoving : MonoBehaviour
         }
     }
 }
+
+// 코루틴
+// 가비지
+// 디자인 패턴
+// 유니티 함수 생명 주기
+// 최적화
+// 렌더링 파이프라인
+// 레퍼런스 타입 vs 밸류 타입
+// 구조체 vs 클래스
+// 박싱 언박싱
+// Json에 대한 이해, 써본 경험
+
+// 인터페이스, 제네릭, 추상화 (숙련도 측면에서)
