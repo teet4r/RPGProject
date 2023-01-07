@@ -201,7 +201,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.3
-  m_Text: "\uAD6C\uB9E4 \uD560 \uC544\uC774\uD15C \uAC2F\uC218\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694."
+  m_Text: "\uD310\uB9E4 \uD560 \uC544\uC774\uD15C \uAC2F\uC218\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694."
 --- !u!1 &11929004326852882
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +270,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 9a444c298a0203748bce994b019c9827, type: 3}
-    m_FontSize: 16
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -281,7 +281,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uAD6C\uB9E4"
+  m_Text: "\uD310\uB9E4"
 --- !u!1 &11929004551876612
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 11929004551876609}
   - component: {fileID: 11929004551876614}
   m_Layer: 5
-  m_Name: BuyPopUpPanel
+  m_Name: SellPopUpPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -570,7 +570,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 9a444c298a0203748bce994b019c9827, type: 3}
-    m_FontSize: 16
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
