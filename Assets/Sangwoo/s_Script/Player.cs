@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Player : MonoBehaviour
+public class Player : LifeObject
 {
     //작성자 : 이상우
     //작성일 : 23-01-04 ~
     public static Player instance = null;
 
     //public string name { }
-    float nowHp = 0f;
-    float maxHp = 100f;
+    // 체력은 curHp. _maxHp로 접근
     float nowMp = 0f;
     float maxMp = 100f;
     float nowExp = 0f;
@@ -30,11 +29,11 @@ public class Player : MonoBehaviour
     const float restoreTimeSP = 1.5f; //스태미나 회복 딜레이 시간 ,회복할때까지 걸리는 시간
     float nowRestoreTimeSP ; // 스태미나 현재 회복시간,회복하는시간
 
-    float atk = 10f;
-    float atkSpd = 30f;
+    public float atk = 10f;
+    public float atkSpd = 30f;
 
-    public float NowHp { get { return nowHp; } }
-    public float MaxHp { get { return maxHp; } }
+    [SerializeField]
+    Animator animator;
 
     public float NowMp { get { return nowMp; } }
     public float MaxMp { get { return maxMp; } }
@@ -51,31 +50,46 @@ public class Player : MonoBehaviour
     public float Atk { get { return atk; } }
     public float AtkSpd { get { return atkSpd; } }
 
-    void Awake()
+    protected override void OnEnable()
     {
-        #region Singleton Pattern
-        if (instance != null) // 이미 instance에 할당이 되어 있다면
-        {
-            Destroy(gameObject); // 방금 만들어진 오브젝트를 삭제시킴.
-            return;
-        }
-        instance = this; // instance에 새롭게 할당
-        DontDestroyOnLoad(gameObject); // 씬이 바뀌어도 오브젝트가 사라지지 않도록 해주는 함수.
-        #endregion
-    }
-    void OnEnable()
-    {
+        base.OnEnable();
+
         nowSp = maxSp;
+    }
+    protected override void Update()
+    {
+        base.Update();
+
+        Debug.Log(curHp);
+    }
+    // 몬스터와 충돌처리
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out AttackCollider attackCollider))
+            GetDamage(attackCollider.parent.data.damage);
+    }
+    // 몬스터와 충돌처리
+    void OnTriggerStay(Collider other)
+    {
+        if (other.TryGetComponent(out AttackCollider attackCollider))
+            GetDamage(attackCollider.parent.data.damage);
+    }
+    // 몬스터 마법공격과 충돌처리
+    void OnParticleCollision(GameObject other)
+    {
+        if (other.TryGetComponent(out MagicAttack magicAttack))
+            GetDamage(magicAttack.damage);
     }
 
     public void AddHp(float value)
     {
-        nowHp = Mathf.Min(nowHp + value, maxHp);
+        float _calcHp = curHp + value;
+        curHp = Mathf.Min(_calcHp, maxHp);
     }
 
-    public void AddMp(float value2)
+    public void AddMp(float value)
     {
-        nowMp = Mathf.Min(nowHp + value2, maxMp);
+        nowMp = Mathf.Min(nowMp + value, maxMp);
     }
 
     void LevelUp()
@@ -83,11 +97,11 @@ public class Player : MonoBehaviour
         while (nowExp >= maxExp)
         {
             nowLevel += 1;
-            maxHp *= 1.1f;
+            _maxHp *= 1.1f;
             maxMp *= 1.1f;
             maxExp *= 1.3f;
             atk *= 1.1f;
-            nowHp = maxHp;
+            curHp = _maxHp;
             nowMp = maxMp;
             nowExp -= maxExp;
         }
@@ -98,20 +112,17 @@ public class Player : MonoBehaviour
         nowExp += value;
 
         LevelUp();
-
     }
     private void RestoreSP()//스태미나
     {
-       if(usedSp==false)
-       {
+        if (usedSp == false)
+        {
             nowSp += increaseSp * Time.deltaTime;
-            if (nowSp>maxSp)
+            if (nowSp > maxSp)
             {
                 nowSp = maxSp;
             }
-       }
-       
-
+        }
     }
 
     private void RestoreSpDelay() //스태미나가 소모되고 회복시간 딜레이에 들어간다. 2
@@ -121,11 +132,7 @@ public class Player : MonoBehaviour
             if (nowRestoreTimeSP < restoreTimeSP)
                 nowRestoreTimeSP++;
             else
-            {
                 usedSp = false;
-               
-            }
-                
         }
     }
     public void DecreaseSp(float value_DS) //스태미나 소모 1
@@ -133,27 +140,60 @@ public class Player : MonoBehaviour
         usedSp = true;
         nowRestoreTimeSP = 0;
         if (nowSp - value_DS >= 0)
-        {
             nowSp -= value_DS;
-        }
         //else
         //    AlertManager.instance.ShowAlert("스태미나가 부족합니다.");
     }
     public void Revive()
     {
-        nowHp = reviveCoin-- * maxHp * 0.5f;
-       
-
+        curHp = reviveCoin-- * maxHp * 0.5f;
+        animator.SetTrigger("IsRevive");
     }
 
     public void RefillRevive()
     {
         reviveCoin = 2;
     }
-
     public void MoveToTown()
     {
         transform.position = townPosition;
         RefillRevive();
+    }
+    //void nParticleTrigger()
+    //{
+        
+    //}
+    
+    protected override void _Die()
+    {
+        base._Die();
+
+        StartCoroutine(_DieRoutine()); // 죽었을 때 실행할 코루틴
+    }
+    protected override IEnumerator _TriggerGetDamage(float damage)
+    {
+        isInvincible = true;
+
+        curHp -= damage;
+        if (curHp <= 0f)
+            _Die();
+        else
+        {
+            
+            animator.SetTrigger("IsGetHit");
+        }
+
+        yield return _wfs_invincible;
+        isInvincible = false;
+    }
+
+    // 왜 이렇게 나누느냐?
+    // IsDie 애니메이션이 실행되는 시간을 벌기 위함.
+    // 따라서 yield를 쓰기 위한 것.
+    IEnumerator _DieRoutine()
+    {
+        animator.SetTrigger("IsDie"); // 0.5초간 실행이 되더라
+        yield return new WaitForSeconds(1f);
+        gameObject.SetActive(false);
     }
 }

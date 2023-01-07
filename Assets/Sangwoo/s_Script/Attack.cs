@@ -48,7 +48,6 @@ public class Attack : MonoBehaviour
         }
     }
 
-    public bool isAttacking { get; private set; } = false;
     [SerializeField] Collider _weaponCollider;
     Animator _animator;
     int _comboState;
