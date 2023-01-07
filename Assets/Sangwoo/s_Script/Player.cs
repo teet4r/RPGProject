@@ -32,6 +32,13 @@ public class Player : MonoBehaviour
 
     float atk = 10f;
     float atkSpd = 30f;
+    [SerializeField]
+    Animation animation; //애니메이션을 가져오기
+    [SerializeField]
+    Animator animator; //애니메이터 가져오기
+    const float nowPlayAnimationTime = 1f;
+    const float finishPlayAnimationTime = 0f;
+
 
     public float NowHp { get { return nowHp; } }
     public float MaxHp { get { return maxHp; } }
@@ -158,7 +165,33 @@ public class Player : MonoBehaviour
         transform.position = townPosition;
         RefillRevive();
     }
+    public void BladeActive()
+    {
+        
+    }
+    public void AnimationPlayCheck()
+    {
+        animator = GetComponent<Animator>(); 
+        //애니메이터에 있는거 다가져왔고
+        animator.GetCurrentAnimatorStateInfo(0);
+        //애니메이터의 현재 상태 정보가져오고
+       // var stateInfo = new AnimatorStateInfo
+       
+        if (usedSp)
+        {
+            if (nowPlayAnimationTime < finishPlayAnimationTime)
+            {
 
-    
+            }
+                 
+            else
+            {
+                usedSp = false;
+
+            }
+
+        }
+
+    }
  
 }
