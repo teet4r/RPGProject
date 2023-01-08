@@ -9,6 +9,7 @@ TagManager:
   - ItemSlot
   - NPC
   - ShopSlot
+  - Shop
   layers:
   - Default
   - TransparentFX

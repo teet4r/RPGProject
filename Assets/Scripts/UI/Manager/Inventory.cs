@@ -23,6 +23,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] int gold = 0;
 
     public int Gold { get { return gold; } }
+    public GameObject ItemSlots { get { return itemSlots; } }
 
     private void Awake()
     {
@@ -41,7 +42,7 @@ public class Inventory : MonoBehaviour
     {
         if (goldText.gameObject.activeSelf)
         {
-            goldText.text = gold.ToString() + " Gold";
+            goldText.text = $"{gold} Gold";
         }
     }
 
@@ -103,13 +104,27 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    ConsumableItem.CONSUMABLE_TYPE GetItemConsumableType(ConsumableItem _item)
+    {
+        return _item.ConsumableType;
+    }
+
     public void UseItem(ConsumableItem _item)
     {
         if (HowManyItem(_item) > 0)
         {
+            switch(_item.ConsumableType)
+            {
+                case ConsumableItem.CONSUMABLE_TYPE.HP_POTION:
+                    Player.instance.AddHp(_item.HpRecoverNum);
+                    ItemManager.instance.SetHpPotionUsableFalse();
+                    break;
+                case ConsumableItem.CONSUMABLE_TYPE.MP_POTION:
+                    Player.instance.AddMp(_item.MpRecoverNum);
+                    ItemManager.instance.SetMpPotionUsableFalse();
+                    break;
+            }
             DeleteItem(_item);
-            Player.instance.AddHp(_item.HpRecoverNum);
-            Player.instance.AddMp(_item.MpRecoverNum);
         }
         else
         {
@@ -119,7 +134,7 @@ public class Inventory : MonoBehaviour
 
     public void BuyItem(Item _item, int _num)
     {
-        if (HowManyItemCanBuy(_item) >= _num)
+        if (HowManyItemCanBuy(_item) < _num)
         {
             AlertManager.instance.ShowAlert("인벤토리가 부족합니다.");
             return;
@@ -131,6 +146,7 @@ public class Inventory : MonoBehaviour
             return;
         }
 
+        AddGold(-1 * _item.BuyPrice * _num);
         AcquireItem(_item, _num);
     }
 
@@ -141,6 +157,8 @@ public class Inventory : MonoBehaviour
             AlertManager.instance.ShowAlert("아이템이 부족합니다.");
             return;
         }
+
+        AddGold(_item.SellPrice * _num);
         DeleteItem(_item, _num);
     }
 
@@ -190,15 +208,14 @@ public class Inventory : MonoBehaviour
             }
             else if (tmpSlot.Item == null)
             {
-                // tmpSlot.SetItem(_item);
                 if (_item.BundleSize < tmp)
                 {
-                    tmpSlot.SetItemNum(_item.BundleSize);
+                    tmpSlot.SetItem(_item, _item.BundleSize);
                     tmp -= _item.BundleSize;
                 }
                 else
                 {
-                    tmpSlot.SetItemNum(tmp);
+                    tmpSlot.SetItem(_item, tmp);
                     tmp = 0;
                 }
             }
@@ -216,5 +233,29 @@ public class Inventory : MonoBehaviour
         {
             gold += _gold;
         }
+    }
+
+    public void RefreshItemCoolTimeImage()
+    {
+        /*
+        for (int i = 0; i < itemSlots.transform.childCount; i++)
+        {
+            ItemSlot tmpSlot = itemSlots.transform.GetChild(i).GetComponent<ItemSlot>();
+            if (tmpSlot.ConsumableItem.ConsumableType == ConsumableItem.CONSUMABLE_TYPE.HP_POTION)
+            {
+                if (ItemManager.instance.HpPotionUsable)
+                {
+                    tmpSlot.RefreshCoolTimeImage(ItemManager.instance.HpPotionCoolTime);
+                }
+            }
+            else if (tmpSlot.ConsumableItem.ConsumableType == ConsumableItem.CONSUMABLE_TYPE.MP_POTION)
+            {
+                if (ItemManager.instance.MpPotionUsable)
+                {
+                    tmpSlot.RefreshCoolTimeImage(ItemManager.instance.MpPotionCoolTime);
+                }
+            }
+        }
+        */
     }
 }

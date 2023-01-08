@@ -22,3 +22,4 @@ MonoBehaviour:
   itemType: 0
   hpRecoverNum: 0
   mpRecoverNum: 500
+  consumableType: 1

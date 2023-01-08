@@ -16,6 +16,7 @@ public class ItemSlot : MonoBehaviour
     [SerializeField] Image itemNumImage;
     [SerializeField] Image itemImage;
     [SerializeField] Text itemNumText;
+    [SerializeField] Image slotCoolTimeImage;
 
     public enum SLOT_TYPE { INVENTORY, POTION, NORMAL }
     // INVENTORY - 인벤토리 슬롯
@@ -26,6 +27,7 @@ public class ItemSlot : MonoBehaviour
     public int ItemNum { get { return itemNum; } }
     public ConsumableItem ConsumableItem { get { return consumableItem; } }
     public OtherItem OtherItem { get { return otherItem; } }
+    public Image SlotCoolTimeImage { get { return slotCoolTimeImage; } }
 
     public SLOT_TYPE SlotType { get { return slotType; } }
 
@@ -51,6 +53,11 @@ public class ItemSlot : MonoBehaviour
     {
         itemNum = _num;
         CheckItemNum();
+    }
+
+    public void RefreshCoolTimeImage(float _fillAmount)
+    {
+        slotCoolTimeImage.fillAmount = _fillAmount;
     }
 
     void CheckItemNum()
