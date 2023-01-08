@@ -11,6 +11,8 @@ TagManager:
   - ShopSlot
   - Shop
   - Weapon
+  - Ground
+  - MonsterBody
   layers:
   - Default
   - TransparentFX

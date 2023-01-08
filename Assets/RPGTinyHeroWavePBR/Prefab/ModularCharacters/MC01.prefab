@@ -4402,7 +4402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 500
-  _invincibleTime: 1
+  _invincibleTime: 0.8
   townPosition: {x: 0, y: 0, z: 0}
   atk: 10
   atkSpd: 30

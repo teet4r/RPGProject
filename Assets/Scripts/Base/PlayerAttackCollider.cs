@@ -13,6 +13,11 @@ public class PlayerAttackCollider : MonoBehaviour
     {
         _attackCollider.isTrigger = true;
     }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out MonsterObject obj))
+            obj.GetDamage(_parent.atk);
+    }
     /// <summary>
     /// Player를 찾는 함수
     /// </summary>
