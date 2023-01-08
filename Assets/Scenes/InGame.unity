@@ -6559,10 +6559,10 @@ PrefabInstance:
     - target: {fileID: 4797785233802278586, guid: cbc73c82fc57a5c469bc2f7b3ad43159, type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 2e76a20a4e3949b46991cd396e75ade1, type: 2}
     - target: {fileID: 4797785233802278586, guid: cbc73c82fc57a5c469bc2f7b3ad43159, type: 3}
       propertyPath: itemNum
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4797785233802278586, guid: cbc73c82fc57a5c469bc2f7b3ad43159, type: 3}
       propertyPath: equipmentItem
@@ -9348,10 +9348,10 @@ PrefabInstance:
     - target: {fileID: 4797785233802278586, guid: cbc73c82fc57a5c469bc2f7b3ad43159, type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 470b50ecb4ca07542aeaa6d1d9a587e8, type: 2}
     - target: {fileID: 4797785233802278586, guid: cbc73c82fc57a5c469bc2f7b3ad43159, type: 3}
       propertyPath: itemNum
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4797785233802278586, guid: cbc73c82fc57a5c469bc2f7b3ad43159, type: 3}
       propertyPath: equipmentItem
@@ -10260,10 +10260,10 @@ PrefabInstance:
     - target: {fileID: 4797785233802278586, guid: cbc73c82fc57a5c469bc2f7b3ad43159, type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: b9ed30477a0aabd4faad626ddc99c62f, type: 2}
     - target: {fileID: 4797785233802278586, guid: cbc73c82fc57a5c469bc2f7b3ad43159, type: 3}
       propertyPath: itemNum
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4797785233802278586, guid: cbc73c82fc57a5c469bc2f7b3ad43159, type: 3}
       propertyPath: equipmentItem

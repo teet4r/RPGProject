@@ -116,10 +116,20 @@ public class Inventory : MonoBehaviour
             switch(_item.ConsumableType)
             {
                 case ConsumableItem.CONSUMABLE_TYPE.HP_POTION:
+                    if (!ItemManager.instance.HpPotionUsable)
+                    {
+                        AlertManager.instance.ShowAlert("아직 사용할 수 없습니다.");
+                        return;
+                    }
                     Player.Instance.AddHp(_item.HpRecoverNum);
                     ItemManager.instance.SetHpPotionUsableFalse();
                     break;
                 case ConsumableItem.CONSUMABLE_TYPE.MP_POTION:
+                    if (!ItemManager.instance.MpPotionUsable)
+                    {
+                        AlertManager.instance.ShowAlert("아직 사용할 수 없습니다.");
+                        return;
+                    }
                     Player.Instance.AddMp(_item.MpRecoverNum);
                     ItemManager.instance.SetMpPotionUsableFalse();
                     break;
@@ -237,10 +247,11 @@ public class Inventory : MonoBehaviour
 
     public void RefreshItemCoolTimeImage()
     {
-        /*
         for (int i = 0; i < itemSlots.transform.childCount; i++)
         {
             ItemSlot tmpSlot = itemSlots.transform.GetChild(i).GetComponent<ItemSlot>();
+            if (tmpSlot.Item == null) return;
+
             if (tmpSlot.ConsumableItem.ConsumableType == ConsumableItem.CONSUMABLE_TYPE.HP_POTION)
             {
                 if (ItemManager.instance.HpPotionUsable)
@@ -256,6 +267,5 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
-        */
     }
 }

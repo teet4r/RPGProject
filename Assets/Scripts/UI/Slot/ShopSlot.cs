@@ -5,13 +5,10 @@ using UnityEngine.UI;
 
 public class ShopSlot : MonoBehaviour
 {
-    [SerializeField] GameObject shopSlotButton;
     [SerializeField] Text itemNameText;
     [SerializeField] Text buyPriceText;
     [SerializeField] ItemSlot itemSlot;
     [SerializeField] ItemPopUpWindow buyPopUpWindow;
-    [SerializeField] int itemNumMin;
-    [SerializeField] int itemNumMax;
 
     private void Start()
     {
