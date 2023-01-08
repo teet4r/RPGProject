@@ -7,7 +7,25 @@ public class Player : LifeObject
 {
     //작성자 : 이상우
     //작성일 : 23-01-04 ~
-    public static Player instance = null;
+    public Player Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<Player>();
+                if (_instance == null)
+                {
+                    var newObj = new GameObject();
+                    _instance = newObj.AddComponent<Player>();
+                    newObj.name = typeof(Player).ToString();
+                    DontDestroyOnLoad(gameObject);
+                }
+            }
+            return _instance;
+        }
+    }
+    static Player _instance = null;
 
     //public string name { }
     // 체력은 curHp. _maxHp로 접근
@@ -20,7 +38,7 @@ public class Player : LifeObject
     int reviveCoin = 2;
     [SerializeField]
     Vector3 townPosition;
-
+  
     //스태미나
     float nowSp = 0f;
     float maxSp = 100f;
