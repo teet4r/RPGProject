@@ -9,10 +9,19 @@ public class ShopSlot : MonoBehaviour
     [SerializeField] Text itemNameText;
     [SerializeField] Text buyPriceText;
     [SerializeField] ItemSlot itemSlot;
+    [SerializeField] ItemPopUpWindow buyPopUpWindow;
+    [SerializeField] int itemNumMin;
+    [SerializeField] int itemNumMax;
 
     private void Start()
     {
-        buyPriceText.text = itemSlot.Item.BuyPrice.ToString() + " Gold";
+        buyPriceText.text = $"{itemSlot.Item.BuyPrice} Gold";
         itemNameText.text = itemSlot.Item.ItemName;
+    }
+    
+    public void OpenBuyPopUpWindow()
+    {
+        buyPopUpWindow.gameObject.SetActive(true);
+        buyPopUpWindow.SetBuyPopUp(itemSlot);
     }
 }

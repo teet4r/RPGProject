@@ -20,7 +20,7 @@ public class KeyManager : MonoBehaviour
         // ÀÏ¹Ý Á¶ÀÛ
         NORM_INTERACTION, NORM_DEFENSE, NORM_CLOSE, NORM_INVENTORY, NORM_CHARACTERINFO, NORM_QUEST,
         // Äü½½·Ô
-        QUICK_POTION_1, QUICK_POTION_2, QUICK_SKILL_1
+        QUICK_POTION_1, QUICK_POTION_2, QUICK_SKILL_1, QUICK_SKILL2
     }
     KeyCode[] defaultKeys = new KeyCode[]
     {
@@ -31,7 +31,7 @@ public class KeyManager : MonoBehaviour
         // ÀÏ¹Ý Á¶ÀÛ
         KeyCode.F, KeyCode.Mouse1, KeyCode.Escape, KeyCode.I, KeyCode.P, KeyCode.J,
         // Äü½½·Ô
-        KeyCode.Q, KeyCode.E, KeyCode.Alpha1
+        KeyCode.Q, KeyCode.E, KeyCode.Alpha1, KeyCode.Alpha2
     };
     KeyCode[] tmpKeys;
     Dictionary<KEYNAME, KeyCode> keys = new();
