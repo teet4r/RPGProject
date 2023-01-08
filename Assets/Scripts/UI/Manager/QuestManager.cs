@@ -70,7 +70,7 @@ public class QuestManager : MonoBehaviour
     public void CompleteQuest(int _questCode)
     {
         _questInfo = questInfos[_questCode];
-        Player.instance.AddExp(_questInfo.Quest.QuestPrizeExp);
+        Player.Instance.AddExp(_questInfo.Quest.QuestPrizeExp);
     }
 
     public void StartQuest(int _questCode)

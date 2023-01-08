@@ -116,11 +116,11 @@ public class Inventory : MonoBehaviour
             switch(_item.ConsumableType)
             {
                 case ConsumableItem.CONSUMABLE_TYPE.HP_POTION:
-                    Player.instance.AddHp(_item.HpRecoverNum);
+                    Player.Instance.AddHp(_item.HpRecoverNum);
                     ItemManager.instance.SetHpPotionUsableFalse();
                     break;
                 case ConsumableItem.CONSUMABLE_TYPE.MP_POTION:
-                    Player.instance.AddMp(_item.MpRecoverNum);
+                    Player.Instance.AddMp(_item.MpRecoverNum);
                     ItemManager.instance.SetMpPotionUsableFalse();
                     break;
             }

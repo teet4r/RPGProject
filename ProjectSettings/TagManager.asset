@@ -10,6 +10,7 @@ TagManager:
   - NPC
   - ShopSlot
   - Shop
+  - Weapon
   layers:
   - Default
   - TransparentFX

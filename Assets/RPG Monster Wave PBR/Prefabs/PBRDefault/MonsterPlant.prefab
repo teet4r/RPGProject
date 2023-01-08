@@ -836,6 +836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parent: {fileID: 436738730}
+  _attackCollider: {fileID: 1638083392}
 --- !u!1 &1414667318802700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1403,7 +1404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4700302584741114
 Transform:
   m_ObjectHideFlags: 0
@@ -1506,12 +1507,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 50
-  _invincibleTime: 0.7
+  _invincibleTime: 1
   data: {fileID: 11400000, guid: 8f0bf441131786b4a8ae28be80784087, type: 2}
   _attackClips:
   - {fileID: 7400000, guid: 26b827c15f3d06d4bbcce0545bb0aa09, type: 3}
   - {fileID: 7400000, guid: eaabf67901e309b4e9de5e3c1fd7b6b5, type: 3}
-  _dieClip: {fileID: 7400000, guid: b7053579097a56743bd975bf164ef63c, type: 3}
+  _destroyTime: 5
+  _bodyCollider: {fileID: 436738729}
 --- !u!1 &1781689967026810
 GameObject:
   m_ObjectHideFlags: 0

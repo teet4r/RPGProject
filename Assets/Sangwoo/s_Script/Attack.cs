@@ -5,6 +5,20 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+    [SerializeField] Collider[] _attackColliders;
+    [SerializeField] Player _player;
+    Animator _animator;
+    int _comboState;
+    int[] _attackStates =
+    {
+        Animator.StringToHash("Attack0"),
+        Animator.StringToHash("Attack1"),
+        Animator.StringToHash("Attack2"),
+        Animator.StringToHash("Attack3")
+    };
+
+    readonly int _attackTag = Animator.StringToHash("Attack");
+
     void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -17,16 +31,12 @@ public class Attack : MonoBehaviour
     {
         var curAnimatorStateInfo = _animator.GetCurrentAnimatorStateInfo(0);
         if (curAnimatorStateInfo.IsTag("Attack")) // 공격 중이라면
-        {
-            // 검에 있는 콜라이더 활성화
-            _weaponCollider.enabled = true;
-        }
+            for (int i = 0; i < _attackColliders.Length; i++)
+                _attackColliders[i].enabled = true;
         else // 아니라면
-        {
-            // 검에 있는 콜라이더 비활성화
-            _weaponCollider.enabled = false;
-        }
-        
+            for (int i = 0; i < _attackColliders.Length; i++)
+                _attackColliders[i].enabled = false;
+
         if (curAnimatorStateInfo.tagHash.CompareTo(_attackTag) != 0)
             _comboState = 0;
         if (_comboState >= _attackStates.Length)
@@ -47,17 +57,4 @@ public class Attack : MonoBehaviour
                 }
         }
     }
-
-    [SerializeField] Collider _weaponCollider;
-    Animator _animator;
-    int _comboState;
-    int[] _attackStates =
-    {
-        Animator.StringToHash("Attack0"),
-        Animator.StringToHash("Attack1"),
-        Animator.StringToHash("Attack2"),
-        Animator.StringToHash("Attack3")
-    };
-
-    readonly int _attackTag = Animator.StringToHash("Attack");
 }

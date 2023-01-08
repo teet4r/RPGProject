@@ -64,6 +64,5 @@ public class FollowCamera : MonoBehaviour
         Gizmos.DrawLine(target.position + (target.up * targetOffset), transform.position);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, 1f);
-
     }
 }

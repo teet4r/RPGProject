@@ -59,9 +59,9 @@ public class Movement : MonoBehaviour
         {
             moveSpeed =7f;
             animator.SetBool("IsSprint", true);
-            Player.instance.DecreaseSp(10*Time.deltaTime);
+            Player.Instance.DecreaseSp(10*Time.deltaTime);
             
-            Debug.Log(Player.instance.NowSp);
+            Debug.Log(Player.Instance.NowSp);
 
           
         }
@@ -80,7 +80,7 @@ public class Movement : MonoBehaviour
             animator.SetBool("IsRolling_F", true);
             rigidy.AddForce(transform.forward * rollSpeed,ForceMode.Impulse);
             
-            Player.instance.DecreaseSp(25f);
+            Player.Instance.DecreaseSp(25f);
             Debug.Log("스태미나 25");
             Debug.Log(Vector3.forward * rollSpeed);
 
@@ -97,7 +97,7 @@ public class Movement : MonoBehaviour
             animator.SetBool("IsRolling_B", true);
             
             rigidy.AddForce(transform.forward*-1 * rollSpeed,ForceMode.Impulse);
-            Player.instance.DecreaseSp(25f);
+            Player.Instance.DecreaseSp(25f);
         }
         else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.S))
         {
@@ -110,7 +110,7 @@ public class Movement : MonoBehaviour
             animator.SetBool("IsRolling_L", true);
             
             rigidy.AddForce(transform.right*-1 * rollSpeed, ForceMode.Impulse);
-            Player.instance.DecreaseSp(25f);
+            Player.Instance.DecreaseSp(25f);
         }
        else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.A))
        {
@@ -122,7 +122,7 @@ public class Movement : MonoBehaviour
         {
             animator.SetBool("IsRolling_R", true);
             rigidy.AddForce(transform.right * rollSpeed, ForceMode.Impulse);
-            Player.instance.DecreaseSp(25f);
+            Player.Instance.DecreaseSp(25f);
 
         }
         else if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.D))

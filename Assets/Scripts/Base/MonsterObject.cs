@@ -7,7 +7,6 @@ using UnityEngine.AI;
 /// <summary>
 /// LifeObject를 상속하는 하위 클래스
 /// </summary>
-[RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
@@ -17,7 +16,6 @@ public abstract class MonsterObject : LifeObject
     {
         base.Awake();
 
-        _bodyCollider = GetComponent<Collider>();
         _rigidbody = GetComponent<Rigidbody>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animator= GetComponent<Animator>();
@@ -49,7 +47,7 @@ public abstract class MonsterObject : LifeObject
     {
         base.Update();
 
-        target = GameManager.instance.player;
+        target = Player.Instance;
 
         _Move();
 
@@ -57,13 +55,13 @@ public abstract class MonsterObject : LifeObject
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Player player))
-            GetDamage(player.atk);
+        if (other.TryGetComponent(out PlayerAttackCollider pac))
+            GetDamage(pac.parent.atk);
     }
     void OnTriggerStay(Collider other)
     {
-        if (other.TryGetComponent(out Player player))
-            player.GetDamage(data.damage);
+        if (other.TryGetComponent(out PlayerAttackCollider pac))
+            GetDamage(pac.parent.atk);
     }
 
     public override void GetDamage(float damageAmount)
@@ -157,7 +155,7 @@ public abstract class MonsterObject : LifeObject
     public MonsterData data = null; // 몬스터 데이터 컨테이너
     [SerializeField] protected AnimationClip[] _attackClips;
     [SerializeField] protected float _destroyTime = 5f;
-    protected Collider _bodyCollider = null;
+    [SerializeField] protected Collider _bodyCollider = null;
     protected Animator _animator = null;
     protected NavMeshAgent _navMeshAgent = null;
     protected Rigidbody _rigidbody = null;

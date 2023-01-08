@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackCollider : MonoBehaviour
+public class PlayerAttackCollider : MonoBehaviour
 {
     void Awake()
     {
@@ -14,22 +14,22 @@ public class AttackCollider : MonoBehaviour
         _attackCollider.isTrigger = true;
     }
     /// <summary>
-    /// MonsterObject를 찾는 함수
+    /// Player를 찾는 함수
     /// </summary>
     /// <param name="transform"></param>
     void _FindParent(Transform transform)
     {
         if (transform == null)
             return;
-        if (transform.TryGetComponent(out MonsterObject monsterObject))
+        if (transform.TryGetComponent(out Player player))
         {
-            _parent = monsterObject;
+            _parent = player;
             return;
         }
         _FindParent(transform.parent);
     }
 
-    public MonsterObject parent { get { return _parent; } }
-    [SerializeField] MonsterObject _parent = null;
+    public Player parent { get { return _parent; } }
+    [SerializeField] Player _parent = null;
     [SerializeField] Collider _attackCollider = null;
 }

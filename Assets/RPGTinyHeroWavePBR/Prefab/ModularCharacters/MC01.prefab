@@ -42,7 +42,7 @@ BoxCollider:
   m_GameObject: {fileID: 491269024}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 3, y: 1.39, z: 5}
   m_Center: {x: 0, y: 0.12, z: 0}
@@ -4402,7 +4402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 500
-  _invincibleTime: 0.7
+  _invincibleTime: 1
   townPosition: {x: 0, y: 0, z: 0}
   atk: 10
   atkSpd: 30
@@ -4419,7 +4419,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11708e0d698daa345b6642e1533901fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponCollider: {fileID: 1177485426}
+  _attackColliders:
+  - {fileID: 1177485426}
+  _player: {fileID: 2085017184}
 --- !u!114 &2085017189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10911,6 +10913,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4427626998580809568, guid: 97a81ef93f40fd44d97c853fb7565bee, type: 3}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97a81ef93f40fd44d97c853fb7565bee, type: 3}
 --- !u!4 &6193060776953065457 stripped
@@ -10936,6 +10942,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.28496745, y: 1.193581, z: 0.09393565}
   m_Center: {x: -0.0015067558, y: 0.8630189, z: 0.00000020215334}
+--- !u!114 &399372785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6825763076235687243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2855fe4f09e9ac94d8c9590d20f15355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parent: {fileID: 2085017184}
+  _attackCollider: {fileID: 1177485426}
 --- !u!1001 &7191100790158163379
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,8 +7,6 @@ public class Player : LifeObject
 {
     //작성자 : 이상우
     //작성일 : 23-01-04 ~
-    public static Player instance = null;
-
     //public string name { }
     // 체력은 curHp. _maxHp로 접근
     float nowMp = 0f;
@@ -50,6 +48,37 @@ public class Player : LifeObject
     public float Atk { get { return atk; } }
     public float AtkSpd { get { return atkSpd; } }
 
+    public static Player Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<Player>();
+                if (_instance == null)
+                {
+                    var newObj = new GameObject();
+                    _instance = newObj.AddComponent<Player>();
+                    newObj.name = typeof(Player).ToString();
+                }
+            }
+            return _instance;
+        }
+    }
+    static Player _instance = null;
+
+    protected override void Awake()
+    {
+        if (_instance == null)
+            _instance = this;
+        else if (_instance != this)
+            Destroy(gameObject);
+        else
+            DontDestroyOnLoad(gameObject);
+
+        base.Awake();
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -65,16 +94,16 @@ public class Player : LifeObject
     // 몬스터와 충돌처리
     void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out AttackCollider attackCollider))
+        if (other.TryGetComponent(out AttackCollider attackCollider) && attackCollider.parent.isAttacking)
             GetDamage(attackCollider.parent.data.damage);
     }
     // 몬스터와 충돌처리
     void OnTriggerStay(Collider other)
     {
-        if (other.TryGetComponent(out AttackCollider attackCollider))
+        if (other.TryGetComponent(out AttackCollider attackCollider) && attackCollider.parent.isAttacking)
             GetDamage(attackCollider.parent.data.damage);
     }
-    // 몬스터 마법공격과 충돌처리
+    // 몬스터 마법공격 충돌처리
     void OnParticleCollision(GameObject other)
     {
         if (other.TryGetComponent(out MagicAttack magicAttack))
