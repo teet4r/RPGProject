@@ -121,7 +121,7 @@ public class Inventory : MonoBehaviour
                         AlertManager.instance.ShowAlert("아직 사용할 수 없습니다.");
                         return;
                     }
-                    Player.Instance.AddHp(_item.HpRecoverNum);
+                    Player.instance.AddHp(_item.HpRecoverNum);
                     ItemManager.instance.SetHpPotionUsableFalse();
                     break;
                 case ConsumableItem.CONSUMABLE_TYPE.MP_POTION:
@@ -130,7 +130,7 @@ public class Inventory : MonoBehaviour
                         AlertManager.instance.ShowAlert("아직 사용할 수 없습니다.");
                         return;
                     }
-                    Player.Instance.AddMp(_item.MpRecoverNum);
+                    Player.instance.AddMp(_item.MpRecoverNum);
                     ItemManager.instance.SetMpPotionUsableFalse();
                     break;
             }

@@ -48,33 +48,12 @@ public class Player : LifeObject
     public float Atk { get { return atk; } }
     public float AtkSpd { get { return atkSpd; } }
 
-    public static Player Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = FindObjectOfType<Player>();
-                if (_instance == null)
-                {
-                    var newObj = new GameObject();
-                    _instance = newObj.AddComponent<Player>();
-                    newObj.name = typeof(Player).ToString();
-                }
-            }
-            return _instance;
-        }
-    }
-    static Player _instance = null;
+    public static Player instance = null;
 
     protected override void Awake()
     {
-        if (_instance == null)
-            _instance = this;
-        else if (_instance != this)
-            Destroy(gameObject);
-        else
-            DontDestroyOnLoad(gameObject);
+        if (instance == null)
+            instance = this;
 
         base.Awake();
     }

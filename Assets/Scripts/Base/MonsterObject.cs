@@ -47,7 +47,7 @@ public abstract class MonsterObject : LifeObject
     {
         base.Update();
 
-        target = Player.Instance;
+        target = Player.instance;
         Debug.Log(curHp);
 
         _Move();
