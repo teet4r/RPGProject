@@ -8,7 +8,6 @@ TagManager:
   - QuickSlot
   - ItemSlot
   - NPC
-  - ShopSlot
   - Shop
   - Weapon
   - Ground

@@ -55,7 +55,7 @@ public class ItemSlot : MonoBehaviour
         CheckItemNum();
     }
 
-    public void RefreshCoolTimeImage(float _fillAmount)
+    public void SetCoolTimeImage(float _fillAmount)
     {
         slotCoolTimeImage.fillAmount = _fillAmount;
     }

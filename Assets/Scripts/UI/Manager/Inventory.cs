@@ -104,11 +104,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    ConsumableItem.CONSUMABLE_TYPE GetItemConsumableType(ConsumableItem _item)
-    {
-        return _item.ConsumableType;
-    }
-
     public void UseItem(ConsumableItem _item)
     {
         if (HowManyItem(_item) > 0)
@@ -116,22 +111,22 @@ public class Inventory : MonoBehaviour
             switch(_item.ConsumableType)
             {
                 case ConsumableItem.CONSUMABLE_TYPE.HP_POTION:
-                    if (!ItemManager.instance.HpPotionUsable)
+                    if (!ItemManager.instance.ConsumableItemUsable[0])
                     {
                         AlertManager.instance.ShowAlert("아직 사용할 수 없습니다.");
                         return;
                     }
                     Player.instance.AddHp(_item.HpRecoverNum);
-                    ItemManager.instance.SetHpPotionUsableFalse();
+                    ItemManager.instance.SetConsumableItemUsableFalse(0);
                     break;
                 case ConsumableItem.CONSUMABLE_TYPE.MP_POTION:
-                    if (!ItemManager.instance.MpPotionUsable)
+                    if (!ItemManager.instance.ConsumableItemUsable[1])
                     {
                         AlertManager.instance.ShowAlert("아직 사용할 수 없습니다.");
                         return;
                     }
                     Player.instance.AddMp(_item.MpRecoverNum);
-                    ItemManager.instance.SetMpPotionUsableFalse();
+                    ItemManager.instance.SetConsumableItemUsableFalse(1);
                     break;
             }
             DeleteItem(_item);
@@ -245,26 +240,26 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void RefreshItemCoolTimeImage()
+    public void RefreshItemCoolTimeImage(ConsumableItem.CONSUMABLE_TYPE _consumableItemType)
     {
         for (int i = 0; i < itemSlots.transform.childCount; i++)
         {
             ItemSlot tmpSlot = itemSlots.transform.GetChild(i).GetComponent<ItemSlot>();
             if (tmpSlot.ConsumableItem == null) continue;
-
-            if (tmpSlot.ConsumableItem.ConsumableType == ConsumableItem.CONSUMABLE_TYPE.HP_POTION)
+            if (tmpSlot.ConsumableItem.ConsumableType == _consumableItemType)
             {
-                if (ItemManager.instance.HpPotionUsable)
+                try
                 {
-                    tmpSlot.RefreshCoolTimeImage(ItemManager.instance.HpPotionCoolTime);
+                    if (!ItemManager.instance.ConsumableItemUsable[(int)_consumableItemType])
+                    {
+                        tmpSlot.SetCoolTimeImage(ItemManager.instance.ConsumableItemCoolTime[(int)_consumableItemType] / ItemManager.instance.ConsumableItemCoolTimeMax);
+                    }
+                    else
+                    {
+                        tmpSlot.SetCoolTimeImage(0f);
+                    }
                 }
-            }
-            else if (tmpSlot.ConsumableItem.ConsumableType == ConsumableItem.CONSUMABLE_TYPE.MP_POTION)
-            {
-                if (ItemManager.instance.MpPotionUsable)
-                {
-                    tmpSlot.RefreshCoolTimeImage(ItemManager.instance.MpPotionCoolTime);
-                }
+                catch { }
             }
         }
     }

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c3c37e14eb42f64287f8fa6f6c58992, type: 3}
+  m_Name: Sample2
+  m_EditorClassIdentifier: 
+  skillName: Sample Skill 2
+  skillImage: {fileID: 21300000, guid: 563522f3e1a7e4cfcb6edd2dbff14153, type: 3}
+  skillMana: 25
+  coolTime: 5
+  skillInfo: "\uC0D8\uD50C \uC2A4\uD0AC2 \uC774\uB2E4."
