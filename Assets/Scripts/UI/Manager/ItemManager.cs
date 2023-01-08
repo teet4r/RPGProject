@@ -7,14 +7,18 @@ public class ItemManager : MonoBehaviour
     public static ItemManager instance;
 
     const float checkTime = 0.1f;
-    const float consumableItemCoolTimeMax = 1.5f;
+    const float hpPotionCoolTimeMax = 1.5f;
+    const float mpPotionCoolTimeMax = 1.5f;
 
-    float[] consumableItemCoolTime = new float[(int)ConsumableItem.CONSUMABLE_TYPE.ENUM_SIZE];
-    bool[] consumableItemUsable = new bool[(int)ConsumableItem.CONSUMABLE_TYPE.ENUM_SIZE];
+    [SerializeField] float hpPotionCoolTime;
+    [SerializeField] float mpPotionCoolTime;
+    [SerializeField] bool hpPotionUsable;
+    [SerializeField] bool mpPotionUsable;
 
-    public float ConsumableItemCoolTimeMax { get { return consumableItemCoolTimeMax; } }
-    public float[] ConsumableItemCoolTime { get { return consumableItemCoolTime; } }
-    public bool[] ConsumableItemUsable { get { return consumableItemUsable; } }
+    public float HpPotionCoolTime { get { return hpPotionCoolTime; } }
+    public float MpPotionCoolTime { get { return mpPotionCoolTime; } }
+    public bool HpPotionUsable { get { return hpPotionUsable; } }
+    public bool MpPotionUsable { get { return mpPotionUsable; } }
 
     private void Awake()
     {
@@ -31,44 +35,45 @@ public class ItemManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(consumableItemCoolTime.Length);
-        for (int i = 0; i < consumableItemCoolTime.Length; i++)
+        hpPotionCoolTime = 0f;
+        mpPotionCoolTime = 0f;
+        hpPotionUsable = true;
+        mpPotionUsable = true;
+    }
+
+    private void Update()
+    {
+        CheckPotionCoolTime();
+    }
+
+    public void SetHpPotionUsableFalse()
+    {
+        hpPotionUsable = false;
+        hpPotionCoolTime = 0f;
+    }
+
+    public void SetMpPotionUsableFalse()
+    {
+        mpPotionUsable = false;
+        mpPotionCoolTime = 0f;
+    }
+
+    void CheckPotionCoolTime()
+    {
+        Debug.Log(hpPotionCoolTime);
+        if (hpPotionCoolTime >= hpPotionCoolTimeMax) hpPotionUsable = true;
+        if (mpPotionCoolTime >= mpPotionCoolTimeMax) mpPotionUsable = true;
+        if (!hpPotionUsable && hpPotionCoolTime < hpPotionCoolTimeMax)
         {
-            consumableItemCoolTime[i] = 0f;
-            consumableItemUsable[i] = true;
+            hpPotionCoolTime += Time.deltaTime / hpPotionCoolTimeMax;
         }
-        StartCoroutine(CheckConsumableItemCoolTime());
-    }
-
-    public void SetConsumableItemUsableFalse(int _idx)
-    {
-        consumableItemCoolTime[_idx] = 0f;
-        consumableItemUsable[_idx] = false;
-    }
-
-    IEnumerator CheckConsumableItemCoolTime()
-    {
-        while (true)
+        if (!mpPotionUsable && mpPotionCoolTime < mpPotionCoolTimeMax)
         {
-            for (int i = 0; i < consumableItemCoolTime.Length; i++)
-            {
-                if (consumableItemCoolTime[i] >= consumableItemCoolTimeMax)
-                {
-                    consumableItemUsable[i] = true;
-                }
-                if (!consumableItemUsable[i] && consumableItemCoolTime[i] < ConsumableItemCoolTimeMax)
-                {
-                    consumableItemCoolTime[i] += checkTime / ConsumableItemCoolTimeMax;
-                }
-            }
-            if (Inventory.instance.ItemSlots.activeSelf)
-            {
-                for (int i = 0; i < (int)ConsumableItem.CONSUMABLE_TYPE.ENUM_SIZE; i++)
-                {
-                    Inventory.instance.RefreshItemCoolTimeImage((ConsumableItem.CONSUMABLE_TYPE)i);
-                }
-            }
-            yield return new WaitForSeconds(checkTime);
+            mpPotionCoolTime += Time.deltaTime / mpPotionCoolTimeMax;
+        }
+        if (Inventory.instance.ItemSlots.activeSelf)
+        {
+            Inventory.instance.RefreshItemCoolTimeImage();
         }
     }
 

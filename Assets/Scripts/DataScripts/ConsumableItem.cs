@@ -10,7 +10,7 @@ public class ConsumableItem : Item
     [SerializeField] int mpRecoverNum;
     [SerializeField] CONSUMABLE_TYPE consumableType;
 
-    public enum CONSUMABLE_TYPE { HP_POTION, MP_POTION, ENUM_SIZE }
+    public enum CONSUMABLE_TYPE { HP_POTION, MP_POTION }
 
     public int HpRecoverNum { get { return hpRecoverNum; } }
     public int MpRecoverNum { get { return mpRecoverNum; } }
