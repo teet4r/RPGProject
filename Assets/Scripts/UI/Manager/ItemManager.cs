@@ -39,39 +39,40 @@ public class ItemManager : MonoBehaviour
         mpPotionCoolTime = 0f;
         hpPotionUsable = true;
         mpPotionUsable = true;
+    }
 
-        StartCoroutine(CheckPotionCoolTIme());
+    private void Update()
+    {
+        CheckPotionCoolTime();
     }
 
     public void SetHpPotionUsableFalse()
     {
         hpPotionUsable = false;
+        hpPotionCoolTime = 0f;
     }
 
     public void SetMpPotionUsableFalse()
     {
         mpPotionUsable = false;
+        mpPotionCoolTime = 0f;
     }
 
-    IEnumerator CheckPotionCoolTIme()
+    void CheckPotionCoolTime()
     {
-        while (true)
+        if (hpPotionCoolTime >= hpPotionCoolTimeMax) hpPotionUsable = true;
+        if (mpPotionCoolTime >= mpPotionCoolTimeMax) mpPotionUsable = true;
+        if (!hpPotionUsable && hpPotionCoolTime < hpPotionCoolTimeMax)
         {
-            if (hpPotionCoolTime >= hpPotionCoolTimeMax) hpPotionUsable = true;
-            if (mpPotionCoolTime >= mpPotionCoolTimeMax) mpPotionUsable = true;
-            if (!hpPotionUsable)
-            {
-                hpPotionCoolTime -= checkTime;
-            }
-            if (!mpPotionUsable)
-            {
-                mpPotionCoolTime -= checkTime;
-            }
-            if (Inventory.instance.ItemSlots.activeSelf)
-            {
-                Inventory.instance.RefreshItemCoolTimeImage();
-            }
-            yield return new WaitForSeconds(checkTime);
+            hpPotionCoolTime += Time.deltaTime;
+        }
+        if (!mpPotionUsable && mpPotionCoolTime < mpPotionCoolTimeMax)
+        {
+            mpPotionCoolTime += Time.deltaTime;
+        }
+        if (Inventory.instance.ItemSlots.activeSelf)
+        {
+            Inventory.instance.RefreshItemCoolTimeImage();
         }
     }
 
