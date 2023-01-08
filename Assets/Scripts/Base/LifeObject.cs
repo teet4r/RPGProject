@@ -6,7 +6,7 @@ using UnityEngine;
 /// MonoBehaviour를 상속하는 최상위 클래스이며
 /// 생명체에 기본 적용되는 클래스
 /// </summary>
-public class LifeObject : MonoBehaviour
+public abstract class LifeObject : MonoBehaviour
 {
     protected virtual void Awake()
     {
@@ -56,17 +56,7 @@ public class LifeObject : MonoBehaviour
         isWalking = transform.position - _prevPos == Vector3.zero ? false : true;
         _prevPos = transform.position;
     }
-    protected virtual IEnumerator _TriggerGetDamage(float damage)
-    {
-        isInvincible = true;
-
-        curHp -= damage;
-        if (curHp <= 0f)
-            _Die();
-
-        yield return _wfs_invincible;
-        isInvincible = false;
-    }
+    protected abstract IEnumerator _TriggerGetDamage(float damage);
 
     public bool isAlive { get; private set; }
     public bool isWalking { get; private set; }

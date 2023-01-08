@@ -64,11 +64,18 @@ public abstract class MonsterObject : LifeObject
             GetDamage(pac.parent.atk);
     }
 
-    public override void GetDamage(float damageAmount)
+    protected override IEnumerator _TriggerGetDamage(float damage)
     {
-        base.GetDamage(damageAmount);
+        isInvincible = true;
 
-        _animator.SetTrigger(AnimatorID.Trigger.Hit);
+        curHp -= damage;
+        if (curHp <= 0f)
+            _Die();
+        else
+            _animator.SetTrigger("Hit");
+
+        yield return _wfs_invincible;
+        isInvincible = false;
     }
     protected override void _UpdateStates()
     {

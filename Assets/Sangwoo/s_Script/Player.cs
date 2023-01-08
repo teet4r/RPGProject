@@ -193,12 +193,6 @@ public class Player : LifeObject
         
     //}
     
-    protected override void _Die()
-    {
-        base._Die();
-
-        StartCoroutine(_DieRoutine()); // 죽었을 때 실행할 코루틴
-    }
     protected override IEnumerator _TriggerGetDamage(float damage)
     {
         isInvincible = true;
@@ -207,13 +201,16 @@ public class Player : LifeObject
         if (curHp <= 0f)
             _Die();
         else
-        {
-            
             animator.SetTrigger("IsGetHit");
-        }
 
         yield return _wfs_invincible;
         isInvincible = false;
+    }
+    protected override void _Die()
+    {
+        base._Die();
+
+        StartCoroutine(_DieRoutine()); // 죽었을 때 실행할 코루틴
     }
 
     // 왜 이렇게 나누느냐?
