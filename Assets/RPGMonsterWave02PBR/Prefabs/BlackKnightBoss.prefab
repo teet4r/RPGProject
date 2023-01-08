@@ -1630,7 +1630,7 @@ GameObject:
   - component: {fileID: 1802286859466067825}
   m_Layer: 0
   m_Name: Axe
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1677,7 +1677,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1802286859466036051}
   m_LocalRotation: {x: -1.3877788e-16, y: 1.7347235e-18, z: 6.028164e-17, w: 1}
-  m_LocalPosition: {x: -4.5474734e-15, y: -1.1368684e-15, z: 0.102158345}
+  m_LocalPosition: {x: 0, y: 0, z: 0.102158345}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1859,7 +1859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 80
-  _invincibleTime: 1
+  _invincibleTime: 0.7
   data: {fileID: 11400000, guid: 97730afe2040d0049a8325d8bb02f914, type: 2}
   _attackClips:
   - {fileID: 7400000, guid: 3e4c45655f766e74e9a7fbb77fb47f04, type: 3}

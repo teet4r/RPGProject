@@ -1919,7 +1919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 50
-  _invincibleTime: 1
+  _invincibleTime: 0.7
   data: {fileID: 11400000, guid: 28382fd154ca11c41a04d51f1a846632, type: 2}
   _attackClips:
   - {fileID: 7400000, guid: 40eb9b47183826f4fa53a59d46229f6d, type: 3}

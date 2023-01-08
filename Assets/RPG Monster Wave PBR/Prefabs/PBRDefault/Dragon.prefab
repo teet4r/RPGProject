@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parent: {fileID: 954960374}
-  _attackCollider: {fileID: 0}
+  _attackCollider: {fileID: 119112994}
 --- !u!1 &1057014978479578
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,7 +1012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 50
-  _invincibleTime: 1
+  _invincibleTime: 0.7
   data: {fileID: 11400000, guid: a286ad9a1a16d8a478dcf7cf13c23602, type: 2}
   _attackClips:
   - {fileID: 7400000, guid: b2ce18c46ad55a649bb23878cb7df788, type: 3}

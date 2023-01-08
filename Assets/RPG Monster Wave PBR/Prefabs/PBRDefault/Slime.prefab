@@ -565,7 +565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 50
-  _invincibleTime: 1
+  _invincibleTime: 0.7
   data: {fileID: 11400000, guid: a08efb49ad31d604c8b4172b3d30601b, type: 2}
   _attackClips:
   - {fileID: 7400000, guid: 438236b1bb4dc03468cb3f2d12fa922c, type: 3}

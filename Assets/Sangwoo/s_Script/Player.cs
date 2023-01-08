@@ -134,7 +134,6 @@ public class Player : LifeObject
             nowMp = maxMp;
             nowExp -= maxExp;
         }
-
     }
     public void AddExp(int value) //¿Œ¿⁄
     {

@@ -48,6 +48,7 @@ public abstract class MonsterObject : LifeObject
         base.Update();
 
         target = Player.Instance;
+        Debug.Log(curHp);
 
         _Move();
 
@@ -55,13 +56,13 @@ public abstract class MonsterObject : LifeObject
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out PlayerAttackCollider pac))
-            GetDamage(pac.parent.atk);
+        if (other.TryGetComponent(out Player player))
+            player.GetDamage(data.damage);
     }
     void OnTriggerStay(Collider other)
     {
-        if (other.TryGetComponent(out PlayerAttackCollider pac))
-            GetDamage(pac.parent.atk);
+        if (other.TryGetComponent(out Player player))
+            player.GetDamage(data.damage);
     }
 
     protected override IEnumerator _TriggerGetDamage(float damage)
@@ -72,7 +73,7 @@ public abstract class MonsterObject : LifeObject
         if (curHp <= 0f)
             _Die();
         else
-            _animator.SetTrigger("Hit");
+            _animator.SetTrigger(AnimatorID.Trigger.Hit);
 
         yield return _wfs_invincible;
         isInvincible = false;
