@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -532,13 +532,9 @@ MonoBehaviour:
   loadingScreenImg: {fileID: 1889912138}
   Txt: {fileID: 1745572792}
   tipTxts:
-  - "\uB9C8\uB77C\uD0D5\uC740 \uC190\uC624\uACF5 \uB9C8\uB77C\uD0D5\uC774 \uB9DB\uC788\uB2E4."
-  - "\uC870\uC544\uB77C\uB294 ENTJ\uB2E4. (P \uC544\uB2D8)"
-  - "\uAE40\uB450\uD604\uC740 \uC5B4\uB518\uAC00\uC758 \uC870\uD3ED \uCD9C\uC2E0\uC774\uB2E4."
-  - "\uC774\uC0C1\uC6B0\uB294 \uCD5C\uADFC\uC5D0 \uC5F0\uC560\uB97C \uC2DC\uC791\uD588\uB2E4."
-  - "\uAE40\uD76C\uC7AC\uB294 \uC694\uC998 \uC880 \uADC0\uC5EC\uC6CC\uC9C0\uACE0
-    \uC788\uB2E4. (\uC6D0\uB798\uB3C4 \uADC0\uC5EC\uC6C0)"
-  - "DASH\uB294 \uB2E4\uC0AC\uB2E4\uB09C\uD588\uB2E4."
+  - "\uBD80\uD65C\uD560 \uC218 \uC788\uB294 \uD69F\uC218\uB294 \uCD5C\uB300 2\uBC88\uC774\uB2E4."
+  - "\uC124\uC815 - \uD0A4\uC138\uD305\uC5D0\uC11C \uC6D0\uD558\uB294 \uB300\uB85C
+    \uD0A4\uC124\uC815\uC744 \uBCC0\uACBD\uD560 \uC218 \uC788\uB2E4."
 --- !u!114 &1889912138 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1678314588339220964, guid: 4fbfd8355a035f24ca2976cb55d3966d, type: 3}
