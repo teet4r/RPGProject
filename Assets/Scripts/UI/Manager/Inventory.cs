@@ -250,7 +250,7 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < itemSlots.transform.childCount; i++)
         {
             ItemSlot tmpSlot = itemSlots.transform.GetChild(i).GetComponent<ItemSlot>();
-            if (tmpSlot.Item == null) return;
+            if (tmpSlot.ConsumableItem == null) continue;
 
             if (tmpSlot.ConsumableItem.ConsumableType == ConsumableItem.CONSUMABLE_TYPE.HP_POTION)
             {

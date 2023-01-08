@@ -60,15 +60,16 @@ public class ItemManager : MonoBehaviour
 
     void CheckPotionCoolTime()
     {
+        Debug.Log(hpPotionCoolTime);
         if (hpPotionCoolTime >= hpPotionCoolTimeMax) hpPotionUsable = true;
         if (mpPotionCoolTime >= mpPotionCoolTimeMax) mpPotionUsable = true;
         if (!hpPotionUsable && hpPotionCoolTime < hpPotionCoolTimeMax)
         {
-            hpPotionCoolTime += Time.deltaTime;
+            hpPotionCoolTime += Time.deltaTime / hpPotionCoolTimeMax;
         }
         if (!mpPotionUsable && mpPotionCoolTime < mpPotionCoolTimeMax)
         {
-            mpPotionCoolTime += Time.deltaTime;
+            mpPotionCoolTime += Time.deltaTime / mpPotionCoolTimeMax;
         }
         if (Inventory.instance.ItemSlots.activeSelf)
         {

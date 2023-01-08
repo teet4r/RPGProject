@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class LoadingProgress : MonoBehaviour
 {
     static string nextScene;
-    public Text progressTxt;
 
     [SerializeField]
     Sprite[] loadImgs;
@@ -56,7 +55,6 @@ public class LoadingProgress : MonoBehaviour
                 {
                     timer = 1;
                 }
-                progressTxt.text = (timer*100).ToString("N0") +"%";
 
                 if (progressBar.fillAmount >= 1f)
                 {
