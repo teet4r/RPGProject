@@ -26,18 +26,18 @@ public class SlotInfo : MonoBehaviour
         EventSystem.current.RaycastAll(pointer, raycastResults);
         if (raycastResults.Count > 0)
         {
-            if (raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>() && raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>().Item != null)
+            if (raycastResults[0].gameObject.GetComponent<ItemSlot>() && raycastResults[0].gameObject.GetComponent<ItemSlot>().Item != null)
             {
-                EnableItemInfoWindow(raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>());
+                EnableItemInfoWindow(raycastResults[0].gameObject.GetComponent<ItemSlot>());
                 itemInfoWindowRect.position = Input.mousePosition;
             }
             else
             {
                 DisableItemInfoWindow();
             }
-            if (raycastResults[0].gameObject.transform.parent.GetComponent<SkillSlot>() && raycastResults[0].gameObject.transform.parent.GetComponent<SkillSlot>().Skill != null)
+            if (raycastResults[0].gameObject.GetComponent<SkillSlot>() && raycastResults[0].gameObject.GetComponent<SkillSlot>().Skill != null)
             {
-                EnableSkillInfoWindow(raycastResults[0].gameObject.transform.gameObject.GetComponent<SkillSlot>());
+                EnableSkillInfoWindow(raycastResults[0].gameObject.GetComponent<SkillSlot>());
                 skillInfoWindowRect.position = Input.mousePosition;
             }
             else

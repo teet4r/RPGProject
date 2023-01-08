@@ -14,8 +14,8 @@ public class UseItem : MonoBehaviour
         {
             pointer.position = Input.mousePosition;
             EventSystem.current.RaycastAll(pointer, raycastResults);
-            if (raycastResults.Count == 0 || !raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>()) return;
-            ItemSlot _itemSlot = raycastResults[0].gameObject.transform.parent.GetComponent<ItemSlot>();
+            if (raycastResults.Count == 0 || !raycastResults[0].gameObject.GetComponent<ItemSlot>()) return;
+            ItemSlot _itemSlot = raycastResults[0].gameObject.GetComponent<ItemSlot>();
             if (_itemSlot.Item == null)
             {
                 raycastResults.Clear();
@@ -23,7 +23,7 @@ public class UseItem : MonoBehaviour
             }
             if (_itemSlot.Item.ItemType == Item.ITEM_TYPE.CONSUMABLE)
             {
-                Inventory.instance.UseItem(_itemSlot.GetComponent<ItemSlot>().ConsumableItem);
+                Inventory.instance.UseItem(_itemSlot.ConsumableItem);
             }
             raycastResults.Clear();
         }
