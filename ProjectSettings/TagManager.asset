@@ -12,6 +12,7 @@ TagManager:
   - Weapon
   - Ground
   - MonsterBody
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - Ground
   - Breakable
   - NPC
-  - 
+  - Enemy
   - 
   - 
   - 
