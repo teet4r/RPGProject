@@ -31,7 +31,6 @@ public class ItemManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(consumableItemCoolTime.Length);
         for (int i = 0; i < consumableItemCoolTime.Length; i++)
         {
             consumableItemCoolTime[i] = 0f;

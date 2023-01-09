@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c3c37e14eb42f64287f8fa6f6c58992, type: 3}
-  m_Name: Sample2
+  m_Name: FlyingSword
   m_EditorClassIdentifier: 
-  skillName: Sample Skill 2
-  skillImage: {fileID: 21300000, guid: 563522f3e1a7e4cfcb6edd2dbff14153, type: 3}
-  skillMana: 25
-  coolTime: 5
-  skillInfo: "\uC0D8\uD50C \uC2A4\uD0AC2 \uC774\uB2E4."
+  skillName: "\uD50C\uB77C\uC789 \uC18C\uB4DC"
+  skillImage: {fileID: 21300000, guid: 0d17362f56f054fb6b9d751d8c84c78f, type: 3}
+  skillMana: 15
+  coolTime: 8
+  skillInfo: "\uC801\uC744 \uB530\uB77C\uAC00\uC11C 10 \uC758 \uD53C\uD574\uB97C
+    \uC785\uD788\uB294 \uAC80\uC744 \uB2E4\uC12F \uC790\uB8E8 \uC18C\uD658\uD55C\uB2E4."

@@ -5,10 +5,20 @@ using UnityEngine.UI;
 
 public class PotionSlot : MonoBehaviour
 {
+    [SerializeField] KeyCode keyCode;
     ConsumableItem item;
     Image itemImage;
-    Image itemNumImage;
     Text itemNumText;
+
+    public void SetKeyCode(KeyCode _keycode)
+    {
+        keyCode = _keycode;
+    }
+
+    public void UseSlot()
+    {
+        GetComponent<SlotCoolTime>().TriggerSlot();
+    }
 
     public void SetSlotItem(ConsumableItem _item)
     {
@@ -18,9 +28,6 @@ public class PotionSlot : MonoBehaviour
 
     void RefreshSlotNum()
     {
-        Color color = itemNumImage.color;
-        color.a = 1f;
-        itemNumImage.color = color;
         itemNumText.text = Inventory.instance.HowManyItem(item).ToString();
     }
 
@@ -28,9 +35,6 @@ public class PotionSlot : MonoBehaviour
     {
         item = null;
         itemImage.sprite = null;
-        Color color = itemNumImage.color;
-        color.a = 0f;
-        itemNumImage.color = color;
         itemNumText.text = "";
     }
 }

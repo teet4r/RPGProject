@@ -9,12 +9,18 @@ public class SkillManager : MonoBehaviour
     const float checkTime = 0.1f;
     readonly float[] skillCoolTimeMax = { 8f, 12f };
 
-    float[] skillCoolTime = new float[(int)SKILL_TYPE.ENUM_SIZE];
-    bool[] skillUsable = new bool[(int)SKILL_TYPE.ENUM_SIZE];
+    [SerializeField] float[] skillCoolTime = new float[(int)SKILL_TYPE.ENUM_SIZE];
+    [SerializeField] bool[] skillUsable = new bool[(int)SKILL_TYPE.ENUM_SIZE];
 
     [SerializeField] GameObject skillSlotGroup;
 
     public enum SKILL_TYPE { SWORD, SHIELD, ENUM_SIZE }
+
+    public float CheckTime { get { return checkTime; } }
+    public float[] SkillCoolTimeMax { get { return skillCoolTimeMax; } }
+
+    public float[] SkillCoolTime { get { return skillCoolTime; } }
+    public bool[] SkillUsable { get { return skillUsable; } }
 
     private void Awake()
     {
@@ -33,7 +39,11 @@ public class SkillManager : MonoBehaviour
 
     public void UseSkill(int _num)
     {
-        skillSlotGroup.transform.GetChild(_num).GetComponent<SlotCoolTime>().TriggerSlot();
+        if (skillUsable[_num])
+        {
+            skillUsable[_num] = false;
+            skillCoolTime[_num] = skillCoolTimeMax[_num];
+        }
     }
 
     IEnumerator CheckSkillCoolTime()
@@ -42,7 +52,7 @@ public class SkillManager : MonoBehaviour
         {
             for (int i = 0; i < (int)SKILL_TYPE.ENUM_SIZE; i++)
             {
-                if (skillCoolTime[i] >= skillCoolTimeMax[i])
+                if (skillCoolTime[i] <= 0f)
                 {
                     skillCoolTime[i] = 0f;
                     skillUsable[i] = true;
@@ -53,7 +63,7 @@ public class SkillManager : MonoBehaviour
                 }
                 else
                 {
-                    skillCoolTime[i] += checkTime;
+                    skillCoolTime[i] -= checkTime;
                 }
             }
             yield return new WaitForSeconds(checkTime);
