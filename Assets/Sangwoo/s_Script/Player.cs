@@ -73,13 +73,13 @@ public class Player : LifeObject
     // 몬스터와 충돌처리
     void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out AttackCollider attackCollider) && attackCollider.parent.isAttacking)
+        if (other.TryGetComponent(out AttackCollider attackCollider))
             GetDamage(attackCollider.parent.data.damage);
     }
     // 몬스터와 충돌처리
     void OnTriggerStay(Collider other)
     {
-        if (other.TryGetComponent(out AttackCollider attackCollider) && attackCollider.parent.isAttacking)
+        if (other.TryGetComponent(out AttackCollider attackCollider))
             GetDamage(attackCollider.parent.data.damage);
     }
     // 몬스터 마법공격 충돌처리
