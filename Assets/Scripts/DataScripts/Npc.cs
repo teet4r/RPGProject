@@ -6,19 +6,30 @@ using UnityEngine;
 public class Npc : ScriptableObject
 {
     [SerializeField] string npcName;
-    [SerializeField] NPC_TYPE npcType;
     [SerializeField] Quest[] quests;
-    public enum NPC_TYPE { NORMAL, MERCHANT }
+    [SerializeField] Big[] bigs;
 
     public string NpcName { get { return npcName; } }
-    public NPC_TYPE NpcType { get { return npcType; } }
     public Quest[] Quests { get { return quests; } }
+    public Big[] Bigs { get { return bigs; } }
 
     [System.Serializable]
-    public class NpcScript
+    public class Small
     {
-        [SerializeField] string[] npcScript;
-        [SerializeField] NPC_SCRIPT_TYPE npcScriptType;
-        public enum NPC_SCRIPT_TYPE { NORMAL, QUEST }
+        [SerializeField] string npcScript;
+        [SerializeField] bool isNpc = true; //npc가 말할 때 켜지고 유저가 말할 때 꺼지고
+        public string NpcScript { get { return npcScript; } }
+        public bool IsNpc { get { return isNpc;} }
+    }
+
+    [System.Serializable]
+    public class Big
+    {
+        [SerializeField] Small[] smalls;
+        [SerializeField] bool isClear = false;
+        [SerializeField] Small[] clearMessage;
+        public Small[] Smalls { get { return smalls; } }
+        public bool IsClear { get { return isClear; } }
+        public Small[] ClearMessage { get { return clearMessage; } }
     }
 }
