@@ -100,7 +100,7 @@ public class QuestManager : MonoBehaviour
         public bool QuestStartable { get { return questStartable; } }
         public bool QuestContinuing { get { return questContinuing; } }
         public bool QuestCompletable { get { return questCompletable; } }
-        public bool QuestCOmpleted { get { return questCompleted; } }
+        public bool QuestCompleted { get { return questCompleted; } }
 
         public void RefreshQuest()
         {
