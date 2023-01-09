@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571322, b: 0.30692163, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -376,11 +376,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &93573269 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2782965070608428875, guid: b419e164ab53516438da636332342da9, type: 3}
-  m_PrefabInstance: {fileID: 256255491}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &159534597
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,18 +517,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1335975102, guid: b419e164ab53516438da636332342da9, type: 3}
-      propertyPath: _attackColliders.Array.data[0]
-      value: 
-      objectReference: {fileID: 976850559}
-    - target: {fileID: 6825763076235687243, guid: b419e164ab53516438da636332342da9, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6825763076235687243, guid: b419e164ab53516438da636332342da9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7224149203388998861, guid: b419e164ab53516438da636332342da9, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -582,8 +565,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1177485426, guid: b419e164ab53516438da636332342da9, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b419e164ab53516438da636332342da9, type: 3}
 --- !u!1 &280640737
 GameObject:
@@ -2166,11 +2148,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830004284}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &976850559 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 7191100791721154580, guid: b419e164ab53516438da636332342da9, type: 3}
-  m_PrefabInstance: {fileID: 256255491}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1078616145
 GameObject:
   m_ObjectHideFlags: 0
@@ -3478,52 +3455,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2049191347
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2049191348}
-  - component: {fileID: 2049191349}
-  m_Layer: 9
-  m_Name: SwordLuncher
-  m_TagString: Untagged
-  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2049191348
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2049191347}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 93573269}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2049191349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2049191347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4699cf5112bf445409ff7cb372d8351d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_goMissile: {fileID: 4870961991457243598, guid: dac40c2df0ca42740899a17132baa552, type: 3}
-  m_ttMissileSpawn: {fileID: 2049191348}
 --- !u!1 &2087702968
 GameObject:
   m_ObjectHideFlags: 0
