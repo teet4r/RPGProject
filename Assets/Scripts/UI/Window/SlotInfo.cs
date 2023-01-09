@@ -14,11 +14,13 @@ public class SlotInfo : MonoBehaviour
     RectTransform itemInfoWindowRect;
     RectTransform skillInfoWindowRect;
     ItemInfoWindow itemInfoWindowCpnt;
+    RectTransform screenRect;
 
     private void Start()
     {
         itemInfoWindowCpnt = itemInfoWindow.GetComponent<ItemInfoWindow>();
         skillInfoWindowRect = skillInfoWindow.GetComponent<RectTransform>();
+        screenRect = GetComponent<RectTransform>();
     }
     private void Update()
     {
@@ -29,7 +31,18 @@ public class SlotInfo : MonoBehaviour
             if (raycastResults[0].gameObject.GetComponent<ItemSlot>() && raycastResults[0].gameObject.GetComponent<ItemSlot>().Item != null)
             {
                 EnableItemInfoWindow(raycastResults[0].gameObject.GetComponent<ItemSlot>());
-                itemInfoWindowRect.position = Input.mousePosition;
+                bool isOverRight = false;
+                bool isOverDown = false;
+                Vector3 mousePosition = Input.mousePosition;
+
+                if (screenRect.rect.width - Input.mousePosition.x < itemInfoWindowRect.rect.width) isOverRight = true;
+                if (Input.mousePosition.y < itemInfoWindowRect.rect.height) isOverDown = true;
+
+                if (isOverRight) mousePosition -= new Vector3(itemInfoWindowRect.rect.width, 0, 0);
+                if (isOverDown) mousePosition += new Vector3(0, itemInfoWindowRect.rect.height, 0);
+
+                itemInfoWindowRect.position = mousePosition;
+                
             }
             else
             {
@@ -38,7 +51,17 @@ public class SlotInfo : MonoBehaviour
             if (raycastResults[0].gameObject.GetComponent<SkillSlot>() && raycastResults[0].gameObject.GetComponent<SkillSlot>().Skill != null)
             {
                 EnableSkillInfoWindow(raycastResults[0].gameObject.GetComponent<SkillSlot>());
-                skillInfoWindowRect.position = Input.mousePosition;
+                bool isOverRight = false;
+                bool isOverDown = false;
+                Vector3 mousePosition = Input.mousePosition;
+
+                if (screenRect.rect.width - Input.mousePosition.x < skillInfoWindowRect.rect.width) isOverRight = true;
+                if (Input.mousePosition.y < skillInfoWindowRect.rect.height) isOverDown = true;
+
+                if (isOverRight) mousePosition -= new Vector3(skillInfoWindowRect.rect.width, 0, 0);
+                if (isOverDown) mousePosition += new Vector3(0, skillInfoWindowRect.rect.height, 0);
+
+                skillInfoWindowRect.position = mousePosition;
             }
             else
             {
