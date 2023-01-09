@@ -32,13 +32,16 @@ public class SlotCoolTime : MonoBehaviour
             End_CoolTime();
         }
     }
+
     void End_CoolTime() //쿨타임이 끝나서 스킬 재사용이 가능해진 시점
     {
         Set_FillAmount(0);
         isEnded = true;
-        CooltimeTxt.gameObject.SetActive(false);
+        if (CooltimeTxt.gameObject.activeSelf)
+            CooltimeTxt.gameObject.SetActive(false);
     }
-    void TriggerSlot() //슬롯 발동
+
+    public void TriggerSlot() //슬롯 발동
     {
         if (!isEnded)
         {
@@ -46,17 +49,21 @@ public class SlotCoolTime : MonoBehaviour
         }
         ResetCoolTime();
     }
+
     void ResetCoolTime() //쿨타임 리셋
     {
-        CooltimeTxt.gameObject.SetActive(true);
+        if (CooltimeTxt.gameObject.activeSelf)
+            CooltimeTxt.gameObject.SetActive(true);
         time_current = time_coolTime;
         time_start = Time.time;
         Set_FillAmount(time_coolTime);
         isEnded = false;
     }
+
     void Set_FillAmount(float _value) //스킬 재사용 시간 최적화
     {
         FillImg.fillAmount = _value / time_coolTime;
-        CooltimeTxt.text = _value.ToString("0.0") + 's';
+        if (CooltimeTxt.gameObject.activeSelf)
+            CooltimeTxt.text = _value.ToString("0.0") + 's';
     }
 }
