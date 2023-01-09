@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2308570}
   - component: {fileID: 64393511968775412}
   m_Layer: 0
-  m_Name: SM_Prop_Jewel_03
+  m_Name: DropItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
