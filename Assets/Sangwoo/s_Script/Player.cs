@@ -67,8 +67,6 @@ public class Player : LifeObject
     protected override void Update()
     {
         base.Update();
-
-        Debug.Log(curHp);
     }
     // 阁胶磐客 面倒贸府
     void OnTriggerEnter(Collider other)

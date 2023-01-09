@@ -15,7 +15,7 @@ public class InGame : MonoBehaviour
 
     void Awake()
     {
-        questGroup = Quest.transform.parent.gameObject;
+        // questGroup = Quest.transform.parent.gameObject;
     }
 
     public void MiniMapToggle(Toggle toggle)
