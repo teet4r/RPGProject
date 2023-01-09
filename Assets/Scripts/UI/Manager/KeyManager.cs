@@ -75,7 +75,7 @@ public class KeyManager : MonoBehaviour
         }
     }
 
-    void ResetAllKey()
+    public void ResetAllKey() //√ ±‚»≠
     {
         for (int i = 0; i < keys.Count; i++)
         {

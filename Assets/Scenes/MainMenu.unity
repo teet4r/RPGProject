@@ -518,7 +518,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 761790067}
+      - m_Target: {fileID: 281897943}
         m_TargetAssemblyTypeName: KeyManager, Assembly-CSharp
         m_MethodName: SelectKeySetButton
         m_Mode: 3
@@ -732,7 +732,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 761790067}
+      - m_Target: {fileID: 281897943}
         m_TargetAssemblyTypeName: KeyManager, Assembly-CSharp
         m_MethodName: SelectKeySetButton
         m_Mode: 3
@@ -1387,7 +1387,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 761790067}
+      - m_Target: {fileID: 281897943}
         m_TargetAssemblyTypeName: KeyManager, Assembly-CSharp
         m_MethodName: SelectKeySetButton
         m_Mode: 3
@@ -2154,6 +2154,7 @@ GameObject:
   - component: {fileID: 281897939}
   - component: {fileID: 281897938}
   - component: {fileID: 281897942}
+  - component: {fileID: 281897943}
   m_Layer: 5
   m_Name: SettingCanvas
   m_TagString: Untagged
@@ -2256,6 +2257,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingBackground: {fileID: 761790062}
+--- !u!114 &281897943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281897937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35ec8c48006f70747909fd12168f0018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keySettingWindow: {fileID: 1341340762}
 --- !u!1 &291059372
 GameObject:
   m_ObjectHideFlags: 0
@@ -2510,7 +2524,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 761790067}
+      - m_Target: {fileID: 281897943}
         m_TargetAssemblyTypeName: KeyManager, Assembly-CSharp
         m_MethodName: SelectKeySetButton
         m_Mode: 3
@@ -3335,7 +3349,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 497065491}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 281897943}
+        m_TargetAssemblyTypeName: KeyManager, Assembly-CSharp
+        m_MethodName: SaveKeySet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &497065491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3496,7 +3522,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 761790067}
+      - m_Target: {fileID: 281897943}
         m_TargetAssemblyTypeName: KeyManager, Assembly-CSharp
         m_MethodName: SelectKeySetButton
         m_Mode: 3
@@ -5301,7 +5327,6 @@ GameObject:
   - component: {fileID: 761790065}
   - component: {fileID: 761790064}
   - component: {fileID: 761790066}
-  - component: {fileID: 761790067}
   m_Layer: 5
   m_Name: SettingBackGround
   m_TagString: Untagged
@@ -5384,19 +5409,6 @@ MonoBehaviour:
   WindowScreen: {fileID: 21300000, guid: 522b7e905fdb2314489f9287ea71bb9f, type: 3}
   FullScreen: {fileID: 21300000, guid: b87a0ddd57aa7cd41ad839c29b7b866c, type: 3}
   resolutionDropdown: {fileID: 221684013}
---- !u!114 &761790067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761790062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35ec8c48006f70747909fd12168f0018, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keySettingWindow: {fileID: 0}
 --- !u!1 &763523821
 GameObject:
   m_ObjectHideFlags: 0
@@ -7262,7 +7274,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1027567064}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 281897943}
+        m_TargetAssemblyTypeName: KeyManager, Assembly-CSharp
+        m_MethodName: ResetAllKey
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1027567064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7663,7 +7687,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 761790067}
+      - m_Target: {fileID: 281897943}
         m_TargetAssemblyTypeName: KeyManager, Assembly-CSharp
         m_MethodName: SelectKeySetButton
         m_Mode: 3
@@ -8297,7 +8321,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 761790067}
+      - m_Target: {fileID: 281897943}
         m_TargetAssemblyTypeName: KeyManager, Assembly-CSharp
         m_MethodName: SelectKeySetButton
         m_Mode: 3
@@ -8672,7 +8696,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 761790067}
+      - m_Target: {fileID: 281897943}
         m_TargetAssemblyTypeName: KeyManager, Assembly-CSharp
         m_MethodName: SelectKeySetButton
         m_Mode: 3
@@ -9007,7 +9031,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1341340763}
   m_Layer: 5
-  m_Name: KeySettingGroup
+  m_Name: KeySettingPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10536,7 +10560,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 761790067}
+      - m_Target: {fileID: 281897943}
         m_TargetAssemblyTypeName: KeyManager, Assembly-CSharp
         m_MethodName: SelectKeySetButton
         m_Mode: 3
