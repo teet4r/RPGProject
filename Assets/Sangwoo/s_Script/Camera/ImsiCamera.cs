@@ -15,14 +15,19 @@ public class ImsiCamera : MonoBehaviour
 	// the height we want the camera to be above the target
 	[SerializeField]
 	private float height = 5.0f;
-
 	[SerializeField]
 	private float rotationDamping;
 	[SerializeField]
 	private float heightDamping;
 
+
+
 	// Use this for initialization
-	void Start() { }
+	void Start() 
+	{
+		
+		
+	}
 
 	// Update is called once per frame
 	void LateUpdate()
@@ -57,6 +62,8 @@ public class ImsiCamera : MonoBehaviour
 
 		// Always look at the target
 		transform.LookAt(target);
+
+		
 	}
 }
 
