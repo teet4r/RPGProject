@@ -31,17 +31,32 @@ public class UIInputManager : MonoBehaviour
     }
     public void SelectInventoryUI()
     {
+        if (Input.GetKey(KeyCode.Tab) && inventoryWindow.activeSelf)
+        {
+            inventoryWindow.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+            return;
+        }
         inventoryWindow.SetActive(!inventoryWindow.activeSelf);
         inventoryWindow.transform.SetAsLastSibling();
     }
     public void SelectCharacterInfoUI()
     {
+        if (Input.GetKey(KeyCode.Tab) && characterInfoWindow.activeSelf)
+        {
+            characterInfoWindow.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+            return;
+        }
         characterInfoWindow.SetActive(!characterInfoWindow.activeSelf);
         characterInfoWindow.transform.SetAsLastSibling();
     }
 
     public void SelectQuestUI()
     {
+        if (Input.GetKey(KeyCode.Tab) && questWindow.activeSelf)
+        {
+            questWindow.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+            return;
+        }
         questWindow.SetActive(!questWindow.activeSelf);
         questWindow.transform.SetAsLastSibling();
     }
