@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UIInputManager : MonoBehaviour
 {
+    public static UIInputManager instance;
     // 작성자 : 김두현
     [SerializeField] GameObject inventoryWindow;
     [SerializeField] GameObject characterInfoWindow;
@@ -12,9 +13,9 @@ public class UIInputManager : MonoBehaviour
     [SerializeField] GameObject npcShopWindow;
     public enum UI_TYPE { INVENTORY, CHARACTERINFO, QUEST }
 
-    private void Start()
+    private void Awake()
     {
-        // optionWindow = GameObject.Find("");
+        instance = this;
     }
 
     private void Update()
