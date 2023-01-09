@@ -152,7 +152,7 @@ public abstract class MonsterObject : LifeObject
     {
         _animator.SetTrigger(AnimatorID.Trigger.Die);
         yield return new WaitForSeconds(_destroyTime);
-        Destroy(gameObject);
+        ObjectPool.instance.Put(gameObject);
     }
 
     public Player target { get; protected set; } = null; // 몬스터가 따라갈 대상
