@@ -89,6 +89,7 @@ public class ItemSlot : MonoBehaviour
         itemNumText.gameObject.SetActive(false);
         itemNumImage.gameObject.SetActive(false);
         itemImage.color = Color.clear;
+        SetCoolTimeImage(0f);
     }
 
     void SetItem(Item _item)
