@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -26,15 +27,19 @@ public class MainMenuButtons : MonoBehaviour
     public void SelectGameStartButton()
     {
         //SceneManager.LoadScene("InGame");
+        SoundManager.instance.sfxPlayer.Play(Sfx.MainMenuButton);
         LoadingProgress.LoadScene("InGame");
     }
     public void SelectOptionButton() //¾ê ÇÏ³ª·Î ¿­°í´Ý±â °¡´É
     {
+        SoundManager.instance.sfxPlayer.Play(Sfx.MainMenuButton);
         SettingCanvas.instance.settingBackground.SetActive(!SettingCanvas.instance.settingBackground.activeSelf);
     }
     
     public void SelectGameExitButton()
     {
+        SoundManager.instance.sfxPlayer.Play(Sfx.MainMenuButton);
         Application.Quit();
     }
+    
 }

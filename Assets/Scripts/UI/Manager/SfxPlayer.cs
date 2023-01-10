@@ -50,5 +50,7 @@ public class SfxPlayer : MonoBehaviour
 
 public enum Sfx
 {
-
+    Alert, ButtonCancel, ButtonConfirm, BuyButton, InventoryWindowClose, InventoryWindowOpen,
+    ItemAcquire, ItemSlotSwitch, PopUpClose, PopUpOpen, QuestWindowClose, QuestWindowOpen,
+    Revive, SellButton, ToggleButton, UsePosion, MouseClick, MainMenuButton, MainMenuButtonMouse
 }
