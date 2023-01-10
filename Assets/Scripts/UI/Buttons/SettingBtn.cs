@@ -54,7 +54,7 @@ public class SettingBtn : MonoBehaviour
     public void KeySettingPopUpButton()
     {
         SoundManager.instance.sfxPlayer.Play(Sfx.ButtonConfirm);
-        KeySettingPanel.SetActive(true);
+        KeySettingPanel.SetActive(!KeySettingPanel.activeSelf);
     }
     private void SetFullscreen(bool isFullscreen)
     {
