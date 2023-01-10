@@ -10,8 +10,10 @@ public class PlayerMovement : MonoBehaviour
 
     public float Speed = 5f;
     public float runSpeed = 8f;
+    public float finalSpeed;
 
     public bool toggleCameraRotation;
+    public bool run;
 
     public float smoothness = 10f;
 
@@ -32,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
         {
             toggleCameraRotation = false;
         }
+       
+        InputMovement();
     }
     void LateUpdate()
     {
@@ -40,5 +44,19 @@ public class PlayerMovement : MonoBehaviour
             Vector3 playerRotate = Vector3.Scale(_camera.transform.forward, new Vector3(1, 0, 1));
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRotate), Time.deltaTime * smoothness);
         }
+    }
+
+    void InputMovement()
+    {
+        finalSpeed = (run) ? runSpeed : Speed;
+        Vector3 forward = transform.TransformDirection(Vector3.forward);
+        Vector3 right = transform.TransformDirection(Vector3.right);
+
+        Vector3 moveDirection = forward * Input.GetAxis("Vertical") + right * Input.GetAxis("Horizontal");
+
+        _controller.Move(moveDirection.normalized * finalSpeed * Time.deltaTime);
+
+        float percent = ((run) ? 1 : 0.5f)*moveDirection.magnitude;
+        
     }
 }
