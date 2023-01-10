@@ -663,6 +663,7 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 24d275f677a39b245a5e175f24e345a0, type: 3}
   _destroyTime: 5
   _bodyCollider: {fileID: 737703455}
+  _item: {fileID: 130732, guid: 929fdc028602dc9488a39b1a4eb38357, type: 3}
 --- !u!1 &1532652994627396
 GameObject:
   m_ObjectHideFlags: 0

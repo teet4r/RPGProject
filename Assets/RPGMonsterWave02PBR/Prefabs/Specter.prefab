@@ -571,6 +571,7 @@ MonoBehaviour:
   - {fileID: 7400000, guid: d6bbbe0c029354f4b996c1ff52a4aac7, type: 3}
   _destroyTime: 5
   _bodyCollider: {fileID: 67251102}
+  _item: {fileID: 130732, guid: 929fdc028602dc9488a39b1a4eb38357, type: 3}
 --- !u!195 &67251104
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -164,6 +164,7 @@ public abstract class MonsterObject : LifeObject
     [SerializeField] protected AnimationClip[] _attackClips;
     [SerializeField] protected float _destroyTime = 5f;
     [SerializeField] protected Collider _bodyCollider = null;
+    [SerializeField] protected GameObject _item = null;
     protected Animator _animator = null;
     protected NavMeshAgent _navMeshAgent = null;
     protected Rigidbody _rigidbody = null;
