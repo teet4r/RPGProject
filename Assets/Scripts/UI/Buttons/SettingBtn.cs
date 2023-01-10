@@ -51,10 +51,15 @@ public class SettingBtn : MonoBehaviour
             SetFullscreen(false);
         }
     }
-    public void KeySettingPopUpButton()
+    public void KeySettingPopUpOpenButton()
     {
         SoundManager.instance.sfxPlayer.Play(Sfx.ButtonConfirm);
-        KeySettingPanel.SetActive(!KeySettingPanel.activeSelf);
+        KeySettingPanel.SetActive(true);
+    }
+    public void KeySettingPopUpClolseButton()
+    {
+        SoundManager.instance.sfxPlayer.Play(Sfx.ButtonCancel);
+        KeySettingPanel.SetActive(false);
     }
     private void SetFullscreen(bool isFullscreen)
     {

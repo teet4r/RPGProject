@@ -54,7 +54,6 @@ public class KeyManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        ResetAllKey();
     }
 
     private void Start()
@@ -65,6 +64,7 @@ public class KeyManager : MonoBehaviour
         }
         tmpKeys = defaultKeys;
         SetKeyText();
+        ResetAllKey();
     }
 
     void SetKeyText() // SAVE
@@ -77,6 +77,7 @@ public class KeyManager : MonoBehaviour
 
     public void ResetAllKey() //√ ±‚»≠
     {
+        SoundManager.instance.sfxPlayer.Play(Sfx.ButtonCancel);
         for (int i = 0; i < keys.Count; i++)
         {
             tmpKeys[i] = defaultKeys[i];
@@ -85,6 +86,7 @@ public class KeyManager : MonoBehaviour
 
     public void SaveKeySet()
     {
+        SoundManager.instance.sfxPlayer.Play(Sfx.ButtonConfirm);
         for (int i = 0; i < keys.Count; i++)
         {
             keys[(KEYNAME)i] = tmpKeys[i];
@@ -119,6 +121,7 @@ public class KeyManager : MonoBehaviour
     }
     void RefreshButtonText() // NO_SAVE
     {
+        SoundManager.instance.sfxPlayer.Play(Sfx.ButtonCancel);
         for (int i = 0; i < keys.Count; i++)
         {
             keySettingWindow.transform.GetChild(i).GetComponentInChildren<Text>().text = tmpKeys[i].ToString();

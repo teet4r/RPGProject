@@ -10,20 +10,7 @@ public class MainMenuButtons : MonoBehaviour
 {
     // 작성자 : 김두현
     // 22.12.16 수정 조아라
-    public GameObject circle;
-    public List<GameObject> btns;
 
-    void Start()
-    {
-        foreach(GameObject btn in btns)
-        {
-            btn.GetComponent<Button>().onClick.AddListener(() => clickEffect(btn));
-        }   
-    }
-    void clickEffect(GameObject gameObject)
-    {
-        Instantiate(circle, gameObject.transform.position, quaternion.identity);
-    }
     public void SelectGameStartButton()
     {
         //SceneManager.LoadScene("InGame");
