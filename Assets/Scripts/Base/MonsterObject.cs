@@ -133,7 +133,7 @@ public abstract class MonsterObject : LifeObject
     {
         _animator.SetTrigger(AnimatorID.Trigger.Die);
         yield return new WaitForSeconds(_destroyTime);
-        ObjectPool.instance.Put(gameObject);
+        ObjectPools.instance.normalMonsterPool.Put(gameObject);
     }
 
     public Player target

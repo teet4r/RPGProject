@@ -42,6 +42,10 @@ public class SpawnManager : MonoBehaviour
 
     public void StartSpawn()
     {
+        var bossObj = ObjectPools.instance.bossMonsterPool.Get(_CurSpawnData.bossPrefabNames[0]);
+        bossObj.transform.position = _CurSpawnData.bossSpawnPoints[0].position;
+        bossObj.SetActive(true);
+
         if (_spawnCor == null)
             _spawnCor = StartCoroutine(_RandomSpawn());
     }
@@ -55,8 +59,9 @@ public class SpawnManager : MonoBehaviour
         WaitForSeconds wfs = new WaitForSeconds(_CurSpawnData.spawnRate);
         for (int i = 0; i < _CurSpawnData.maxCount; i++)
         {
-            var obj = ObjectPool.instance.Get(_CurSpawnData.monsterPrefabNames[Random.Range(0, _CurSpawnData.monsterPrefabNames.Length)]);
-            obj.transform.position = _CurSpawnData.spawnPoints[Random.Range(0, _CurSpawnData.spawnPoints.Length)].position;
+            var obj = ObjectPools.instance.normalMonsterPool.
+                Get(_CurSpawnData.normalPrefabNames[Random.Range(0, _CurSpawnData.normalPrefabNames.Length)]);
+            obj.transform.position = _CurSpawnData.normalSpawnPoints[Random.Range(0, _CurSpawnData.normalSpawnPoints.Length)].position;
             obj.SetActive(true);
             yield return wfs;
         }

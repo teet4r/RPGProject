@@ -1,25 +1,20 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    public static ObjectPool instance = null;
     public int PoolSize
     {
         get { return _prefabs.Length; }
     }
     [SerializeField] GameObject[] _prefabs;
     [Tooltip("Make prefab's clones in advance.")]
-    [SerializeField] int _initialCount = 3;
+    [Min(0)][SerializeField] int _initialCount = 3;
     Dictionary<string, GameObject> _dictionary = new Dictionary<string, GameObject>();
     Dictionary<string, Queue<GameObject>> _qDictionary = new Dictionary<string, Queue<GameObject>>();
 
     void Awake()
     {
-        if (instance == null)
-            instance = this;
-
         for (int i = 0; i < _prefabs.Length; i++)
         {
             if (_prefabs[i] == null)
