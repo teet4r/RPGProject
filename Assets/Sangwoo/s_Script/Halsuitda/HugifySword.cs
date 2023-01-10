@@ -16,7 +16,7 @@ public class HugifySword : MonoBehaviour
     }
     private void OnEnable()
     {
-        StartCoroutine(Up());
+        StartCoroutine(Up());       
     }
     IEnumerator Up()
     {
@@ -33,8 +33,5 @@ public class HugifySword : MonoBehaviour
             yield return null;
         }
     }
-    private void OnDisable()
-    {
-        gameObject.transform.localScale = originScale;
-    }
+   
 }

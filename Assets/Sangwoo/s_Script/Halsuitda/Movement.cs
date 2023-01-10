@@ -17,28 +17,19 @@ public class Movement : MonoBehaviour
     Player player;
    
     float h, v, r; //vector값을 저장하기 위해서 (h=호라이즌,v=버티컬,r=마우스호라이즌(회전)) (이동)
-
-   //Vector3 move
-
     public float smoothBlend = 0.1f; //애니메이션 time.deltatime랑 같이 쓰면 빠르고 부드러워짐
     public float moveSpeed = 3f;  //움직일떄 속도
     public float turnSpeed = 90f;
     public float rollSpeed = 10f; //구르기 속도
-
     public bool IsSprint;   //달리기는 속도에 +=해주기
 
-
-
-    //
     Animator _animator;
     Camera _camera;
     CharacterController _controller;
 
     public float Speed = 5f;
     public float runSpeed = 8f;
-
     public bool toggleCameraRotation;
-
     public float smoothness = 10f;
 
     void Start()
@@ -47,47 +38,15 @@ public class Movement : MonoBehaviour
         _camera = Camera.main;
         _controller = this.GetComponent<CharacterController>();
     }
-
-
-
-
-
-
-
-    //
     void Update()
     {
         if (!player.isAlive) return;
         
         Move();
         Roll();
+        
 
-        if (Input.GetKey(KeyCode.LeftAlt))
-        {
-            toggleCameraRotation = true;
-        }
-        else
-        {
-            toggleCameraRotation = false;
-        }
     }
-    //
-
-    void LateUpdate()
-    {
-        if (toggleCameraRotation != true)
-        {
-            Vector3 playerRotate = Vector3.Scale(_camera.transform.forward, new Vector3(1, 0, 1));
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRotate), Time.deltaTime * smoothness);
-        }
-    }
-
-
-
-
-
-
-    //
     void Move()
     {
         
@@ -107,8 +66,10 @@ public class Movement : MonoBehaviour
         transform.Rotate(Vector3.up * r * Time.deltaTime * turnSpeed);
 
         Sprint();
-    }
+        Shield();
 
+
+    }
     void Sprint()
     {
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W))
@@ -185,6 +146,19 @@ public class Movement : MonoBehaviour
         {
             animator.SetBool("IsRolling_R", false);
 
+        }
+    }
+
+    void Shield()
+    {
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            animator.SetBool("IsShield", true);
+            Debug.Log(Player.instance.NowSp);
+        }
+        else if(Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            animator.SetBool("IsShield", false);
         }
     }
 }
