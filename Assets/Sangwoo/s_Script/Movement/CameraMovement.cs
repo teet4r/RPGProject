@@ -104,7 +104,7 @@ public class CameraMovement : MonoBehaviour
 
     void LateUpdate()
     {
-        transform.position = Vector3.MoveTowards(transform.position, objectToFollow.position, followSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, objectToFollow.position, followSpeed );
 
         finalDirection = transform.TransformPoint(directionNormalized * maxDistance);
 
@@ -119,6 +119,6 @@ public class CameraMovement : MonoBehaviour
         {
             finalDistance = maxDistance;
         }
-        realCamera.localPosition = Vector3.Lerp(realCamera.localPosition, directionNormalized * finalDistance, Time.deltaTime);
+        realCamera.localPosition = Vector3.Lerp(realCamera.localPosition, directionNormalized * finalDistance,0.5f);
     }
 }
