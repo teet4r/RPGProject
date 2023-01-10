@@ -38,12 +38,11 @@ public class SkillSlot : MonoBehaviour
     void SetCoolTimeText()
     {
         coolTimeText.gameObject.SetActive(true);
-        coolTimeText.text = $"{(int)SkillManager.instance.SkillCoolTime[transform.GetSiblingIndex()]}";
+        coolTimeText.text = $"ÄðÅ¸ÀÓ : {(int)SkillManager.instance.SkillCoolTime[transform.GetSiblingIndex()]}";
     }
 
     void SetCoolTimeImage(float _fillAmount)
     {
-
         coolTimeImage.gameObject.SetActive(true);
         coolTimeImage.fillAmount = _fillAmount;
     }

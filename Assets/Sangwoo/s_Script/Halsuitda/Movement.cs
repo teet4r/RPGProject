@@ -62,7 +62,7 @@ public class Movement : MonoBehaviour
             animator.SetBool("IsSprint", true);
             Player.instance.DecreaseSp(10*Time.deltaTime);
             
-            Debug.Log(Player.instance.NowSp);
+            // Debug.Log(Player.instance.NowSp);
 
           
         }

@@ -12,13 +12,12 @@ public class ItemInfoWindow : MonoBehaviour
     [SerializeField] Text itemInfo;
     [SerializeField] Text itemSellPrice;
 
-    public void SetItemInfoWindow(ItemSlot _itemSlot)
+    public void SetItemInfoWindow(Item _item)
     {
-        Item _item = _itemSlot.Item;
-        itemImage.sprite = _itemSlot.GetComponent<ItemSlot>().Item.ItemImage;
-        itemName.text = _itemSlot.GetComponent<ItemSlot>().Item.ItemName;
-        itemNum.text = "보유 수량 : " + Inventory.instance.HowManyItem(_itemSlot.Item).ToString();
-        itemInfo.text = _itemSlot.GetComponent<ItemSlot>().Item.ItemInfo;
+        itemImage.sprite = _item.ItemImage;
+        itemName.text = _item.ItemName;
+        itemNum.text = $"보유 수량 : {Inventory.instance.HowManyItem(_item)}";
+        itemInfo.text = _item.ItemInfo;
         itemSellPrice.text = $"{_item.SellPrice} Gold";
     }
 }

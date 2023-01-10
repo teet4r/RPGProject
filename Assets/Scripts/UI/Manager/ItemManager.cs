@@ -12,6 +12,8 @@ public class ItemManager : MonoBehaviour
     float[] consumableItemCoolTime = new float[(int)ConsumableItem.CONSUMABLE_TYPE.ENUM_SIZE];
     bool[] consumableItemUsable = new bool[(int)ConsumableItem.CONSUMABLE_TYPE.ENUM_SIZE];
 
+    public float CheckTime { get { return checkTime; } }
+
     public float ConsumableItemCoolTimeMax { get { return consumableItemCoolTimeMax; } }
     public float[] ConsumableItemCoolTime { get { return consumableItemCoolTime; } }
     public bool[] ConsumableItemUsable { get { return consumableItemUsable; } }

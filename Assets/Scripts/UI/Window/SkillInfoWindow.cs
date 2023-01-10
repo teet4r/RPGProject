@@ -16,8 +16,9 @@ public class SkillInfoWindow : MonoBehaviour
         ClearWindow();
         skillImage.sprite = _skillSlot.Skill.SkillImage;
         skillName.text = _skillSlot.Skill.SkillName;
-        skillMana.text = _skillSlot.Skill.SkillMana.ToString();
-        skillCoolTime.text = _skillSlot.Skill.CoolTime.ToString() + '초';
+        skillMana.text = $"마나 소모 {_skillSlot.Skill.SkillMana}";
+        skillCoolTime.text = $"쿨타임 {_skillSlot.Skill.CoolTime}초";
+        skillInfo.text = $"{_skillSlot.Skill.SkillInfo}";
     }
 
     void ClearWindow()

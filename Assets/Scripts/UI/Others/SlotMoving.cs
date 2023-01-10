@@ -64,7 +64,7 @@ public class SlotMoving : MonoBehaviour
                 {
                     potionSlot = raycastResults[0].gameObject.GetComponent<PotionSlot>();
                 }
-                if (unselectedItem.CompareTag("ItemSlot"))
+                if (unselectedItem != null && unselectedItem.CompareTag("ItemSlot"))
                 {
                     Item tmpItem = unselectedItem.Item;
                     int tmpNum = unselectedItem.ItemNum;
@@ -94,7 +94,7 @@ public class SlotMoving : MonoBehaviour
                         }
                     }
                 }
-                else if (unselectedItem.CompareTag("Shop"))
+                else if (unselectedItem != null && unselectedItem.CompareTag("Shop"))
                 {
                     sellingItemWindow.gameObject.SetActive(true);
                     sellingItemWindow.SetSellPopUp(selectedItem);
@@ -110,6 +110,8 @@ public class SlotMoving : MonoBehaviour
                 droppingItemWindow.SetDropPopUp(selectedItem);
             }
             raycastResults.Clear();
+            unselectedItem = null;
+            potionSlot = null;
         }
     }
 }
