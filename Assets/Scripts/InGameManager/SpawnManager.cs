@@ -4,11 +4,37 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] Transform[] _spawnPoints;
-    [SerializeField] float _spawnRate = 3f;
-    [SerializeField] int _maxSpawnCount = 10;
+    public static SpawnManager instance = null;
+    public int Stage
+    {
+        get { return _stage; }
+        set
+        {
+            if (value < 1)
+                value = 1;
+            _stage = value;
+        }
+    }
+    SpawnData _CurSpawnData
+    {
+        get
+        {
+            if (_spawnDatas.Length < Stage)
+                throw new System.Exception("Not enough spawn datas.");
+            return _spawnDatas[Stage - 1];
+        }
+    }
+    #region Private Variables
+    [SerializeField] SpawnData[] _spawnDatas;
+    int _stage = 1;
     Coroutine _spawnCor = null;
-    
+    #endregion
+
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+    }
     void Start()
     {
         StartSpawn();
@@ -26,15 +52,11 @@ public class SpawnManager : MonoBehaviour
     }
     IEnumerator _RandomSpawn()
     {
-        WaitForSeconds wfs = new WaitForSeconds(_spawnRate);
-        string[] monsterPrefabNames =
+        WaitForSeconds wfs = new WaitForSeconds(_CurSpawnData.spawnRate);
+        for (int i = 0; i < _CurSpawnData.maxCount; i++)
         {
-            "ChestMonster"
-        };
-        for (int i = 0; i < _maxSpawnCount; i++)
-        {
-            var obj = ObjectPool.instance.Get(monsterPrefabNames[Random.Range(0, monsterPrefabNames.Length)]);
-            obj.transform.position = _spawnPoints[Random.Range(0, _spawnPoints.Length)].position;
+            var obj = ObjectPool.instance.Get(_CurSpawnData.monsterPrefabNames[Random.Range(0, _CurSpawnData.monsterPrefabNames.Length)]);
+            obj.transform.position = _CurSpawnData.spawnPoints[Random.Range(0, _CurSpawnData.spawnPoints.Length)].position;
             obj.SetActive(true);
             yield return wfs;
         }

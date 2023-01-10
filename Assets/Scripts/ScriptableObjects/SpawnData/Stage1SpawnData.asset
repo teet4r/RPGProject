@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0feb3c3a9203a1f478fd7b43c9f1d0ee, type: 3}
+  m_Name: Stage1SpawnData
+  m_EditorClassIdentifier: 
+  stage: 1
+  spawnPoints:
+  - {fileID: 7498179749537250928, guid: d7ac06274ac15ec419a15f102dfc6369, type: 3}
+  - {fileID: 6785814347716510225, guid: 2618470beb0888a4f82b42f23a29694f, type: 3}
+  - {fileID: 3994984139734579730, guid: 6268b25487afc5e418947bbafad70018, type: 3}
+  - {fileID: 7772566597373823338, guid: 8f9df1527cbe4b543800d9930033a738, type: 3}
+  - {fileID: 5593598502178535861, guid: d30f77e1b6bac79449a45810ed967c78, type: 3}
+  - {fileID: 2266015441445255771, guid: 6935572414a7edf4fac3d9a86602e469, type: 3}
+  monsterPrefabNames:
+  - Specter
+  - ChestMonster
+  spawnRate: 3
+  maxCount: 8

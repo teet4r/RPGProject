@@ -6,11 +6,15 @@ public class EvilMagePattern2 : MonoBehaviour, IAttackPattern
 {
     public void Attack(Transform targetTransform)
     {
+        if (targetTransform == null) return;
+
         StartCoroutine(_Attack(targetTransform));
     }
 
     IEnumerator _Attack(Transform targetTransform)
     {
+        if (targetTransform == null) yield break;
+
         yield return _effectDelayTime;
         var targetPosition = targetTransform.position;
         targetPosition.y = 0f;

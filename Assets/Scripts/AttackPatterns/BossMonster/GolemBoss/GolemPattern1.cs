@@ -6,11 +6,15 @@ public class GolemPattern1 : MonoBehaviour, IAttackPattern
 {
     public void Attack(Transform targetTransform)
     {
+        if (targetTransform == null) return;
+
         StartCoroutine(_Attack(targetTransform));
     }
 
     IEnumerator _Attack(Transform targetTransform)
     {
+        if (targetTransform == null) yield break;
+
         yield return _effectDelayTime;
         for (int i = 0; i < _meteorCount; i++)
         {

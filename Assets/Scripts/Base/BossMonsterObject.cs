@@ -17,7 +17,9 @@ public abstract class BossMonsterObject : MonsterObject
     protected override void _RushToTarget()
     {
         _navMeshAgent.stoppingDistance = data.stoppingDistance;
-        _navMeshAgent.destination = target.transform.position;
+        if (hasTarget)
+            _navMeshAgent.destination = target.transform.position;
+        else return;
 
         if (isAttackable && _attackCor == null)
             _attackCor = StartCoroutine(_Attack());

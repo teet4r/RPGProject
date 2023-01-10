@@ -10,7 +10,9 @@ public class NormalMonsterObject : MonsterObject
     protected override void _RushToTarget()
     {
         _navMeshAgent.stoppingDistance = data.stoppingDistance;
-        _navMeshAgent.destination = target.transform.position;
+        if (hasTarget)
+            _navMeshAgent.destination = target.transform.position;
+        else return;
 
         var lookDir2D = target.transform.position;
         lookDir2D.y = 0f;
@@ -27,7 +29,7 @@ public class NormalMonsterObject : MonsterObject
         _animator.SetTrigger(AnimatorID.Trigger.Attacks[idx]);
         yield return new WaitForSeconds(_attackClips[idx].length + 1f);
 
-        _navMeshAgent.destination = target.transform.position;
+        _navMeshAgent.destination = hasTarget ? target.transform.position : transform.position;
         isAttacking = false;
         _attackCor = null;
     }

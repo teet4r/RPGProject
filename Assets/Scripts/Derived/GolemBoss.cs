@@ -28,7 +28,7 @@ public class GolemBoss : BossMonsterObject
 
         // 상태 원위치
         _navMeshAgent.isStopped = false;
-        _navMeshAgent.destination = target.transform.position;
+        _navMeshAgent.destination = hasTarget ? target.transform.position : transform.position;
         isAttacking = false;
         _attackCor = null;
     }

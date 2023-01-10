@@ -8,11 +8,11 @@ public class Algorithm
     /// <summary>
     /// 내비메시 위의 랜덤한 위치를 반환하는 메서드.
     /// center를 중심으로 distance 반경 안에서 랜덤한 위치를 찾는다.
-    /// 랜덤한 한 점을 찾기에 실패하면 양의 무한 벡터 반환.
+    /// 랜덤한 한 점을 찾기에 실패하면 center 좌표 반환.
     /// </summary>
     /// <param name="center"></param>
     /// <param name="distance"></param>
-    /// <returns></returns>
+    /// <returns>성공시: hit.position, 실패시: center</returns>
     public static Vector3 GetRandomPointOnNavMesh(Vector3 center, float distance)
     {
         // center를 중심으로 반지름이 maxDistance인 구 안에서의 랜덤한 위치 하나를 저장
@@ -26,7 +26,7 @@ public class Algorithm
         if (NavMesh.SamplePosition(randomPos, out hit, distance, NavMesh.AllAreas))
             // 찾은 점 반환
             return hit.position;
-        return Vector3.positiveInfinity;
+        return center;
     }
 
     /// <summary>

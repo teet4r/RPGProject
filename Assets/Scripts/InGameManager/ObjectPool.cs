@@ -37,6 +37,10 @@ public class ObjectPool : MonoBehaviour
             }
         }
     }
+    void OnDestroy()
+    {
+        Clear();
+    }
 
     public GameObject Get(string prefabName)
     {
@@ -93,6 +97,11 @@ public class ObjectPool : MonoBehaviour
     {
         foreach (var pair in _qDictionary)
             while (pair.Value.Count != 0)
-                Destroy(pair.Value.Dequeue());
+            {
+                var obj = pair.Value.Dequeue();
+                if (obj != null)
+                    Destroy(obj);
+            }
+        Debug.Log("Clearing object pool is completed.");
     }
 }
