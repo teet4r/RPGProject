@@ -26,21 +26,75 @@ public class Movement : MonoBehaviour
     public float rollSpeed = 10f; //구르기 속도
 
     public bool IsSprint;   //달리기는 속도에 +=해주기
-    
+
+
+
+    //
+    Animator _animator;
+    Camera _camera;
+    CharacterController _controller;
+
+    public float Speed = 5f;
+    public float runSpeed = 8f;
+
+    public bool toggleCameraRotation;
+
+    public float smoothness = 10f;
+
+    void Start()
+    {
+        _animator = this.GetComponent<Animator>();
+        _camera = Camera.main;
+        _controller = this.GetComponent<CharacterController>();
+    }
+
+
+
+
+
+
+
+    //
     void Update()
     {
         if (!player.isAlive) return;
         
         Move();
         Roll();
+
+        if (Input.GetKey(KeyCode.LeftAlt))
+        {
+            toggleCameraRotation = true;
+        }
+        else
+        {
+            toggleCameraRotation = false;
+        }
+    }
+    //
+
+    void LateUpdate()
+    {
+        if (toggleCameraRotation != true)
+        {
+            Vector3 playerRotate = Vector3.Scale(_camera.transform.forward, new Vector3(1, 0, 1));
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRotate), Time.deltaTime * smoothness);
+        }
     }
 
+
+
+
+
+
+    //
     void Move()
     {
         
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
         r = Input.GetAxis("Mouse X");
+
         transform.Translate(Vector3.right * h * moveSpeed * Time.deltaTime);
         {
             animator.SetFloat("SpeedX", h, smoothBlend, Time.deltaTime);
@@ -54,6 +108,7 @@ public class Movement : MonoBehaviour
 
         Sprint();
     }
+
     void Sprint()
     {
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W))

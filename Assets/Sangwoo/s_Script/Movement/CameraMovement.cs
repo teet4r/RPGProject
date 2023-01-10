@@ -20,11 +20,35 @@ public class CameraMovement : MonoBehaviour
     public float finalDistance;
     public float Smoothness = 10f;
 
+    //카메라 벽통과 불가
+    //public float rot_speed = 100.0f;
+
+    //public GameObject Player;
+    //public GameObject MainCamera;
+
+    //private float camera_dist = 0f; 
+    //public float camera_width = -10f; 
+    //public float camera_height = 4f; 
+    //public float camera_fix = 3f;
+
+    //Vector3 dir;
+
 
     void Start()
     {
+        //player Tag
+        //Player = GameObject.FindGameObjectWithTag("Player");
+        //MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+
+        //camera_dist = Mathf.Sqrt(camera_width * camera_width +
+        //    camera_height * camera_height);
+        //dir = new Vector3(0, camera_height, camera_width).normalized;
+        ////////////////////////////////
+       
+
         rotX = transform.localRotation.eulerAngles.x;
         rotY = transform.localRotation.eulerAngles.y;
+        
 
         directionNormalized = realCamera.localPosition.normalized;
         finalDistance = realCamera.localPosition.magnitude; //magnitude(크기)
@@ -32,15 +56,50 @@ public class CameraMovement : MonoBehaviour
         Cursor.visible = false;
     }
 
-    
+
     void Update()
     {
-        rotX += -(Input.GetAxis("Mouse Y")) *sensitivity* Time.deltaTime;
-        rotY += Input.GetAxis("Mouse X") *sensitivity* Time.deltaTime;
+        //
+        //transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * Time.deltaTime * rot_speed, Space.World);
+        //transform.Rotate(Vector3.left * Input.GetAxis("Mouse Y") * Time.deltaTime * rot_speed, Space.Self);
+        //transform.position = Player.transform.position;
+        //
+        ///////////////////////////////
+        //레이캐스트할 벡터값
+        //Vector3 ray_target = transform.up * camera_height + transform.forward * camera_width;
+        //Debug.Log("ray_target : " + ray_target);
+
+        //RaycastHit hitinfo;
+        //Physics.Raycast(transform.position, ray_target, out hitinfo, camera_dist);
+
+        //if (hitinfo.point != Vector3.zero)//레이케스트 성공시
+        //{
+        //    //point로 옮긴다.
+        //    MainCamera.transform.position = hitinfo.point;
+        //    //카메라 보정
+        //    MainCamera.transform.Translate(dir * -1 * camera_fix);
+        //}
+        //else
+        //{
+        //    //로컬좌표를 0으로 맞춘다. (카메라리그로 옮긴다.)
+        //    MainCamera.transform.localPosition = Vector3.zero;
+        //    //카메라위치까지의 방향벡터 * 카메라 최대거리 로 옮긴다.
+        //    MainCamera.transform.Translate(dir * camera_dist);
+        //    //카메라 보정
+        //    MainCamera.transform.Translate(dir * -1 * camera_fix);
+
+        //}
+
+        /////////////////////////
+
+        rotX += -(Input.GetAxis("Mouse Y")) * sensitivity * Time.deltaTime;
+        rotY += Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
 
         rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
         Quaternion rot = Quaternion.Euler(rotX, rotY, 0);
         transform.rotation = rot;
+
+
     }
 
     void LateUpdate()
