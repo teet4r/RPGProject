@@ -52,8 +52,7 @@ public class CameraMovement : MonoBehaviour
 
         directionNormalized = realCamera.localPosition.normalized;
         finalDistance = realCamera.localPosition.magnitude; //magnitude(Å©±â)
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        LockCursor();
     }
 
 
@@ -92,14 +91,19 @@ public class CameraMovement : MonoBehaviour
 
         /////////////////////////
 
-        rotX += -(Input.GetAxis("Mouse Y")) * sensitivity * Time.deltaTime;
-        rotY += Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
-
-        rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
-        Quaternion rot = Quaternion.Euler(rotX, rotY, 0);
-        transform.rotation = rot;
-
-
+        if (UIInputManager.instance.CheckUIOpen())
+        {
+            UnLockCursor();
+        }
+        else
+        {
+            LockCursor();
+            rotX += -(Input.GetAxis("Mouse Y")) * sensitivity * Time.deltaTime;
+            rotY += Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
+            rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
+            Quaternion rot = Quaternion.Euler(rotX, rotY, 0);
+            transform.rotation = rot;
+        }
     }
 
     void LateUpdate()
@@ -120,5 +124,15 @@ public class CameraMovement : MonoBehaviour
             finalDistance = maxDistance;
         }
         realCamera.localPosition = Vector3.Lerp(realCamera.localPosition, directionNormalized * finalDistance,0.5f);
+    }
+
+    void LockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void UnLockCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
     }
 }

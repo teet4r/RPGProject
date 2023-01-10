@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: "\uC0AC\uC2E0\uC758 \uB9DD\uD1A0"
   itemInfo: "\uD30C\uB780 \uC0AC\uC2E0\uC758 \uB9DD\uD1A0\uB2E4."
-  itemImage: {fileID: 21300000, guid: a0dd1a56e66754fc4887580637e1e1f2, type: 3}
-  buyPrice: 0
-  sellPrice: 0
+  itemImage: {fileID: 21300000, guid: 42d1c5c48ed6a46c9ba530a1c9fb924f, type: 3}
+  buyPrice: 100
+  sellPrice: 50
   bundleSize: 10
   canSell: 1
   itemType: 1

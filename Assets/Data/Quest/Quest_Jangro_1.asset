@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73b72ce8b83297c4da6831352c858796, type: 3}
+  m_Name: Quest_Jangro_1
+  m_EditorClassIdentifier: 
+  questTitle: "\uC790\uACA9 \uC99D\uBA85 - \uD478\uB978 \uC0AC\uC2E0 \uD1A0\uBC8C"
+  questNpc: "\uC7A5\uB85C"
+  questInfo: "A\uC9C0\uC5ED\uC5D0\uC11C \uD478\uB978 \uC0AC\uC2E0\uC744 5\uB9C8\uB9AC
+    \uD1A0\uBC8C\uD558\uAE30"
+  questRequireMonster:
+  - monster: {fileID: 11400000, guid: 8ea16b7225fcf544985900be5aaf69fa, type: 2}
+    monsterNum: 5
+  questRequireItem: []
+  questPrizeItems: []
+  questCode: 00000000
+  questPrizeGold: 100
+  questPrizeExp: 200
+  questType: 0

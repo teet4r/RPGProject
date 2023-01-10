@@ -52,7 +52,7 @@ public enum Sfx //UI, Boss, 박스 몬스터 , 유령 몬스터, 플레이어 순서
 {
     Alert, ButtonCancel, ButtonConfirm, BuyButton, InventoryWindowClose, InventoryWindowOpen,
     ItemAcquire, ItemSlotSwitch, PopUpClose, PopUpOpen, QuestWindowClose, QuestWindowOpen,
-    Revive, SellButton, ToggleButton, UsePosion, MouseClick, MainMenuButton, MainMenuButtonMouse,
+    Revive, SellButton, ToggleButton, UsePotion, MouseClick, MainMenuButton, MainMenuButtonMouse,
 
     BossAttack, BossDead, BossFindPlayer, BossGetDamage, BossMove, 
 

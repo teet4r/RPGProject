@@ -14,7 +14,10 @@ public class SkillSlot : MonoBehaviour
     private void Start()
     {
         skillImage.sprite = skill.SkillImage;
-        StartCoroutine(RefreshSkillCoolTimeInfo());
+        if (coolTimeImage != null && coolTimeText != null)
+        {
+            StartCoroutine(RefreshSkillCoolTimeInfo());
+        }
     }
 
     IEnumerator RefreshSkillCoolTimeInfo()

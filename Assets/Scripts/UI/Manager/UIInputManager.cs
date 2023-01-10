@@ -96,6 +96,6 @@ public class UIInputManager : MonoBehaviour
                 return true;
             }
         }
-        return false;
+        return SettingCanvas.instance.settingBackground.activeSelf;
     }
 }

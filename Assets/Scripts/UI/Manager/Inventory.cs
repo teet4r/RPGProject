@@ -111,20 +111,22 @@ public class Inventory : MonoBehaviour
             switch(_item.ConsumableType)
             {
                 case ConsumableItem.CONSUMABLE_TYPE.HP_POTION:
-                    if (!ItemManager.instance.ConsumableItemUsable[0])
+                    if (!ItemManager.instance.ConsumableItemUsable[(int)ConsumableItem.CONSUMABLE_TYPE.HP_POTION])
                     {
                         AlertManager.instance.ShowAlert("아직 사용할 수 없습니다.");
                         return;
                     }
+                    SoundManager.instance.sfxPlayer.Play(Sfx.UsePotion);
                     Player.instance.AddHp(_item.HpRecoverNum);
                     ItemManager.instance.SetConsumableItemUsableFalse(0);
                     break;
                 case ConsumableItem.CONSUMABLE_TYPE.MP_POTION:
-                    if (!ItemManager.instance.ConsumableItemUsable[1])
+                    if (!ItemManager.instance.ConsumableItemUsable[(int)ConsumableItem.CONSUMABLE_TYPE.MP_POTION])
                     {
                         AlertManager.instance.ShowAlert("아직 사용할 수 없습니다.");
                         return;
                     }
+                    SoundManager.instance.sfxPlayer.Play(Sfx.UsePotion);
                     Player.instance.AddMp(_item.MpRecoverNum);
                     ItemManager.instance.SetConsumableItemUsableFalse(1);
                     break;

@@ -52,7 +52,7 @@ public class QuestManager : MonoBehaviour
         questInfoTexts[0].text = _quest.QuestTitle;
         questInfoTexts[1].text = _quest.QuestNpc;
         questInfoTexts[2].text = _quest.QuestInfo;
-        questInfoTexts[3].text = _quest.QuestRequireItem.Item.ItemName + ' ';
+        // questInfoTexts[3].text = _quest.QuestRequireItem.Item.ItemName + ' ';
         questInfoTexts[5].text = "경험치 : " + _quest.QuestPrizeExp.ToString();
         questInfoTexts[6].text = "골드 : " + _quest.QuestPrizeGold.ToString();
         RefreshRequireText(_questCode);
@@ -63,7 +63,7 @@ public class QuestManager : MonoBehaviour
         _quest = questInfos[_questCode].Quest;
         if (_quest.QuestRequireItem != null)
         {
-            questInfoTexts[3].text = $"{_quest.QuestRequireItem.Item.ItemName} {Inventory.instance.HowManyItem(_quest.QuestRequireItem.Item)}/{_quest.QuestRequireItem.ItemNum} 개 수집하기";
+            // questInfoTexts[3].text = $"{_quest.QuestRequireItem.Item.ItemName} {Inventory.instance.HowManyItem(_quest.QuestRequireItem.Item)}/{_quest.QuestRequireItem.ItemNum} 개 수집하기";
         }
     }
 
@@ -120,10 +120,12 @@ public class QuestManager : MonoBehaviour
 
         public void CheckQuestCompletable()
         {
+            /*
             if (quest.QuestRequireItem.ItemNum <= Inventory.instance.HowManyItem(quest.QuestRequireItem.Item))
             {
                 questCompletable = true;
             }
+            */
             /*
             if (quest.QuestRequireMonster.MonsterNum <= monsterKill)
             {
