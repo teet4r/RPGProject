@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FlyingSword
   m_EditorClassIdentifier: 
   skillName: "\uD50C\uB77C\uC789 \uC18C\uB4DC"
-  skillImage: {fileID: 21300000, guid: 0d17362f56f054fb6b9d751d8c84c78f, type: 3}
+  skillImage: {fileID: 21300000, guid: 03e6f50b7a998ed46a4c3f9f8cb0855e, type: 3}
   skillMana: 15
   coolTime: 8
   skillInfo: "\uC801\uC744 \uB530\uB77C\uAC00\uC11C 10 \uC758 \uD53C\uD574\uB97C
