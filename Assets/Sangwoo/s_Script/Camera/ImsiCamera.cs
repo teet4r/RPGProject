@@ -22,19 +22,19 @@ public class ImsiCamera : MonoBehaviour
 	private float heightDamping;
 
 	//obstacle collider
-	public Vector3 directionNormalized;
-	public Vector3 followCamera;
-	public Transform Camera;
-	public float minDistance;
-	public float maxDistance;
-	public float finalDistance;
-	public float Smoothness = 10f;
+	//public Vector3 directionNormalized;
+	//public Vector3 followCamera;
+	//public Transform Camera;
+	//public float minDistance;
+	//public float maxDistance;
+	//public float finalDistance;
+	//public float Smoothness = 10f;
 
 	// Use this for initialization
-	void Start() 
+	void Start()
 	{
-		finalDistance = Camera.localPosition.magnitude;
-		
+		//finalDistance = Camera.localPosition.magnitude;
+
 	}
 
 	// Update is called once per frame
@@ -72,19 +72,19 @@ public class ImsiCamera : MonoBehaviour
 		transform.LookAt(target);
 
 		//obstacle collider
-		followCamera = transform.TransformPoint(directionNormalized * maxDistance);
+		//	followCamera = transform.TransformPoint(directionNormalized * maxDistance);
 
-		RaycastHit hit;
+		//	RaycastHit hit;
 
-		if (Physics.Linecast(transform.position, followCamera, out hit))
-		{
-			finalDistance = Mathf.Clamp(hit.distance, minDistance, maxDistance);
-		}
-		else
-		{
-			finalDistance = maxDistance;
-		}
-		Camera.localPosition = Vector3.Lerp(Camera.localPosition, directionNormalized * finalDistance, Time.deltaTime * Smoothness);
+		//	if (Physics.Linecast(transform.position, followCamera, out hit))
+		//	{
+		//		finalDistance = Mathf.Clamp(hit.distance, minDistance, maxDistance);
+		//	}
+		//	else
+		//	{
+		//		finalDistance = maxDistance;
+		//	}
+		//	Camera.localPosition = Vector3.Lerp(Camera.localPosition, directionNormalized * finalDistance, Time.deltaTime * Smoothness);
+		//}
 	}
 }
-
