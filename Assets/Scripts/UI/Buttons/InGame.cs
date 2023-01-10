@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class InGame : MonoBehaviour
 {
     [SerializeField] Image MiniMap;
-    [SerializeField] Image Quest;
+    [SerializeField] GameObject Quest;
     public Image MiniMapSwitchImg;
     public Image QuestSwitchImg;
     public Sprite CloseImg;
