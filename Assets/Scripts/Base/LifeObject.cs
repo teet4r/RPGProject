@@ -14,12 +14,11 @@ public abstract class LifeObject : MonoBehaviour
     }
     protected virtual void OnEnable()
     {
-        isAlive = true;
-        isWalking = false;
         isInvincible = false;
         curHp = maxHp;
 
         _prevPos = transform.position;
+        _prevTime = Time.time;
     }
     protected virtual void Update()
     {
@@ -45,21 +44,35 @@ public abstract class LifeObject : MonoBehaviour
     {
         if (!isAlive) return;
 
-        isAlive = false;
-        isWalking = false;
-        isInvincible = false;
-
         curHp = 0f;
+        isInvincible = false;
     }
     protected virtual void _UpdateStates()
     {
-        isWalking = transform.position - _prevPos == Vector3.zero ? false : true;
-        _prevPos = transform.position;
+
     }
     protected abstract IEnumerator _TriggerGetDamage(float damage);
 
-    public bool isAlive { get; private set; }
-    public bool isWalking { get; private set; }
+    public bool isAlive
+    {
+        get
+        {
+            return gameObject != null && gameObject.activeSelf && enabled && curHp > 0f;
+        }
+    }
+    public bool isWalking
+    {
+        get
+        {
+            var _isWalking =
+                isAlive &&
+                transform.position - _prevPos != Vector3.zero &&
+                Time.time - _prevTime != 0f;
+            _prevPos = transform.position;
+            _prevTime = Time.time;
+            return _isWalking;
+        }
+    }
     public bool isInvincible { get; protected set; }
     public float maxHp { get { return _maxHp; } }
     public float curHp { get; protected set; }
@@ -68,4 +81,5 @@ public abstract class LifeObject : MonoBehaviour
     [Tooltip("피격 후 무적 시간")]
     [SerializeField] float _invincibleTime = 0.5f;
     Vector3 _prevPos;
+    float _prevTime;
 }

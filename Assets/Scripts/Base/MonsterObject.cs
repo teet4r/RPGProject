@@ -24,8 +24,6 @@ public abstract class MonsterObject : LifeObject
     {
         base.OnEnable();
 
-        isRecognized = false;
-        isAttackable = false;
         isAttacking = false;
 
         _bodyCollider.isTrigger = true;
@@ -46,9 +44,6 @@ public abstract class MonsterObject : LifeObject
     protected override void Update()
     {
         base.Update();
-
-        target = Player.instance;
-        Debug.Log(curHp);
 
         _Move();
 
@@ -81,24 +76,10 @@ public abstract class MonsterObject : LifeObject
     protected override void _UpdateStates()
     {
         base._UpdateStates();
-
-        isRecognized = hasTarget && Vector3.Distance(target.transform.position, transform.position) <= data.recognitionDistance;
-        if (hasTarget &&
-            Vector3.Distance(target.transform.position, transform.position) <= data.stoppingDistance + 1f &&
-            Time.time - _prevAttackTime >= data.attackRate)
-        {
-            isAttackable = true;
-            _prevAttackTime = Time.time;
-        }
-        else
-            isAttackable = false;
     }
     protected override void _Die()
     {
         base._Die();
-
-        isRecognized = false;
-        isAttackable = false;
 
         _navMeshAgent.isStopped = true;
         if (_patrolCor != null)
@@ -155,10 +136,45 @@ public abstract class MonsterObject : LifeObject
         ObjectPool.instance.Put(gameObject);
     }
 
-    public Player target { get; protected set; } = null; // 몬스터가 따라갈 대상
-    public bool hasTarget { get { return target != null && target.isAlive; } }
-    public bool isRecognized { get; protected set; } // 플레이어가 시야에 들어올 때
-    public bool isAttackable { get; protected set; } // 공격 가능할 때
+    public Player target
+    {
+        get { return Player.instance; }
+    }
+    public bool hasTarget
+    {
+        get
+        {
+            return isAlive && target != null && target.gameObject.activeSelf && target.isAlive;
+        }
+    }
+    public bool isRecognized // 플레이어가 시야에 들어올 때
+    {
+        get
+        {
+            return
+                isAlive && 
+                hasTarget &&
+                Vector3.Distance(target.transform.position, transform.position) <= data.recognitionDistance;
+        }
+    }
+    public bool isAttackable// 공격 가능할 때
+    {
+        get
+        {
+            bool _isAttackable = false;
+            if (isAlive &&
+                hasTarget &&
+                Vector3.Distance(target.transform.position, transform.position) <= data.stoppingDistance + 1f &&
+                Time.time - _prevAttackTime >= data.attackRate) 
+            {
+                _isAttackable = true;
+                _prevAttackTime = Time.time;
+            }
+            else
+                _isAttackable = false;
+            return _isAttackable;
+        }
+    }
     public bool isAttacking { get; protected set; } // 공격 중일 때 true
     public MonsterData data = null; // 몬스터 데이터 컨테이너
     [SerializeField] protected AnimationClip[] _attackClips;

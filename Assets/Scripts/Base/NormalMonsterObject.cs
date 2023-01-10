@@ -15,7 +15,7 @@ public class NormalMonsterObject : MonsterObject
         else return;
 
         var lookDir2D = target.transform.position;
-        lookDir2D.y = 0f;
+        lookDir2D.y = transform.position.y;
         transform.LookAt(lookDir2D);
 
         if (isAttackable && _attackCor == null)

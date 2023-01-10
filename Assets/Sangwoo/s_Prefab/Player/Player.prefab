@@ -62,7 +62,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29760983031659422}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -180,6 +180,10 @@ MonoBehaviour:
   turnSpeed: 30
   rollSpeed: 10
   IsSprint: 0
+  Speed: 5
+  runSpeed: 8
+  toggleCameraRotation: 0
+  smoothness: 10
 --- !u!114 &8026327907353284574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,14 +191,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29760983031659422}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9eb8b59818c0254488bd44bccaadf6c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 5
   runSpeed: 8
+  finalSpeed: 0
   toggleCameraRotation: 0
+  run: 0
   smoothness: 10
 --- !u!1 &349979117204124689
 GameObject:
