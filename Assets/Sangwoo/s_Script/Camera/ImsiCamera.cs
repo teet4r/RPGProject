@@ -1,4 +1,5 @@
-
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -20,12 +21,19 @@ public class ImsiCamera : MonoBehaviour
 	[SerializeField]
 	private float heightDamping;
 
-
+	//obstacle collider
+	public Vector3 directionNormalized;
+	public Vector3 followCamera;
+	public Transform Camera;
+	public float minDistance;
+	public float maxDistance;
+	public float finalDistance;
+	public float Smoothness = 10f;
 
 	// Use this for initialization
 	void Start() 
 	{
-		
+		finalDistance = Camera.localPosition.magnitude;
 		
 	}
 
@@ -63,7 +71,20 @@ public class ImsiCamera : MonoBehaviour
 		// Always look at the target
 		transform.LookAt(target);
 
-		
+		//obstacle collider
+		followCamera = transform.TransformPoint(directionNormalized * maxDistance);
+
+		RaycastHit hit;
+
+		if (Physics.Linecast(transform.position, followCamera, out hit))
+		{
+			finalDistance = Mathf.Clamp(hit.distance, minDistance, maxDistance);
+		}
+		else
+		{
+			finalDistance = maxDistance;
+		}
+		Camera.localPosition = Vector3.Lerp(Camera.localPosition, directionNormalized * finalDistance, Time.deltaTime * Smoothness);
 	}
 }
 

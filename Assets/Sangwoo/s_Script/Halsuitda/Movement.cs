@@ -37,6 +37,7 @@ public class Movement : MonoBehaviour
 
     void Move()
     {
+        
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
         r = Input.GetAxis("Mouse X");
