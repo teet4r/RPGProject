@@ -5360,6 +5360,24 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bae289cb533c3224da749bb15720db47, type: 3}
   - {fileID: 8300000, guid: 89d069e465ac2a84ea6c1daa1066e313, type: 3}
   - {fileID: 8300000, guid: ef0da04c193e62c49a4a1f8e37dd2555, type: 3}
+  - {fileID: 8300000, guid: 4e10560e282d1cd4284d5acd1df5abf3, type: 3}
+  - {fileID: 8300000, guid: f0fb1fea2a320af46a5d422ebd26d604, type: 3}
+  - {fileID: 8300000, guid: d830766b08c0f044b9ed1dcb5f93b22c, type: 3}
+  - {fileID: 8300000, guid: 041e375b701ec0d4cac415a84bd4cc21, type: 3}
+  - {fileID: 8300000, guid: a0214718920ae584da85ca37c50dc2fb, type: 3}
+  - {fileID: 8300000, guid: 122714ee9a4ab814e94256c42b19dca6, type: 3}
+  - {fileID: 8300000, guid: e1664a88609cb3748acf09b69e9d3c95, type: 3}
+  - {fileID: 8300000, guid: b7976bae6739390488ebe1f8e07e24fb, type: 3}
+  - {fileID: 8300000, guid: 7b5e9f34a4055c2499b35dc1c778f342, type: 3}
+  - {fileID: 8300000, guid: 0e298f82501d18743956d87c2ed0e1c9, type: 3}
+  - {fileID: 8300000, guid: 4d70c104cefbaf04f8104c3557427a82, type: 3}
+  - {fileID: 8300000, guid: 53497df0b2e3cba4aa99cee7da4b519b, type: 3}
+  - {fileID: 8300000, guid: 9e296830100010d4b8cdd8da9ad2619d, type: 3}
+  - {fileID: 8300000, guid: c2044a92640e99e4bbb27d8b44e687a5, type: 3}
+  - {fileID: 8300000, guid: 28354b3cc2878474089e461546a2df34, type: 3}
+  - {fileID: 8300000, guid: 917ac54a13f810e4a86159263cf162be, type: 3}
+  - {fileID: 8300000, guid: 12960e13a74aff34c972f81148faa13c, type: 3}
+  - {fileID: 8300000, guid: b019388f5820d20469bd3e53f004c0e7, type: 3}
 --- !u!1 &761790062
 GameObject:
   m_ObjectHideFlags: 0
@@ -5454,6 +5472,7 @@ MonoBehaviour:
   WindowScreen: {fileID: 21300000, guid: 522b7e905fdb2314489f9287ea71bb9f, type: 3}
   FullScreen: {fileID: 21300000, guid: b87a0ddd57aa7cd41ad839c29b7b866c, type: 3}
   resolutionDropdown: {fileID: 221684013}
+  KeySettingPanel: {fileID: 1341340762}
 --- !u!1 &763523821
 GameObject:
   m_ObjectHideFlags: 0
@@ -5629,10 +5648,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1341340762}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 761790066}
+        m_TargetAssemblyTypeName: SettingBtn, Assembly-CSharp
+        m_MethodName: KeySettingPopUpButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

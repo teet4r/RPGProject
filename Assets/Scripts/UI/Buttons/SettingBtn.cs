@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+//using UnityEngine.UIElements;
 
 public class SettingBtn : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class SettingBtn : MonoBehaviour
     public Sprite WindowScreen;
     public Sprite FullScreen;
     public Dropdown resolutionDropdown;
+    public GameObject KeySettingPanel;
 
     Resolution[] resolutions;
     void Start()
@@ -38,16 +40,21 @@ public class SettingBtn : MonoBehaviour
     {
         if (toggle.isOn)
         {
+            SoundManager.instance.sfxPlayer.Play(Sfx.ToggleButton);
             SwitchImg.sprite= FullScreen;
             SetFullscreen(true);
-            Debug.Log("전체냐");
         }
         else
         {
+            SoundManager.instance.sfxPlayer.Play(Sfx.ToggleButton);
             SwitchImg.sprite= WindowScreen;
             SetFullscreen(false);
-            Debug.Log("창모드냐");
         }
+    }
+    public void KeySettingPopUpButton()
+    {
+        SoundManager.instance.sfxPlayer.Play(Sfx.ButtonConfirm);
+        KeySettingPanel.SetActive(true);
     }
     private void SetFullscreen(bool isFullscreen)
     {

@@ -27,6 +27,7 @@ public class SettingCanvas : MonoBehaviour
     /// </summary>
     public void Exit()
     {
+        SoundManager.instance.sfxPlayer.Play(Sfx.ButtonCancel);
         settingBackground.SetActive(false);
     }
 }
