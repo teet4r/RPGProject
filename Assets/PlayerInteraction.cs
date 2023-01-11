@@ -27,6 +27,7 @@ public class PlayerInteraction : MonoBehaviour
             {
                 interactionWindow.gameObject.SetActive(false);
             }
+            yield return new WaitForSeconds(0.05f);
         }
     }
 
