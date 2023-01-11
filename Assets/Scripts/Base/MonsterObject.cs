@@ -89,6 +89,8 @@ public abstract class MonsterObject : LifeObject
         }
         _bodyCollider.enabled = false;
 
+        _DropItem(_item);
+
         StartCoroutine(_DieRoutine());
     }
     protected virtual void _Move()
@@ -112,7 +114,6 @@ public abstract class MonsterObject : LifeObject
     }
     protected virtual IEnumerator _Patrol(Vector3 startPosition)
     {
-        _navMeshAgent.isStopped = false;
         _navMeshAgent.destination = startPosition;
         _navMeshAgent.stoppingDistance = 0f;
 
@@ -134,6 +135,12 @@ public abstract class MonsterObject : LifeObject
         _animator.SetTrigger(AnimatorID.Trigger.Die);
         yield return new WaitForSeconds(_destroyTime);
         ObjectPools.instance.normalMonsterPool.Put(gameObject);
+    }
+    protected virtual void _DropItem(GameObject itemPrefab)
+    {
+        if (itemPrefab == null) return;
+
+        Instantiate(itemPrefab, transform.position + Vector3.up * 3f, itemPrefab.transform.rotation);
     }
 
     public Player target
