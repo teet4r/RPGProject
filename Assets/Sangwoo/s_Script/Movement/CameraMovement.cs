@@ -91,7 +91,7 @@ public class CameraMovement : MonoBehaviour
 
         /////////////////////////
 
-        if (UIInputManager.instance.CheckUIOpen())
+        if (UIInputManager.instance.CheckUIOpen() || SettingCanvas.instance.settingBackground.activeSelf)
         {
             UnLockCursor();
         }

@@ -14,19 +14,32 @@ public class PlayerInteraction : MonoBehaviour
         StartCoroutine(CheckNpc());
     }
 
+    private void Update()
+    {
+        if (interactionWindow.gameObject.activeSelf && Input.GetKeyDown(KeyManager.instance.Key(KeyManager.KEYNAME.NORM_INTERACTION)) && npcs.Count > 0)
+        {
+            if (npcs[0].GetComponent<NpcObject>())
+            {
+                // NPC ´ëÈ­
+            }
+            else
+            {
+
+            }
+        }
+    }
+
     IEnumerator CheckNpc()
     {
         while (true)
         {
             if (npcs.Count > 0)
             {
-                Debug.Log("HI5");
                 interactionWindow.gameObject.SetActive(true);
                 interactionWindow.SetInteractionWindow(GetNearestNpc());
             }
             else
             {
-                Debug.Log("HI5");
                 interactionWindow.gameObject.SetActive(false);
             }
             yield return new WaitForSeconds(0.05f);
@@ -38,7 +51,7 @@ public class PlayerInteraction : MonoBehaviour
         Vector3 playerPos = Player.instance.transform.position;
         float distance = 0f;
         float minDistance = Vector3.Distance(playerPos, npcs[0].transform.position);
-        GameObject nearestNpc = null;
+        GameObject nearestNpc = npcs[0];
         for (int i = 0; i < npcs.Count; i++)
         {
             distance = Vector3.Distance(playerPos, npcs[i].transform.position);
@@ -48,15 +61,12 @@ public class PlayerInteraction : MonoBehaviour
                 nearestNpc = npcs[i].gameObject;
             }
         }
-        Debug.Log(nearestNpc);
         if (nearestNpc != null)
         {
-            Debug.Log("HI3");
             return nearestNpc;
         }
         else
         {
-            Debug.Log("HI4");
             return null;
         }
     }
@@ -65,7 +75,6 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Merchant"))
         {
-            Debug.Log("HI1");
             npcs.Add(other.gameObject);
         }
     }
@@ -74,7 +83,6 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Merchant"))
         {
-            Debug.Log("HI2");
             npcs.Remove(other.gameObject);
         }
     }

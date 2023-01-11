@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Girl
   m_EditorClassIdentifier: 
   npcName: "\uC18C\uB140"
-  npcType: 0
   quests: []
   bigs:
   - smalls:
@@ -27,3 +26,5 @@ MonoBehaviour:
     clearMessage:
     - npcScript: "\uC555\uB3C4\uC801 \uAC10\uC0AC."
       isNpc: 1
+  npcInfo: "\uB9C8\uC744\uC758 \uBD80\uD765\uC744 \uC704\uD558\uC5EC \uAE08 \uB3D9\uC0C1\uC5D0
+    \uAE30\uB3C4\uB97C \uB4DC\uB9AC\uB294 \uC18C\uB140\uC774\uB2E4."

@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Jangro
   m_EditorClassIdentifier: 
   npcName: "\uC7A5\uB85C"
-  npcType: 0
   quests: []
   bigs:
   - smalls: []
@@ -80,3 +79,5 @@ MonoBehaviour:
         \uC0C8\uB85C\uC6B4 \uBBF8\uC158\uC774 \uAD81\uAE08\uD558\uB2E4\uBA74 \uB2E4\uC2DC
         \uC624\uAC8C\uB098."
       isNpc: 1
+  npcInfo: "\uC0AC\uB78C\uB4E4\uC774 \uBAA8\uB450 \uB5A0\uB098\uBC84\uB9B0 \uD3D0\uD5C8
+    \uB9C8\uC744\uC758 \uC7A5\uB85C\uC774\uB2E4."
