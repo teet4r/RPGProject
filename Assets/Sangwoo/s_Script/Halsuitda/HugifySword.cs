@@ -4,39 +4,61 @@ using UnityEngine;
 
 public class HugifySword : MonoBehaviour
 {
-    public float scale = 5f;
+    public Vector3 targetscale = new Vector3(5,5,5);
     public float hugeSpeed;
 
     private float time;
     private Vector3 originScale;
-    private Vector3 MaximumScale;
+    
 
     private void Awake()
     {
         originScale = transform.localScale; //원래 크기 저장
     }
-    private void OnEnable()
+
+    void Update()
     {
-        StartCoroutine(Up());
+        if(Input.GetKey(KeyCode.Alpha2))
+        {
+            StartCoroutine(Routine());
+        }
     }
+
    
-    IEnumerator Up()
+    
+   
+
+   
+
+    IEnumerator Routine()
     {
-        while (transform.localScale.x < scale)
+        // 크기가 커짐
+        while (transform.localScale.x < targetscale.x)
         {
             transform.localScale = originScale * (1f + time * hugeSpeed);
             time += Time.deltaTime;
 
-            if (transform.localScale.x >= scale)
-            {
-                time = 0;
-                MaximumScale = transform.localScale;
-                break;
-            }
+            yield return null;
+        }
+        time = 0;
+
+        yield return new WaitForSeconds(4f);
+
+        // 크기가 작아짐
+        while (transform.localScale.x > originScale.x)
+        {
+            
+            transform.localScale = targetscale / (1f + time * hugeSpeed);
+            time += Time.deltaTime;
 
             yield return null;
         }
-       
+        time = 0;
     }
-
 }
+        
+  
+
+    
+
+
