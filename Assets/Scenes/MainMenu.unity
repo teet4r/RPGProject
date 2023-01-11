@@ -13597,6 +13597,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 603271984503283484, guid: beacc3f23f854924096dbc85c7b7a0e0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 603271984698290584, guid: beacc3f23f854924096dbc85c7b7a0e0, type: 3}
       propertyPath: m_Name
       value: NPCTalkPanel
