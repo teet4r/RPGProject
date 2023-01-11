@@ -17,11 +17,9 @@ public class HugifySword : MonoBehaviour
     }
     private void OnEnable()
     {
-
         StartCoroutine(Up());
-        //StartCoroutine(Down());
-
     }
+   
     IEnumerator Up()
     {
         while (transform.localScale.x < scale)
@@ -29,23 +27,16 @@ public class HugifySword : MonoBehaviour
             transform.localScale = originScale * (1f + time * hugeSpeed);
             time += Time.deltaTime;
 
-
             if (transform.localScale.x >= scale)
             {
                 time = 0;
-                MaximumScale = originScale;
+                MaximumScale = transform.localScale;
                 break;
             }
-            //else if( transform.localScale.x )
-
-
 
             yield return null;
         }
+       
     }
-    //IEnumerator Down()
-    //{
-        
-    //}
-   
+
 }
