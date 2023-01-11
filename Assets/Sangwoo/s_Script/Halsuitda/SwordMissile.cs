@@ -14,7 +14,7 @@ public class SwordMissile : MonoBehaviour
 
     void SearchEnemy()
     {
-        Collider[] t_cols = Physics.OverlapSphere(transform.position, 100f, m_layerMask);
+        Collider[] t_cols = Physics.OverlapSphere(transform.position, 50f, m_layerMask);
 
         if(t_cols.Length >0)
         {
@@ -30,7 +30,7 @@ public class SwordMissile : MonoBehaviour
         SearchEnemy();
         m_psEffect.Play();
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         Destroy(gameObject);
     }
 
