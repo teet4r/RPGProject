@@ -64,20 +64,16 @@ public class Player : LifeObject
 
         nowSp = maxSp;
     }
-    protected override void Update()
-    {
-        base.Update();
-    }
     // 몬스터와 충돌처리
     void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out AttackCollider attackCollider))
+        if (other.TryGetComponent(out AttackCollider attackCollider) && attackCollider.parent.isAlive)
             GetDamage(attackCollider.parent.data.damage);
     }
     // 몬스터와 충돌처리
     void OnTriggerStay(Collider other)
     {
-        if (other.TryGetComponent(out AttackCollider attackCollider))
+        if (other.TryGetComponent(out AttackCollider attackCollider) && attackCollider.parent.isAlive)
             GetDamage(attackCollider.parent.data.damage);
     }
     // 몬스터 마법공격 충돌처리

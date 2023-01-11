@@ -9,6 +9,7 @@ public class ObjectPool : MonoBehaviour
         get { return _prefabs.Length; }
     }
     [SerializeField] GameObject[] _prefabs;
+    [SerializeField] NavMeshData _navMeshData;
     [Tooltip("Make prefab's clones in advance.")]
     [Min(0)][SerializeField] int _initialCount = 3;
     Dictionary<string, GameObject> _dictionary = new Dictionary<string, GameObject>();
@@ -48,7 +49,8 @@ public class ObjectPool : MonoBehaviour
 
         if (_qDictionary[prefabName].Count == 0)
         {
-            var clone = Instantiate(_dictionary[prefabName]);
+            var prefab = _dictionary[prefabName];
+            var clone = Instantiate(prefab, _navMeshData.sourceBounds.center, prefab.transform.rotation);
             clone.name = prefabName;
             clone.SetActive(false);
             return clone;

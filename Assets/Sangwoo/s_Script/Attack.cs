@@ -30,7 +30,7 @@ public class Attack : MonoBehaviour
     void Update()
     {
         var curAnimatorStateInfo = _animator.GetCurrentAnimatorStateInfo(0);
-        if (curAnimatorStateInfo.IsTag("Attack") && 0.3f <= curAnimatorStateInfo.normalizedTime && curAnimatorStateInfo.normalizedTime <= 0.7f) // 공격 중이라면
+        if (curAnimatorStateInfo.IsTag("Attack") && 0.2f <= curAnimatorStateInfo.normalizedTime && curAnimatorStateInfo.normalizedTime <= 0.8f) // 공격 중이라면
             for (int i = 0; i < _attackColliders.Length; i++)
                 _attackColliders[i].enabled = true;
         else // 아니라면

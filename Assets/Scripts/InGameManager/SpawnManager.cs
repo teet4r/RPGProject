@@ -59,8 +59,9 @@ public class SpawnManager : MonoBehaviour
         WaitForSeconds wfs = new WaitForSeconds(_CurSpawnData.spawnRate);
         for (int i = 0; i < _CurSpawnData.maxCount; i++)
         {
-            var obj = ObjectPools.instance.normalMonsterPool.
-                Get(_CurSpawnData.normalPrefabNames[Random.Range(0, _CurSpawnData.normalPrefabNames.Length)]);
+            var obj = ObjectPools.instance.normalMonsterPool.Get(
+                _CurSpawnData.normalPrefabNames[Random.Range(0, _CurSpawnData.normalPrefabNames.Length)]
+            );
             obj.transform.position = _CurSpawnData.normalSpawnPoints[Random.Range(0, _CurSpawnData.normalSpawnPoints.Length)].position;
             obj.SetActive(true);
             yield return wfs;

@@ -20,12 +20,6 @@ public abstract class LifeObject : MonoBehaviour
         _prevPos = transform.position;
         _prevTime = Time.time;
     }
-    protected virtual void Update()
-    {
-        if (!isAlive) return;
-
-        _UpdateStates();
-    }
 
     public virtual void Heal(float healAmount)
     {
@@ -47,17 +41,13 @@ public abstract class LifeObject : MonoBehaviour
         curHp = 0f;
         isInvincible = false;
     }
-    protected virtual void _UpdateStates()
-    {
-
-    }
     protected abstract IEnumerator _TriggerGetDamage(float damage);
 
     public bool isAlive
     {
         get
         {
-            return gameObject != null && gameObject.activeSelf && enabled && curHp > 0f;
+            return gameObject != null && gameObject.activeInHierarchy && enabled && curHp > 0f;
         }
     }
     public bool isWalking

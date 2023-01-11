@@ -777,7 +777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 500
-  _invincibleTime: 0.8
+  _invincibleTime: 1.5
   townPosition: {x: 0, y: 0, z: 0}
   atk: 100
   atkSpd: 30
@@ -1512,6 +1512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionWindow: {fileID: 0}
+  npc: {fileID: 0}
 --- !u!1 &4948683436645793425
 GameObject:
   m_ObjectHideFlags: 0
@@ -3093,7 +3094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c77addb9d5afd46b2dc94ed0196a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scale: 7
+  targetscale: {x: 5, y: 5, z: 5}
   hugeSpeed: 1
 --- !u!114 &4948683437100215727
 MonoBehaviour:

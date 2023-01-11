@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -27,7 +25,6 @@ public abstract class MonsterObject : LifeObject
         isAttacking = false;
 
         _bodyCollider.isTrigger = true;
-        _bodyCollider.enabled = true;
 
         _patrolCor = null;
         _attackCor = null;
@@ -41,9 +38,9 @@ public abstract class MonsterObject : LifeObject
         _navMeshAgent.angularSpeed = 360f;
         _navMeshAgent.acceleration = 50f;
     }
-    protected override void Update()
+    protected virtual void Update()
     {
-        base.Update();
+        if (!isAlive) return;
 
         _Move();
 
@@ -51,12 +48,12 @@ public abstract class MonsterObject : LifeObject
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Player player))
+        if (other.TryGetComponent(out Player player) && player.isAlive)
             player.GetDamage(data.damage);
     }
     void OnTriggerStay(Collider other)
     {
-        if (other.TryGetComponent(out Player player))
+        if (other.TryGetComponent(out Player player) && player.isAlive)
             player.GetDamage(data.damage);
     }
 
@@ -73,10 +70,6 @@ public abstract class MonsterObject : LifeObject
         yield return _wfs_invincible;
         isInvincible = false;
     }
-    protected override void _UpdateStates()
-    {
-        base._UpdateStates();
-    }
     protected override void _Die()
     {
         base._Die();
@@ -87,7 +80,6 @@ public abstract class MonsterObject : LifeObject
             StopCoroutine(_patrolCor);
             _patrolCor = null;
         }
-        _bodyCollider.enabled = false;
 
         _DropItem(_item);
 
@@ -95,8 +87,6 @@ public abstract class MonsterObject : LifeObject
     }
     protected virtual void _Move()
     {
-        if (!isAlive) return;
-
         if (isRecognized)
         {
             if (_patrolCor != null)
@@ -117,7 +107,7 @@ public abstract class MonsterObject : LifeObject
         _navMeshAgent.destination = startPosition;
         _navMeshAgent.stoppingDistance = 0f;
 
-        while (true)
+        while (isAlive)
         {
             // µµÂøÇßÀ» ¶§
             if (_navMeshAgent.remainingDistance < 0.01f)
@@ -135,12 +125,17 @@ public abstract class MonsterObject : LifeObject
     {
         if (itemPrefab == null) return;
 
-        Instantiate(itemPrefab, transform.position, itemPrefab.transform.rotation);
+        Debug.Log(transform.position);
+        var clone = Instantiate(itemPrefab, transform.position + Vector3.up * 3f, itemPrefab.transform.rotation);
+        Debug.Log(clone.transform.position);
     }
 
     public Player target
     {
-        get { return Player.instance; }
+        get
+        {
+            return Player.instance;
+        }
     }
     public bool hasTarget
     {
