@@ -6,37 +6,68 @@ public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] InteractionWindow interactionWindow;
 
-    Dictionary<GameObject, float> npcs = new();
+    List<GameObject> npcs = new();
 
-    private void Update()
+    private void Start()
     {
-        if(npcs.Count>0)
+        npcs.Clear();
+        StartCoroutine(CheckNpc());
+    }
+
+    IEnumerator CheckNpc()
+    {
+        while (true)
         {
-            interactionWindow.gameObject.SetActive(true);
-            interactionWindow.SetInteractionWindow();
-        }else
-        {
-            interactionWindow.gameObject.SetActive(false);
+            if (npcs.Count > 0)
+            {
+                interactionWindow.gameObject.SetActive(true);
+                interactionWindow.SetInteractionWindow(GetNearestNpc());
+            }
+            else
+            {
+                interactionWindow.gameObject.SetActive(false);
+            }
         }
     }
 
-    private void OnTriggerEnter(Collider col)
+    GameObject GetNearestNpc()
     {
-        if (col.gameObject.CompareTag("NPC"))
+        Vector3 playerPos = Player.instance.transform.position;
+        float distance = 0f;
+        float maxDistance = Vector3.Distance(playerPos, npcs[0].transform.position);
+        GameObject nearestNpc = null;
+        for (int i = 0; i < npcs.Count; i++)
         {
-            npcs.Add(col.gameObject, Vector3.Distance(Player.instance.transform.position, col.transform.position));
+            distance = Vector3.Distance(playerPos, npcs[i].transform.position);
+            if (distance > maxDistance)
+            {
+                maxDistance = distance;
+                nearestNpc = npcs[i];
+            }
         }
-        else if (col.gameObject.CompareTag("Merchant"))
+        if (nearestNpc != null)
         {
-            npcs.Add(col.gameObject, Vector3.Distance(Player.instance.transform.position, col.transform.position));
+            return nearestNpc;
+        }
+        else
+        {
+            return null;
         }
     }
 
-    void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("NPC"))
+        if (other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Merchant"))
         {
-            Debug.Log("npc Exit ¿‘¥œ¥Á");
+            npcs.Add(other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Merchant"))
+        {
+            npcs.Remove(other.gameObject);
         }
     }
 }

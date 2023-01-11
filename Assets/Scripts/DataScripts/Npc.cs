@@ -8,10 +8,12 @@ public class Npc : ScriptableObject
     [SerializeField] string npcName;
     [SerializeField] Quest[] quests;
     [SerializeField] Big[] bigs;
+    [SerializeField] string npcInfo;
 
     public string NpcName { get { return npcName; } }
     public Quest[] Quests { get { return quests; } }
     public Big[] Bigs { get { return bigs; } }
+    public string NpcInfo { get { return npcInfo; } }
 
     [System.Serializable]
     public class Small
