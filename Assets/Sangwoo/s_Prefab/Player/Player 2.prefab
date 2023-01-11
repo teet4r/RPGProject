@@ -699,7 +699,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3145699046051119792}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -779,7 +779,7 @@ MonoBehaviour:
   _maxHp: 500
   _invincibleTime: 0.8
   townPosition: {x: 0, y: 0, z: 0}
-  atk: 10
+  atk: 100
   atkSpd: 30
   animator: {fileID: 2839147158177773203}
 --- !u!114 &4948683435776712825
@@ -1264,7 +1264,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4948683436163957189}
   - component: {fileID: 4948683436163957187}
-  - component: {fileID: 4948683436163957188}
   m_Layer: 9
   m_Name: MiniMapCamera
   m_TagString: Untagged
@@ -1330,14 +1329,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &4948683436163957188
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4948683436163957190}
-  m_Enabled: 1
 --- !u!1 &4948683436185046931
 GameObject:
   m_ObjectHideFlags: 0

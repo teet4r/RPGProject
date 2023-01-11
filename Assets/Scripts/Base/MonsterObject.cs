@@ -140,7 +140,7 @@ public abstract class MonsterObject : LifeObject
     {
         if (itemPrefab == null) return;
 
-        Instantiate(itemPrefab, transform.position + Vector3.up * 3f, itemPrefab.transform.rotation);
+        Instantiate(itemPrefab, transform.position, itemPrefab.transform.rotation);
     }
 
     public Player target
