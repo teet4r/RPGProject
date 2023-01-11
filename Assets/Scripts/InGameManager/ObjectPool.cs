@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ObjectPool : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class ObjectPool : MonoBehaviour
             _qDictionary.Add(prefabName, new Queue<GameObject>());
             for (int j = 0; j < _initialCount; j++)
             {
-                var clone = Instantiate(_prefabs[i], transform);
+                var clone = Instantiate(_dictionary[prefabName]);
                 clone.name = prefabName;
                 clone.SetActive(false);
                 _qDictionary[prefabName].Enqueue(clone);
@@ -47,7 +48,7 @@ public class ObjectPool : MonoBehaviour
 
         if (_qDictionary[prefabName].Count == 0)
         {
-            var clone = Instantiate(_dictionary[prefabName], transform);
+            var clone = Instantiate(_dictionary[prefabName]);
             clone.name = prefabName;
             clone.SetActive(false);
             return clone;

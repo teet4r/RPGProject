@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stage: 1
   normalSpawnPoints:
-  - {fileID: 7498179749537250928, guid: d7ac06274ac15ec419a15f102dfc6369, type: 3}
-  - {fileID: 6785814347716510225, guid: 2618470beb0888a4f82b42f23a29694f, type: 3}
-  - {fileID: 3994984139734579730, guid: 6268b25487afc5e418947bbafad70018, type: 3}
-  - {fileID: 7772566597373823338, guid: 8f9df1527cbe4b543800d9930033a738, type: 3}
-  - {fileID: 5593598502178535861, guid: d30f77e1b6bac79449a45810ed967c78, type: 3}
-  - {fileID: 2266015441445255771, guid: 6935572414a7edf4fac3d9a86602e469, type: 3}
+  - {fileID: 5942240719334313859, guid: d7ac06274ac15ec419a15f102dfc6369, type: 3}
+  - {fileID: 7943124423733012367, guid: 2618470beb0888a4f82b42f23a29694f, type: 3}
+  - {fileID: 5432985249136433224, guid: 6268b25487afc5e418947bbafad70018, type: 3}
+  - {fileID: 8508250881348891128, guid: 8f9df1527cbe4b543800d9930033a738, type: 3}
+  - {fileID: 4978583312509775402, guid: d30f77e1b6bac79449a45810ed967c78, type: 3}
+  - {fileID: 3132176541889912550, guid: 6935572414a7edf4fac3d9a86602e469, type: 3}
   bossSpawnPoints:
   - {fileID: 6025445637053454432, guid: 5a3f299adb02c3e488646255cd7df017, type: 3}
   normalPrefabNames:
