@@ -154,11 +154,16 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl))
         {
             animator.SetBool("IsShield", true);
+            moveSpeed = 0;
+            
             Debug.Log(Player.instance.NowSp);
         }
         else if(Input.GetKeyUp(KeyCode.LeftControl))
         {
             animator.SetBool("IsShield", false);
+            moveSpeed = 3f;
         }
+
+
     }
 }
