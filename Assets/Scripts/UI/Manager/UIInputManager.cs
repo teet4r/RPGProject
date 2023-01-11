@@ -20,14 +20,14 @@ public class UIInputManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyManager.instance.Key(KeyManager.KEYNAME.NORM_CLOSE)))
         {
             if (CheckUIOpen()) CloseUI();
             else SelectOptionUI();
         }
-        if (Input.GetKeyDown(KeyCode.I)) SelectInventoryUI(); ////
-        if (Input.GetKeyDown(KeyCode.P)) SelectCharacterInfoUI(); ////
-        if (Input.GetKeyDown(KeyCode.J)) SelectQuestUI(); ////
+        if (Input.GetKeyDown(KeyManager.instance.Key(KeyManager.KEYNAME.NORM_INVENTORY))) SelectInventoryUI(); ////
+        if (Input.GetKeyDown(KeyManager.instance.Key(KeyManager.KEYNAME.NORM_CHARACTERINFO))) SelectCharacterInfoUI(); ////
+        if (Input.GetKeyDown(KeyManager.instance.Key(KeyManager.KEYNAME.NORM_QUEST))) SelectQuestUI(); ////
     }
     public void SelectInventoryUI()
     {
@@ -96,6 +96,6 @@ public class UIInputManager : MonoBehaviour
                 return true;
             }
         }
-        return SettingCanvas.instance.settingBackground.activeSelf;
+        return false;
     }
 }

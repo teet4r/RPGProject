@@ -14,9 +14,6 @@ public class QuestListHeight : MonoBehaviour
         int ChildNum = TxtLayout.GetComponentsInChildren<Image>().Length; //TxtLayout의 자식들 중 Image 컴퍼넌트 && setActive==true의 길이
         float width = rectTransform.rect.width;
         float newHeight = (ChildNum + 1) * 30;
-        Debug.Log(ChildNum);
-        //Debug.Log("Height" + height);
         rectTransform.sizeDelta = new Vector2(width, newHeight);
-        //Debug.Log(newHeight);
     }
 }

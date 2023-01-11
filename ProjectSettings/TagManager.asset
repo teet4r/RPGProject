@@ -13,6 +13,7 @@ TagManager:
   - Ground
   - MonsterBody
   - Enemy
+  - Merchant
   layers:
   - Default
   - TransparentFX
