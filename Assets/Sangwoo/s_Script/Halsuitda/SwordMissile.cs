@@ -14,7 +14,7 @@ public class SwordMissile : MonoBehaviour
 
     void SearchEnemy()
     {
-        Collider[] t_cols = Physics.OverlapSphere(transform.position, 300f, m_layerMask);
+        Collider[] t_cols = Physics.OverlapSphere(transform.position, 100f, m_layerMask);
 
         if(t_cols.Length >0)
         {

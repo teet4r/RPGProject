@@ -16,7 +16,9 @@ public class HugifySword : MonoBehaviour
     }
     private void OnEnable()
     {
-        StartCoroutine(Up());       
+
+        StartCoroutine(Up());
+
     }
     IEnumerator Up()
     {

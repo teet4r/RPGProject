@@ -17,11 +17,16 @@ public class PlayerMovement : MonoBehaviour
 
     public float smoothness = 10f;
 
+    
+    
+
+
     void Start()
     {
         _animator = this.GetComponent<Animator>();
         _camera = Camera.main;
         _controller = this.GetComponent<CharacterController>();
+        
     }
 
     void Update()
@@ -34,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
         {
             toggleCameraRotation = false;
         }
+
+       
        
         InputMovement();
     }
