@@ -24,6 +24,12 @@ public abstract class BossMonsterObject : MonsterObject
         if (isAttackable && _attackCor == null)
             _attackCor = StartCoroutine(_Attack());
     }
+    protected override IEnumerator _DieRoutine()
+    {
+        _animator.SetTrigger(AnimatorID.Trigger.Die);
+        yield return new WaitForSeconds(_destroyTime);
+        ObjectPools.instance.bossMonsterPool.Put(gameObject);
+    }
 
     protected Rotate3D _rotate3D = null;
 }

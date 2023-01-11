@@ -33,4 +33,10 @@ public class NormalMonsterObject : MonsterObject
         isAttacking = false;
         _attackCor = null;
     }
+    protected override IEnumerator _DieRoutine()
+    {
+        _animator.SetTrigger(AnimatorID.Trigger.Die);
+        yield return new WaitForSeconds(_destroyTime);
+        ObjectPools.instance.normalMonsterPool.Put(gameObject);
+    }
 }

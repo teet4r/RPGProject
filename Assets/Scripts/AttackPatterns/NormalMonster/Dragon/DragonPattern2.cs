@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class DragonPattern2 : MonoBehaviour, IAttackPattern
 {
-    public void Attack(Transform targetTransform)
+    public void Attack(LifeObject parent, Transform targetTransform)
     {
-        if (targetTransform == null) return;
+        if (!parent.isAlive || targetTransform == null) return;
 
-        StartCoroutine(_Attack(targetTransform));
+        StartCoroutine(_Attack(parent, targetTransform));
     }
 
-    IEnumerator _Attack(Transform targetTransform)
+    IEnumerator _Attack(LifeObject parent, Transform targetTransform)
     {
-        if (targetTransform == null) yield break;
-
         yield return _effectDelayTime;
-        for (int i = 0; i < _fireBreathCount; i++)
+        if (!parent.isAlive || targetTransform == null) yield break;
+        
+        for (int i = 0; parent.isAlive && targetTransform != null && i < _fireBreathCount; i++)
         {
-            var clone = Instantiate(_magicAttackPrefab, transform);
+            Instantiate(_magicAttackPrefab, transform);
             yield return _attackRate;
         }
     }

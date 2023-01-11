@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class GolemPattern2 : MonoBehaviour, IAttackPattern
 {
-    public void Attack(Transform targetTransform)
+    public void Attack(LifeObject parent, Transform targetTransform)
     {
-        if (targetTransform == null) return;
+        if (!parent.isAlive || targetTransform == null) return;
 
-        StartCoroutine(_Attack(targetTransform));
+        StartCoroutine(_Attack(parent, targetTransform));
     }
 
-    IEnumerator _Attack(Transform targetTransform)
+    IEnumerator _Attack(LifeObject parent, Transform targetTransform)
     {
-        if (targetTransform == null) yield break;
-
         yield return _effectDelayTime;
+        if (!parent.isAlive || targetTransform == null) yield break;
+        
         var newTargetPosition = new Vector3(
             targetTransform.position.x,
             targetTransform.position.y + 15f,
             targetTransform.position.z
         );
-        for (int i = 0; i < _knivesCount; i++)
+        for (int i = 0; parent.isAlive && targetTransform != null && i < _knivesCount; i++)
         {
             Instantiate(_magicAttackPrefab, newTargetPosition, _magicAttackPrefab.transform.rotation);
             yield return _attackRate;

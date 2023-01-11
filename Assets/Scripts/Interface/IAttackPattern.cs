@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IAttackPattern
 {
-    void Attack(Transform targetTransform);
+    void Attack(LifeObject parent, Transform targetTransform);
 }

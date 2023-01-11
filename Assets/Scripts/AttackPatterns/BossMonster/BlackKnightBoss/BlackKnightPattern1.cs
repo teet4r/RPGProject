@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class BlackKnightPattern1 : MonoBehaviour, IAttackPattern
 {
-    public void Attack(Transform targetTransform)
+    public void Attack(LifeObject parent, Transform targetTransform)
     {
-        if (targetTransform == null) return;
+        if (!parent.isAlive || targetTransform == null) return;
 
-        StartCoroutine(_Attack(targetTransform));
+        StartCoroutine(_Attack(parent, targetTransform));
     }
 
-    IEnumerator _Attack(Transform targetTransform)
+    IEnumerator _Attack(LifeObject parent, Transform targetTransform)
     {
-        if (targetTransform == null) yield break;
-
         yield return _effectDelayTime;
+        if (!parent.isAlive || targetTransform == null) yield break;
         var targetPosition = targetTransform.position;
         targetPosition.x = 0f;
         targetPosition.y = 0f;
         targetPosition.z = 2.8f;
         var newTargetPos = transform.TransformPoint(targetPosition);
-        for (int i = 0; i < _smashCount; i++)
+        for (int i = 0; parent.isAlive && targetTransform != null && i < _smashCount; i++)
         {
             Instantiate(_magicAttackPrefab, newTargetPos, _magicAttackPrefab.transform.rotation);
             yield return _attackRate;

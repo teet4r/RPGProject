@@ -20,7 +20,7 @@ public class BlackKnightBoss : BossMonsterObject
         // 공격
         int idx = Random.Range(0, _attackClips.Length);
         _animator.SetTrigger(AnimatorID.Trigger.Attacks[idx]);
-        _attackPatterns[idx].Attack(target.transform);
+        _attackPatterns[idx].Attack(this, target.transform);
 
         // 공격 애니메이션 + 1초가 끝날 때까지 대기
         yield return new WaitForSeconds(_attackClips[idx].length + 1f);

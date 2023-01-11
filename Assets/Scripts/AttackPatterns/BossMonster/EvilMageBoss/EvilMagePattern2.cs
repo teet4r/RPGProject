@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EvilMagePattern2 : MonoBehaviour, IAttackPattern
 {
-    public void Attack(Transform targetTransform)
+    public void Attack(LifeObject parent, Transform targetTransform)
     {
         if (targetTransform == null) return;
 
@@ -16,12 +16,10 @@ public class EvilMagePattern2 : MonoBehaviour, IAttackPattern
         if (targetTransform == null) yield break;
 
         yield return _effectDelayTime;
-        var targetPosition = targetTransform.position;
-        targetPosition.y = 0f;
         for (int i = 0; i < _FlameCount; i++)
         {
             yield return _attackRate;
-            Instantiate(_magicAttackPrefab, targetPosition, _magicAttackPrefab.transform.rotation);
+            Instantiate(_magicAttackPrefab, targetTransform.position, _magicAttackPrefab.transform.rotation);
         }
     }
 

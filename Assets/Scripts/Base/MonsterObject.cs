@@ -130,12 +130,7 @@ public abstract class MonsterObject : LifeObject
     }
     protected abstract void _RushToTarget();
     protected abstract IEnumerator _Attack();
-    IEnumerator _DieRoutine()
-    {
-        _animator.SetTrigger(AnimatorID.Trigger.Die);
-        yield return new WaitForSeconds(_destroyTime);
-        ObjectPools.instance.normalMonsterPool.Put(gameObject);
-    }
+    protected abstract IEnumerator _DieRoutine();
     protected virtual void _DropItem(GameObject itemPrefab)
     {
         if (itemPrefab == null) return;

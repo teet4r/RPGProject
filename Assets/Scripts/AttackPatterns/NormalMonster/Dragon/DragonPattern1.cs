@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DragonPattern1 : MonoBehaviour, IAttackPattern
 {
-    public void Attack(Transform targetTransform)
+    public void Attack(LifeObject parent, Transform targetTransform)
     {
-        if (targetTransform == null) return;
+        if (!parent.isAlive || targetTransform == null) return;
     }
 }

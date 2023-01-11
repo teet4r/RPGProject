@@ -4,28 +4,24 @@ using UnityEngine;
 
 public class EvilMagePattern1 : MonoBehaviour, IAttackPattern
 {
-    public void Attack(Transform targetTransform)
+    public void Attack(LifeObject parent, Transform targetTransform)
     {
-        if (targetTransform == null) return;
+        if (!parent.isAlive || targetTransform == null) return;
 
-        StartCoroutine(_Attack(targetTransform));
+        StartCoroutine(_Attack(parent, targetTransform));
     }
 
-    IEnumerator _Attack(Transform targetTransform)
+    IEnumerator _Attack(LifeObject parent, Transform targetTransform)
     {
-        if (targetTransform == null) yield break;
-
         yield return _effectDelayTime;
-        for (int i = 0; i < _explosionCount; i++)
+        if (!parent.isAlive || targetTransform == null) yield break;
+
+        for (int i = 0; parent.isAlive && targetTransform != null && i < _explosionCount; i++)
         {
-            var newTargetPos = new Vector3(
-                targetTransform.position.x,
-                0f,
-                targetTransform.position.z
-            );
             var newMyEuler = new Vector3(_magicAttackPrefab.transform.eulerAngles.x, Random.Range(0f, 360f), _magicAttackPrefab.transform.eulerAngles.z);
             yield return _attackRate;
-            var clone = Instantiate(_magicAttackPrefab, newTargetPos, _magicAttackPrefab.transform.rotation);
+            if (!parent.isAlive || targetTransform == null) yield break;
+            var clone = Instantiate(_magicAttackPrefab, targetTransform.position, _magicAttackPrefab.transform.rotation);
             clone.transform.eulerAngles = newMyEuler;
         }
     }

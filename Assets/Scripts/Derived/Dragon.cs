@@ -17,7 +17,7 @@ public class Dragon : NormalMonsterObject
 
         int idx = Random.Range(0, _attackClips.Length);
         _animator.SetTrigger(AnimatorID.Trigger.Attacks[idx]);
-        _attackPatterns[idx].Attack(target.transform);
+        _attackPatterns[idx].Attack(this, target.transform);
         
         yield return new WaitForSeconds(_attackClips[idx].length + 1f);
 
