@@ -7,26 +7,26 @@ public class TalkManager : MonoBehaviour
 {
     [SerializeField] Text TalkText;
     [SerializeField] Text NpcName;
+    [SerializeField] PlayerInteraction playerInteraction;
     private string writerTalk = "";
 
-    void Start()
+    void Update()
     {
         StartCoroutine(TestTalk());
     }
     IEnumerator TestTalk()
     {
-        yield return StartCoroutine(TextEffect("장로", "아 졸린거같기도 하고 아닌거같기도 하고 이걸 우야면 좋누..."));
+        yield return StartCoroutine(TextEffect(NpcName.text,TalkText.text));
     }
 
-    IEnumerator TextEffect(string Name, string Talk)
+    IEnumerator TextEffect(string name, string what)
     {
-        NpcName.text = Name;
-        writerTalk = "";
+        NpcName.text = playerInteraction.Npc.NpcName;
+        var writerTalk = playerInteraction.Npc.Bigs;
 
-        for(int i=0; i<Talk.Length; i++) //텍스트 타이핑 효과
+        for(int i=0; i< writerTalk.Length; i++) //텍스트 타이핑 효과
         {
-            writerTalk+= Talk[i];
-            TalkText.text = writerTalk;
+            TalkText.text += writerTalk[i];
             yield return null;
         }
     }

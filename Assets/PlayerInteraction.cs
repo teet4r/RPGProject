@@ -7,6 +7,8 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] InteractionWindow interactionWindow;
 
     List<GameObject> npcs = new();
+    [SerializeField] Npc npc;
+    public Npc Npc { get { return npc; } }
 
     private void Start()
     {
@@ -17,10 +19,11 @@ public class PlayerInteraction : MonoBehaviour
     private void Update()
     {
         if (interactionWindow.gameObject.activeSelf && Input.GetKeyDown(KeyManager.instance.Key(KeyManager.KEYNAME.NORM_INTERACTION)) && npcs.Count > 0)
-        {
+        { 
             if (npcs[0].GetComponent<NpcObject>())
             {
                 // NPC ¥Î»≠
+                npc = npcs[0].GetComponent<NpcObject>().Npc;
             }
             else
             {
