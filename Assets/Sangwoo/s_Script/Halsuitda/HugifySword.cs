@@ -42,7 +42,7 @@ public class HugifySword : MonoBehaviour
         }
         time = 0;
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(5f);
 
         // 크기가 작아짐
         while (transform.localScale.x > originScale.x)
