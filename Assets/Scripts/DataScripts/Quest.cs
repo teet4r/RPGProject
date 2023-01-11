@@ -24,7 +24,7 @@ public class Quest : ScriptableObject
     public enum QUEST_TYPE { MAIN, SUB, ENUM_SIZE }
 
     public string QuestTitle { get { return questTitle; } }
-    public string QuestNpc { get { return QuestNpc; } }
+    public string QuestNpc { get { return questNpc; } }
     public string QuestInfo { get { return questInfo; } }
 
     public QuestMonster[] QuestRequireMonster { get { return questRequireMonster; } }

@@ -15,7 +15,13 @@ public class QuestManager : MonoBehaviour
     [SerializeField] GameObject questNoneSelectedWindow;
     [SerializeField] Sprite[] questIcons = new Sprite[(int)Quest.QUEST_TYPE.ENUM_SIZE];
 
-    Text[] questInfoTexts;
+    [SerializeField] Text questTitleText;
+    [SerializeField] Text questNpcText;
+    [SerializeField] Text questInfoText;
+    [SerializeField] Text questRequireText;
+    [SerializeField] Text questPrizeExpText;
+    [SerializeField] Text questPrizeGoldText;
+
     Quest _quest;
     QuestInfo _questInfo;
 
@@ -28,11 +34,6 @@ public class QuestManager : MonoBehaviour
             instance = this;
     }
 
-    private void Start()
-    {
-        questInfoTexts = questInfoGroup.GetComponentsInChildren<Text>();
-    }
-
     public void ActivateQuestInfoGroup(bool _activate)
     {
         questInfoGroup.SetActive(_activate);
@@ -41,13 +42,13 @@ public class QuestManager : MonoBehaviour
 
     public void SetQuestInfoGroup(int _questCode)
     {
-        _quest = questInfos[_questCode].Quest;
-        questInfoTexts[0].text = _quest.QuestTitle;
-        questInfoTexts[1].text = _quest.QuestNpc;
-        questInfoTexts[2].text = _quest.QuestInfo;
-        // questInfoTexts[3].text = _quest.QuestRequireItem.Item.ItemName + ' ';
-        questInfoTexts[5].text = "°æÇèÄ¡ : " + _quest.QuestPrizeExp.ToString();
-        questInfoTexts[6].text = "°ñµå : " + _quest.QuestPrizeGold.ToString();
+        questTitleText.text = _quest.QuestTitle;
+        questNpcText.text = $"NPC : {_quest.QuestNpc}";
+        questInfoText.text = _quest.QuestInfo;
+        questRequireText.text = $"";
+        questPrizeExpText.text = $"°æÇèÄ¡ : {_quest.QuestPrizeExp}";
+        questPrizeGoldText.text = $"°ñµå : {_quest.QuestPrizeGold}";
+
         RefreshRequireText(_questCode);
     }
 

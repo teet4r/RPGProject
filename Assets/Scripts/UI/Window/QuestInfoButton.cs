@@ -7,11 +7,15 @@ using UnityEngine.UI;
 public class QuestInfoButton : MonoBehaviour
 {
     // 작성자 : 김두현
-    // NPC 퀘스트 수락 버튼에서 QuestInfoButton sample = new QuestInfoButton(Quest _quest); 를 호출하여 사용
 
-    Quest quest;
+    [SerializeField] Quest quest;
     [SerializeField] Text questTitle;
     [SerializeField] Image questImage;
+
+    private void Start()
+    {
+        SetButton(2);
+    }
 
     public void SetButton(int _questCode)
     {
@@ -23,5 +27,6 @@ public class QuestInfoButton : MonoBehaviour
     public void SelectButton()
     {
         QuestManager.instance.ActivateQuestInfoGroup(true);
+        QuestManager.instance.SetQuestInfoGroup(2);
     }
 }
