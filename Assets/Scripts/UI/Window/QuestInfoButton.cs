@@ -14,12 +14,12 @@ public class QuestInfoButton : MonoBehaviour
 
     private void Start()
     {
-        SetButton(2);
+        SetButton(1, 1);
     }
 
-    public void SetButton(int _questCode)
+    public void SetButton(int npcType,int _questCode)
     {
-        quest = QuestManager.instance.QuestInfos[_questCode].Quest;
+        quest = QuestManager.instance.QuestInfos[npcType][_questCode].Quest;
         questImage.sprite = QuestManager.instance.QuestIcons[(int)quest.QuestType];
         questTitle.text = quest.QuestTitle;
     }
@@ -27,6 +27,6 @@ public class QuestInfoButton : MonoBehaviour
     public void SelectButton()
     {
         QuestManager.instance.ActivateQuestInfoGroup(true);
-        QuestManager.instance.SetQuestInfoGroup(2);
+        QuestManager.instance.SetQuestInfoGroup(1,1);
     }
 }
