@@ -169,6 +169,7 @@ public class Player : LifeObject
     {
         isInvincible = true;
 
+        SoundManager.instance.sfxPlayer.Play(Sfx.PlayerGetDamage);
         curHp -= damage;
         if (curHp <= 0f)
             _Die();
@@ -190,6 +191,7 @@ public class Player : LifeObject
     // 따라서 yield를 쓰기 위한 것.
     IEnumerator _DieRoutine()
     {
+        SoundManager.instance.sfxPlayer.Play(Sfx.PlayerDead);
         animator.SetTrigger("IsDie"); // 0.5초간 실행이 되더라
         yield return new WaitForSeconds(1f);
         gameObject.SetActive(false);
