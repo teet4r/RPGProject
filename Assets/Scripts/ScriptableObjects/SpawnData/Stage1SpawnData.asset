@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: 5593598502178535861, guid: d30f77e1b6bac79449a45810ed967c78, type: 3}
   - {fileID: 2266015441445255771, guid: 6935572414a7edf4fac3d9a86602e469, type: 3}
   bossSpawnPoints:
-  - {fileID: 2980787557079223135, guid: 5a3f299adb02c3e488646255cd7df017, type: 3}
+  - {fileID: 6025445637053454432, guid: 5a3f299adb02c3e488646255cd7df017, type: 3}
   normalPrefabNames:
   - Specter
   - ChestMonster
