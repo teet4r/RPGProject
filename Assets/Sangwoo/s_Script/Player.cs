@@ -9,7 +9,7 @@ public class Player : LifeObject
     //작성일 : 23-01-04 ~
     //public string name { }
     // 체력은 curHp. _maxHp로 접근
-    float nowMp = 0f;
+    float nowMp = 100f;
     float maxMp = 100f;
     float nowExp = 0f;
     float maxExp = 1000f;
@@ -20,7 +20,7 @@ public class Player : LifeObject
     Vector3 townPosition;
 
     //스태미나
-    float nowSp = 0f;
+    float nowSp = 100f;
     float maxSp = 100f;
     bool usedSp; //행동체크
     const float increaseSp = 20f; //스태미나 증가량

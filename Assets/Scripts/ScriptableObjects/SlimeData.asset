@@ -18,3 +18,4 @@ MonoBehaviour:
   patrolDistance: 20
   recognitionDistance: 20
   attackRate: 2
+  monsterName: "\uC2AC\uB77C\uC774\uBC0D"

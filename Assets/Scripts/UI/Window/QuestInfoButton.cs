@@ -12,21 +12,19 @@ public class QuestInfoButton : MonoBehaviour
     [SerializeField] Text questTitle;
     [SerializeField] Image questImage;
 
-    private void Start()
-    {
-        SetButton(1, 1);
-    }
+    int questCode;
 
-    public void SetButton(int npcType,int _questCode)
+    public void SetButton(int _questCode)
     {
-        quest = QuestManager.instance.QuestInfos[npcType][_questCode].Quest;
+        quest = QuestManager.instance.QuestInfos[_questCode].Quest;
         questImage.sprite = QuestManager.instance.QuestIcons[(int)quest.QuestType];
         questTitle.text = quest.QuestTitle;
+        questCode = _questCode;
     }
 
     public void SelectButton()
     {
         QuestManager.instance.ActivateQuestInfoGroup(true);
-        QuestManager.instance.SetQuestInfoGroup(1,1);
+        QuestManager.instance.SetQuestInfoGroup(questCode);
     }
 }
