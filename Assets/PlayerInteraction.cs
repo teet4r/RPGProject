@@ -23,11 +23,12 @@ public class PlayerInteraction : MonoBehaviour
             if (npcs[0].GetComponent<NpcObject>())
             {
                 // NPC ¥Î»≠
-                npc = npcs[0].GetComponent<NpcObject>().Npc;
+                // npc = npcs[0].GetComponent<NpcObject>().Npc;
             }
             else
             {
-
+                UIInputManager.instance.NpcShopWindow.SetActive(true);
+                UIInputManager.instance.InventoryWindow.SetActive(true);
             }
         }
     }

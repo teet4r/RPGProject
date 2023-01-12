@@ -11,6 +11,9 @@ public class UIInputManager : MonoBehaviour
     [SerializeField] GameObject questWindow;
     [SerializeField] GameObject uiGroup;
     [SerializeField] GameObject npcShopWindow;
+
+    public GameObject NpcShopWindow { get { return npcShopWindow; } }
+    public GameObject InventoryWindow { get { return inventoryWindow; } }
     public enum UI_TYPE { INVENTORY, CHARACTERINFO, QUEST }
 
     private void Awake()
