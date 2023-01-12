@@ -15,7 +15,7 @@ MonoBehaviour:
   moveSpeed: 4
   damage: 8
   stoppingDistance: 1.75
-  patrolDistance: 20
-  recognitionDistance: 15
+  patrolDistance: 12
+  recognitionDistance: 12
   attackRate: 1
   monsterName: "\uBC15\uC2DC"

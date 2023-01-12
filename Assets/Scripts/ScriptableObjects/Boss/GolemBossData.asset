@@ -15,7 +15,7 @@ MonoBehaviour:
   moveSpeed: 3.5
   damage: 40
   stoppingDistance: 20
-  patrolDistance: 40
-  recognitionDistance: 40
+  patrolDistance: 20
+  recognitionDistance: 20
   attackRate: 1.5
   monsterName: "\uC232\uC758 \uACE8\uB818"
