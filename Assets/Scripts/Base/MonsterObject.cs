@@ -10,14 +10,6 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Animator))]
 public abstract class MonsterObject : LifeObject
 {
-    protected override void Awake()
-    {
-        base.Awake();
-
-        _rigidbody = GetComponent<Rigidbody>();
-        _navMeshAgent = GetComponent<NavMeshAgent>();
-        _animator= GetComponent<Animator>();
-    }
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -57,23 +49,8 @@ public abstract class MonsterObject : LifeObject
             player.GetDamage(data.damage);
     }
 
-    protected override IEnumerator _TriggerGetDamage(float damage)
+    protected sealed override void _Die()
     {
-        isInvincible = true;
-
-        curHp -= damage;
-        if (curHp <= 0f)
-            _Die();
-        else
-            _animator.SetTrigger(AnimatorID.Trigger.Hit);
-
-        yield return _wfs_invincible;
-        isInvincible = false;
-    }
-    protected override void _Die()
-    {
-        base._Die();
-
         _navMeshAgent.isStopped = true;
         if (_patrolCor != null)
         {
@@ -83,7 +60,7 @@ public abstract class MonsterObject : LifeObject
 
         _DropItem(_item);
 
-        StartCoroutine(_DieRoutine());
+        StartCoroutine(_LateDie());
     }
     protected virtual void _Move()
     {
@@ -118,9 +95,6 @@ public abstract class MonsterObject : LifeObject
             else yield return null;
         }
     }
-    protected abstract void _RushToTarget();
-    protected abstract IEnumerator _Attack();
-    protected abstract IEnumerator _DieRoutine();
     protected virtual void _DropItem(GameObject itemPrefab)
     {
         if (itemPrefab == null) return;
@@ -129,6 +103,9 @@ public abstract class MonsterObject : LifeObject
         var clone = Instantiate(itemPrefab, transform.position + Vector3.up * 3f, itemPrefab.transform.rotation);
         Debug.Log(clone.transform.position);
     }
+    protected abstract void _RushToTarget();
+    protected abstract IEnumerator _Attack();
+    protected abstract IEnumerator _LateDie();
 
     public Player target
     {
@@ -141,7 +118,7 @@ public abstract class MonsterObject : LifeObject
     {
         get
         {
-            return isAlive && target != null && target.gameObject.activeSelf && target.isAlive;
+            return isAlive && target != null && target.gameObject.activeInHierarchy && target.isAlive;
         }
     }
     public bool isRecognized // 플레이어가 시야에 들어올 때
@@ -149,7 +126,6 @@ public abstract class MonsterObject : LifeObject
         get
         {
             return
-                isAlive && 
                 hasTarget &&
                 Vector3.Distance(target.transform.position, transform.position) <= data.recognitionDistance;
         }
@@ -159,8 +135,7 @@ public abstract class MonsterObject : LifeObject
         get
         {
             bool _isAttackable = false;
-            if (isAlive &&
-                hasTarget &&
+            if (hasTarget &&
                 Vector3.Distance(target.transform.position, transform.position) <= data.stoppingDistance + 1f &&
                 Time.time - _prevAttackTime >= data.attackRate) 
             {
@@ -178,9 +153,9 @@ public abstract class MonsterObject : LifeObject
     [SerializeField] protected float _destroyTime = 5f;
     [SerializeField] protected Collider _bodyCollider = null;
     [SerializeField] protected GameObject _item = null;
-    protected Animator _animator = null;
-    protected NavMeshAgent _navMeshAgent = null;
-    protected Rigidbody _rigidbody = null;
+    [SerializeField] protected Animator _animator = null;
+    [SerializeField] protected NavMeshAgent _navMeshAgent = null;
+    [SerializeField] protected Rigidbody _rigidbody = null;
     protected Coroutine _patrolCor = null;
     protected Coroutine _attackCor = null;
     float _prevAttackTime = 0f;

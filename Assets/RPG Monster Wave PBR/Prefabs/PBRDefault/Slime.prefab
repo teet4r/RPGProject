@@ -573,3 +573,6 @@ MonoBehaviour:
   _destroyTime: 5
   _bodyCollider: {fileID: 1213174202}
   _item: {fileID: 130732, guid: 929fdc028602dc9488a39b1a4eb38357, type: 3}
+  _animator: {fileID: 95457531584545886}
+  _navMeshAgent: {fileID: 1213174204}
+  _rigidbody: {fileID: 1213174205}

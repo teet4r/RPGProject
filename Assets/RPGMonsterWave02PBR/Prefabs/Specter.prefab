@@ -474,8 +474,8 @@ GameObject:
   - component: {fileID: 8548725443824041179}
   - component: {fileID: 67251102}
   - component: {fileID: 67251105}
-  - component: {fileID: 67251103}
   - component: {fileID: 67251104}
+  - component: {fileID: 67251103}
   m_Layer: 14
   m_Name: Specter
   m_TagString: Enemy
@@ -551,27 +551,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &67251103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8548725443831320241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7ed7188d1fb64c40842c0ed85084615, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHp: 50
-  _invincibleTime: 0.7
-  data: {fileID: 11400000, guid: 8ea16b7225fcf544985900be5aaf69fa, type: 2}
-  _attackClips:
-  - {fileID: 7400000, guid: fdfc38e7dc5393d42935e394cecab311, type: 3}
-  - {fileID: 7400000, guid: d6bbbe0c029354f4b996c1ff52a4aac7, type: 3}
-  _destroyTime: 5
-  _bodyCollider: {fileID: 67251102}
-  _item: {fileID: 130732, guid: 929fdc028602dc9488a39b1a4eb38357, type: 3}
 --- !u!195 &67251104
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -594,6 +573,30 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &67251103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8548725443831320241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7ed7188d1fb64c40842c0ed85084615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHp: 50
+  _invincibleTime: 0.7
+  data: {fileID: 11400000, guid: 8ea16b7225fcf544985900be5aaf69fa, type: 2}
+  _attackClips:
+  - {fileID: 7400000, guid: fdfc38e7dc5393d42935e394cecab311, type: 3}
+  - {fileID: 7400000, guid: d6bbbe0c029354f4b996c1ff52a4aac7, type: 3}
+  _destroyTime: 5
+  _bodyCollider: {fileID: 67251102}
+  _item: {fileID: 130732, guid: 929fdc028602dc9488a39b1a4eb38357, type: 3}
+  _animator: {fileID: 8548725443824041179}
+  _navMeshAgent: {fileID: 67251104}
+  _rigidbody: {fileID: 67251105}
 --- !u!1 &8548725443831320243
 GameObject:
   m_ObjectHideFlags: 0

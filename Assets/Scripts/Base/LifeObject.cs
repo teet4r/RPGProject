@@ -10,12 +10,12 @@ public abstract class LifeObject : MonoBehaviour
 {
     protected virtual void Awake()
     {
-        _wfs_invincible = new WaitForSeconds(_invincibleTime);
+        _wfsInvincible = new WaitForSeconds(_invincibleTime);
     }
     protected virtual void OnEnable()
     {
-        isInvincible = false;
         curHp = maxHp;
+        _isInvincible = false;
 
         _prevPos = transform.position;
         _prevTime = Time.time;
@@ -27,21 +27,31 @@ public abstract class LifeObject : MonoBehaviour
 
         curHp = Mathf.Min(curHp + healAmount, maxHp);
     }
-    public virtual void GetDamage(float damageAmount)
+    public void GetDamage(float damageAmount)
     {
-        if (!isAlive) return;
         if (isInvincible) return;
 
-        StartCoroutine(_TriggerGetDamage(damageAmount));
-    }
-    protected virtual void _Die()
-    {
-        if (!isAlive) return;
+        curHp -= damageAmount;
+        if (curHp <= 0f)
+        {
+            curHp = 0f;
+            _Die();
+            return;
+        }
+        else
+            _LateGetDamage();
 
-        curHp = 0f;
-        isInvincible = false;
+        StartCoroutine(_InvincibleRoutine());
     }
-    protected abstract IEnumerator _TriggerGetDamage(float damage);
+    protected abstract void _Die();
+    protected abstract void _LateGetDamage();
+
+    IEnumerator _InvincibleRoutine()
+    {
+        _isInvincible = true;
+        yield return _wfsInvincible;
+        _isInvincible = false;
+    }
 
     public bool isAlive
     {
@@ -63,13 +73,21 @@ public abstract class LifeObject : MonoBehaviour
             return _isWalking;
         }
     }
-    public bool isInvincible { get; protected set; }
+    public bool isInvincible
+    {
+        get
+        {
+            if (isAlive) return _isInvincible;
+            return false;
+        }
+    }
     public float maxHp { get { return _maxHp; } }
     public float curHp { get; protected set; }
-    protected WaitForSeconds _wfs_invincible = null;
+    protected WaitForSeconds _wfsInvincible = null;
     [SerializeField] protected float _maxHp = 50f;
     [Tooltip("피격 후 무적 시간")]
     [SerializeField] float _invincibleTime = 0.5f;
     Vector3 _prevPos;
     float _prevTime;
+    bool _isInvincible = false;
 }

@@ -24,7 +24,11 @@ public abstract class BossMonsterObject : MonsterObject
         if (isAttackable && _attackCor == null)
             _attackCor = StartCoroutine(_Attack());
     }
-    protected override IEnumerator _DieRoutine()
+    protected override void _LateGetDamage()
+    {
+        throw new System.NotImplementedException();
+    }
+    protected override IEnumerator _LateDie()
     {
         _animator.SetTrigger(AnimatorID.Trigger.Die);
         yield return new WaitForSeconds(_destroyTime);

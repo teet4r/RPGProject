@@ -33,7 +33,11 @@ public class NormalMonsterObject : MonsterObject
         isAttacking = false;
         _attackCor = null;
     }
-    protected override IEnumerator _DieRoutine()
+    protected override void _LateGetDamage()
+    {
+        throw new System.NotImplementedException();
+    }
+    protected override IEnumerator _LateDie()
     {
         _animator.SetTrigger(AnimatorID.Trigger.Die);
         yield return new WaitForSeconds(_destroyTime);

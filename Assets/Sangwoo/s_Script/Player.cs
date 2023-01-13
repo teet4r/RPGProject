@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
+using UnityEngine.AI;
 
 
 public class Player : LifeObject
@@ -160,40 +162,22 @@ public class Player : LifeObject
         transform.position = townPosition;
         RefillRevive();
     }
-    //void nParticleTrigger()
-    //{
-        
-    //}
-    
-    protected override IEnumerator _TriggerGetDamage(float damage)
+
+    protected sealed override void _Die()
     {
-        isInvincible = true;
-
-        SoundManager.instance.sfxPlayer.Play(Sfx.PlayerGetDamage);
-        curHp -= damage;
-        if (curHp <= 0f)
-            _Die();
-        else
-            animator.SetTrigger("IsGetHit");
-
-        yield return _wfs_invincible;
-        isInvincible = false;
-    }
-    protected override void _Die()
-    {
-        base._Die();
-
-        StartCoroutine(_DieRoutine()); // 죽었을 때 실행할 코루틴
+        StartCoroutine(_LateDie());
     }
 
-    // 왜 이렇게 나누느냐?
-    // IsDie 애니메이션이 실행되는 시간을 벌기 위함.
-    // 따라서 yield를 쓰기 위한 것.
-    IEnumerator _DieRoutine()
+    IEnumerator _LateDie()
     {
         SoundManager.instance.sfxPlayer.Play(Sfx.PlayerDead);
-        animator.SetTrigger("IsDie"); // 0.5초간 실행이 되더라
+        animator.SetTrigger("IsDie");
         yield return new WaitForSeconds(1f);
         gameObject.SetActive(false);
+    }
+
+    protected override void _LateGetDamage()
+    {
+        throw new System.NotImplementedException();
     }
 }

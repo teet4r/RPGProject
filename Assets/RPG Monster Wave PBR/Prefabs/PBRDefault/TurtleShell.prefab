@@ -664,6 +664,9 @@ MonoBehaviour:
   _destroyTime: 5
   _bodyCollider: {fileID: 737703455}
   _item: {fileID: 130732, guid: 929fdc028602dc9488a39b1a4eb38357, type: 3}
+  _animator: {fileID: 95706204029656638}
+  _navMeshAgent: {fileID: 737703457}
+  _rigidbody: {fileID: 737703458}
 --- !u!1 &1532652994627396
 GameObject:
   m_ObjectHideFlags: 0
