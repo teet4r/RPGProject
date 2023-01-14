@@ -8,12 +8,7 @@ public class SpawnManager : MonoBehaviour
     public int Stage
     {
         get { return _stage; }
-        set
-        {
-            if (value < 1)
-                value = 1;
-            _stage = value;
-        }
+        set { _stage = Mathf.Max(value, 1); }
     }
     SpawnData _CurSpawnData
     {
@@ -42,10 +37,7 @@ public class SpawnManager : MonoBehaviour
 
     public void StartSpawn()
     {
-        var bossObj = ObjectPools.instance.bossMonsterPool.Get(_CurSpawnData.bossPrefabNames[0]);
-        bossObj.transform.position = _CurSpawnData.bossSpawnPoints[0].position;
-        bossObj.SetActive(true);
-
+        _MakeBoss(_CurSpawnData.bossPrefabNames[0]);
         if (_spawnCor == null)
             _spawnCor = StartCoroutine(_RandomSpawn());
     }
@@ -54,18 +46,26 @@ public class SpawnManager : MonoBehaviour
         if (_spawnCor != null)
             StopCoroutine(_spawnCor);
     }
+
     IEnumerator _RandomSpawn()
     {
         WaitForSeconds wfs = new WaitForSeconds(_CurSpawnData.spawnRate);
         for (int i = 0; i < _CurSpawnData.maxCount; i++)
         {
-            var obj = ObjectPools.instance.normalMonsterPool.Get(
-                _CurSpawnData.normalPrefabNames[Random.Range(0, _CurSpawnData.normalPrefabNames.Length)]
-            );
+            var obj = PoolManager.instance.
+                Get("NormalPool").
+                Get(_CurSpawnData.normalPrefabNames[Random.Range(0, _CurSpawnData.normalPrefabNames.Length)]);
             obj.transform.position = _CurSpawnData.normalSpawnPoints[Random.Range(0, _CurSpawnData.normalSpawnPoints.Length)].position;
             obj.SetActive(true);
             yield return wfs;
         }
         _spawnCor = null;
+    }
+
+    void _MakeBoss(string bossName)
+    {
+        var bossObj = PoolManager.instance.Get("BossPool").Get(bossName);
+        bossObj.transform.position = _CurSpawnData.bossSpawnPoints[0].position;
+        bossObj.SetActive(true);
     }
 }

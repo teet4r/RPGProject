@@ -43,15 +43,26 @@ public abstract class LifeObject : MonoBehaviour
 
         StartCoroutine(_InvincibleRoutine());
     }
+    
     protected abstract void _Die();
+
+    /// <summary>
+    /// For animations or sounds
+    /// </summary>
     protected abstract void _LateGetDamage();
 
+
+    /// <summary>
+    /// For invincible state
+    /// </summary>
+    /// <returns></returns>
     IEnumerator _InvincibleRoutine()
     {
         _isInvincible = true;
         yield return _wfsInvincible;
         _isInvincible = false;
     }
+
 
     public bool isAlive
     {
@@ -89,5 +100,5 @@ public abstract class LifeObject : MonoBehaviour
     [SerializeField] float _invincibleTime = 0.5f;
     Vector3 _prevPos;
     float _prevTime;
-    bool _isInvincible = false;
+    bool _isInvincible;
 }

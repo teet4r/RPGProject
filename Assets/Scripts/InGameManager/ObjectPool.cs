@@ -8,10 +8,12 @@ public class ObjectPool : MonoBehaviour
     {
         get { return _prefabs.Length; }
     }
+
     [SerializeField] GameObject[] _prefabs;
     [SerializeField] NavMeshData _navMeshData;
     [Tooltip("Make prefab's clones in advance.")]
     [Min(0)][SerializeField] int _initialCount = 3;
+
     Dictionary<string, GameObject> _dictionary = new Dictionary<string, GameObject>();
     Dictionary<string, Queue<GameObject>> _qDictionary = new Dictionary<string, Queue<GameObject>>();
 
@@ -100,6 +102,6 @@ public class ObjectPool : MonoBehaviour
                 if (obj != null)
                     Destroy(obj);
             }
-        Debug.Log("Clearing object pool is completed.");
+        Debug.Log($"Clearing {gameObject.name} is completed.");
     }
 }

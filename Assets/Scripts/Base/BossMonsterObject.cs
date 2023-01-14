@@ -32,7 +32,7 @@ public abstract class BossMonsterObject : MonsterObject
     {
         _animator.SetTrigger(AnimatorID.Trigger.Die);
         yield return new WaitForSeconds(_destroyTime);
-        ObjectPools.instance.bossMonsterPool.Put(gameObject);
+        PoolManager.instance.Get("BossPool").Put(gameObject);
     }
 
     protected Rotate3D _rotate3D = null;
