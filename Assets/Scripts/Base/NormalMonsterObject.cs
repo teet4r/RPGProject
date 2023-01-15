@@ -41,6 +41,6 @@ public class NormalMonsterObject : MonsterObject
     {
         _animator.SetTrigger(AnimatorID.Trigger.Die);
         yield return new WaitForSeconds(_destroyTime);
-        PoolManager.instance.Get("NormalPool").Put(gameObject);
+        PoolManager.instance.Put(gameObject);
     }
 }
