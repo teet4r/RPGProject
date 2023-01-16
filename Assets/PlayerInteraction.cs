@@ -7,8 +7,6 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] InteractionWindow interactionWindow;
 
     List<GameObject> npcs = new();
-    [SerializeField] Npc npc;
-    public Npc Npc { get { return npc; } }
 
     private void Start()
     {
@@ -22,8 +20,7 @@ public class PlayerInteraction : MonoBehaviour
         { 
             if (npcs[0].GetComponent<NpcObject>())
             {
-                // NPC ¥Î»≠
-                // npc = npcs[0].GetComponent<NpcObject>().Npc;
+                TalkManager.instance.PlayTalk(npcs[0].GetComponent<NpcObject>().Npc);
             }
             else
             {

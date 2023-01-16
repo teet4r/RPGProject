@@ -118,6 +118,26 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    public bool IsCompletedQuest(int _questCode)
+    {
+        return questInfos[_questCode].QuestCompleted;
+    }
+
+    public bool IsStartableQuest(int _questCode)
+    {
+        return questInfos[_questCode].QuestStartable;
+    }
+
+    public bool IsContinuingQuest(int _questCode)
+    {
+        return questInfos[_questCode].QuestContinuing;
+    }
+
+    public bool IsCompletableQuest(int _questCode)
+    {
+        return questInfos[_questCode].QuestCompletable;
+    }
+
     [System.Serializable]
     public class QuestInfo
     {
@@ -146,9 +166,9 @@ public class QuestManager : MonoBehaviour
 
         void SetQuestStartable()
         {
-            for (int i = 0; i < quest.QuestCode.Length; i++)
+            for (int i = 0; i < quest.QuestRequireCode.Length; i++)
             {
-                if (QuestManager.instance.questInfos[quest.QuestCode[i]].questCompleted)
+                if (QuestManager.instance.questInfos[quest.QuestRequireCode[i]].questCompleted)
                 {
                     questStartable = true;
                 }

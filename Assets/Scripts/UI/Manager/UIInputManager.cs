@@ -28,9 +28,9 @@ public class UIInputManager : MonoBehaviour
             if (CheckUIOpen()) CloseUI();
             else SelectOptionUI();
         }
-        if (Input.GetKeyDown(KeyManager.instance.Key(KeyManager.KEYNAME.NORM_INVENTORY))) SelectInventoryUI(); ////
-        if (Input.GetKeyDown(KeyManager.instance.Key(KeyManager.KEYNAME.NORM_CHARACTERINFO))) SelectCharacterInfoUI(); ////
-        if (Input.GetKeyDown(KeyManager.instance.Key(KeyManager.KEYNAME.NORM_QUEST))) SelectQuestUI(); ////
+        if (Input.GetKeyDown(KeyManager.instance.Key(KeyManager.KEYNAME.NORM_INVENTORY))) SelectInventoryUI();
+        if (Input.GetKeyDown(KeyManager.instance.Key(KeyManager.KEYNAME.NORM_CHARACTERINFO))) SelectCharacterInfoUI();
+        if (Input.GetKeyDown(KeyManager.instance.Key(KeyManager.KEYNAME.NORM_QUEST))) SelectQuestUI();
     }
     public void SelectInventoryUI()
     {
@@ -99,6 +99,7 @@ public class UIInputManager : MonoBehaviour
                 return true;
             }
         }
+        if (npcShopWindow.activeSelf) return true;
         return false;
     }
 }

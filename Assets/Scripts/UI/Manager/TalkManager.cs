@@ -5,29 +5,52 @@ using UnityEngine.UI;
 
 public class TalkManager : MonoBehaviour
 {
-    [SerializeField] Text TalkText;
-    [SerializeField] Text NpcName;
-    [SerializeField] PlayerInteraction playerInteraction;
-    private string writerTalk = "";
+    public static TalkManager instance = null;
 
-    void Update()
+    [SerializeField] GameObject npcTalkPanel;
+    [SerializeField] Text talkText;
+    [SerializeField] Text npcNameText;
+    [SerializeField] GameObject buttonGroup;
+
+    private void Awake()
     {
-        StartCoroutine(TestTalk());
-    }
-    IEnumerator TestTalk()
-    {
-        yield return StartCoroutine(TextEffect(NpcName.text,TalkText.text));
+        instance = this;
     }
 
-    IEnumerator TextEffect(string name, string what)
+    public void PlayTalk(Npc _npc)
     {
-        NpcName.text = playerInteraction.Npc.NpcName;
-        var writerTalk = playerInteraction.Npc.Bigs;
-
-        for(int i=0; i< writerTalk.Length; i++) //텍스트 타이핑 효과
+        for(int i=0;i<_npc.Quests.Length;i++)
         {
-            TalkText.text += writerTalk[i];
-            yield return null;
+            if (QuestManager.instance.IsCompletedQuest(_npc.Quests[i].QuestCode))
+            {
+                continue;
+            }
+            else if (QuestManager.instance.IsCompletableQuest(_npc.Quests[i].QuestCode))
+            {
+                PlayCompletableTalk(_npc.Quests[i]);
+            }
+            else if (QuestManager.instance.IsContinuingQuest(_npc.Quests[i].QuestCode))
+            {
+                PlayContinuingTalk(_npc.Quests[i]);
+            }
+            else if (QuestManager.instance.IsStartableQuest(_npc.Quests[i].QuestCode))
+            {
+                PlayStartableTalk(_npc.Quests[i]);
+            }
         }
+        return;
+    }
+
+    void PlayStartableTalk(Quest _quest)
+    {
+
+    }
+
+    void PlayContinuingTalk(Quest _quest)
+    {
+    }
+
+    void PlayCompletableTalk(Quest _quest)
+    {
     }
 }
