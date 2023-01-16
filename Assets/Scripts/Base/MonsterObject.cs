@@ -23,7 +23,6 @@ public abstract class MonsterObject : LifeObject
 
         _prevAttackTime = 0f;
 
-        _navMeshAgent.isStopped = false;
         _navMeshAgent.stoppingDistance = data.stoppingDistance;
         _navMeshAgent.autoBraking = false;
         _navMeshAgent.speed = data.moveSpeed;
@@ -99,9 +98,7 @@ public abstract class MonsterObject : LifeObject
     {
         if (itemPrefab == null) return;
 
-        Debug.Log(transform.position);
         var clone = Instantiate(itemPrefab, transform.position + Vector3.up * 3f, itemPrefab.transform.rotation);
-        Debug.Log(clone.transform.position);
     }
     protected abstract void _RushToTarget();
     protected abstract IEnumerator _Attack();

@@ -779,8 +779,9 @@ MonoBehaviour:
   _maxHp: 500
   _invincibleTime: 1.5
   townPosition: {x: 0, y: 0, z: 0}
-  atk: 100
-  atkSpd: 30
+  _bodyAtk: 10
+  _weaponAtk: 100
+  _bodyCollider: {fileID: 4948683435776712711}
   animator: {fileID: 2839147158177773203}
 --- !u!114 &4948683435776712825
 MonoBehaviour:
@@ -864,7 +865,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3145699046051119792}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4bd6a2a3f5a935146876e429c1a5c829, type: 3}
   m_Name: 
@@ -1495,7 +1496,7 @@ BoxCollider:
   m_GameObject: {fileID: 4948683436555360103}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3, y: 1.39, z: 5}
   m_Center: {x: 0, y: 0.12, z: 0}
@@ -1512,7 +1513,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionWindow: {fileID: 0}
-  npc: {fileID: 0}
 --- !u!1 &4948683436645793425
 GameObject:
   m_ObjectHideFlags: 0
@@ -3089,12 +3089,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1879331486448257420}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06c77addb9d5afd46b2dc94ed0196a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetscale: {x: 5, y: 5, z: 5}
+  targetscale: {x: 7, y: 7, z: 7}
   hugeSpeed: 1
 --- !u!114 &4948683437100215727
 MonoBehaviour:

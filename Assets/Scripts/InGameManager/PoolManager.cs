@@ -22,7 +22,6 @@ public class PoolManager : MonoBehaviour
             {
                 var clone = Instantiate(prefab);
                 clone.name = prefab.name;
-                clone.SetActive(false);
                 return clone;
             }
             return _q.Dequeue();
@@ -107,6 +106,9 @@ public class PoolManager : MonoBehaviour
         }
 
         for (int i = 0; i < prefabs.Length; i++)
+        {
             _prefabDictionary.Add(prefabs[i].name, prefabs[i]);
+            prefabs[i].SetActive(false);
+        }
     }
 }

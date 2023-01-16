@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 public class AttackCollider : MonoBehaviour
@@ -13,6 +14,17 @@ public class AttackCollider : MonoBehaviour
     {
         _attackCollider.isTrigger = true;
     }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out Player player))
+            player.GetDamage(parent.data.damage);
+    }
+    void OnTriggerStay(Collider other)
+    {
+        if (other.TryGetComponent(out Player player))
+            player.GetDamage(parent.data.damage);
+    }
+
     /// <summary>
     /// MonsterObject를 찾는 함수
     /// </summary>

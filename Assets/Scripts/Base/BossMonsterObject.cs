@@ -26,7 +26,7 @@ public abstract class BossMonsterObject : MonsterObject
     }
     protected override void _LateGetDamage()
     {
-        throw new System.NotImplementedException();
+
     }
     protected override IEnumerator _LateDie()
     {

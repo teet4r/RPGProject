@@ -8,4 +8,5 @@ public class Tag
     public static readonly string Ground = "Ground";
     public static readonly string Weapon = "Weapon";
     public static readonly string MonsterBody = "MonsterBody";
+    public static readonly string PlayerBody = "PlayerBody";
 }

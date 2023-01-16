@@ -29,8 +29,9 @@ public class Player : LifeObject
     const float restoreTimeSP = 1.5f; //스태미나 회복 딜레이 시간 ,회복할때까지 걸리는 시간
     float nowRestoreTimeSP ; // 스태미나 현재 회복시간,회복하는시간
 
-    public float atk = 10f;
-    public float atkSpd = 30f;
+    [SerializeField] float _bodyAtk = 10f;
+    [SerializeField] float _weaponAtk = 100f;
+    [SerializeField] Collider _bodyCollider = null;
 
     [SerializeField]
     Animator animator;
@@ -47,8 +48,8 @@ public class Player : LifeObject
     public float NowSp { get { return nowSp; } }
     public float MaxSp { get { return maxSp; } }
 
-    public float Atk { get { return atk; } }
-    public float AtkSpd { get { return atkSpd; } }
+    public float BodyAtk { get { return _bodyAtk; } }
+    public float WeaponAtk { get { return _weaponAtk; } }
 
     public static Player instance = null;
 
@@ -70,13 +71,13 @@ public class Player : LifeObject
     void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out AttackCollider attackCollider) && attackCollider.parent.isAlive)
-            GetDamage(attackCollider.parent.data.damage);
+            attackCollider.parent.GetDamage(BodyAtk);
     }
     // 몬스터와 충돌처리
     void OnTriggerStay(Collider other)
     {
         if (other.TryGetComponent(out AttackCollider attackCollider) && attackCollider.parent.isAlive)
-            GetDamage(attackCollider.parent.data.damage);
+            attackCollider.parent.GetDamage(BodyAtk);
     }
     // 몬스터 마법공격 충돌처리
     void OnParticleCollision(GameObject other)
@@ -104,7 +105,8 @@ public class Player : LifeObject
             _maxHp *= 1.1f;
             maxMp *= 1.1f;
             maxExp *= 1.3f;
-            atk *= 1.1f;
+            _bodyAtk *= 1.1f;
+            _weaponAtk *= 1.1f;
             curHp = _maxHp;
             nowMp = maxMp;
             nowExp -= maxExp;
@@ -178,6 +180,6 @@ public class Player : LifeObject
 
     protected override void _LateGetDamage()
     {
-        throw new System.NotImplementedException();
+        
     }
 }
