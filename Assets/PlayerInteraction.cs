@@ -20,7 +20,7 @@ public class PlayerInteraction : MonoBehaviour
         { 
             if (npcs[0].GetComponent<NpcObject>())
             {
-                TalkManager.instance.PlayTalk(npcs[0].GetComponent<NpcObject>().Npc);
+                // TalkManager.instance.PlayTalk(npcs[0].GetComponent<NpcObject>().Npc.NpcType);
             }
             else
             {
@@ -50,7 +50,7 @@ public class PlayerInteraction : MonoBehaviour
     GameObject GetNearestNpc()
     {
         Vector3 playerPos = Player.instance.transform.position;
-        float distance = 0f;
+        float distance;
         float minDistance = Vector3.Distance(playerPos, npcs[0].transform.position);
         GameObject nearestNpc = npcs[0];
         for (int i = 0; i < npcs.Count; i++)

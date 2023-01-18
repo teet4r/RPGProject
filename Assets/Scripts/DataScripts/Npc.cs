@@ -6,15 +6,16 @@ using UnityEngine;
 public class Npc : ScriptableObject
 {
     [SerializeField] string npcName;
-    [SerializeField] Quest[] quests;
-    [SerializeField] QuestScript[] questScripts;
+    [SerializeField] SerializableDictionary<Quest, QuestScript> quests;
     [SerializeField] string npcInfo;
+    [SerializeField] NPC_TYPE npcType;
 
     public string NpcName { get { return npcName; } }
-    public Quest[] Quests { get { return quests; } }
-    public QuestScript[] QuestScripts { get { return questScripts; } }
+    public SerializableDictionary<Quest,QuestScript> Quests { get { return quests; } }
     public string NpcInfo { get { return npcInfo; } }
+    public NPC_TYPE NpcType { get { return npcType; } }
 
+    public enum NPC_TYPE { JANGRO, GIRL }
 
     [System.Serializable]
     public class QuestScript

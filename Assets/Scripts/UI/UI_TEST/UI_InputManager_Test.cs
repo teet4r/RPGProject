@@ -5,7 +5,6 @@ using UnityEngine;
 public class UI_InputManager_Test : MonoBehaviour
 {
     [SerializeField] GameObject testUI;
-    [SerializeField] bool testUI_TF = false;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))

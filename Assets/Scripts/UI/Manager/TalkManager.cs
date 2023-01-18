@@ -12,45 +12,25 @@ public class TalkManager : MonoBehaviour
     [SerializeField] Text npcNameText;
     [SerializeField] GameObject buttonGroup;
 
+    enum TALK_BUTTON { TALK_NEXT, TALK_EXIT, QUEST_REJECT, QUEST_ACCEPT, QUEST_PRIZE_ACCEPT, ENUM_SIZE }
+
     private void Awake()
     {
         instance = this;
     }
 
-    public void PlayTalk(Npc _npc)
+    public void PlayTalk(Npc.NPC_TYPE _npcType, Quest _quest)
     {
-        for(int i=0;i<_npc.Quests.Length;i++)
+        npcTalkPanel.SetActive(true);
+        DisableButtons();
+
+    }
+
+    void DisableButtons()
+    {
+        for (int i = 0; i < (int)TALK_BUTTON.ENUM_SIZE; i++)
         {
-            if (QuestManager.instance.IsCompletedQuest(_npc.Quests[i].QuestCode))
-            {
-                continue;
-            }
-            else if (QuestManager.instance.IsCompletableQuest(_npc.Quests[i].QuestCode))
-            {
-                PlayCompletableTalk(_npc.Quests[i]);
-            }
-            else if (QuestManager.instance.IsContinuingQuest(_npc.Quests[i].QuestCode))
-            {
-                PlayContinuingTalk(_npc.Quests[i]);
-            }
-            else if (QuestManager.instance.IsStartableQuest(_npc.Quests[i].QuestCode))
-            {
-                PlayStartableTalk(_npc.Quests[i]);
-            }
+            buttonGroup.transform.GetChild(i).gameObject.SetActive(false);
         }
-        return;
-    }
-
-    void PlayStartableTalk(Quest _quest)
-    {
-
-    }
-
-    void PlayContinuingTalk(Quest _quest)
-    {
-    }
-
-    void PlayCompletableTalk(Quest _quest)
-    {
     }
 }

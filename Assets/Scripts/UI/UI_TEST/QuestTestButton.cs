@@ -4,8 +4,4 @@ using UnityEngine;
 
 public class QuestTestButton : MonoBehaviour
 {
-    public void SelectButton(int num)
-    {
-        QuestManager.instance.StartQuest(num);
-    }
 }
