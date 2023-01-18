@@ -6,31 +6,26 @@ public class PlayerAttackCollider : MonoBehaviour
 {
     void Awake()
     {
-        if (_parent == null)
-            _FindParent(transform);
+        ValidCheck();
     }
     void OnEnable()
     {
         _attackCollider.isTrigger = true;
     }
-    
-    /// <summary>
-    /// Player를 찾는 함수
-    /// </summary>
-    /// <param name="transform"></param>
-    void _FindParent(Transform transform)
-    {
-        if (transform == null)
-            return;
-        if (transform.TryGetComponent(out Player player))
-        {
-            _parent = player;
-            return;
-        }
-        _FindParent(transform.parent);
-    }
 
+    void ValidCheck()
+    {
+        if (_parent == null)
+            throw new System.Exception("Parent is null!");
+
+        if (string.IsNullOrEmpty(_colliderTag))
+            throw new System.Exception("Collider Tag is null!");
+        else
+            tag = _colliderTag;
+    }
+    
     public Player parent { get { return _parent; } }
     [SerializeField] Player _parent = null;
     [SerializeField] Collider _attackCollider = null;
+    [SerializeField] string _colliderTag = null;
 }

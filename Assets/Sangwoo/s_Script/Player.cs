@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Progress;
 using UnityEngine.AI;
-
+using UnityEditor;
 
 public class Player : LifeObject
 {
-    //작성자 : 이상우
-    //작성일 : 23-01-04 ~
-    //public string name { }
-    // 체력은 curHp. _maxHp로 접근
     float nowMp = 100f;
     float maxMp = 100f;
     float nowExp = 0f;
@@ -60,7 +56,6 @@ public class Player : LifeObject
 
         base.Awake();
     }
-
     protected override void OnEnable()
     {
         base.OnEnable();
