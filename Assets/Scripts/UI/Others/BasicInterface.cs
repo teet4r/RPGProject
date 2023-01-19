@@ -26,10 +26,10 @@ public class BasicInterface : MonoBehaviour
             expBar.fillAmount = Player.instance.NowExp / Player.instance.MaxExp;
             levelText.text = $"Lv.{(int)Player.instance.NowLevel}";
             expText.text = "exp " + (Player.instance.NowExp / Player.instance.MaxExp).ToString("0.0") + '%';
-            hpBar.fillAmount = Player.instance.curHp / Player.instance.maxHp;
+            hpBar.fillAmount = Player.instance.CurHp / Player.instance.MaxHp;
             mpBar.fillAmount = Player.instance.NowMp / Player.instance.MaxMp;
             spBar.fillAmount = Player.instance.NowSp / Player.instance.MaxSp;
-            hpText.text = $"{(int)Player.instance.curHp}/{(int)Player.instance.maxHp}";
+            hpText.text = $"{(int)Player.instance.CurHp}/{(int)Player.instance.MaxHp}";
             mpText.text = $"{(int)Player.instance.NowMp}/{(int)Player.instance.MaxMp}";
             yield return new WaitForSeconds(0.04f);
         }

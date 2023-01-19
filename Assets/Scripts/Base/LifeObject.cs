@@ -10,73 +10,105 @@ public abstract class LifeObject : MonoBehaviour
 {
     protected virtual void Awake()
     {
-        _wfsInvincible = new WaitForSeconds(_invincibleTime);
+        _wfsInvincibleTime = new WaitForSeconds(_invincibleTime);
+        _wfsReturnToPoolTime = new WaitForSeconds(_returnToPoolTime);
     }
+
     protected virtual void OnEnable()
     {
-        curHp = maxHp;
+        CurHp = MaxHp;
         _isInvincible = false;
 
         _prevPos = transform.position;
         _prevTime = Time.time;
     }
 
-    public virtual void Heal(float healAmount)
+    protected virtual void Update()
     {
-        if (!isAlive) return;
-
-        curHp = Mathf.Min(curHp + healAmount, maxHp);
+        if (!IsAlive) return;
     }
+
+
+
+    public void Heal(float healAmount)
+    {
+        if (!IsAlive) return;
+
+        _Heal(healAmount);
+    }
+
     public void GetDamage(float damageAmount)
     {
-        if (isInvincible) return;
+        if (IsInvincible) return;
 
-        curHp -= damageAmount;
-        if (curHp <= 0f)
+        _GetDamage(damageAmount);
+    }
+
+
+
+    protected virtual void _Heal(float healAmount)
+    {
+        SoundManager.instance.sfxPlayer.Play(_healSoundName);
+        CurHp = Mathf.Min(CurHp + healAmount, MaxHp);
+    }
+
+    protected virtual void _GetDamage(float damageAmount)
+    {
+        CurHp -= damageAmount;
+        if (CurHp <= 0f)
         {
-            curHp = 0f;
             _Die();
             return;
         }
-        else
-            _LateGetDamage();
 
+        SoundManager.instance.sfxPlayer.Play(_getDamageSoundName);
         StartCoroutine(_InvincibleRoutine());
     }
-    
-    protected abstract void _Die();
 
-    /// <summary>
-    /// For animations or sounds
-    /// </summary>
-    protected abstract void _LateGetDamage();
+    protected virtual void _Die()
+    {
+        CurHp = 0f;
+        _isInvincible = false;
+
+        StartCoroutine(_DieRoutine());
+    }
+
 
 
     /// <summary>
     /// For invincible state
     /// </summary>
-    /// <returns></returns>
     IEnumerator _InvincibleRoutine()
     {
         _isInvincible = true;
-        yield return _wfsInvincible;
+        yield return _wfsInvincibleTime;
         _isInvincible = false;
     }
 
+    /// <summary>
+    /// For returning to pool
+    /// </summary>
+    IEnumerator _DieRoutine()
+    {
+        yield return _wfsReturnToPoolTime;
+        PoolManager.instance.Put(gameObject);
+    }
 
-    public bool isAlive
+
+
+    public bool IsAlive
     {
         get
         {
-            return gameObject != null && gameObject.activeInHierarchy && enabled && curHp > 0f;
+            return gameObject != null && gameObject.activeInHierarchy && enabled && CurHp > 0f;
         }
     }
-    public bool isWalking
+    public bool IsWalking
     {
         get
         {
             var _isWalking =
-                isAlive &&
+                IsAlive &&
                 transform.position - _prevPos != Vector3.zero &&
                 Time.time - _prevTime != 0f;
             _prevPos = transform.position;
@@ -84,21 +116,51 @@ public abstract class LifeObject : MonoBehaviour
             return _isWalking;
         }
     }
-    public bool isInvincible
+    public bool IsInvincible
     {
         get
         {
-            if (isAlive) return _isInvincible;
+            if (IsAlive) return _isInvincible;
             return false;
         }
     }
-    public float maxHp { get { return _maxHp; } }
-    public float curHp { get; protected set; }
-    protected WaitForSeconds _wfsInvincible = null;
-    [SerializeField] protected float _maxHp = 50f;
-    [Tooltip("피격 후 무적 시간")]
-    [SerializeField] float _invincibleTime = 0.5f;
+    public float MaxHp
+    {
+        get
+        {
+            return _maxHp;
+        }
+        protected set
+        {
+            _maxHp = Mathf.Max(value, 1f);
+        }
+    }
+    public float CurHp
+    {
+        get
+        {
+            return _curHp;
+        }
+        protected set
+        {
+            _curHp = Mathf.Clamp(value, 0f, MaxHp);
+        }
+    }
+
+    [Header("----- Object Info -----")]
+    [Min(1f)][SerializeField] float _maxHp = 50f;
+    [Min(0f)][SerializeField] float _invincibleTime = 0.5f;
+    [Min(0f)][SerializeField] float _returnToPoolTime = 5f;
+
+    [Header("----- Sounds -----")]
+    [SerializeField] string _healSoundName = null;
+    [SerializeField] string _getDamageSoundName = null;
+    [SerializeField] string _dieSoundName = null;
+
+    WaitForSeconds _wfsInvincibleTime = null;
+    WaitForSeconds _wfsReturnToPoolTime = null;
     Vector3 _prevPos;
+    float _curHp;
     float _prevTime;
     bool _isInvincible;
 }

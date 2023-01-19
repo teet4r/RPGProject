@@ -40,7 +40,7 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
-        if (!player.isAlive) return;
+        if (!player.IsAlive) return;
         
         Move();
         Roll();

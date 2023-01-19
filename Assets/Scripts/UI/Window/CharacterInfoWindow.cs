@@ -26,7 +26,7 @@ public class CharacterInfoWindow : MonoBehaviour
             levelText.text = $"LV. {(int)Player.instance.NowLevel}";
             expBarImage.fillAmount = Player.instance.NowExp / Player.instance.MaxExp;
             atkText.text = $"°ø°Ý·Â : {(int)Player.instance.WeaponAtk}";
-            hpText.text = $"HP : {(int)Player.instance.curHp} / {(int)Player.instance.maxHp}";
+            hpText.text = $"HP : {(int)Player.instance.CurHp} / {(int)Player.instance.MaxHp}";
             mpText.text = $"MP : {(int)Player.instance.NowMp} / {(int)Player.instance.MaxMp}";
             spText.text = $"SP : {(int)Player.instance.NowSp} / {(int)Player.instance.MaxSp}";
             yield return new WaitForSeconds(refreshTime);

@@ -10,16 +10,87 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Animator))]
 public abstract class MonsterObject : LifeObject
 {
+    public Player Target
+    {
+        get
+        {
+            return Player.instance;
+        }
+    }
+    public bool HasTarget
+    {
+        get
+        {
+            return IsAlive && Target != null && Target.gameObject.activeInHierarchy && Target.IsAlive;
+        }
+    }
+    public bool IsReachedToTargetPosition
+    {
+        get
+        {
+            return HasTarget && _navMeshAgent.remainingDistance <= 0.05f;
+        }
+    }
+    public bool HasPathToEnemy // 적에게 도달할 수 있는 길이 있을 때
+    {
+        get
+        {
+            return
+                HasTarget &&
+                _SetPath(Target.transform.position) &&
+                _navMeshPath.status == NavMeshPathStatus.PathComplete &&
+                _navMeshAgent.remainingDistance <= data.recognitionDistance;
+        }
+    }
+    public bool IsAttackable // 공격 가능할 때
+    {
+        get
+        {
+            bool isAttackable = false;
+            if (HasPathToEnemy &&
+                _navMeshAgent.remainingDistance <= data.stoppingDistance + 1f &&
+                Time.time - _prevAttackTime >= data.attackRate)
+            {
+                isAttackable = true;
+                _prevAttackTime = Time.time;
+            }
+            return isAttackable;
+        }
+    }
+    public MonsterData data = null; // 몬스터 데이터 컨테이너
+
+    [Header("----- Components -----")]
+    [SerializeField] protected Collider _bodyCollider = null;
+    [SerializeField] protected Animator _animator = null;
+    [SerializeField] protected NavMeshAgent _navMeshAgent = null;
+    [SerializeField] protected Rigidbody _rigidbody = null;
+
+    [Header("----- Animations -----")]
+    [SerializeField] protected AnimationClip[] _attackClips = null;
+
+    [Header("----- Drop Item -----")]
+    [SerializeField] string _itemName = null;
+    [SerializeField] string _itemDropSoundName = null;
+
+    Coroutine _moveCor = null;
+    Coroutine _patrolCor = null;
+    NavMeshPath _navMeshPath;
+    float _prevAttackTime;
+
+
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        _navMeshPath = new NavMeshPath();
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();
 
-        isAttacking = false;
-
         _bodyCollider.isTrigger = true;
-
-        _patrolCor = null;
-        _attackCor = null;
 
         _prevAttackTime = 0f;
 
@@ -28,65 +99,104 @@ public abstract class MonsterObject : LifeObject
         _navMeshAgent.speed = data.moveSpeed;
         _navMeshAgent.angularSpeed = 360f;
         _navMeshAgent.acceleration = 50f;
+
+        _StartMove();
     }
-    protected virtual void Update()
+
+    protected override void Update()
     {
-        if (!isAlive) return;
+        base.Update();
 
-        _Move();
-
-        _animator.SetBool(AnimatorID.Bool.IsWalking, isWalking);
+        _animator.SetBool(AnimatorID.Bool.IsWalking, IsWalking);
     }
+    
     void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Player player) && player.isAlive)
+        if (other.TryGetComponent(out Player player) && player.IsAlive)
             player.GetDamage(data.damage);
     }
+    
     void OnTriggerStay(Collider other)
     {
-        if (other.TryGetComponent(out Player player) && player.isAlive)
+        if (other.TryGetComponent(out Player player) && player.IsAlive)
             player.GetDamage(data.damage);
     }
 
-    protected sealed override void _Die()
+
+
+    protected override void _Die()
     {
+        base._Die();
+
         _navMeshAgent.isStopped = true;
-        if (_patrolCor != null)
-        {
-            StopCoroutine(_patrolCor);
-            _patrolCor = null;
-        }
 
-        _DropItem(_item);
+        _StopPatrol();
+        _StopMove();
 
-        StartCoroutine(_LateDie());
+        _DropItem();
     }
-    protected virtual void _Move()
+    
+
+
+    void _StartMove()
     {
-        if (isRecognized)
+        if (_moveCor == null)
+            _moveCor = StartCoroutine(_MoveRoutine());
+    }
+
+    void _StopMove()
+    {
+        if (_moveCor == null) return;
+
+        StopCoroutine(_moveCor);
+        _moveCor = null;
+    }
+
+    IEnumerator _MoveRoutine()
+    {
+        while (IsAlive)
         {
-            if (_patrolCor != null)
+            // 적까지 도달할 수 있는 경로가 있다면
+            if (HasPathToEnemy)
             {
-                StopCoroutine(_patrolCor);
-                _patrolCor = null;
+                _StopPatrol();
+
+                _navMeshAgent.destination = Target.transform.position;
+                _navMeshAgent.stoppingDistance = data.stoppingDistance;
+                _Attack();
             }
-            _RushToTarget();
-        }
-        else
-        {
-            if (_patrolCor == null)
-                _patrolCor = StartCoroutine(_Patrol(transform.position));
+            else
+            {
+                _navMeshAgent.destination = transform.position;
+                _navMeshAgent.stoppingDistance = 0f;
+                _StartPatrol();
+            }
+            yield return null;
         }
     }
-    protected virtual IEnumerator _Patrol(Vector3 startPosition)
-    {
-        _navMeshAgent.destination = startPosition;
-        _navMeshAgent.stoppingDistance = 0f;
+    
 
-        while (isAlive)
+
+    void _StartPatrol()
+    {
+        if (_patrolCor == null)
+            _patrolCor = StartCoroutine(_PatrolRoutine());
+    }
+
+    void _StopPatrol()
+    {
+        if (_patrolCor == null) return;
+
+        StopCoroutine(_patrolCor);
+        _patrolCor = null;
+    }
+
+    IEnumerator _PatrolRoutine()
+    {
+        while (IsAlive)
         {
             // 도착했을 때
-            if (_navMeshAgent.remainingDistance < 0.01f)
+            if (IsReachedToTargetPosition)
             {
                 yield return new WaitForSeconds(Random.Range(0f, 7f));
                 _navMeshAgent.destination = Algorithm.GetRandomPointOnNavMesh(transform.position, Random.Range(0f, data.patrolDistance));
@@ -94,66 +204,33 @@ public abstract class MonsterObject : LifeObject
             else yield return null;
         }
     }
-    protected virtual void _DropItem(GameObject itemPrefab)
-    {
-        if (itemPrefab == null) return;
 
-        var clone = Instantiate(itemPrefab, transform.position + Vector3.up * 3f, itemPrefab.transform.rotation);
-    }
-    protected abstract void _RushToTarget();
-    protected abstract IEnumerator _Attack();
-    protected abstract IEnumerator _LateDie();
 
-    public Player target
+
+    protected virtual void _Attack()
     {
-        get
-        {
-            return Player.instance;
-        }
+        if (!IsReachedToTargetPosition) return;
     }
-    public bool hasTarget
+
+
+
+    bool _SetPath(Vector3 targetPosition)
     {
-        get
-        {
-            return isAlive && target != null && target.gameObject.activeInHierarchy && target.isAlive;
-        }
+        if (_navMeshAgent.CalculatePath(targetPosition, _navMeshPath) && _navMeshAgent.SetPath(_navMeshPath))
+            return true;
+        return false;
     }
-    public bool isRecognized // 플레이어가 시야에 들어올 때
+
+    void _DropItem()
     {
-        get
-        {
-            return
-                hasTarget &&
-                Vector3.Distance(target.transform.position, transform.position) <= data.recognitionDistance;
-        }
+        SoundManager.instance.sfxPlayer.Play(_itemDropSoundName);
+        _MakeItem();
     }
-    public bool isAttackable// 공격 가능할 때
+
+    void _MakeItem()
     {
-        get
-        {
-            bool _isAttackable = false;
-            if (hasTarget &&
-                Vector3.Distance(target.transform.position, transform.position) <= data.stoppingDistance + 1f &&
-                Time.time - _prevAttackTime >= data.attackRate) 
-            {
-                _isAttackable = true;
-                _prevAttackTime = Time.time;
-            }
-            else
-                _isAttackable = false;
-            return _isAttackable;
-        }
+        var item = PoolManager.instance.Get(_itemName);
+        item.transform.position = transform.position + Vector3.up * 3f;
+        item.SetActive(true);
     }
-    public bool isAttacking { get; protected set; } // 공격 중일 때 true
-    public MonsterData data = null; // 몬스터 데이터 컨테이너
-    [SerializeField] protected AnimationClip[] _attackClips;
-    [SerializeField] protected float _destroyTime = 5f;
-    [SerializeField] protected Collider _bodyCollider = null;
-    [SerializeField] protected GameObject _item = null;
-    [SerializeField] protected Animator _animator = null;
-    [SerializeField] protected NavMeshAgent _navMeshAgent = null;
-    [SerializeField] protected Rigidbody _rigidbody = null;
-    protected Coroutine _patrolCor = null;
-    protected Coroutine _attackCor = null;
-    float _prevAttackTime = 0f;
 }

@@ -6,7 +6,7 @@ public class GolemPattern1 : MonoBehaviour, IAttackPattern
 {
     public void Attack(LifeObject parent, Transform targetTransform)
     {
-        if (!parent.isAlive ||targetTransform == null) return;
+        if (!parent.IsAlive ||targetTransform == null) return;
 
         StartCoroutine(_Attack(parent, targetTransform));
     }
@@ -14,9 +14,9 @@ public class GolemPattern1 : MonoBehaviour, IAttackPattern
     IEnumerator _Attack(LifeObject parent, Transform targetTransform)
     {
         yield return _effectDelayTime;
-        if (!parent.isAlive || targetTransform == null) yield break;
+        if (!parent.IsAlive || targetTransform == null) yield break;
 
-        for (int i = 0; parent.isAlive && targetTransform != null && i < _meteorCount; i++)
+        for (int i = 0; parent.IsAlive && targetTransform != null && i < _meteorCount; i++)
         {
             Instantiate(_magicAttackPrefab, targetTransform.position, Quaternion.identity);
             yield return _attackRate;

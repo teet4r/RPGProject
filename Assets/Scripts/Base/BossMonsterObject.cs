@@ -14,25 +14,10 @@ public abstract class BossMonsterObject : MonsterObject
 
         _rotate3D = GetComponent<Rotate3D>();
     }
-    protected override void _RushToTarget()
-    {
-        _navMeshAgent.stoppingDistance = data.stoppingDistance;
-        if (hasTarget)
-            _navMeshAgent.destination = target.transform.position;
-        else return;
-
-        if (isAttackable && _attackCor == null)
-            _attackCor = StartCoroutine(_Attack());
-    }
-    protected override void _LateGetDamage()
-    {
-
-    }
-    protected override IEnumerator _LateDie()
+    
+    protected override void _Die()
     {
         _animator.SetTrigger(AnimatorID.Trigger.Die);
-        yield return new WaitForSeconds(_destroyTime);
-        PoolManager.instance.Put(gameObject);
     }
 
     protected Rotate3D _rotate3D = null;

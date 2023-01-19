@@ -14,8 +14,6 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         instance = this;
         DontDestroyOnLoad(gameObject);
-
-        TagLayerManager.AddTag("TTTT");
     }
 
     public static SoundManager instance = null;

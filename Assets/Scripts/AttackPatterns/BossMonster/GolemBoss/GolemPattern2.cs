@@ -6,7 +6,7 @@ public class GolemPattern2 : MonoBehaviour, IAttackPattern
 {
     public void Attack(LifeObject parent, Transform targetTransform)
     {
-        if (!parent.isAlive || targetTransform == null) return;
+        if (!parent.IsAlive || targetTransform == null) return;
 
         StartCoroutine(_Attack(parent, targetTransform));
     }
@@ -14,14 +14,14 @@ public class GolemPattern2 : MonoBehaviour, IAttackPattern
     IEnumerator _Attack(LifeObject parent, Transform targetTransform)
     {
         yield return _effectDelayTime;
-        if (!parent.isAlive || targetTransform == null) yield break;
+        if (!parent.IsAlive || targetTransform == null) yield break;
         
         var newTargetPosition = new Vector3(
             targetTransform.position.x,
             targetTransform.position.y + 15f,
             targetTransform.position.z
         );
-        for (int i = 0; parent.isAlive && targetTransform != null && i < _knivesCount; i++)
+        for (int i = 0; parent.IsAlive && targetTransform != null && i < _knivesCount; i++)
         {
             Instantiate(_magicAttackPrefab, newTargetPosition, _magicAttackPrefab.transform.rotation);
             yield return _attackRate;

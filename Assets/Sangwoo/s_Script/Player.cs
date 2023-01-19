@@ -65,13 +65,13 @@ public class Player : LifeObject
     // 몬스터와 충돌처리
     void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out AttackCollider attackCollider) && attackCollider.parent.isAlive)
+        if (other.TryGetComponent(out AttackCollider attackCollider) && attackCollider.parent.IsAlive)
             attackCollider.parent.GetDamage(BodyAtk);
     }
     // 몬스터와 충돌처리
     void OnTriggerStay(Collider other)
     {
-        if (other.TryGetComponent(out AttackCollider attackCollider) && attackCollider.parent.isAlive)
+        if (other.TryGetComponent(out AttackCollider attackCollider) && attackCollider.parent.IsAlive)
             attackCollider.parent.GetDamage(BodyAtk);
     }
     // 몬스터 마법공격 충돌처리
@@ -83,8 +83,8 @@ public class Player : LifeObject
 
     public void AddHp(float value)
     {
-        float _calcHp = curHp + value;
-        curHp = Mathf.Min(_calcHp, maxHp);
+        float _calcHp = CurHp + value;
+        CurHp = Mathf.Min(_calcHp, MaxHp);
     }
 
     public void AddMp(float value)
@@ -97,12 +97,12 @@ public class Player : LifeObject
         while (nowExp >= maxExp)
         {
             nowLevel += 1;
-            _maxHp *= 1.1f;
+            MaxHp *= 1.1f;
             maxMp *= 1.1f;
             maxExp *= 1.3f;
             _bodyAtk *= 1.1f;
             _weaponAtk *= 1.1f;
-            curHp = _maxHp;
+            CurHp = MaxHp;
             nowMp = maxMp;
             nowExp -= maxExp;
         }
@@ -146,7 +146,7 @@ public class Player : LifeObject
     }
     public void Revive()
     {
-        curHp = reviveCoin-- * maxHp * 0.5f;
+        CurHp = reviveCoin-- * MaxHp * 0.5f;
         animator.SetTrigger("IsRevive");
     }
 
@@ -171,10 +171,5 @@ public class Player : LifeObject
         animator.SetTrigger("IsDie");
         yield return new WaitForSeconds(1f);
         gameObject.SetActive(false);
-    }
-
-    protected override void _LateGetDamage()
-    {
-        
     }
 }

@@ -44,7 +44,7 @@ public class BgmPlayer : MonoBehaviour
             _clipDictionary.Add(_clips[i].name, _clips[i]);
     }
 
-    public bool isMute
+    public bool IsMute
     {
         get { return _audioSource.mute; }
         set { _audioSource.mute = value; }
