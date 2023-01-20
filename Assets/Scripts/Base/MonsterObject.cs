@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,45 +11,47 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Animator))]
 public abstract class MonsterObject : LifeObject
 {
-    public Player Target
+    public MonsterData data = null; // 몬스터 데이터 컨테이너
+    
+    protected Player Target
     {
         get
         {
             return Player.instance;
         }
     }
-    public bool HasTarget
+    protected bool HasTarget
     {
         get
         {
             return IsAlive && Target != null && Target.gameObject.activeInHierarchy && Target.IsAlive;
         }
     }
-    public bool IsReachedToTargetPosition
-    {
-        get
-        {
-            return HasTarget && _navMeshAgent.remainingDistance <= 0.05f;
-        }
-    }
-    public bool HasPathToEnemy // 적에게 도달할 수 있는 길이 있을 때
+    protected bool HasPathToTarget // 타겟에게 도달할 수 있는 길이 있을 때
     {
         get
         {
             return
                 HasTarget &&
-                _SetPath(Target.transform.position) &&
-                _navMeshPath.status == NavMeshPathStatus.PathComplete &&
-                _navMeshAgent.remainingDistance <= data.recognitionDistance;
+                _navMeshAgent.CalculatePath(Target.transform.position, _navMeshPath) &&
+                _navMeshAgent.SetPath(_navMeshPath) &&
+                _navMeshPath.status == NavMeshPathStatus.PathComplete;
         }
     }
-    public bool IsAttackable // 공격 가능할 때
+    protected bool IsRecognizedTarget
+    {
+        get
+        {
+            return HasPathToTarget && IsReachedUnderDistance(data.recognitionDistance);
+        }
+    }
+    protected bool IsAttackable // 공격 가능할 때
     {
         get
         {
             bool isAttackable = false;
-            if (HasPathToEnemy &&
-                _navMeshAgent.remainingDistance <= data.stoppingDistance + 1f &&
+            if (IsRecognizedTarget &&
+                IsReachedUnderDistance(data.stoppingDistance + 1f) &&
                 Time.time - _prevAttackTime >= data.attackRate)
             {
                 isAttackable = true;
@@ -57,7 +60,6 @@ public abstract class MonsterObject : LifeObject
             return isAttackable;
         }
     }
-    public MonsterData data = null; // 몬스터 데이터 컨테이너
 
     [Header("----- Components -----")]
     [SerializeField] protected Collider _bodyCollider = null;
@@ -72,8 +74,8 @@ public abstract class MonsterObject : LifeObject
     [SerializeField] string _itemName = null;
     [SerializeField] string _itemDropSoundName = null;
 
-    Coroutine _moveCor = null;
     Coroutine _patrolCor = null;
+    Coroutine _attackCor = null;
     NavMeshPath _navMeshPath;
     float _prevAttackTime;
 
@@ -99,13 +101,13 @@ public abstract class MonsterObject : LifeObject
         _navMeshAgent.speed = data.moveSpeed;
         _navMeshAgent.angularSpeed = 360f;
         _navMeshAgent.acceleration = 50f;
-
-        _StartMove();
     }
 
     protected override void Update()
     {
         base.Update();
+
+        _Move();
 
         _animator.SetBool(AnimatorID.Bool.IsWalking, IsWalking);
     }
@@ -131,56 +133,45 @@ public abstract class MonsterObject : LifeObject
         _navMeshAgent.isStopped = true;
 
         _StopPatrol();
-        _StopMove();
 
         _DropItem();
     }
-    
 
-
-    void _StartMove()
+    /// <summary>
+    /// NavMeshAgent의 remainingDistance가 distance이하로 남았는지 여부
+    /// </summary>
+    /// <param name="distance"></param>
+    protected bool IsReachedUnderDistance(float distance)
     {
-        if (_moveCor == null)
-            _moveCor = StartCoroutine(_MoveRoutine());
+        return _navMeshAgent.remainingDistance <= distance;
     }
 
-    void _StopMove()
-    {
-        if (_moveCor == null) return;
 
-        StopCoroutine(_moveCor);
-        _moveCor = null;
-    }
-
-    IEnumerator _MoveRoutine()
+    void _Move()
     {
-        while (IsAlive)
+        // 적까지 도달할 수 있는 경로가 있다면
+        if (HasPathToTarget)
         {
-            // 적까지 도달할 수 있는 경로가 있다면
-            if (HasPathToEnemy)
-            {
-                _StopPatrol();
-
-                _navMeshAgent.destination = Target.transform.position;
-                _navMeshAgent.stoppingDistance = data.stoppingDistance;
-                _Attack();
-            }
-            else
-            {
-                _navMeshAgent.destination = transform.position;
-                _navMeshAgent.stoppingDistance = 0f;
-                _StartPatrol();
-            }
-            yield return null;
+            _StopPatrol();
+            _StartAttack();
+        }
+        else
+        {
+            _StopAttack();
+            _StartPatrol();
         }
     }
-    
+
 
 
     void _StartPatrol()
     {
-        if (_patrolCor == null)
-            _patrolCor = StartCoroutine(_PatrolRoutine());
+        if (_patrolCor != null) return;
+     
+        _navMeshAgent.destination = transform.position;
+        _navMeshAgent.stoppingDistance = 0f;
+
+        _patrolCor = StartCoroutine(_PatrolRoutine());
     }
 
     void _StopPatrol()
@@ -196,7 +187,7 @@ public abstract class MonsterObject : LifeObject
         while (IsAlive)
         {
             // 도착했을 때
-            if (IsReachedToTargetPosition)
+            if (IsReachedUnderDistance(0.05f))
             {
                 yield return new WaitForSeconds(Random.Range(0f, 7f));
                 _navMeshAgent.destination = Algorithm.GetRandomPointOnNavMesh(transform.position, Random.Range(0f, data.patrolDistance));
@@ -207,19 +198,36 @@ public abstract class MonsterObject : LifeObject
 
 
 
-    protected virtual void _Attack()
+    /// <summary>
+    /// 대상에게 달려간 후 공격
+    /// </summary>
+    void _StartAttack()
     {
-        if (!IsReachedToTargetPosition) return;
+        if (_attackCor != null) return;
+
+        _attackCor = StartCoroutine(_AttackRoutine());
     }
 
-
-
-    bool _SetPath(Vector3 targetPosition)
+    void _StopAttack()
     {
-        if (_navMeshAgent.CalculatePath(targetPosition, _navMeshPath) && _navMeshAgent.SetPath(_navMeshPath))
-            return true;
-        return false;
+        if (_attackCor == null) return;
+
+        StopCoroutine(_attackCor);
+        _attackCor = null;
     }
+
+    protected virtual IEnumerator _AttackRoutine()
+    {
+        if (!IsAttackable) yield break;
+    }
+
+    //protected virtual void _Rush()
+    //{
+    //    _navMeshAgent.destination = Target.transform.position;
+    //    _navMeshAgent.stoppingDistance = data.stoppingDistance;
+    //}
+
+
 
     void _DropItem()
     {
