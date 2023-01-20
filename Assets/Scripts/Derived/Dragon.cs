@@ -11,20 +11,21 @@ public class Dragon : NormalMonsterObject
         _attackPatterns.Add(GetComponent<DragonPattern1>());
         _attackPatterns.Add(GetComponent<DragonPattern2>());
     }
-    //protected override IEnumerator _Attack()
-    //{
-    //    isAttacking = true;
 
-    //    int idx = Random.Range(0, _attackClips.Length);
-    //    _animator.SetTrigger(AnimatorID.Trigger.Attacks[idx]);
-    //    _attackPatterns[idx].Attack(this, target.transform);
-        
-    //    yield return new WaitForSeconds(_attackClips[idx].length + 1f);
+    protected override IEnumerator _AttackRoutine()
+    {
+        _navMeshAgent.destination = Target.transform.position;
+        _navMeshAgent.stoppingDistance = data.stoppingDistance;
 
-    //    _navMeshAgent.destination = hasTarget ? target.transform.position : transform.position;
-    //    isAttacking = false;
-    //    _attackCor = null;
-    //}
+        while (!IsReachedUnderDistance())
+            yield return null;
+
+        if (!IsAttackable) yield break;
+
+        int idx = Random.Range(0, _attackClips.Length);
+        _animator.SetTrigger(AnimatorID.Trigger.Attacks[idx]);
+        _attackPatterns[idx].Attack(this, Target.transform);
+    }
 
     List<IAttackPattern> _attackPatterns = new List<IAttackPattern>();
 }

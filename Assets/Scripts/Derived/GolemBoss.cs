@@ -10,29 +10,28 @@ public class GolemBoss : BossMonsterObject
 
         _attackPatterns.Add(GetComponent<GolemPattern1>());
     }
-    
-    //protected override IEnumerator _Attack()
-    //{
-    //    // 플레이어 자리까지 회전
-    //    // 상태 잠시 변경
-    //    isAttacking = true;
-    //    _navMeshAgent.isStopped = true;
-    //    yield return _rotate3D.StartCoroutine(_rotate3D.Rotate(target.transform.position));
 
-    //    // 공격
-    //    int idx = Random.Range(0, _attackClips.Length);
-    //    _animator.SetTrigger(AnimatorID.Trigger.Attacks[idx]);
-    //    _attackPatterns[idx].Attack(this, target.transform);
+    protected override IEnumerator _AttackRoutine()
+    {
+        _navMeshAgent.destination = Target.transform.position;
+        _navMeshAgent.stoppingDistance = data.stoppingDistance;
 
-    //    // 공격 애니메이션 + 1초가 끝날 때까지 대기
-    //    yield return new WaitForSeconds(_attackClips[idx].length + 1f);
+        while (!IsReachedUnderDistance())
+            yield return null;
 
-    //    // 상태 원위치
-    //    _navMeshAgent.isStopped = false;
-    //    _navMeshAgent.destination = hasTarget ? target.transform.position : transform.position;
-    //    isAttacking = false;
-    //    _attackCor = null;
-    //}
+        if (!IsAttackable) yield break;
+
+        // 플레이어 자리 쳐다보기
+        _navMeshAgent.isStopped = true;
+        yield return _rotate3D.StartCoroutine(_rotate3D.Rotate(Target.transform.position));
+
+        if (!IsAttackable) yield break;
+
+        // 공격
+        int idx = Random.Range(0, _attackClips.Length);
+        _animator.SetTrigger(AnimatorID.Trigger.Attacks[idx]);
+        _attackPatterns[idx].Attack(this, Target.transform);
+    }
 
     List<IAttackPattern> _attackPatterns = new List<IAttackPattern>();
 }

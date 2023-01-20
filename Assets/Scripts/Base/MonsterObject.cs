@@ -137,11 +137,7 @@ public abstract class MonsterObject : LifeObject
         _DropItem();
     }
 
-    /// <summary>
-    /// NavMeshAgent의 remainingDistance가 distance이하로 남았는지 여부
-    /// </summary>
-    /// <param name="distance"></param>
-    protected bool IsReachedUnderDistance(float distance)
+    protected bool IsReachedUnderDistance(float distance = 0.05f)
     {
         return _navMeshAgent.remainingDistance <= distance;
     }
@@ -149,8 +145,8 @@ public abstract class MonsterObject : LifeObject
 
     void _Move()
     {
-        // 적까지 도달할 수 있는 경로가 있다면
-        if (HasPathToTarget)
+        // 공격할 수 있는 상태가 되면
+        if (IsAttackable)
         {
             _StopPatrol();
             _StartAttack();
@@ -167,9 +163,6 @@ public abstract class MonsterObject : LifeObject
     void _StartPatrol()
     {
         if (_patrolCor != null) return;
-     
-        _navMeshAgent.destination = transform.position;
-        _navMeshAgent.stoppingDistance = 0f;
 
         _patrolCor = StartCoroutine(_PatrolRoutine());
     }
@@ -184,10 +177,13 @@ public abstract class MonsterObject : LifeObject
 
     IEnumerator _PatrolRoutine()
     {
-        while (IsAlive)
+        _navMeshAgent.destination = transform.position;
+        _navMeshAgent.stoppingDistance = 0f;
+
+        while (!IsAttackable)
         {
             // 도착했을 때
-            if (IsReachedUnderDistance(0.05f))
+            if (IsReachedUnderDistance())
             {
                 yield return new WaitForSeconds(Random.Range(0f, 7f));
                 _navMeshAgent.destination = Algorithm.GetRandomPointOnNavMesh(transform.position, Random.Range(0f, data.patrolDistance));
@@ -216,16 +212,7 @@ public abstract class MonsterObject : LifeObject
         _attackCor = null;
     }
 
-    protected virtual IEnumerator _AttackRoutine()
-    {
-        if (!IsAttackable) yield break;
-    }
-
-    //protected virtual void _Rush()
-    //{
-    //    _navMeshAgent.destination = Target.transform.position;
-    //    _navMeshAgent.stoppingDistance = data.stoppingDistance;
-    //}
+    protected abstract IEnumerator _AttackRoutine();
 
 
 

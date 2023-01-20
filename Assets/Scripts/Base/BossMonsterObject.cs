@@ -6,7 +6,7 @@ using UnityEngine;
 /// MonsterObject를 상속하는 하위 클래스
 /// </summary>
 [RequireComponent(typeof(Rotate3D))]
-public class BossMonsterObject : MonsterObject
+public abstract class BossMonsterObject : MonsterObject
 {
     protected Rotate3D _rotate3D = null;
 

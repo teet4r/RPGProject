@@ -7,6 +7,10 @@ using UnityEngine;
 /// </summary>
 public class NormalMonsterObject : MonsterObject
 {
+    protected override IEnumerator _AttackRoutine()
+    {
+        throw new System.NotImplementedException();
+    }
     //protected override void _Rush()
     //{
     //    base._Rush();
