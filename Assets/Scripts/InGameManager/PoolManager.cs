@@ -9,10 +9,11 @@ public class PoolManager : MonoBehaviour
         public GameObject prefab;
 
         Queue<GameObject> _q = new Queue<GameObject>();
-        
+
         void OnDestroy()
         {
             Clear();
+            prefab.SetActive(true);
         }
 
         public GameObject Get()
@@ -32,6 +33,7 @@ public class PoolManager : MonoBehaviour
                 Debug.LogError("This object is null.");
                 return;
             }
+            if (!obj.activeSelf) return;
 
             obj.SetActive(false);
             _q.Enqueue(obj);
@@ -99,15 +101,12 @@ public class PoolManager : MonoBehaviour
     {
         var prefabs = Resources.LoadAll<GameObject>("Prefabs");
         if (prefabs == null)
-        {
             Debug.LogError("There are no prefabs!");
-            return;
-        }
 
         for (int i = 0; i < prefabs.Length; i++)
         {
-            _prefabDictionary.Add(prefabs[i].name, prefabs[i]);
             prefabs[i].SetActive(false);
+            _prefabDictionary.Add(prefabs[i].name, prefabs[i]);
         }
     }
 }

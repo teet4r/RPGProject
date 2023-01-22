@@ -9,7 +9,17 @@ public class NormalMonsterObject : MonsterObject
 {
     protected override IEnumerator _AttackRoutine()
     {
-        throw new System.NotImplementedException();
+        _navMeshAgent.destination = Target.transform.position;
+        _navMeshAgent.stoppingDistance = data.stoppingDistance;
+
+        while (!IsReachedUnderDistance())
+            yield return null;
+
+        if (!IsAttackable) yield break;
+
+        // АјАн
+        int idx = Random.Range(0, _attackClips.Length);
+        _animator.SetTrigger(AnimatorID.Trigger.Attacks[idx]);
     }
     //protected override void _Rush()
     //{
