@@ -28,4 +28,10 @@ public class SerializableDictionary<Key, Value>
     {
         return value[key.IndexOf(_key)];
     }
+
+    public void DeleteValue()
+    {
+        key.RemoveAt(0);
+        value.RemoveAt(0);
+    }
 }

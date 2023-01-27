@@ -56,7 +56,7 @@ public class QuestManager : MonoBehaviour
         }
         for (int i = 0; i < _quest.QuestRequireItem.Length; i++)
         {
-            questRequireText.text += $"{_quest.QuestRequireItem[i].Item.ItemName} {_quest.QuestRequireItem[i].ItemNum}개 수집하기 {Inventory.instance.HowManyItem(_quest.QuestRequireItem[i].Item)}/{1}\n";
+            questRequireText.text += $"{_quest.QuestRequireItem[i].Item.ItemName} {_quest.QuestRequireItem[i].ItemNum}개 수집하기 {Inventory.instance.HowManyItem(_quest.QuestRequireItem[i].Item)}/{_quest.QuestRequireItem[i].ItemNum}\n";
         }
         questPrizeExpText.text = $"경험치 : {_quest.QuestPrizeExp}";
         questPrizeGoldText.text = $"골드 : {_quest.QuestPrizeGold}";

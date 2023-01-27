@@ -20,7 +20,7 @@ public class PlayerInteraction : MonoBehaviour
         { 
             if (npcs[0].GetComponent<NpcObject>())
             {
-                // TalkManager.instance.PlayTalk(npcs[0].GetComponent<NpcObject>().Npc.NpcType);
+                TalkManager.instance.PlayTalk(npcs[0].GetComponent<NpcObject>().Npc.NpcType);
             }
             else
             {

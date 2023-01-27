@@ -19,11 +19,11 @@ public class TalkManager : MonoBehaviour
         instance = this;
     }
 
-    public void PlayTalk(Npc.NPC_TYPE _npcType, Quest _quest)
+    public void PlayTalk(Npc.NPC_TYPE _npcType)
     {
         npcTalkPanel.SetActive(true);
         DisableButtons();
-
+        SetNpcTalkPanel(_npcType);
     }
 
     void DisableButtons()
@@ -32,5 +32,10 @@ public class TalkManager : MonoBehaviour
         {
             buttonGroup.transform.GetChild(i).gameObject.SetActive(false);
         }
+    }
+
+    void SetNpcTalkPanel(Npc.NPC_TYPE _npcType)
+    {
+        QuestManager.instance.QuestInfos.GetValue(_npcType);
     }
 }
