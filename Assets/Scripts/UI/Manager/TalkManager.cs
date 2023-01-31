@@ -19,11 +19,11 @@ public class TalkManager : MonoBehaviour
         instance = this;
     }
 
-    public void PlayTalk(Npc.NPC_TYPE _npcType)
+    public void PlayTalk(Npc _npc)
     {
         npcTalkPanel.SetActive(true);
         DisableButtons();
-        SetNpcTalkPanel(_npcType);
+        SetNpcTalkPanel(_npc);
     }
 
     void DisableButtons()
@@ -34,8 +34,34 @@ public class TalkManager : MonoBehaviour
         }
     }
 
-    void SetNpcTalkPanel(Npc.NPC_TYPE _npcType)
+    void SetNpcTalkPanel(Npc _npc)
     {
-        QuestManager.instance.QuestInfos.GetValue(_npcType);
+        QuestManager.QuestInfo tmpInfo = QuestManager.instance.QuestInfos.GetValue(_npc.NpcType)[0];
+        Npc.NpcScript[] tmpTalk;
+        if (tmpInfo.QuestStartable)
+        {
+            tmpTalk = _npc.Quests.GetValue(0).StartMessages;
+        }
+        else if (tmpInfo.QuestContinuing)
+        {
+            tmpTalk = _npc.Quests.GetValue(0).ContinueMessages;
+        }
+        else if (tmpInfo.QuestCompletable)
+        {
+            tmpTalk = _npc.Quests.GetValue(0).ClearMessages;
+        }
+
+    }
+
+    IEnumerator ShowNpcTalk(string _str)
+    {
+        talkText.text = string.Empty;
+        int num = 0;
+        while (true)
+        {
+            if (num >= _str.Length) yield break;
+            talkText.text += _str[num++];
+            yield return null;
+        }
     }
 }

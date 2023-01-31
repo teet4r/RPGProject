@@ -482,7 +482,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8548725443831747411
 Transform:
   m_ObjectHideFlags: 0
@@ -587,16 +587,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHp: 50
   _invincibleTime: 0.7
+  _returnToPoolTime: 5
+  _healSoundName: 
+  _getDamageSoundName: 
+  _dieSoundName: 
   data: {fileID: 11400000, guid: 8ea16b7225fcf544985900be5aaf69fa, type: 2}
-  _attackClips:
-  - {fileID: 7400000, guid: fdfc38e7dc5393d42935e394cecab311, type: 3}
-  - {fileID: 7400000, guid: d6bbbe0c029354f4b996c1ff52a4aac7, type: 3}
-  _destroyTime: 5
   _bodyCollider: {fileID: 67251102}
-  _item: {fileID: 130732, guid: 929fdc028602dc9488a39b1a4eb38357, type: 3}
   _animator: {fileID: 8548725443824041179}
   _navMeshAgent: {fileID: 67251104}
   _rigidbody: {fileID: 67251105}
+  _attackClips:
+  - {fileID: 7400000, guid: fdfc38e7dc5393d42935e394cecab311, type: 3}
+  - {fileID: 7400000, guid: d6bbbe0c029354f4b996c1ff52a4aac7, type: 3}
+  _itemName: 
+  _itemDropSoundName: 
 --- !u!1 &8548725443831320243
 GameObject:
   m_ObjectHideFlags: 0

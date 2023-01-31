@@ -13,41 +13,12 @@ MonoBehaviour:
   m_Name: Girl
   m_EditorClassIdentifier: 
   npcName: "\uC18C\uB140"
-  questScript:
-    key:
-    - {fileID: 11400000, guid: edcff618ca77b4646907db06974b6dad, type: 2}
+  quests:
+    key: []
     value:
-    - startMessages:
-      - script: "\uBC18\uAC00\uC6CC\uC694 \uC6A9\uC0AC\uB2D8! \uCD08\uBA74\uC5D0
-          \uC8C4\uC1A1\uD558\uC9C0\uB9CC \uD478\uB978 \uC0AC\uC2E0\uC758 \uB9DD\uD1A0
-          3\uAC1C\uC640 \uBC15\uC2DC\uC758 \uC0C1\uC790 3\uAC1C\uB97C \uAD6C\uD574\uC8FC\uC2E4
-          \uC218 \uC788\uB098\uC694? \uC0AC\uB840\uB294 \uB450\uB451\uD558\uAC8C
-          \uD558\uACA0\uC2B5\uB2C8\uB2E4! \uC81C\uAC00 \uB2E4\uCCD0\uC11C \uC9C1\uC811
-          \uAD6C\uD558\uC9C8 \uBABB\uD558\uB124\uC694.."
-        isNpc: 1
-      continueMessages:
-      - script: "\uD478\uB978 \uC0AC\uC2E0\uC758 \uB9DD\uD1A0 3\uAC1C\uC640 \uBC15\uC2DC\uC758
-          \uC0C1\uC790 3\uAC1C\uC5D0\uC694..!"
-        isNpc: 1
-      clearMessages:
-      - script: "\uC6A9\uC0AC\uB2D8 \uC815\uB9D0 \uAC10\uC0AC\uD569\uB2C8\uB2E4!"
-        isNpc: 1
-  quests: []
-  questScripts:
-  - startMessages:
-    - script: "\uBC18\uAC00\uC6CC\uC694 \uC6A9\uC0AC\uB2D8! \uCD08\uBA74\uC5D0 \uC8C4\uC1A1\uD558\uC9C0\uB9CC
-        \uD478\uB978 \uC0AC\uC2E0\uC758 \uB9DD\uD1A0 3\uAC1C\uC640 \uBC15\uC2DC\uC758
-        \uC0C1\uC790 3\uAC1C\uB97C \uAD6C\uD574\uC8FC\uC2E4 \uC218 \uC788\uB098\uC694?
-        \uC0AC\uB840\uB294 \uB450\uB451\uD558\uAC8C \uD558\uACA0\uC2B5\uB2C8\uB2E4!
-        \uC81C\uAC00 \uB2E4\uCCD0\uC11C \uC9C1\uC811 \uAD6C\uD558\uC9C8 \uBABB\uD558\uB124\uC694.."
-      isNpc: 1
-    continueMessages:
-    - script: "\uD478\uB978 \uC0AC\uC2E0\uC758 \uB9DD\uD1A0 3\uAC1C\uC640 \uBC15\uC2DC\uC758
-        \uC0C1\uC790 3\uAC1C\uC5D0\uC694..!"
-      isNpc: 1
-    clearMessages:
-    - script: "\uC6A9\uC0AC\uB2D8 \uC815\uB9D0 \uAC10\uC0AC\uD569\uB2C8\uB2E4!"
-      isNpc: 1
+    - startMessages: []
+      continueMessages: []
+      clearMessages: []
   npcInfo: "\uB9C8\uC744\uC758 \uBD80\uD765\uC744 \uC704\uD558\uC5EC \uAE08 \uB3D9\uC0C1\uC5D0
     \uAE30\uB3C4\uB97C \uB4DC\uB9AC\uB294 \uC18C\uB140\uC774\uB2E4."
   npcType: 1

@@ -29,6 +29,11 @@ public class SerializableDictionary<Key, Value>
         return value[key.IndexOf(_key)];
     }
 
+    public Value GetValue(int _num)
+    {
+        return value[_num];
+    }
+
     public void DeleteValue()
     {
         key.RemoveAt(0);
