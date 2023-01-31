@@ -70,11 +70,6 @@ public abstract class MonsterObject : LifeObject
     [Header("----- Animations -----")]
     [SerializeField] protected AnimationClip[] _attackClips = null;
 
-    [Header("----- Drop Item -----")]
-    [SerializeField] string _itemName = null;
-    [SerializeField] string _itemDropSoundName = null;
-
-    Coroutine _patrolCor = null;
     Coroutine _attackCor = null;
     NavMeshPath _navMeshPath;
     float _prevAttackTime;
@@ -131,10 +126,6 @@ public abstract class MonsterObject : LifeObject
         base._Die();
 
         _navMeshAgent.isStopped = true;
-
-        _StopPatrol();
-
-        _DropItem();
     }
 
     protected bool IsReachedUnderDistance(float distance = 0.05f)
@@ -148,51 +139,13 @@ public abstract class MonsterObject : LifeObject
         // 공격할 수 있는 상태가 되면
         if (IsAttackable)
         {
-            _StopPatrol();
             _StartAttack();
         }
         else
         {
             _StopAttack();
-            _StartPatrol();
         }
     }
-
-
-
-    void _StartPatrol()
-    {
-        if (_patrolCor != null) return;
-
-        _patrolCor = StartCoroutine(_PatrolRoutine());
-    }
-
-    void _StopPatrol()
-    {
-        if (_patrolCor == null) return;
-
-        StopCoroutine(_patrolCor);
-        _patrolCor = null;
-    }
-
-    IEnumerator _PatrolRoutine()
-    {
-        _navMeshAgent.destination = transform.position;
-        _navMeshAgent.stoppingDistance = 0f;
-
-        while (!IsAttackable)
-        {
-            // 도착했을 때
-            if (IsReachedUnderDistance())
-            {
-                yield return new WaitForSeconds(Random.Range(0f, 7f));
-                _navMeshAgent.destination = Algorithm.GetRandomPointOnNavMesh(transform.position, Random.Range(0f, data.patrolDistance));
-            }
-            else yield return null;
-        }
-    }
-
-
 
     /// <summary>
     /// 대상에게 달려간 후 공격
@@ -213,19 +166,4 @@ public abstract class MonsterObject : LifeObject
     }
 
     protected abstract IEnumerator _AttackRoutine();
-
-
-
-    void _DropItem()
-    {
-        SoundManager.instance.sfxPlayer.Play(_itemDropSoundName);
-        _MakeItem();
-    }
-
-    void _MakeItem()
-    {
-        var item = PoolManager.instance.Get(_itemName);
-        item.transform.position = transform.position + Vector3.up * 3f;
-        item.SetActive(true);
-    }
 }

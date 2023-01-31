@@ -159,6 +159,8 @@ GameObject:
   - component: {fileID: 316559667}
   - component: {fileID: 316559671}
   - component: {fileID: 316559666}
+  - component: {fileID: -5991830160999997776}
+  - component: {fileID: -8817524886519301440}
   m_Layer: 14
   m_Name: ChestMonster
   m_TagString: Enemy
@@ -279,8 +281,36 @@ MonoBehaviour:
   _rigidbody: {fileID: 316559668}
   _attackClips:
   - {fileID: 7400000, guid: 99760db3bf3782f43b0e386735164cbe, type: 3}
-  _itemName: 
-  _itemDropSoundName: 
+--- !u!114 &-5991830160999997776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2219292830553907877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a998674df4b254b40b5e3d69e1dd8182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _navMeshAgent: {fileID: 316559667}
+  _patrolDistance: 20
+--- !u!114 &-8817524886519301440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2219292830553907877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf52427a5e30e440add688535559081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemNames:
+  - DropItem
+  - 
+  _dropSoundName: 
 --- !u!1 &2219292830553907879
 GameObject:
   m_ObjectHideFlags: 0

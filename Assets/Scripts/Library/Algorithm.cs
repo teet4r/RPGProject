@@ -40,4 +40,9 @@ public class Algorithm
     {
         return Mathf.Atan2(start.forward.z, end.forward.x) * Mathf.Rad2Deg;
     }
+
+    public static bool IsNullOrEmptyOrWhiteSpace(string str)
+    {
+        return string.IsNullOrEmpty(str) || string.IsNullOrWhiteSpace(str);
+    }
 }
