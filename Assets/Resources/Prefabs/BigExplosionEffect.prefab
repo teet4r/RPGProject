@@ -14384,13 +14384,14 @@ GameObject:
   - component: {fileID: 198000012777718758}
   - component: {fileID: 199000010553669322}
   - component: {fileID: 7458717840309803953}
+  - component: {fileID: -3432701456235034131}
   m_Layer: 0
   m_Name: BigExplosionEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4000010212820824
 Transform:
   m_ObjectHideFlags: 0
@@ -19120,6 +19121,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 45
+--- !u!114 &-3432701456235034131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011797152326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb63029d5cf3cfe428e7ac37fd87e353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _returnTime: 4
 --- !u!1 &1000012348499044
 GameObject:
   m_ObjectHideFlags: 0

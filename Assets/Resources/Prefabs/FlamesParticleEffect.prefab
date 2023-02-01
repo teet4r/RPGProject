@@ -4894,13 +4894,14 @@ GameObject:
   - component: {fileID: 198000013227194214}
   - component: {fileID: 199000010346745340}
   - component: {fileID: 2604869236408518919}
+  - component: {fileID: 416081545540817081}
   m_Layer: 0
   m_Name: FlamesParticleEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4000010409153280
 Transform:
   m_ObjectHideFlags: 0
@@ -9524,6 +9525,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 25
+--- !u!114 &416081545540817081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010823978654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb63029d5cf3cfe428e7ac37fd87e353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _returnTime: 5
 --- !u!1 &1000013439165456
 GameObject:
   m_ObjectHideFlags: 0
