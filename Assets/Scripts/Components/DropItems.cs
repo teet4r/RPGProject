@@ -3,7 +3,7 @@ using CustomLibrary;
 
 public class DropItems : MonoBehaviour
 {
-    [SerializeField] Transform _dropTransform = null;
+    [SerializeField] Transform _dropPosition = null;
     [SerializeField] string[] _itemNames = null;
     [SerializeField] string _dropSoundName = null;
 
@@ -30,7 +30,7 @@ public class DropItems : MonoBehaviour
         if (Utility.IsNullOrEmptyOrWhiteSpace(itemName)) return;
 
         var item = PoolManager.Instance.Get(itemName);
-        item.transform.position = _dropTransform.position;
+        item.transform.position = _dropPosition.position;
         item.SetActive(true);
     }
 }

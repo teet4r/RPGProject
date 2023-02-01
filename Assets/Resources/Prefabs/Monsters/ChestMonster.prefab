@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecf52427a5e30e440add688535559081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dropTransform: {fileID: 0}
+  _dropPosition: {fileID: 2219292830553816709}
   _itemNames:
   - DropItem
   - 
