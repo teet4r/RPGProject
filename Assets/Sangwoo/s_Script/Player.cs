@@ -167,7 +167,7 @@ public class Player : LifeObject
 
     IEnumerator _LateDie()
     {
-        SoundManager.instance.sfxPlayer.Play(Sfx.PlayerDead);
+        SoundManager.Instance.SfxAudio.Play("PlayerDead");
         animator.SetTrigger("IsDie");
         yield return new WaitForSeconds(1f);
         gameObject.SetActive(false);

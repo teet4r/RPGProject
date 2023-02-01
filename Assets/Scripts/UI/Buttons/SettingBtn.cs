@@ -40,25 +40,25 @@ public class SettingBtn : MonoBehaviour
     {
         if (toggle.isOn)
         {
-            SoundManager.instance.sfxPlayer.Play(Sfx.ToggleButton);
+            SoundManager.Instance.SfxAudio.Play("ToggleButton");
             SwitchImg.sprite= FullScreen;
             SetFullscreen(true);
         }
         else
         {
-            SoundManager.instance.sfxPlayer.Play(Sfx.ToggleButton);
+            SoundManager.Instance.SfxAudio.Play("ToggleButton");
             SwitchImg.sprite= WindowScreen;
             SetFullscreen(false);
         }
     }
     public void KeySettingPopUpOpenButton()
     {
-        SoundManager.instance.sfxPlayer.Play(Sfx.ButtonConfirm);
+        SoundManager.Instance.SfxAudio.Play("ButtonConfirm");
         KeySettingPanel.SetActive(true);
     }
     public void KeySettingPopUpClolseButton()
     {
-        SoundManager.instance.sfxPlayer.Play(Sfx.ButtonCancel);
+        SoundManager.Instance.SfxAudio.Play("ButtonCancel");
         KeySettingPanel.SetActive(false);
     }
     private void SetFullscreen(bool isFullscreen)

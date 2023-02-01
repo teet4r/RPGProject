@@ -14,18 +14,18 @@ public class MainMenuButtons : MonoBehaviour
     public void SelectGameStartButton()
     {
         //SceneManager.LoadScene("InGame");
-        SoundManager.instance.sfxPlayer.Play(Sfx.MainMenuButton);
+        SoundManager.Instance.SfxAudio.Play("MainMenuButton");
         LoadingProgress.LoadScene("InGame");
     }
     public void SelectOptionButton() //¾ê ÇÏ³ª·Î ¿­°í´Ý±â °¡´É
     {
-        SoundManager.instance.sfxPlayer.Play(Sfx.MainMenuButton);
+        SoundManager.Instance.SfxAudio.Play("MainMenuButton");
         SettingCanvas.instance.settingBackground.SetActive(!SettingCanvas.instance.settingBackground.activeSelf);
     }
     
     public void SelectGameExitButton()
     {
-        SoundManager.instance.sfxPlayer.Play(Sfx.MainMenuButton);
+        SoundManager.Instance.SfxAudio.Play("MainMenuButton");
         Application.Quit();
     }
     

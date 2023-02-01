@@ -11,6 +11,8 @@ public class SoundManager : Singleton<SoundManager>
     {
         base.Awake();
 
+        gameObject.AddComponent<AudioListener>();
+
         Create();
     }
 

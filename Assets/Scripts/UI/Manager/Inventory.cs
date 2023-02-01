@@ -116,7 +116,7 @@ public class Inventory : MonoBehaviour
                         AlertManager.instance.ShowAlert("아직 사용할 수 없습니다.");
                         return;
                     }
-                    SoundManager.instance.sfxPlayer.Play(Sfx.UsePotion);
+                    SoundManager.Instance.SfxAudio.Play("UsePotion");
                     Player.instance.AddHp(_item.HpRecoverNum);
                     ItemManager.instance.SetConsumableItemUsableFalse(0);
                     break;
@@ -126,7 +126,7 @@ public class Inventory : MonoBehaviour
                         AlertManager.instance.ShowAlert("아직 사용할 수 없습니다.");
                         return;
                     }
-                    SoundManager.instance.sfxPlayer.Play(Sfx.UsePotion);
+                    SoundManager.Instance.SfxAudio.Play("UsePotion");
                     Player.instance.AddMp(_item.MpRecoverNum);
                     ItemManager.instance.SetConsumableItemUsableFalse(1);
                     break;

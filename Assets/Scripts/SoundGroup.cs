@@ -9,16 +9,16 @@ public class SoundGroup : MonoBehaviour
     {
         _masterSlider.onValueChanged.AddListener(delegate
         {
-            SoundManager.instance.bgmPlayer.RefreshVolume(_bgmSlider.value * _masterSlider.value);
-            SoundManager.instance.sfxPlayer.RefreshVolume(_sfxSlider.value * _masterSlider.value);
+            SoundManager.Instance.BgmAudio.Volume = _bgmSlider.value * _masterSlider.value;
+            SoundManager.Instance.SfxAudio.Volume = _sfxSlider.value * _masterSlider.value;
         });
         _bgmSlider.onValueChanged.AddListener(delegate
         {
-            SoundManager.instance.bgmPlayer.RefreshVolume(_bgmSlider.value * _masterSlider.value);
+            SoundManager.Instance.BgmAudio.Volume = _bgmSlider.value * _masterSlider.value;
         });
         _sfxSlider.onValueChanged.AddListener(delegate
         {
-            SoundManager.instance.sfxPlayer.RefreshVolume(_sfxSlider.value * _masterSlider.value);
+            SoundManager.Instance.SfxAudio.Volume = _sfxSlider.value * _masterSlider.value;
         });
     }
 

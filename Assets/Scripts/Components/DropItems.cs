@@ -1,4 +1,5 @@
 using UnityEngine;
+using CustomLibrary;
 
 public class DropItems : MonoBehaviour
 {
@@ -20,15 +21,15 @@ public class DropItems : MonoBehaviour
 
     void _MakeSound(string soundName)
     {
-        if (Algorithm.IsNullOrEmptyOrWhiteSpace(soundName)) return;
+        if (Utility.IsNullOrEmptyOrWhiteSpace(soundName)) return;
 
-        SoundManager.instance.sfxPlayer.Play(_dropSoundName);
+        SoundManager.Instance.SfxAudio.Play(_dropSoundName);
     }
     void _MakeItem(string itemName)
     {
-        if (Algorithm.IsNullOrEmptyOrWhiteSpace(itemName)) return;
+        if (Utility.IsNullOrEmptyOrWhiteSpace(itemName)) return;
 
-        var item = PoolManager.instance.Get(itemName);
+        var item = PoolManager.Instance.Get(itemName);
         item.transform.position = _dropTransform.position;
         item.SetActive(true);
     }

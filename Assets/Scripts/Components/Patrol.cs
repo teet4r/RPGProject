@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using CustomLibrary;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Patrol : MonoBehaviour
@@ -48,7 +49,7 @@ public class Patrol : MonoBehaviour
             if (_navMeshAgent.remainingDistance < 0.05f)
             {
                 yield return new WaitForSeconds(Random.Range(0f, 7f));
-                _navMeshAgent.destination = Algorithm.GetRandomPointOnNavMesh(transform.position, Random.Range(0f, _patrolDistance));
+                _navMeshAgent.destination = Utility.GetRandomPointOnNavMesh(transform.position, Random.Range(0f, _patrolDistance));
             }
             else yield return null;
         }

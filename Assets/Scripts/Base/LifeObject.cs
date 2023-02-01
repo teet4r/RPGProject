@@ -48,7 +48,7 @@ public abstract class LifeObject : MonoBehaviour
 
     protected virtual void _Heal(float healAmount)
     {
-        SoundManager.instance.sfxPlayer.Play(_healSoundName);
+        SoundManager.Instance.SfxAudio.Play(_healSoundName);
         CurHp = Mathf.Min(CurHp + healAmount, MaxHp);
     }
 
@@ -61,7 +61,7 @@ public abstract class LifeObject : MonoBehaviour
             return;
         }
 
-        SoundManager.instance.sfxPlayer.Play(_getDamageSoundName);
+        SoundManager.Instance.SfxAudio.Play(_getDamageSoundName);
         StartCoroutine(_InvincibleRoutine());
     }
 
@@ -91,7 +91,7 @@ public abstract class LifeObject : MonoBehaviour
     IEnumerator _DieRoutine()
     {
         yield return _wfsReturnToPoolTime;
-        PoolManager.instance.Put(gameObject);
+        PoolManager.Instance.Put(gameObject);
     }
 
 

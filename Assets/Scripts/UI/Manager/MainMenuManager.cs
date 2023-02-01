@@ -6,6 +6,6 @@ public class MainMenuManager : MonoBehaviour
 {
     void Start()
     {
-        SoundManager.instance.bgmPlayer.Play(Bgm.ArcadeGameBgm);
+        SoundManager.Instance.BgmAudio.Play("ArcadeGame");
     }
 }

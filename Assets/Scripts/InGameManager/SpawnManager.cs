@@ -52,7 +52,7 @@ public class SpawnManager : MonoBehaviour
         WaitForSeconds wfs = new WaitForSeconds(_CurSpawnData.spawnRate);
         for (int i = 0; i < _CurSpawnData.maxCount; i++)
         {
-            var obj = PoolManager.instance.Get(
+            var obj = PoolManager.Instance.Get(
                 _CurSpawnData.normalPrefabNames[Random.Range(0, _CurSpawnData.normalPrefabNames.Length)]
             );
             obj.transform.position = _CurSpawnData.normalSpawnPoints[Random.Range(0, _CurSpawnData.normalSpawnPoints.Length)].position;
@@ -64,7 +64,7 @@ public class SpawnManager : MonoBehaviour
 
     void _MakeBoss(string bossName)
     {
-        var bossObj = PoolManager.instance.Get(bossName);
+        var bossObj = PoolManager.Instance.Get(bossName);
         bossObj.transform.position = _CurSpawnData.bossSpawnPoints[0].position;
         bossObj.SetActive(true);
     }
